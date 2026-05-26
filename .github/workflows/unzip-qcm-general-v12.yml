@@ -1,0 +1,43 @@
+name: Install QCM General V12 from ZIP
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unzip-qcm-general-v12:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check ZIP exists
+        run: |
+          test -f qcm-general/qcm_2007_2026_github_v12.zip
+
+      - name: Unzip V12 into qcm-general
+        run: |
+          rm -rf /tmp/qcm-general-v12
+          mkdir -p /tmp/qcm-general-v12
+          unzip -q qcm-general/qcm_2007_2026_github_v12.zip -d /tmp/qcm-general-v12
+
+          rm -rf qcm-general/fiches qcm-general/documents qcm-general/sources
+          rm -f qcm-general/index.html qcm-general/README.md
+
+          cp -R /tmp/qcm-general-v12/* qcm-general/
+
+          test -f qcm-general/index.html
+          test -d qcm-general/fiches
+          test -d qcm-general/documents
+          test -d qcm-general/sources
+
+      - name: Commit installed QCM files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add qcm-general
+          git commit -m "Install QCM general V12" || echo "No changes to commit"
+          git push
