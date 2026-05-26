@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<meta name="description" content="Doctrine Éconologique — Souveraineté française, production locale, reprise de contrôle économique. Travail multi-IA.">
+<title>Doctrine Éconologique — Souveraineté Française</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --paper: #FDFBF7;
+    --paper-warm: #F5F0E3;
+    --paper-cool: #FFFFFC;
+    --ink: #0A0A0A;
+    --ink-soft: #1F1F1F;
+    --muted: #564A36;
+    --rouge: #8B2C1E;
+    --rouge-bright: #B14A38;
+    --or: #6B5520;
+    --line: #C5BDA8;
+    --line-faint: #DCD4BE;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    color-scheme: light;
+  }
+
+  /* ============================================
+     RESETS TYPOGRAPHIQUES
+     ============================================ */
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; }
+
+  /* ============================================
+     HEADER : ligne de tête
+     ============================================ */
+  .masthead {
+    background: #FAF6EC;
+    border-bottom: 1px solid var(--line);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .masthead-left { display: flex; gap: 24px; }
+  .masthead-right { color: var(--rouge); }
+
+  @media (max-width: 600px) {
+    .masthead { padding: 12px 20px; font-size: 9px; letter-spacing: 1px; }
+    .masthead-left { gap: 14px; }
+  }
+
+  /* ============================================
+     NAV : nom de la doctrine + sommaire
+     ============================================ */
+  .nav {
+    border-bottom: 1px solid var(--line);
+    padding: 28px 32px 24px;
+    text-align: center;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+    background: rgba(253, 251, 247, 0.95);
+  }
+  .nav-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .nav-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover {
+    color: var(--rouge);
+    border-bottom-color: var(--rouge);
+  }
+  @media (max-width: 600px) {
+    .nav { padding: 22px 20px 18px; }
+    .nav-links { gap: 20px; font-size: 12px; }
+  }
+
+  /* ============================================
+     HERO : éditorial calme
+     ============================================ */
+  .hero {
+    padding: 100px 32px 80px;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .hero-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rouge);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .hero-kicker::before, .hero-kicker::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--rouge);
+  }
+  .hero h1 {
+    font-size: clamp(44px, 8vw, 88px);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 36px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--rouge);
+  }
+  .hero-lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 640px;
+    margin: 0 auto 48px;
+  }
+  .hero-dropcap {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--rouge);
+    float: left;
+    line-height: 0.8;
+    margin: 8px 8px 0 0;
+  }
+  .hero-byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 60px 20px 50px; }
+    .hero h1 { font-size: 44px; }
+  }
+
+  /* ============================================
+     SECTIONS
+     ============================================ */
+  .section {
+    padding: 100px 32px;
+    max-width: 1080px;
+    margin: 0 auto;
+    border-top: 1px solid var(--line-faint);
+  }
+  @media (max-width: 600px) {
+    .section { padding: 60px 20px; }
+  }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 80px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--rouge);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .section-title {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  .section-title em { font-style: italic; color: var(--rouge); font-weight: 400; }
+  .section-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2vw, 19px);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* ============================================
+     SECTION 1 : DÉCOUVRIR
+     une étude unique mise en valeur
+     ============================================ */
+  .study {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: start;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) {
+    .study { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .study-meta {
+    border-top: 2px solid var(--ink);
+    padding-top: 16px;
+  }
+  .study-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .study-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .study-stat {
+    margin-bottom: 16px;
+  }
+  .study-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--rouge);
+    line-height: 1;
+  }
+  .study-stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .study-body h3 {
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 500;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .study-body p {
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+  .study-body .small {
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* Liens style éditorial */
+  .read-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--rouge);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rouge);
+    transition: all 0.25s;
+  }
+  .read-link .arrow { transition: transform 0.25s; }
+  .read-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .read-link:hover .arrow { transform: translateX(4px); }
+
+  /* ============================================
+     SECTION 2 : SOMMAIRE DES PILIERS
+     Liste typographique
+     ============================================ */
+  .toc {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .toc-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: baseline;
+    gap: 32px;
+    padding: 36px 16px;
+    border-bottom: 1px solid var(--line-faint);
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.25s;
+    position: relative;
+  }
+  .toc-item:first-child { border-top: 1px solid var(--line-faint); }
+  .toc-item:hover {
+    background: var(--paper-cool);
+    padding-left: 24px;
+  }
+  .toc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--muted);
+    line-height: 1;
+    transition: color 0.25s;
+  }
+  .toc-item:hover .toc-num { color: var(--rouge); }
+  .toc-content h3 {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .toc-content p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .toc-stat {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.5px;
+  }
+  .toc-arrow {
+    font-size: 24px;
+    color: var(--muted);
+    transition: all 0.25s;
+    align-self: center;
+  }
+  .toc-item:hover .toc-arrow {
+    color: var(--rouge);
+    transform: translateX(6px);
+  }
+  @media (max-width: 600px) {
+    .toc-item {
+      grid-template-columns: 50px 1fr;
+      gap: 16px;
+      padding: 28px 12px;
+    }
+    .toc-num { font-size: 26px; }
+    .toc-arrow { display: none; }
+  }
+
+  /* Mention piliers en consolidation */
+  .toc-extras {
+    margin-top: 48px;
+    padding: 32px;
+    background: #FAF6EC;
+    border-left: 3px solid var(--or);
+  }
+  .toc-extras-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 14px;
+  }
+  .toc-extras-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .toc-extras-list {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .toc-extras-list span { display: block; }
+
+  /* ============================================
+     SECTION 3 : SE POSITIONNER
+     Manifeste central
+     ============================================ */
+  .manifesto {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .manifesto-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 4.5vw, 42px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ink);
+    padding: 56px 24px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 56px;
+  }
+  .manifesto-text .line {
+    display: block;
+  }
+  .manifesto-text .verb {
+    color: var(--rouge);
+    font-style: normal;
+    font-weight: 500;
+  }
+  .manifesto-cta {
+    text-align: center;
+  }
+  .manifesto-cta .label-beta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--or);
+    margin-left: 8px;
+  }
+  .manifesto-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 28px auto 0;
+    line-height: 1.6;
+  }
+
+  /* ============================================
+     SECTION 4 : COMITÉ DE RÉDACTION
+     ============================================ */
+  .committee {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .committee-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.2vw, 21px);
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto 64px;
+    text-align: center;
+  }
+  .committee-intro em { color: var(--rouge); font-weight: 500; }
+
+  .ia-list {
+    border-top: 1px solid var(--line);
+  }
+  .ia-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    align-items: center;
+    padding: 28px 16px;
+    border-bottom: 1px solid var(--line);
+    gap: 24px;
+  }
+  @media (max-width: 600px) {
+    .ia-row {
+      grid-template-columns: 60px 1fr;
+      gap: 16px;
+      padding: 22px 8px;
+    }
+    .ia-row .ia-role { grid-column: 1 / -1; padding-left: 76px; margin-top: 4px; }
+  }
+  .ia-letter {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: white;
+  }
+  .ia-letter.claude { background: #C95E3B; }
+  .ia-letter.gpt { background: #0F8F6E; }
+  .ia-letter.gemini { background: #2868D8; }
+  .ia-letter.grok { background: #1E1E1E; }
+  .ia-letter.perplexity { background: #1A8A8A; }
+
+  .ia-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .ia-pub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .ia-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .committee-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 40px;
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+  }
+
+  /* ============================================
+     COLOPHON / FOOTER
+     ============================================ */
+  .colophon {
+    background: #FAF6EC;
+    border-top: 1px solid var(--line);
+    padding: 80px 32px 32px;
+  }
+  .colophon-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .colophon-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--ink);
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 64px;
+    line-height: 1.5;
+  }
+  .colophon-quote::before { content: '« '; color: var(--rouge); }
+  .colophon-quote::after { content: ' »'; color: var(--rouge); }
+
+  .colophon-cols {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 700px) {
+    .colophon-cols { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .colophon-brand h3 {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .colophon-brand p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    max-width: 400px;
+  }
+  .colophon-col h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .colophon-col ul { list-style: none; }
+  .colophon-col li { margin-bottom: 10px; }
+  .colophon-col a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .colophon-col a:hover { color: var(--rouge); }
+
+  .colophon-bottom {
+    max-width: 1080px;
+    margin: 56px auto 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .colophon-bottom em {
+    font-style: normal;
+    color: var(--rouge);
+  }
+
+  /* ============================================
+     ANIMATIONS
+     ============================================ */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-left">
+    <span>Édition</span>
+    <span>Mai 2026</span>
+  </div>
+  <div class="masthead-right">Version 5.1 — Active</div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-title">Doctrine Éconologique</div>
+  <div class="nav-sub">Souveraineté · Production · Réparation · Transmission</div>
+  <div class="nav-links">
+    <a href="#decouvrir">I. Découvrir</a>
+    <a href="#piliers">II. Piliers</a>
+    <a href="#positionner">III. Se positionner</a>
+    <a href="#methode">IV. Méthode</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-kicker">Manifeste</div>
+  <h1>Une France qui produit,<br><em>répare</em>, transmet.</h1>
+  <p class="hero-lede">
+    <span class="hero-dropcap">U</span>n cadre institutionnel français pour la souveraineté énergétique,
+    la durabilité obligatoire, le capital humain reclassé. Treize piliers stratégiques,
+    documentés, sourcés et soumis à audit contradictoire.
+  </p>
+  <div class="hero-byline">
+    Jean Paul Poignand · Côte d'Azur & Besançon
+  </div>
+</section>
+
+<!-- SECTION 1 : DÉCOUVRIR -->
+<section class="section" id="decouvrir">
+  <div class="section-head fade-in">
+    <div class="section-num">I.</div>
+    <h2 class="section-title">Commencer par <em>un chiffre</em>.</h2>
+    <p class="section-sub">
+      Avant la doctrine, l'observation. Une étude courte, cinq questions, deux minutes.
+      Le reste découle naturellement.
+    </p>
+  </div>
+
+  <div class="study fade-in">
+    <div class="study-meta">
+      <div class="study-num">XI</div>
+      <div class="study-label">Étude 11 — Frontaliers</div>
+
+      <div class="study-stat">
+        <div class="study-stat-num">374 000</div>
+        <div class="study-stat-label">Travailleurs frontaliers quotidiens</div>
+      </div>
+      <div class="study-stat">
+        <div class="study-stat-num">5,5 — 6,3 Md€</div>
+        <div class="study-stat-label">Compensation annuelle exigible</div>
+      </div>
+    </div>
+
+    <div class="study-body">
+      <h3>Ce que la France finance sans le savoir.</h3>
+      <p>
+        Chaque matin, 374 000 travailleurs quittent leur domicile en France pour produire
+        de la valeur en Suisse, au Luxembourg ou à Monaco. La France les a formés, soignés,
+        scolarisés — et continue de les héberger, de financer leurs infrastructures.
+        Combien les pays bénéficiaires remboursent-ils ?
+      </p>
+      <p class="small">
+        Cinq questions chiffrées, sourcées, avec réponses contextualisées après chaque choix.
+      </p>
+      <a href="#" class="read-link">
+        Commencer l'étude
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 : LES PILIERS -->
+<section class="section" id="piliers">
+  <div class="section-head fade-in">
+    <div class="section-num">II.</div>
+    <h2 class="section-title">Sommaire des <em>piliers actifs</em>.</h2>
+    <p class="section-sub">
+      Cinq piliers consolidés, qualifiés [FAIT] / [HYPOTHÈSE] / [ANALYSE],
+      passés au crible de cinq intelligences artificielles contradictoires.
+    </p>
+  </div>
+
+  <div class="toc">
+
+    <a href="https://drive.google.com/drive/folders/1OdYykoz0h6pcVSLiwoPgjtRCt4Xf2kAw" class="toc-item fade-in">
+      <div class="toc-num">I.</div>
+      <div class="toc-content">
+        <h3>Énergie souveraine</h3>
+        <p>L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité industrielle réelle.</p>
+        <div class="toc-stat">Nucléaire — biométhane local — rendement national</div>
+      </div>
+      <div class="toc-arrow">→</div>
+    </a>
+
+    <a href="https://drive.google.com/drive/folders/12VRVnUjQ2EwRp7LhG7JpKdmikooh8E-t" class="toc-item fade-in">
+      <div class="toc-num">II.</div>
+      <div class="toc-content">
+        <h3>Garantie décennale</h3>
+        <p>Dix ans obligatoires sur tous les biens, pièces détachées quinze ans. Restaurer la durabilité comme principe.</p>
+        <div class="toc-stat">+5 à 7 M emplois — relocalisation de la réparation</div>
+      </div>
+      <div class="toc-arrow">→</div>
+    </a>
+
+    <a href="#" class="toc-item fade-in">
+      <div class="toc-num">III.</div>
+      <div class="toc-content">
+        <h3>Financement public</h3>
+        <p>Transparence et contrôle des flux vers associations et agences. Réallouer avant de taxer.</p>
+        <div class="toc-stat">~53 Md€ coût total — auditer, plafonner, sanctuariser</div>
+      </div>
+      <div class="toc-arrow">→</div>
+    </a>
+
+    <a href="#" class="toc-item fade-in">
+      <div class="toc-num">VII.</div>
+      <div class="toc-content">
+        <h3>Éconologie culturelle</h3>
+        <p>La culture comme bien commun protégé. Création francophone, langue, patrimoine, sortie de la marchandisation.</p>
+        <div class="toc-stat">Création — langue — patrimoine — indépendance</div>
+      </div>
+      <div class="toc-arrow">→</div>
+    </a>
+
+    <a href="#positionner" class="toc-item fade-in">
+      <div class="toc-num">XIII.</div>
+      <div class="toc-content">
+        <h3>Démocratie décisionnelle</h3>
+        <p>Le peuple informé décide sur les sujets. Bulletin populaire, matrice d'audit des partis, traçabilité.</p>
+        <div class="toc-stat">QCM 25 questions — matrice 325 cases — sources IA</div>
+      </div>
+      <div class="toc-arrow">→</div>
+    </a>
+
+  </div>
+
+  <div class="toc-extras fade-in">
+    <div class="toc-extras-label">En consolidation</div>
+    <p class="toc-extras-text">
+      Trois piliers supplémentaires sont documentés et accessibles via le Drive,
+      mais pas encore portés au niveau d'aboutissement des cinq précédents.
+    </p>
+    <div class="toc-extras-list">
+      <span>— VI. Bâtiment et métiers utiles</span>
+      <span>— VIII. Capital humain et compétences</span>
+      <span>— XII. Friction financière et commerce de proximité</span>
+    </div>
+    <div style="margin-top: 24px;">
+      <a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" class="read-link">
+        Accéder au Drive complet
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 : SE POSITIONNER -->
+<section class="section" id="positionner">
+  <div class="section-head fade-in">
+    <div class="section-num">III.</div>
+    <h2 class="section-title">Quel parti porte <em>vos idées</em> ?</h2>
+    <p class="section-sub">
+      Vingt-cinq questions concrètes. À la fin, une matrice compare vos réponses aux
+      positions documentées des principaux partis politiques français.
+    </p>
+  </div>
+
+  <div class="manifesto fade-in">
+    <div class="manifesto-text">
+      <span class="line">Le peuple informé <span class="verb">vote</span>.</span>
+      <span class="line">Les élus <span class="verb">exécutent</span>.</span>
+      <span class="line">Les partis <span class="verb">se positionnent</span>.</span>
+      <span class="line">La matrice <span class="verb">vérifie</span>.</span>
+    </div>
+
+    <div class="manifesto-cta">
+      <a href="#" class="read-link">
+        Lancer le bulletin décisionnel
+        <span class="arrow">→</span>
+        <span class="label-beta">· BÊTA</span>
+      </a>
+      <p class="manifesto-note">
+        Version de travail en audit. La matrice des partis est consolidée au fur et à mesure
+        que les sources officielles sont vérifiées et archivées.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 : MÉTHODE -->
+<section class="section" id="methode">
+  <div class="section-head fade-in">
+    <div class="section-num">IV.</div>
+    <h2 class="section-title">Le <em>comité de rédaction</em>.</h2>
+  </div>
+
+  <div class="committee">
+    <p class="committee-intro fade-in">
+      La doctrine est construite par <em>triangulation contradictoire</em>.
+      Chaque thèse est soumise à cinq intelligences artificielles aux biais et aux architectures
+      distincts. Leurs désaccords sont des révélateurs d'angles morts. Les arbitrages restent humains.
+    </p>
+
+    <div class="ia-list">
+      <div class="ia-row fade-in">
+        <div class="ia-letter claude">C</div>
+        <div>
+          <div class="ia-name">Claude</div>
+          <div class="ia-pub">Anthropic</div>
+        </div>
+        <div class="ia-role">Architecte, intégrateur, vérificateur de cohérence</div>
+      </div>
+      <div class="ia-row fade-in">
+        <div class="ia-letter gpt">G</div>
+        <div>
+          <div class="ia-name">ChatGPT</div>
+          <div class="ia-pub">OpenAI</div>
+        </div>
+        <div class="ia-role">Rigueur institutionnelle, contradiction structurée</div>
+      </div>
+      <div class="ia-row fade-in">
+        <div class="ia-letter gemini">G</div>
+        <div>
+          <div class="ia-name">Gemini</div>
+          <div class="ia-pub">Google</div>
+        </div>
+        <div class="ia-role">Corrélations macroéconomiques, mise en perspective</div>
+      </div>
+      <div class="ia-row fade-in">
+        <div class="ia-letter grok">X</div>
+        <div>
+          <div class="ia-name">Grok</div>
+          <div class="ia-pub">xAI</div>
+        </div>
+        <div class="ia-role">Données de terrain, lecture sans concession</div>
+      </div>
+      <div class="ia-row fade-in">
+        <div class="ia-letter perplexity">P</div>
+        <div>
+          <div class="ia-name">Perplexity</div>
+          <div class="ia-pub">Perplexity AI</div>
+        </div>
+        <div class="ia-role">Sourcing systématique, vérification documentaire</div>
+      </div>
+    </div>
+
+    <p class="committee-note">
+      Anthropic, OpenAI, Google, xAI et Perplexity AI sont des marques de leurs propriétaires respectifs.
+      Leur mention ne suggère aucun partenariat ni endossement.
+    </p>
+  </div>
+</section>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <p class="colophon-quote">
+      Une société prospère ne peut pas durablement dissimuler ce qu'elle produit, ce qu'elle
+      consomme, et qui paie réellement.
+    </p>
+
+    <div class="colophon-cols">
+      <div class="colophon-brand">
+        <h3>Doctrine Éconologique</h3>
+        <p>
+          Cadre institutionnel français pour souveraineté énergétique, production locale,
+          durabilité obligatoire et reprise de contrôle économique. Travail citoyen ouvert,
+          soumis à audit contradictoire et arbitrage humain.
+        </p>
+      </div>
+      <div class="colophon-col">
+        <h4>Piliers actifs</h4>
+        <ul>
+          <li><a href="#">I. Énergie</a></li>
+          <li><a href="#">II. Garantie décennale</a></li>
+          <li><a href="#">III. Financement</a></li>
+          <li><a href="#">VII. Culture</a></li>
+          <li><a href="#">XIII. Démocratie</a></li>
+        </ul>
+      </div>
+      <div class="colophon-col">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx">Drive principal</a></li>
+          <li><a href="#">Lisez-moi V5.1</a></li>
+          <li><a href="#">QCM Pilier 1 — Énergie</a></li>
+          <li><a href="#">Bulletin décisionnel</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="colophon-bottom">
+      <div>© 2026 — Jean Paul Poignand</div>
+      <div>Architecture web : JP Poignand <em>avec assistance Claude (Anthropic)</em></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal au scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
