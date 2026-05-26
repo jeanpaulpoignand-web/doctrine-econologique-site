@@ -22,6 +22,15 @@
     --or: #6B5520;
     --line: #C5BDA8;
     --line-faint: #DCD4BE;
+
+    /* V8 — Zones foncées modernes */
+    --dark: #0E0E0E;
+    --dark-soft: #1A1A1A;
+    --dark-paper: #F7F3EA;
+    --on-dark: #F0EBDC;
+    --on-dark-muted: #B8AE94;
+    --on-dark-or: #C9A95B;
+    --on-dark-rouge: #D4593F;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,6 +38,7 @@
   html {
     scroll-behavior: smooth;
     color-scheme: light;
+    scroll-padding-top: 160px;
   }
 
   body {
@@ -59,8 +69,8 @@
      HEADER : ligne de tête
      ============================================ */
   .masthead {
-    background: #FAF6EC;
-    border-bottom: 1px solid var(--line);
+    background: var(--dark);
+    border-bottom: 1px solid var(--dark-soft);
     padding: 14px 32px;
     display: flex;
     justify-content: space-between;
@@ -69,10 +79,11 @@
     font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--on-dark-muted);
   }
   .masthead-left { display: flex; gap: 24px; }
-  .masthead-right { color: var(--rouge); }
+  .masthead-left span { color: var(--on-dark); }
+  .masthead-right { color: var(--on-dark-rouge); }
 
   @media (max-width: 600px) {
     .masthead { padding: 12px 20px; font-size: 9px; letter-spacing: 1px; }
@@ -182,12 +193,8 @@
   }
   .hero-dropcap {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--rouge);
-    float: left;
-    line-height: 0.8;
-    margin: 8px 8px 0 0;
   }
   .hero-byline {
     font-family: 'IBM Plex Mono', monospace;
@@ -392,6 +399,28 @@
     color: var(--ink-soft);
     letter-spacing: 0.5px;
   }
+  .toc-extras-inline {
+    margin-top: 14px;
+  }
+  .qcm-pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--rouge);
+    background: rgba(139, 44, 30, 0.08);
+    padding: 7px 12px;
+    border-radius: 3px;
+    border: 1px solid rgba(139, 44, 30, 0.25);
+    transition: all 0.2s;
+  }
+  .qcm-pill:hover {
+    background: var(--rouge);
+    color: var(--paper);
+    border-color: var(--rouge);
+  }
   .toc-arrow {
     font-size: 24px;
     color: var(--muted);
@@ -453,34 +482,76 @@
     max-width: 760px;
     margin: 0 auto;
   }
+  /* Section 3 — bloc foncé pour gravité visuelle */
+  .position-dark {
+    background: var(--dark);
+    color: var(--on-dark);
+    margin: 0 auto;
+    max-width: none;
+    border-top: none;
+  }
+  .position-dark .section {
+    border-top: none;
+    max-width: 1080px;
+  }
+  .position-dark + .section,
+  .position-dark + .colophon {
+    border-top: none;
+  }
+  .position-dark .section-num {
+    color: var(--on-dark-rouge);
+  }
+  .position-dark .section-title {
+    color: var(--on-dark);
+  }
+  .position-dark .section-title em {
+    color: var(--on-dark-rouge);
+  }
+  .position-dark .section-sub {
+    color: var(--on-dark-muted);
+    font-weight: 400;
+  }
+  .manifesto {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+  }
   .manifesto-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(26px, 4.5vw, 42px);
     font-weight: 400;
     font-style: italic;
     line-height: 1.4;
-    color: var(--ink);
+    color: var(--on-dark);
     padding: 56px 24px;
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
+    border-top: 1px solid var(--on-dark-or);
+    border-bottom: 1px solid var(--on-dark-or);
     margin-bottom: 56px;
   }
   .manifesto-text .line {
     display: block;
   }
   .manifesto-text .verb {
-    color: var(--rouge);
+    color: var(--on-dark-rouge);
     font-style: normal;
     font-weight: 500;
   }
   .manifesto-cta {
     text-align: center;
   }
+  .manifesto-cta .read-link {
+    color: var(--on-dark-or);
+    border-bottom-color: var(--on-dark-or);
+  }
+  .manifesto-cta .read-link:hover {
+    color: var(--on-dark);
+    border-bottom-color: var(--on-dark);
+  }
   .manifesto-cta .label-beta {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     letter-spacing: 2px;
-    color: var(--or);
+    color: var(--on-dark-or);
     margin-left: 8px;
   }
   .manifesto-note {
@@ -488,7 +559,7 @@
     font-style: italic;
     font-weight: 500;
     font-size: 15px;
-    color: var(--ink-soft);
+    color: var(--on-dark-muted);
     max-width: 480px;
     margin: 28px auto 0;
     line-height: 1.6;
@@ -586,8 +657,9 @@
      COLOPHON / FOOTER
      ============================================ */
   .colophon {
-    background: #FAF6EC;
-    border-top: 1px solid var(--line);
+    background: var(--dark);
+    color: var(--on-dark);
+    border-top: 1px solid var(--dark-soft);
     padding: 80px 32px 32px;
   }
   .colophon-inner {
@@ -598,21 +670,21 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: clamp(20px, 3vw, 28px);
-    color: var(--ink);
+    color: var(--on-dark);
     text-align: center;
     max-width: 680px;
     margin: 0 auto 64px;
     line-height: 1.5;
   }
-  .colophon-quote::before { content: '« '; color: var(--rouge); }
-  .colophon-quote::after { content: ' »'; color: var(--rouge); }
+  .colophon-quote::before { content: '« '; color: var(--on-dark-or); }
+  .colophon-quote::after { content: ' »'; color: var(--on-dark-or); }
 
   .colophon-cols {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     gap: 48px;
     padding-top: 48px;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--dark-soft);
   }
   @media (max-width: 700px) {
     .colophon-cols { grid-template-columns: 1fr; gap: 32px; }
@@ -621,10 +693,11 @@
     font-size: 22px;
     font-weight: 500;
     margin-bottom: 12px;
+    color: var(--on-dark);
   }
   .colophon-brand p {
     font-size: 14px;
-    color: var(--ink-soft);
+    color: var(--on-dark-muted);
     line-height: 1.7;
     max-width: 400px;
   }
@@ -633,36 +706,36 @@
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--on-dark-or);
     margin-bottom: 16px;
   }
   .colophon-col ul { list-style: none; }
   .colophon-col li { margin-bottom: 10px; }
   .colophon-col a {
     text-decoration: none;
-    color: var(--ink-soft);
+    color: var(--on-dark);
     font-size: 14px;
     transition: color 0.2s;
   }
-  .colophon-col a:hover { color: var(--rouge); }
+  .colophon-col a:hover { color: var(--on-dark-or); }
 
   .colophon-bottom {
     max-width: 1080px;
     margin: 56px auto 0;
     padding-top: 28px;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--dark-soft);
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 12px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
-    color: var(--muted);
+    color: var(--on-dark-muted);
     letter-spacing: 0.5px;
   }
   .colophon-bottom em {
     font-style: normal;
-    color: var(--rouge);
+    color: var(--on-dark-or);
   }
 
   /* ============================================
@@ -753,7 +826,7 @@
       <p class="small">
         Cinq questions chiffrées, sourcées, avec réponses contextualisées après chaque choix.
       </p>
-      <a href="#" class="read-link">
+      <a href="https://drive.google.com/file/d/1iSvHJogBhglYM9WV0FX2xOf3CFDaUzym/view" target="_blank" rel="noopener" class="read-link">
         Commencer l'étude
         <span class="arrow">→</span>
       </a>
@@ -774,17 +847,22 @@
 
   <div class="toc">
 
-    <a href="https://drive.google.com/drive/folders/1OdYykoz0h6pcVSLiwoPgjtRCt4Xf2kAw" class="toc-item fade-in">
+    <a href="https://docs.google.com/document/d/1PtKJ9hXyw2do3_hOOF0_Lj5l7zz0YYni4uQLhP7eQXQ/edit" target="_blank" rel="noopener" class="toc-item fade-in">
       <div class="toc-num">I.</div>
       <div class="toc-content">
         <h3>Énergie souveraine</h3>
         <p>L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité industrielle réelle.</p>
         <div class="toc-stat">Nucléaire — biométhane local — rendement national</div>
+        <div class="toc-extras-inline">
+          <a href="https://script.google.com/macros/s/AKfycbwWf2sybwnj4SAXZK6wNWd2gZ6N-T1lvf0672kq7H-awnkRo8hxFA6DRVdPStE0MvywVA/exec" target="_blank" rel="noopener" class="qcm-pill" onclick="event.stopPropagation()">
+            ▸ Tester le QCM Énergie · 15 questions
+          </a>
+        </div>
       </div>
       <div class="toc-arrow">→</div>
     </a>
 
-    <a href="https://drive.google.com/drive/folders/12VRVnUjQ2EwRp7LhG7JpKdmikooh8E-t" class="toc-item fade-in">
+    <a href="https://docs.google.com/document/d/1FnkG0FA6NX0GJFrM8LFaCGfu93Ns5_6tmEPqJVrM-rA/edit" target="_blank" rel="noopener" class="toc-item fade-in">
       <div class="toc-num">II.</div>
       <div class="toc-content">
         <h3>Garantie décennale</h3>
@@ -794,27 +872,27 @@
       <div class="toc-arrow">→</div>
     </a>
 
-    <a href="#" class="toc-item fade-in">
+    <a href="https://docs.google.com/document/d/1A4ieIVuJU_CyyWOT0ktv6Kjw_d6VUM_zGATNCiAFGjg/edit" target="_blank" rel="noopener" class="toc-item fade-in">
       <div class="toc-num">III.</div>
       <div class="toc-content">
         <h3>Financement public</h3>
         <p>Transparence et contrôle des flux vers associations et agences. Réallouer avant de taxer.</p>
-        <div class="toc-stat">~53 Md€ coût total — auditer, plafonner, sanctuariser</div>
+        <div class="toc-stat">Auditer, plafonner, sanctuariser ce qui sert vraiment</div>
       </div>
       <div class="toc-arrow">→</div>
     </a>
 
-    <a href="#" class="toc-item fade-in">
+    <a href="https://drive.google.com/file/d/1XfUSpFL7MQEpBuXi6owVlqxqh3J4mEMT/view" target="_blank" rel="noopener" class="toc-item fade-in">
       <div class="toc-num">VII.</div>
       <div class="toc-content">
         <h3>Éconologie culturelle</h3>
-        <p>La culture comme bien commun protégé. Création francophone, langue, patrimoine, sortie de la marchandisation.</p>
-        <div class="toc-stat">Création — langue — patrimoine — indépendance</div>
+        <p>La culture comme bien commun protégé. Vérité des coûts, justice territoriale, soutien à la création de proximité.</p>
+        <div class="toc-stat">Reçu fiscal culturel · transparence · patrimoine</div>
       </div>
       <div class="toc-arrow">→</div>
     </a>
 
-    <a href="#positionner" class="toc-item fade-in">
+    <a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank" rel="noopener" class="toc-item fade-in">
       <div class="toc-num">XIII.</div>
       <div class="toc-content">
         <h3>Démocratie décisionnelle</h3>
@@ -846,7 +924,8 @@
   </div>
 </section>
 
-<!-- SECTION 3 : SE POSITIONNER -->
+<!-- SECTION 3 : SE POSITIONNER (zone foncée pour gravité) -->
+<div class="position-dark">
 <section class="section" id="positionner">
   <div class="section-head fade-in">
     <div class="section-num">III.</div>
@@ -866,7 +945,7 @@
     </div>
 
     <div class="manifesto-cta">
-      <a href="#" class="read-link">
+      <a href="https://script.google.com/macros/s/AKfycbwKwr_WCIZDR7XEQ6LU2_NQVO7GbvJHi8Zdy_4hg0py9XoxPpkij8LMUu7jXin8EBs0/exec" target="_blank" rel="noopener" class="read-link">
         Lancer le bulletin décisionnel
         <span class="arrow">→</span>
         <span class="label-beta">· BÊTA</span>
@@ -878,6 +957,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- SECTION 4 : MÉTHODE -->
 <section class="section" id="methode">
@@ -963,20 +1043,20 @@
       <div class="colophon-col">
         <h4>Piliers actifs</h4>
         <ul>
-          <li><a href="#">I. Énergie</a></li>
-          <li><a href="#">II. Garantie décennale</a></li>
-          <li><a href="#">III. Financement</a></li>
-          <li><a href="#">VII. Culture</a></li>
-          <li><a href="#">XIII. Démocratie</a></li>
+          <li><a href="https://docs.google.com/document/d/1PtKJ9hXyw2do3_hOOF0_Lj5l7zz0YYni4uQLhP7eQXQ/edit" target="_blank" rel="noopener">I. Énergie</a></li>
+          <li><a href="https://docs.google.com/document/d/1FnkG0FA6NX0GJFrM8LFaCGfu93Ns5_6tmEPqJVrM-rA/edit" target="_blank" rel="noopener">II. Garantie décennale</a></li>
+          <li><a href="https://docs.google.com/document/d/1A4ieIVuJU_CyyWOT0ktv6Kjw_d6VUM_zGATNCiAFGjg/edit" target="_blank" rel="noopener">III. Financement</a></li>
+          <li><a href="https://drive.google.com/file/d/1XfUSpFL7MQEpBuXi6owVlqxqh3J4mEMT/view" target="_blank" rel="noopener">VII. Culture</a></li>
+          <li><a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank" rel="noopener">XIII. Démocratie</a></li>
         </ul>
       </div>
       <div class="colophon-col">
-        <h4>Ressources</h4>
+        <h4>Outils citoyens</h4>
         <ul>
-          <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx">Drive principal</a></li>
-          <li><a href="#">Lisez-moi V5.1</a></li>
-          <li><a href="#">QCM Pilier 1 — Énergie</a></li>
-          <li><a href="#">Bulletin décisionnel</a></li>
+          <li><a href="https://drive.google.com/file/d/1iSvHJogBhglYM9WV0FX2xOf3CFDaUzym/view" target="_blank" rel="noopener">Étude 11 — Frontaliers</a></li>
+          <li><a href="https://script.google.com/macros/s/AKfycbwWf2sybwnj4SAXZK6wNWd2gZ6N-T1lvf0672kq7H-awnkRo8hxFA6DRVdPStE0MvywVA/exec" target="_blank" rel="noopener">QCM Pilier 1 — Énergie</a></li>
+          <li><a href="https://script.google.com/macros/s/AKfycbwKwr_WCIZDR7XEQ6LU2_NQVO7GbvJHi8Zdy_4hg0py9XoxPpkij8LMUu7jXin8EBs0/exec" target="_blank" rel="noopener">Bulletin décisionnel populaire</a></li>
+          <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank" rel="noopener">Drive principal complet</a></li>
         </ul>
       </div>
     </div>
