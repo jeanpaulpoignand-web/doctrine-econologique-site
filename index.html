@@ -70,10 +70,10 @@
 
   /* NAV */
   .nav {
-    background: rgba(253, 251, 247, 0.96);
-    backdrop-filter: blur(8px);
+    background: rgba(253, 251, 247, 0.97);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
-    padding: 16px 28px;
+    padding: 18px 32px;
     position: sticky;
     top: 0;
     z-index: 50;
@@ -91,7 +91,7 @@
   }
   .brand-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
     color: var(--ink);
     letter-spacing: -0.5px;
@@ -105,17 +105,18 @@
   }
   .nav-links {
     display: flex;
-    gap: 22px;
+    gap: 26px;
     list-style: none;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
   }
   .nav-links a {
-    color: var(--ink-soft);
+    color: var(--ink);
     text-decoration: none;
-    padding-bottom: 2px;
-    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
     transition: all 0.2s;
+    letter-spacing: 0.2px;
   }
   .nav-links a:hover {
     color: var(--rouge);
@@ -123,8 +124,8 @@
   }
   @media (max-width: 720px) {
     .nav { padding: 14px 18px; }
-    .nav-links { gap: 14px; font-size: 12px; }
-    .brand-name { font-size: 19px; }
+    .nav-links { gap: 16px; font-size: 13px; }
+    .brand-name { font-size: 20px; }
   }
   @media (max-width: 480px) {
     .nav-links { display: none; }
@@ -359,67 +360,92 @@
   .read-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
   .read-link:hover .arrow { transform: translateX(4px); }
 
-  /* PILIERS 3+2 CENTRÉ */
+  /* PILIERS SOBRES — V10 */
   .pillars-wrap {
     max-width: 1080px;
     margin: 0 auto;
     padding: 0 28px 70px;
   }
-  .pillars-row {
+  .pillars-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
   }
-  .pillars-row.bottom {
-    grid-template-columns: repeat(2, minmax(0, 320px));
-    justify-content: center;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+  /* Tablette large : 3 + 2 centré */
+  @media (max-width: 1100px) {
+    .pillars-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .pillars-grid > :nth-child(1) { grid-column: 1 / span 2; }
+    .pillars-grid > :nth-child(2) { grid-column: 3 / span 2; }
+    .pillars-grid > :nth-child(3) { grid-column: 5 / span 2; }
+    .pillars-grid > :nth-child(4) { grid-column: 2 / span 2; }
+    .pillars-grid > :nth-child(5) { grid-column: 4 / span 2; }
   }
-  @media (max-width: 880px) {
-    .pillars-row { grid-template-columns: repeat(2, 1fr); }
-    .pillars-row.bottom { grid-template-columns: repeat(2, 1fr); max-width: none; }
+  /* Tablette portrait : 2 + 2 + 1 centré */
+  @media (max-width: 760px) {
+    .pillars-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .pillars-grid > :nth-child(1) { grid-column: 1 / span 2; }
+    .pillars-grid > :nth-child(2) { grid-column: 3 / span 2; }
+    .pillars-grid > :nth-child(3) { grid-column: 1 / span 2; }
+    .pillars-grid > :nth-child(4) { grid-column: 3 / span 2; }
+    .pillars-grid > :nth-child(5) { grid-column: 2 / span 2; }
   }
-  @media (max-width: 560px) {
-    .pillars-row, .pillars-row.bottom { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+  /* Mobile : 1 colonne */
+  @media (max-width: 480px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pillars-grid > * {
+      grid-column: 1 !important;
+    }
   }
 
   .pillar-card {
-    background: linear-gradient(160deg, var(--card-bg-top, #1F3864) 0%, var(--card-bg-bot, #2A4A7A) 100%);
-    color: white;
-    border-radius: 8px;
-    padding: 26px 24px;
+    background: var(--paper-cool);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--card-accent, var(--rouge));
+    border-radius: 6px;
+    padding: 24px 22px;
     text-decoration: none;
+    color: var(--ink);
     display: flex;
     flex-direction: column;
-    min-height: 260px;
+    min-height: 280px;
+    transition: all 0.25s ease;
     position: relative;
-    transition: all 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   }
   .pillar-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    border-color: var(--card-accent, var(--rouge));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   }
-  .pillar-card.energie    { --card-bg-top: var(--p-energie);    --card-bg-bot: var(--p-energie-soft); }
-  .pillar-card.garantie   { --card-bg-top: var(--p-garantie);   --card-bg-bot: var(--p-garantie-soft); }
-  .pillar-card.finance    { --card-bg-top: var(--p-finance);    --card-bg-bot: var(--p-finance-soft); }
-  .pillar-card.culture    { --card-bg-top: var(--p-culture);    --card-bg-bot: var(--p-culture-soft); }
-  .pillar-card.democratie { --card-bg-top: var(--p-democratie); --card-bg-bot: var(--p-democratie-soft); }
+  .pillar-card.energie    { --card-accent: var(--p-energie); }
+  .pillar-card.garantie   { --card-accent: var(--p-garantie); }
+  .pillar-card.finance    { --card-accent: var(--p-finance); }
+  .pillar-card.culture    { --card-accent: var(--p-culture); }
+  .pillar-card.democratie { --card-accent: var(--p-democratie); }
 
-  .pillar-icon {
-    font-size: 26px;
-    margin-bottom: 12px;
-    line-height: 1;
+  .pillar-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--card-accent, var(--rouge));
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 600;
   }
   .pillar-card h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
-    color: white;
-    margin-bottom: 8px;
+    color: var(--ink);
+    margin-bottom: 10px;
     line-height: 1.15;
     letter-spacing: -0.01em;
   }
@@ -427,17 +453,19 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 14px;
-    color: rgba(255,255,255,0.92);
+    color: var(--ink-soft);
     margin-bottom: 14px;
     line-height: 1.4;
   }
   .pillar-stat {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
-    color: rgba(255,255,255,0.78);
-    letter-spacing: 0.5px;
+    color: var(--muted);
+    letter-spacing: 0.3px;
     margin-bottom: 18px;
     line-height: 1.5;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line-faint);
   }
   .pillar-actions {
     margin-top: auto;
@@ -448,31 +476,50 @@
   .pillar-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.16);
-    color: white;
-    padding: 9px 14px;
-    border-radius: 4px;
+    gap: 6px;
+    color: var(--card-accent, var(--rouge));
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.2px;
+    font-weight: 700;
+    letter-spacing: 1px;
     text-transform: uppercase;
     text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.28);
-    transition: all 0.2s;
+    padding-bottom: 3px;
+    border-bottom: 1.5px solid var(--card-accent, var(--rouge));
     align-self: flex-start;
+    transition: all 0.2s;
   }
   .pillar-link:hover {
-    background: rgba(255,255,255,0.28);
-    border-color: rgba(255,255,255,0.5);
+    color: var(--ink);
+    border-bottom-color: var(--ink);
   }
-  .pillar-link.secondary {
-    background: transparent;
+  .pillar-qcm-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--card-accent, var(--rouge));
+    color: white;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 11px;
-    padding: 7px 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 11px 14px;
+    border-radius: 4px;
+    border: none;
+    transition: all 0.2s;
+    margin-top: 4px;
   }
-  .pillar-link.secondary:hover {
-    background: rgba(255,255,255,0.12);
+  .pillar-qcm-button:hover {
+    background: var(--ink);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .pillar-qcm-button::before {
+    content: '▸';
+    font-size: 14px;
   }
 
   /* SE POSITIONNER */
@@ -532,31 +579,41 @@
   .position-cta {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     background: var(--on-dark-rouge);
     color: white;
-    padding: 16px 28px;
+    padding: 20px 36px;
     border-radius: 4px;
     font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
+    font-weight: 700;
+    font-size: 15px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.25s;
     border: 1px solid var(--on-dark-rouge);
+    box-shadow: 0 6px 20px rgba(212, 89, 63, 0.35);
   }
   .position-cta:hover {
     background: var(--on-dark-or);
     border-color: var(--on-dark-or);
     color: var(--dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(201, 169, 91, 0.4);
+  }
+  .position-cta .arrow-cta {
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+  .position-cta:hover .arrow-cta {
+    transform: translateX(4px);
   }
   .position-cta .label-beta {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 9px;
     letter-spacing: 1.5px;
     background: rgba(0,0,0,0.25);
-    padding: 2px 6px;
+    padding: 3px 7px;
     border-radius: 2px;
     margin-left: 4px;
   }
@@ -847,7 +904,7 @@
   </div>
 </section>
 
-<!-- PILIERS 3+2 -->
+<!-- PILIERS V10 — 5 cartes sobres -->
 <section id="piliers">
   <div class="section-head fade-in" style="padding: 0 28px;">
     <div class="section-kicker">Les piliers actifs</div>
@@ -859,21 +916,21 @@
   </div>
 
   <div class="pillars-wrap">
-    <div class="pillars-row">
+    <div class="pillars-grid">
 
       <a href="https://docs.google.com/document/d/1PtKJ9hXyw2do3_hOOF0_Lj5l7zz0YYni4uQLhP7eQXQ/edit" target="_blank" rel="noopener" class="pillar-card energie fade-in">
-        <div class="pillar-icon">⚡</div>
+        <div class="pillar-num">Pilier I</div>
         <h3>Énergie souveraine</h3>
         <div class="pillar-tagline">L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité.</div>
         <div class="pillar-stat">Nucléaire · biométhane local · rendement national</div>
         <div class="pillar-actions">
           <span class="pillar-link">Lire le pilier →</span>
-          <a href="./qcm-energie/" class="pillar-link secondary" onclick="event.stopPropagation()">▸ Tester le QCM · 15 questions</a>
+          <a href="./qcm-energie/" class="pillar-qcm-button" onclick="event.stopPropagation()">Faire le QCM Énergie</a>
         </div>
       </a>
 
       <a href="https://docs.google.com/document/d/1FnkG0FA6NX0GJFrM8LFaCGfu93Ns5_6tmEPqJVrM-rA/edit" target="_blank" rel="noopener" class="pillar-card garantie fade-in">
-        <div class="pillar-icon">🛡</div>
+        <div class="pillar-num">Pilier II</div>
         <h3>Garantie décennale</h3>
         <div class="pillar-tagline">Dix ans obligatoires sur tous les biens, pièces détachées quinze ans.</div>
         <div class="pillar-stat">+5 à 7 M emplois · relocalisation de la réparation</div>
@@ -883,7 +940,7 @@
       </a>
 
       <a href="https://docs.google.com/document/d/1A4ieIVuJU_CyyWOT0ktv6Kjw_d6VUM_zGATNCiAFGjg/edit" target="_blank" rel="noopener" class="pillar-card finance fade-in">
-        <div class="pillar-icon">💶</div>
+        <div class="pillar-num">Pilier III</div>
         <h3>Financement public</h3>
         <div class="pillar-tagline">Transparence et contrôle des flux. Réallouer avant de taxer.</div>
         <div class="pillar-stat">Auditer · plafonner · sanctuariser</div>
@@ -892,12 +949,8 @@
         </div>
       </a>
 
-    </div>
-
-    <div class="pillars-row bottom">
-
       <a href="https://drive.google.com/file/d/1XfUSpFL7MQEpBuXi6owVlqxqh3J4mEMT/view" target="_blank" rel="noopener" class="pillar-card culture fade-in">
-        <div class="pillar-icon">🎭</div>
+        <div class="pillar-num">Pilier VII</div>
         <h3>Éconologie culturelle</h3>
         <div class="pillar-tagline">La culture comme bien commun. Vérité des coûts, justice territoriale.</div>
         <div class="pillar-stat">Reçu fiscal culturel · création de proximité</div>
@@ -907,13 +960,13 @@
       </a>
 
       <a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank" rel="noopener" class="pillar-card democratie fade-in">
-        <div class="pillar-icon">🗳</div>
+        <div class="pillar-num">Pilier XIII</div>
         <h3>Démocratie décisionnelle</h3>
         <div class="pillar-tagline">Le peuple informé décide sur les sujets, pas sur les visages.</div>
         <div class="pillar-stat">QCM 25 questions · matrice 325 cases</div>
         <div class="pillar-actions">
           <span class="pillar-link">Lire le pilier →</span>
-          <a href="./qcm-general/" class="pillar-link secondary" onclick="event.stopPropagation()">▸ Lancer le bulletin · 25 questions</a>
+          <a href="./qcm-general/" class="pillar-qcm-button" onclick="event.stopPropagation()">Lancer le bulletin</a>
         </div>
       </a>
 
@@ -941,8 +994,8 @@
     </div>
 
     <a href="./qcm-general/" class="position-cta fade-in">
-      Lancer le bulletin
-      <span>→</span>
+      Lancer le bulletin décisionnel
+      <span class="arrow-cta">→</span>
       <span class="label-beta">BÊTA</span>
     </a>
     <p class="position-note fade-in">
