@@ -360,7 +360,7 @@
   .read-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
   .read-link:hover .arrow { transform: translateX(4px); }
 
-  /* PILIERS SOBRES — V10 */
+  /* PILIERS SOBRES — V11 */
   .pillars-wrap {
     max-width: 1080px;
     margin: 0 auto;
@@ -368,41 +368,22 @@
   }
   .pillars-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
   }
-  /* Tablette large : 3 + 2 centré */
-  @media (max-width: 1100px) {
+  /* Tablette : 2 colonnes */
+  @media (max-width: 880px) {
     .pillars-grid {
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
-    .pillars-grid > :nth-child(1) { grid-column: 1 / span 2; }
-    .pillars-grid > :nth-child(2) { grid-column: 3 / span 2; }
-    .pillars-grid > :nth-child(3) { grid-column: 5 / span 2; }
-    .pillars-grid > :nth-child(4) { grid-column: 2 / span 2; }
-    .pillars-grid > :nth-child(5) { grid-column: 4 / span 2; }
-  }
-  /* Tablette portrait : 2 + 2 + 1 centré */
-  @media (max-width: 760px) {
-    .pillars-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .pillars-grid > :nth-child(1) { grid-column: 1 / span 2; }
-    .pillars-grid > :nth-child(2) { grid-column: 3 / span 2; }
-    .pillars-grid > :nth-child(3) { grid-column: 1 / span 2; }
-    .pillars-grid > :nth-child(4) { grid-column: 3 / span 2; }
-    .pillars-grid > :nth-child(5) { grid-column: 2 / span 2; }
   }
   /* Mobile : 1 colonne */
-  @media (max-width: 480px) {
+  @media (max-width: 560px) {
     .pillars-grid {
       grid-template-columns: 1fr;
       max-width: 420px;
       margin-left: auto;
       margin-right: auto;
-    }
-    .pillars-grid > * {
-      grid-column: 1 !important;
     }
   }
 
@@ -416,7 +397,8 @@
     color: var(--ink);
     display: flex;
     flex-direction: column;
-    min-height: 280px;
+    height: 100%;
+    min-height: 340px;
     transition: all 0.25s ease;
     position: relative;
   }
@@ -520,6 +502,39 @@
   .pillar-qcm-button::before {
     content: '▸';
     font-size: 14px;
+  }
+
+  /* Encart chiffre clé — pour piliers sans QCM */
+  .pillar-highlight {
+    background: rgba(0,0,0,0.03);
+    border-left: 2px solid var(--card-accent, var(--rouge));
+    padding: 12px 14px;
+    margin-top: 4px;
+    border-radius: 0 4px 4px 0;
+  }
+  .pillar-highlight-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--card-accent, var(--rouge));
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .pillar-highlight-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .pillar-highlight-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.35;
   }
 
   /* SE POSITIONNER */
@@ -717,11 +732,12 @@
     max-width: 720px;
   }
 
-  /* COLOPHON */
+  /* COLOPHON CLAIR — V11 */
   .colophon {
-    background: var(--dark);
-    color: var(--on-dark);
+    background: var(--paper-warm);
+    color: var(--ink);
     padding: 64px 28px 28px;
+    border-top: 1px solid var(--line);
   }
   .colophon-inner {
     max-width: 1080px;
@@ -731,34 +747,35 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: clamp(18px, 2.4vw, 24px);
-    color: var(--on-dark);
+    color: var(--ink);
     text-align: center;
     max-width: 640px;
     margin: 0 auto 48px;
     line-height: 1.5;
+    font-weight: 500;
   }
-  .colophon-quote::before { content: '« '; color: var(--on-dark-or); }
-  .colophon-quote::after { content: ' »'; color: var(--on-dark-or); }
+  .colophon-quote::before { content: '« '; color: var(--rouge); }
+  .colophon-quote::after { content: ' »'; color: var(--rouge); }
 
   .colophon-cols {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     gap: 36px;
     padding-top: 40px;
-    border-top: 1px solid var(--dark-soft);
+    border-top: 1px solid var(--line);
   }
   @media (max-width: 700px) {
     .colophon-cols { grid-template-columns: 1fr; gap: 28px; }
   }
   .colophon-brand h3 {
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 10px;
-    color: var(--on-dark);
+    color: var(--ink);
   }
   .colophon-brand p {
     font-size: 13px;
-    color: var(--on-dark-muted);
+    color: var(--ink-soft);
     line-height: 1.65;
     max-width: 400px;
   }
@@ -767,36 +784,36 @@
     font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--on-dark-or);
+    color: var(--rouge);
     margin-bottom: 14px;
   }
   .colophon-col ul { list-style: none; }
   .colophon-col li { margin-bottom: 8px; }
   .colophon-col a {
     text-decoration: none;
-    color: var(--on-dark);
+    color: var(--ink);
     font-size: 13px;
     transition: color 0.2s;
   }
-  .colophon-col a:hover { color: var(--on-dark-or); }
+  .colophon-col a:hover { color: var(--rouge); }
 
   .colophon-bottom {
     max-width: 1080px;
     margin: 40px auto 0;
     padding-top: 22px;
-    border-top: 1px solid var(--dark-soft);
+    border-top: 1px solid var(--line);
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
-    color: var(--on-dark-muted);
+    color: var(--muted);
     letter-spacing: 0.5px;
   }
   .colophon-bottom em {
     font-style: normal;
-    color: var(--on-dark-or);
+    color: var(--rouge);
   }
 
   .fade-in {
@@ -918,57 +935,72 @@
   <div class="pillars-wrap">
     <div class="pillars-grid">
 
-      <a href="https://docs.google.com/document/d/1PtKJ9hXyw2do3_hOOF0_Lj5l7zz0YYni4uQLhP7eQXQ/edit" target="_blank" rel="noopener" class="pillar-card energie fade-in">
+      <article class="pillar-card energie fade-in">
         <div class="pillar-num">Pilier I</div>
         <h3>Énergie souveraine</h3>
         <div class="pillar-tagline">L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité.</div>
         <div class="pillar-stat">Nucléaire · biométhane local · rendement national</div>
         <div class="pillar-actions">
-          <span class="pillar-link">Lire le pilier →</span>
-          <a href="./qcm-energie/" class="pillar-qcm-button" onclick="event.stopPropagation()">Faire le QCM Énergie</a>
+          <a href="https://docs.google.com/document/d/1PtKJ9hXyw2do3_hOOF0_Lj5l7zz0YYni4uQLhP7eQXQ/edit" target="_blank" rel="noopener" class="pillar-link">Lire le pilier →</a>
+          <a href="./qcm-energie/" class="pillar-qcm-button">Faire le QCM Énergie</a>
         </div>
-      </a>
+      </article>
 
-      <a href="https://docs.google.com/document/d/1FnkG0FA6NX0GJFrM8LFaCGfu93Ns5_6tmEPqJVrM-rA/edit" target="_blank" rel="noopener" class="pillar-card garantie fade-in">
+      <article class="pillar-card garantie fade-in">
         <div class="pillar-num">Pilier II</div>
         <h3>Garantie décennale</h3>
         <div class="pillar-tagline">Dix ans obligatoires sur tous les biens, pièces détachées quinze ans.</div>
         <div class="pillar-stat">+5 à 7 M emplois · relocalisation de la réparation</div>
         <div class="pillar-actions">
-          <span class="pillar-link">Lire le pilier →</span>
+          <a href="https://docs.google.com/document/d/1FnkG0FA6NX0GJFrM8LFaCGfu93Ns5_6tmEPqJVrM-rA/edit" target="_blank" rel="noopener" class="pillar-link">Lire le pilier →</a>
+          <div class="pillar-highlight">
+            <div class="pillar-highlight-label">Économie consommateurs</div>
+            <div class="pillar-highlight-num">~1 000 Md$</div>
+            <div class="pillar-highlight-text">par an, à l'échelle mondiale</div>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a href="https://docs.google.com/document/d/1A4ieIVuJU_CyyWOT0ktv6Kjw_d6VUM_zGATNCiAFGjg/edit" target="_blank" rel="noopener" class="pillar-card finance fade-in">
+      <article class="pillar-card finance fade-in">
         <div class="pillar-num">Pilier III</div>
         <h3>Financement public</h3>
         <div class="pillar-tagline">Transparence et contrôle des flux. Réallouer avant de taxer.</div>
         <div class="pillar-stat">Auditer · plafonner · sanctuariser</div>
         <div class="pillar-actions">
-          <span class="pillar-link">Lire le pilier →</span>
+          <a href="https://docs.google.com/document/d/1A4ieIVuJU_CyyWOT0ktv6Kjw_d6VUM_zGATNCiAFGjg/edit" target="_blank" rel="noopener" class="pillar-link">Lire le pilier →</a>
+          <div class="pillar-highlight">
+            <div class="pillar-highlight-label">Flux à auditer</div>
+            <div class="pillar-highlight-num">~53 Md€</div>
+            <div class="pillar-highlight-text">coût total contribuable associatif</div>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a href="https://drive.google.com/file/d/1XfUSpFL7MQEpBuXi6owVlqxqh3J4mEMT/view" target="_blank" rel="noopener" class="pillar-card culture fade-in">
+      <article class="pillar-card culture fade-in">
         <div class="pillar-num">Pilier VII</div>
         <h3>Éconologie culturelle</h3>
         <div class="pillar-tagline">La culture comme bien commun. Vérité des coûts, justice territoriale.</div>
         <div class="pillar-stat">Reçu fiscal culturel · création de proximité</div>
         <div class="pillar-actions">
-          <span class="pillar-link">Lire le pilier →</span>
+          <a href="https://drive.google.com/file/d/1XfUSpFL7MQEpBuXi6owVlqxqh3J4mEMT/view" target="_blank" rel="noopener" class="pillar-link">Lire le pilier →</a>
+          <div class="pillar-highlight">
+            <div class="pillar-highlight-label">Idée force</div>
+            <div class="pillar-highlight-num">Reçu fiscal culturel</div>
+            <div class="pillar-highlight-text">chaque contribuable voit ce qu'il finance</div>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank" rel="noopener" class="pillar-card democratie fade-in">
+      <article class="pillar-card democratie fade-in">
         <div class="pillar-num">Pilier XIII</div>
         <h3>Démocratie décisionnelle</h3>
         <div class="pillar-tagline">Le peuple informé décide sur les sujets, pas sur les visages.</div>
         <div class="pillar-stat">QCM 25 questions · matrice 325 cases</div>
         <div class="pillar-actions">
-          <span class="pillar-link">Lire le pilier →</span>
-          <a href="./qcm-general/" class="pillar-qcm-button" onclick="event.stopPropagation()">Lancer le bulletin</a>
+          <a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank" rel="noopener" class="pillar-link">Lire le pilier →</a>
+          <a href="./qcm-general/" class="pillar-qcm-button">Lancer le bulletin</a>
         </div>
-      </a>
+      </article>
 
     </div>
   </div>
