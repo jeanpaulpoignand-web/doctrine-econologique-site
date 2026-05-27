@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>QCM — Immigrants de la journée — Version robuste</title>
+<style>
+  :root {
+    --fond: #0f172a;
+    --carte: #ffffff;
+    --texte: #172033;
+    --muted: #64748b;
+    --rouge: #b91c1c;
+    --bleu: #1e3a8a;
+    --bord: #cbd5e1;
+    --vert-bg: #dcfce7;
+    --vert: #166534;
+    --rouge-bg: #fee2e2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f8fafc;
+    color: var(--texte);
+  }
+  header {
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: white;
+    padding: 28px 18px;
+    border-bottom: 5px solid var(--rouge);
+  }
+  .wrap {
+    width: min(920px, calc(100% - 32px));
+    margin: 0 auto;
+  }
+  .tag {
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #fca5a5;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(26px, 5vw, 44px);
+    line-height: 1.08;
+  }
+  .subtitle {
+    margin-top: 12px;
+    color: #dbeafe;
+    font-size: 16px;
+    max-width: 760px;
+  }
+  main {
+    padding: 26px 0 50px;
+  }
+  .progress {
+    margin-bottom: 18px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .track {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    flex: 1;
+  }
+  .bar {
+    height: 100%;
+    width: 0%;
+    background: var(--rouge);
+    transition: width .25s ease;
+  }
+  .count {
+    min-width: 56px;
+    text-align: right;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .card {
+    background: var(--carte);
+    border: 1px solid var(--bord);
+    border-radius: 18px;
+    padding: clamp(18px, 4vw, 32px);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, .08);
+  }
+  .qnum {
+    color: var(--rouge);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .question {
+    font-size: clamp(22px, 4vw, 34px);
+    line-height: 1.25;
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+  .answers {
+    display: grid;
+    gap: 12px;
+  }
+  button.answer {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    border: 2px solid #334155;
+    border-radius: 14px;
+    padding: 17px 18px;
+    background: white;
+    text-align: left;
+    font-size: clamp(16px, 2.4vw, 20px);
+    cursor: pointer;
+    color: var(--texte);
+    transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  button.answer:hover:not(:disabled) {
+    transform: translateY(-1px);
+    border-color: var(--rouge);
+    background: #fff7f7;
+  }
+  button.answer:disabled {
+    cursor: default;
+  }
+  .letter {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #e2e8f0;
+    font-weight: 900;
+  }
+  button.answer.good {
+    border-color: var(--vert);
+    background: var(--vert-bg);
+  }
+  button.answer.bad {
+    border-color: var(--rouge);
+    background: var(--rouge-bg);
+    opacity: .82;
+  }
+  .feedback {
+    display: none;
+    margin-top: 18px;
+    border-left: 5px solid var(--rouge);
+    background: #f8fafc;
+    padding: 16px 18px;
+    border-radius: 12px;
+    line-height: 1.55;
+  }
+  .feedback.show {
+    display: block;
+  }
+  .next, .restart {
+    margin-top: 18px;
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    background: var(--rouge);
+    color: white;
+    padding: 16px 18px;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .next[hidden] { display: none; }
+  .score {
+    display: none;
+    text-align: center;
+  }
+  .score.show {
+    display: block;
+  }
+  .score-big {
+    font-size: 72px;
+    line-height: 1;
+    color: var(--rouge);
+    font-weight: 900;
+    margin: 8px 0;
+  }
+  .note {
+    margin-top: 22px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  noscript, .fallback {
+    display: block;
+    margin-top: 22px;
+    background: #fffbeb;
+    border: 1px solid #f59e0b;
+    border-radius: 12px;
+    padding: 14px 16px;
+    line-height: 1.5;
+  }
+  details {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: white;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 800;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #dbeafe;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.2s;
+  }
+  .back-link:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="../" class="back-link">← Retour au site Doctrine</a>
+    <div class="tag">Doctrine Éconologique — QCM corrigé</div>
+    <h1>Les immigrants de la journée</h1>
+    <div class="subtitle">Version robuste, sans Google Apps Script, avec réponses chiffrées harmonisées pour ne pas donner la solution par la forme.</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="progress" aria-label="Progression">
+    <div class="track"><div class="bar" id="bar"></div></div>
+    <div class="count" id="count">0 / 5</div>
+  </section>
+
+  <section class="card" id="quiz">
+    <div class="qnum" id="qnum">Question 1 / 5</div>
+    <div class="question" id="question"></div>
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next" id="next" hidden>Question suivante →</button>
+  </section>
+
+  <section class="card score" id="scoreCard">
+    <h2>Résultat</h2>
+    <div class="score-big"><span id="score">0</span>/5</div>
+    <p id="scoreText"></p>
+    <button class="restart" id="restart">Recommencer</button>
+  </section>
+
+  <noscript>
+    JavaScript est désactivé ou bloqué. Le QCM interactif ne peut pas fonctionner dans ce mode.
+  </noscript>
+
+  <section class="fallback">
+    <strong>Mode de secours vérification :</strong> les corrections restent consultables même si un lecteur bloque l'interactivité.
+    <details><summary>Question 1 — correction</summary><p><strong>Bonne réponse : C.</strong> L'ordre de grandeur retenu dans le dossier est d'environ 374 000 travailleurs frontaliers. La bonne réponse est donc « environ 400 000 ». On ne cherche pas une valeur exacte mais l'ordre de grandeur : 50 000 ou 100 000 seraient très en-dessous, 1 million très au-dessus.</p></details>
+<details><summary>Question 2 — correction</summary><p><strong>Bonne réponse : B.</strong> L'expression désigne le mécanisme économique : la France supporte une partie du coût de formation, de santé, d'infrastructures et de résidence, tandis qu'une partie de la valeur productive quotidienne est captée hors de France.</p></details>
+<details><summary>Question 3 — correction</summary><p><strong>Bonne réponse : C.</strong> L'ordre de grandeur consolidé du dossier tourne autour de 5 à 6 milliards d'euros par an. Les réponses sont volontairement homogènes en ordres de grandeur, pour éviter l'indice visuel.</p></details>
+<details><summary>Question 4 — correction</summary><p><strong>Bonne réponse : B.</strong> Le point central n'est pas moral contre les travailleurs : il est structurel. Le problème est l'absence de compensation complète entre le pays qui supporte une partie des coûts longs et ceux qui captent une partie de la productivité.</p></details>
+<details><summary>Question 5 — correction</summary><p><strong>Bonne réponse : B.</strong> La piste cohérente n'est pas l'interdiction individuelle : c'est une négociation de compensation entre États, fondée sur les coûts réels et sur la transparence des transferts économiques.</p></details>
+  </section>
+
+  <p class="note">
+    Note de conception : les réponses numériques ont été normalisées. Pas de chiffre exact isolé, pas de mélange entre valeur précise et valeurs grossières.
+    Chaque proposition numérique utilise le même style pour éviter qu'un lecteur humain repère la bonne réponse par simple asymétrie visuelle.
+  </p>
+</main>
+
+<script>
+"use strict";
+
+const questions = [
+  {
+    question: "Chaque matin, combien de travailleurs résidant en France partent travailler en Suisse, au Luxembourg ou à Monaco ?",
+    choices: ["Environ 50 000", "Environ 100 000", "Environ 400 000", "Environ 1 million"],
+    answer: 2,
+    explain: "L'ordre de grandeur retenu dans le dossier est d'environ 374 000 travailleurs frontaliers. La bonne réponse est donc « environ 400 000 ». On ne cherche pas une valeur exacte, mais l'ordre de grandeur : 50 000 ou 100 000 seraient très en-dessous, 1 million très au-dessus."
+  },
+  {
+    question: "Pourquoi la Doctrine Éconologique les appelle-t-elle des « immigrants de la journée » ?",
+    choices: ["Parce qu'ils changent officiellement de nationalité pendant leur journée de travail.", "Parce qu'ils résident en France mais exportent chaque jour leur force de travail vers un État voisin.", "Parce qu'ils ne reviennent en France qu'une fois par semaine.", "Parce qu'ils travaillent uniquement dans des administrations étrangères."],
+    answer: 1,
+    explain: "L'expression désigne le mécanisme économique : la France supporte une partie du coût de formation, de santé, d'infrastructures et de résidence, tandis qu'une partie de la valeur productive quotidienne est captée hors de France."
+  },
+  {
+    question: "Quel est l'ordre de grandeur annuel du transfert économique associé à ces flux frontaliers ?",
+    choices: ["Autour de 100 millions d'euros par an", "Autour de 1 milliard d'euros par an", "Autour de 5 milliards d'euros par an", "Autour de 50 milliards d'euros par an"],
+    answer: 2,
+    explain: "Le dossier ne demande pas de deviner une valeur comptable exacte : il faut repérer l'ordre de grandeur. L'estimation consolidée tourne autour de 5 à 6 milliards d'euros par an, très loin d'un simple montant de 100 millions ou d'un milliard."
+  },
+  {
+    question: "Quel est le cœur du problème économique soulevé par ce QCM ?",
+    choices: ["La France attire trop de travailleurs étrangers dans ses grandes villes.", "La France finance une partie du capital humain dont des économies voisines profitent ensuite quotidiennement.", "Les travailleurs frontaliers paient tous leurs impôts deux fois.", "Les pays voisins remboursent automatiquement à la France le coût complet de formation des travailleurs."],
+    answer: 1,
+    explain: "Le point central n'est pas moral contre les travailleurs : il est structurel. Le problème est l'absence de compensation complète entre le pays qui supporte une partie des coûts longs et ceux qui captent une partie de la productivité."
+  },
+  {
+    question: "Quelle piste de correction institutionnelle est la plus cohérente avec le diagnostic du dossier ?",
+    choices: ["Interdire aux habitants de France de travailler à l'étranger.", "Créer une compensation transfrontalière transparente liée aux coûts de formation, de santé, d'infrastructures et de services publics.", "Supprimer toute coopération fiscale avec les pays voisins.", "Ne rien changer, car le phénomène ne concerne que quelques centaines de personnes."],
+    answer: 1,
+    explain: "La piste cohérente n'est pas l'interdiction individuelle : c'est une négociation de compensation entre États, fondée sur les coûts réels et sur la transparence des transferts économiques."
+  }
+];
+
+let current = 0;
+let score = 0;
+let locked = false;
+
+const el = {
+  bar: document.getElementById("bar"),
+  count: document.getElementById("count"),
+  qnum: document.getElementById("qnum"),
+  question: document.getElementById("question"),
+  answers: document.getElementById("answers"),
+  feedback: document.getElementById("feedback"),
+  next: document.getElementById("next"),
+  quiz: document.getElementById("quiz"),
+  scoreCard: document.getElementById("scoreCard"),
+  score: document.getElementById("score"),
+  scoreText: document.getElementById("scoreText"),
+  restart: document.getElementById("restart")
+};
+
+function renderQuestion() {
+  locked = false;
+  const q = questions[current];
+  el.qnum.textContent = `Question ${current + 1} / ${questions.length}`;
+  el.question.textContent = q.question;
+  el.answers.innerHTML = "";
+  el.feedback.className = "feedback";
+  el.feedback.textContent = "";
+  el.next.hidden = true;
+  el.bar.style.width = `${(current / questions.length) * 100}%`;
+  el.count.textContent = `${current} / ${questions.length}`;
+
+  q.choices.forEach((choice, index) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "answer";
+    btn.dataset.index = String(index);
+    btn.innerHTML = `<span class="letter">${String.fromCharCode(65 + index)}</span><span>${choice}</span>`;
+    btn.addEventListener("click", () => choose(index));
+    el.answers.appendChild(btn);
+  });
+}
+
+function choose(index) {
+  if (locked) return;
+  locked = true;
+  const q = questions[current];
+  const buttons = [...el.answers.querySelectorAll("button.answer")];
+
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) btn.classList.add("good");
+    if (i === index && i !== q.answer) btn.classList.add("bad");
+  });
+
+  if (index === q.answer) {
+    score++;
+    el.feedback.innerHTML = `<strong>Exact.</strong> ${q.explain}`;
+  } else {
+    el.feedback.innerHTML = `<strong>Non.</strong> La bonne réponse était ${String.fromCharCode(65 + q.answer)}. ${q.explain}`;
+  }
+  el.feedback.classList.add("show");
+  el.next.hidden = false;
+  el.bar.style.width = `${((current + 1) / questions.length) * 100}%`;
+  el.count.textContent = `${current + 1} / ${questions.length}`;
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= questions.length) {
+    showScore();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showScore() {
+  el.quiz.style.display = "none";
+  el.scoreCard.classList.add("show");
+  el.score.textContent = String(score);
+  if (score >= 5) {
+    el.scoreText.textContent = "Parfait : vous avez identifié le mécanisme central et les ordres de grandeur.";
+  } else if (score >= 3) {
+    el.scoreText.textContent = "Bonne compréhension globale : les mécanismes principaux sont acquis, mais quelques ordres de grandeur restent à consolider.";
+  } else {
+    el.scoreText.textContent = "Le sujet mérite une seconde lecture : l'enjeu central est le transfert invisible de coûts publics et de valeur productive.";
+  }
+}
+
+function restartQuiz() {
+  current = 0;
+  score = 0;
+  el.quiz.style.display = "block";
+  el.scoreCard.classList.remove("show");
+  renderQuestion();
+}
+
+el.next.addEventListener("click", nextQuestion);
+el.restart.addEventListener("click", restartQuiz);
+renderQuestion();
+</script>
+</body>
+</html>
