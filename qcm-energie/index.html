@@ -1,12 +1,578 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QCM Énergie</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>QCM Énergie — Doctrine Éconologique</title>
+<style>
+:root{
+  --bg:#f5f1e8;
+  --card:#fffaf0;
+  --ink:#1a1a1a;
+  --soft:#4a4a4a;
+  --line:#d4cab3;
+  --gold:#b8860b;
+  --gold2:#8b6508;
+  --sp:#2e5d3e;
+  --tmi:#7a3b2e;
+  --mix:#3f4f8f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.6;
+}
+.container{max-width:820px;margin:0 auto;padding:32px 18px 60px}
+h1,h2,h3{font-family:Georgia,serif;line-height:1.15}
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--gold2);
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:14px;
+}
+.hero,.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:28px;
+  margin-bottom:22px;
+  box-shadow:0 6px 20px rgba(0,0,0,.04);
+}
+h1{font-size:clamp(32px,6vw,52px);margin-bottom:14px}
+.subtitle{font-size:18px;color:var(--soft);margin-bottom:20px}
+.principle{
+  border-left:4px solid var(--gold);
+  background:#ede5d3;
+  padding:18px;
+  margin:20px 0;
+  border-radius:6px;
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:20px;
+}
+button{
+  width:100%;
+  padding:15px 16px;
+  border-radius:8px;
+  border:1px solid var(--ink);
+  background:var(--ink);
+  color:white;
+  font-size:16px;
+  font-weight:700;
+  text-align:left;
+  cursor:pointer;
+  margin:8px 0;
+}
+button.secondary{
+  background:transparent;
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+button.secondary:hover{background:#ede5d3}
+button:hover{background:var(--gold2);border-color:var(--gold2)}
+.progress{
+  display:flex;
+  justify-content:space-between;
+  color:var(--soft);
+  font-size:14px;
+  margin-bottom:8px;
+}
+.bar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:20px}
+.fill{height:100%;width:0;background:var(--gold);transition:.25s}
+.question{
+  font-family:Georgia,serif;
+  font-size:clamp(22px,4vw,30px);
+  margin:18px 0 20px;
+}
+.explain{
+  display:none;
+  background:#ede5d3;
+  border-left:4px solid var(--gold);
+  padding:16px;
+  border-radius:6px;
+  margin:16px 0;
+  color:var(--soft);
+}
+.explain.show{display:block}
+.result-banner{
+  background:var(--ink);
+  color:white;
+  padding:24px;
+  border-radius:10px;
+  text-align:center;
+  margin-bottom:22px;
+}
+.result-banner h2{color:white;font-size:34px;margin-bottom:8px}
+.scores{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin:20px 0;
+}
+.scorebox{
+  border:1px solid var(--line);
+  background:white;
+  padding:16px;
+  border-radius:8px;
+}
+.scorebox strong{font-size:24px}
+.party{
+  background:#ede5d3;
+  border-left:5px solid var(--gold);
+  padding:16px;
+  border-radius:8px;
+  margin:12px 0;
+}
+.party h3{font-size:22px;margin-bottom:5px}
+.small{font-size:13px;color:var(--soft)}
+.test{
+  margin-top:24px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+.screen{display:none}
+.screen.active{display:block}
+.back{
+  display:inline-block;
+  color:var(--gold2);
+  text-decoration:none;
+  font-weight:700;
+  margin-bottom:18px;
+}
+footer{
+  text-align:center;
+  color:var(--soft);
+  font-size:13px;
+  margin-top:32px;
+}
+@media(min-width:720px){
+  .scores{grid-template-columns:repeat(3,1fr)}
+}
+</style>
 </head>
+
 <body>
-  <h1>QCM Pilier 1 — Énergie</h1>
-  <p>Page de test GitHub Pages.</p>
+<div class="container">
+
+<a href="../" class="back">← Retour au site Doctrine</a>
+
+<section id="home" class="screen active">
+  <div class="hero">
+    <div class="eyebrow">Doctrine Éconologique · Pilier 1</div>
+    <h1>QCM Énergie</h1>
+    <p class="subtitle">
+      Comprendre comment l'énergie décide du prix de revient français, de l'industrie,
+      du pouvoir d'achat et de la souveraineté.
+    </p>
+
+    <div class="principle">
+      <p>Je sais → je réponds.</p>
+      <p>J'hésite → je clique.</p>
+      <p>Je comprends → je décide.</p>
+    </div>
+
+    <p>
+      Le questionnaire comporte <strong>19 questions</strong>. À la fin, il indique votre profil énergétique dominant
+      et les partis politiques dont les positions documentées sont les plus proches de vos réponses.
+    </p>
+
+    <p class="small" style="margin-top:12px">
+      Aucune réponse n'est moralement juste ou fausse. Le moteur interprète une orientation énergétique selon les choix accumulés.
+    </p>
+
+    <button onclick="startQuiz()">Commencer le QCM</button>
+
+    <div class="test">
+      <div class="eyebrow">Mode test — sessions de validation</div>
+      <p class="small">Permet de simuler 4 profils types pour vérifier la cohérence du résultat.</p>
+      <button class="secondary" onclick="simulate('SP')">Profil SP total</button>
+      <button class="secondary" onclick="simulate('TMI')">Profil TMI total</button>
+      <button class="secondary" onclick="simulate('MIX')">Profil mixte</button>
+      <button class="secondary" onclick="simulate('NUCUE')">Nucléaire + Marché UE</button>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="screen">
+  <div class="card">
+    <div class="progress">
+      <span id="progressText">Question 1 / 19</span>
+      <span id="profileHint">Profil en construction</span>
+    </div>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+
+    <div class="eyebrow" id="theme">Énergie</div>
+    <div class="question" id="questionText"></div>
+
+    <div id="answers"></div>
+
+    <div class="explain" id="explain"></div>
+
+    <button id="nextBtn" style="display:none" onclick="nextQuestion()">Question suivante →</button>
+  </div>
+</section>
+
+<section id="result" class="screen">
+  <div class="result-banner">
+    <div class="eyebrow" style="color:#f4d03f">Résultat</div>
+    <h2 id="profileTitle"></h2>
+    <p id="profileText"></p>
+  </div>
+
+  <div class="card">
+    <h2>Vos scores d'orientation</h2>
+    <div class="scores">
+      <div class="scorebox"><strong id="scoreSP">0</strong><br>Souveraineté productive</div>
+      <div class="scorebox"><strong id="scoreTMI">0</strong><br>Transition marché intégré</div>
+      <div class="scorebox"><strong id="scoreMIX">0</strong><br>Mixte / arbitrage</div>
+    </div>
+
+    <h2>Partis les plus proches</h2>
+    <div id="parties"></div>
+
+    <div class="explain show">
+      <strong>Note méthodologique :</strong> ce prototype ne remplace pas la matrice probatoire complète.
+      Il sert à donner une orientation énergétique dominante à partir des choix de l'utilisateur.
+    </div>
+
+    <button onclick="restart()">Recommencer</button>
+    <button class="secondary" onclick="goHome()">Retour accueil</button>
+  </div>
+</section>
+
+<footer>
+  Prototype V3.1 — Doctrine Éconologique — Pilier 1 Énergie
+</footer>
+
+</div>
+
+<script>
+const questions = [
+  {
+    theme:"Prix de l'énergie",
+    q:"Pour une économie industrielle, quel est le rôle principal du prix de l'énergie ?",
+    a:[
+      ["Un coût secondaire, compensable par des subventions ciblées.","TMI"],
+      ["Un déterminant central du prix de revient, de l'emploi industriel et du pouvoir d'achat.","SP"],
+      ["Un sujet important mais qui doit être arbitré avec le climat et les règles européennes.","MIX"]
+    ],
+    e:"Dans une économie productive, l'énergie n'est pas un poste secondaire : elle conditionne les prix de revient, les marges industrielles et la compétitivité."
+  },
+  {
+    theme:"Nucléaire",
+    q:"Faut-il relancer fortement le nucléaire civil français ?",
+    a:[
+      ["Oui, avec une stratégie longue : EPR2, maintenance, recherche, génération IV et souveraineté de la filière.","SP"],
+      ["Non, il faut organiser la sortie progressive du nucléaire au profit des renouvelables.","TMI"],
+      ["Oui, mais dans un mix équilibré avec renouvelables et sobriété.","MIX"]
+    ],
+    e:"Le nucléaire est pilotable, bas-carbone et structurant pour la souveraineté électrique française."
+  },
+  {
+    theme:"Marché européen",
+    q:"La France doit-elle accepter que le prix de son électricité reste largement dépendant du marché européen ?",
+    a:[
+      ["Oui, car le marché européen optimise les échanges et la concurrence.","TMI"],
+      ["Non, la France doit retrouver un prix national lié à son coût réel de production.","SP"],
+      ["Il faut réformer le marché européen sans forcément en sortir totalement.","MIX"]
+    ],
+    e:"La question centrale est l'écart entre coût de production national et prix de marché importé par les règles européennes."
+  },
+  {
+    theme:"EDF",
+    q:"Quelle doit être la place d'EDF ?",
+    a:[
+      ["Un opérateur public stratégique intégré, au service de la nation et de l'industrie.","SP"],
+      ["Un acteur parmi d'autres dans un marché concurrentiel ouvert.","TMI"],
+      ["Un acteur public fort, mais compatible avec des règles européennes rénovées.","MIX"]
+    ],
+    e:"EDF peut être vu soit comme outil de souveraineté productive, soit comme acteur de marché."
+  },
+  {
+    theme:"Renouvelables",
+    q:"Quelle priorité donner à l'éolien terrestre ?",
+    a:[
+      ["Priorité élevée, car il accélère la transition énergétique.","TMI"],
+      ["Priorité limitée : production intermittente, dépendance matérielle et rendement territorial discutable.","SP"],
+      ["Développement au cas par cas selon l'acceptabilité locale et le coût système.","MIX"]
+    ],
+    e:"Le débat ne porte pas seulement sur le kWh produit, mais sur le coût système : intermittence, réseau, stockage, acceptabilité."
+  },
+  {
+    theme:"Solaire",
+    q:"Quel rôle pour le solaire photovoltaïque ?",
+    a:[
+      ["Un complément utile, surtout sur toitures, friches et autoconsommation.","MIX"],
+      ["Un axe majeur devant remplacer progressivement le nucléaire.","TMI"],
+      ["Un complément secondaire, non pilotable, à ne pas confondre avec une base industrielle.","SP"]
+    ],
+    e:"Le solaire peut être utile, mais il ne joue pas le même rôle qu'une énergie pilotable de base."
+  },
+  {
+    theme:"Gaz",
+    q:"Quelle place pour le gaz dans la sécurité énergétique ?",
+    a:[
+      ["Une énergie fossile à réduire fortement et rapidement.","TMI"],
+      ["Un outil d'appoint pilotable, mais à sécuriser et à réduire par la production nationale bas-carbone.","MIX"],
+      ["Un levier stratégique temporaire, à remplacer par nucléaire, biométhane et chaleur locale.","SP"]
+    ],
+    e:"La sécurité énergétique exige des moyens pilotables ; la question est leur origine, leur coût et leur trajectoire."
+  },
+  {
+    theme:"Biométhane",
+    q:"Le biométhane agricole et territorial doit-il être développé ?",
+    a:[
+      ["Oui, s'il reste local, agricole, contrôlé et utile au réseau.","SP"],
+      ["Oui, mais surtout comme complément dans une stratégie de transition globale.","MIX"],
+      ["Ce n'est pas une priorité face à l'électrification renouvelable.","TMI"]
+    ],
+    e:"Le biométhane peut être un outil de souveraineté locale s'il n'entre pas en concurrence avec l'alimentation."
+  },
+  {
+    theme:"Sobriété",
+    q:"La sobriété doit-elle être le pilier principal de la politique énergétique ?",
+    a:[
+      ["Oui, la baisse de la demande doit guider la transition.","TMI"],
+      ["Non, elle peut aider mais ne remplace pas une production abondante et compétitive.","SP"],
+      ["Elle doit accompagner l'efficacité et la production pilotable, sans devenir décroissance imposée.","MIX"]
+    ],
+    e:"La sobriété peut réduire les tensions, mais une économie productive a besoin d'énergie disponible."
+  },
+  {
+    theme:"Industrie",
+    q:"Pour réindustrialiser, quelle priorité énergétique faut-il viser ?",
+    a:[
+      ["Prix bas, stable, pilotable et prévisible sur 20 à 40 ans.","SP"],
+      ["Adaptation industrielle à la transition et aux signaux de marché.","TMI"],
+      ["Contrats de long terme et compromis entre coût, climat et sécurité.","MIX"]
+    ],
+    e:"L'industrie lourde investit si elle voit un prix stable, fiable et durable."
+  },
+  {
+    theme:"Tarifs",
+    q:"Faut-il protéger les ménages par un tarif régulé durable de l'électricité ?",
+    a:[
+      ["Oui, si ce tarif reflète le coût réel de production national.","SP"],
+      ["Non, les prix doivent refléter le marché, avec aides ciblées aux ménages modestes.","TMI"],
+      ["Oui, mais avec réforme progressive et ciblage social.","MIX"]
+    ],
+    e:"Le tarif régulé peut être un instrument de souveraineté sociale s'il n'est pas artificiellement déconnecté du système."
+  },
+  {
+    theme:"Interconnexions",
+    q:"Les interconnexions européennes doivent-elles rester centrales ?",
+    a:[
+      ["Oui, elles garantissent l'optimisation et la solidarité européenne.","TMI"],
+      ["Elles sont utiles, mais ne doivent pas imposer le prix ni la stratégie française.","SP"],
+      ["Elles doivent rester un outil technique, avec réforme des règles de prix.","MIX"]
+    ],
+    e:"Une interconnexion technique n'implique pas forcément une dépendance politique complète au prix de marché."
+  },
+  {
+    theme:"Rendement national",
+    q:"Les aides publiques à l'énergie doivent-elles être conditionnées à un rendement national ?",
+    a:[
+      ["Oui : emplois, filières, composants, fiscalité et retour industriel en France.","SP"],
+      ["Non, il faut prioriser la baisse rapide du carbone au meilleur coût européen.","TMI"],
+      ["Oui, mais dans les limites du droit européen et des chaînes industrielles existantes.","MIX"]
+    ],
+    e:"La doctrine éconologique insiste sur le retour productif national des dépenses publiques."
+  },
+  {
+    theme:"Hydrogène",
+    q:"Quel rôle pour l'hydrogène ?",
+    a:[
+      ["Un outil ciblé pour industrie lourde et usages difficiles à électrifier.","MIX"],
+      ["Un grand pilier central de la transition énergétique.","TMI"],
+      ["Un levier utile seulement s'il repose sur une électricité nucléaire abondante et bon marché.","SP"]
+    ],
+    e:"L'hydrogène n'est pas une source primaire : il dépend du coût de l'électricité qui le produit."
+  },
+  {
+    theme:"Climat",
+    q:"Comment articuler climat et souveraineté ?",
+    a:[
+      ["La souveraineté productive bas-carbone doit être le cœur de la politique climatique.","SP"],
+      ["Les objectifs climatiques européens doivent structurer les choix nationaux.","TMI"],
+      ["Il faut concilier objectifs climatiques, acceptabilité sociale et autonomie industrielle.","MIX"]
+    ],
+    e:"L'opposition entre climat et souveraineté est souvent artificielle : une production bas-carbone nationale peut servir les deux."
+  },
+  {
+    theme:"Importations",
+    q:"Faut-il importer massivement des équipements énergétiques bas coût ?",
+    a:[
+      ["Oui, si cela accélère la transition et réduit les coûts immédiats.","TMI"],
+      ["Non, si cela détruit les filières françaises et remplace une dépendance par une autre.","SP"],
+      ["Seulement si l'importation s'accompagne d'une stratégie industrielle française.","MIX"]
+    ],
+    e:"Un équipement bas-carbone importé peut réduire une émission mais augmenter une dépendance productive."
+  },
+  {
+    theme:"Planification",
+    q:"La politique énergétique doit-elle être planifiée par l'État ?",
+    a:[
+      ["Oui, l'énergie est une infrastructure de souveraineté à horizon long.","SP"],
+      ["Partiellement, mais avec signaux de marché et coordination européenne.","MIX"],
+      ["Le marché et la régulation européenne doivent guider l'allocation efficace.","TMI"]
+    ],
+    e:"Les infrastructures énergétiques ont des cycles longs : elles ne se pilotent pas comme un marché de court terme."
+  },
+  {
+    theme:"Priorité budgétaire",
+    q:"Où investir prioritairement l'argent public ?",
+    a:[
+      ["Dans les filières productives pilotables et les infrastructures françaises.","SP"],
+      ["Dans la transition renouvelable, l'efficacité et la baisse rapide des émissions.","TMI"],
+      ["Dans un portefeuille équilibré, contrôlé par coût complet et sécurité d'approvisionnement.","MIX"]
+    ],
+    e:"Le choix budgétaire révèle le modèle : souveraineté productive, transition marché intégré, ou compromis."
+  },
+  {
+    theme:"Doctrine",
+    q:"Quelle phrase résume le mieux votre orientation énergétique ?",
+    a:[
+      ["Une énergie abondante, pilotable et nationale est la base de la puissance économique.","SP"],
+      ["La transition doit accélérer dans un cadre européen, renouvelable et concurrentiel.","TMI"],
+      ["La France doit combiner nucléaire, renouvelables utiles, sobriété raisonnable et réforme du marché.","MIX"]
+    ],
+    e:"Cette dernière question synthétise les trois orientations dominantes du questionnaire."
+  }
+];
+
+const partyProfiles = [
+  {name:"Debout la France", sp:18, tmi:1, mix:4, note:"Souveraineté productive énergétique forte."},
+  {name:"Les Patriotes", sp:18, tmi:0, mix:3, note:"Souveraineté énergétique et critique du cadre européen."},
+  {name:"Reconquête", sp:17, tmi:1, mix:4, note:"Orientation nucléaire et souveraineté productive."},
+  {name:"Rassemblement National", sp:15, tmi:3, mix:5, note:"Forte souveraineté énergétique, avec réserves sur certains arbitrages européens."},
+  {name:"Les Républicains", sp:12, tmi:5, mix:7, note:"Nucléaire fort, mais compatibilité plus élevée avec le cadre européen."},
+  {name:"PCF", sp:11, tmi:4, mix:10, note:"Singulier : planification publique, nucléaire et service public."},
+  {name:"Renaissance / Ensemble", sp:6, tmi:12, mix:8, note:"Nucléaire relancé, mais maintien du cadre européen et de la logique de transition intégrée."},
+  {name:"LFI", sp:4, tmi:14, mix:6, note:"Transition publique, renouvelables, sortie du nucléaire selon ligne dominante."},
+  {name:"EELV", sp:1, tmi:18, mix:4, note:"Transition renouvelable, sobriété, sortie du nucléaire."}
+];
+
+let current = 0;
+let scores = {SP:0,TMI:0,MIX:0};
+let answers = [];
+
+function show(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0,0);
+}
+
+function startQuiz(){
+  current = 0;
+  scores = {SP:0,TMI:0,MIX:0};
+  answers = [];
+  show("quiz");
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = questions[current];
+  document.getElementById("progressText").textContent = `Question ${current+1} / ${questions.length}`;
+  document.getElementById("fill").style.width = `${(current/questions.length)*100}%`;
+  document.getElementById("theme").textContent = q.theme;
+  document.getElementById("questionText").textContent = q.q;
+  document.getElementById("explain").className = "explain";
+  document.getElementById("explain").innerHTML = "";
+  document.getElementById("nextBtn").style.display = "none";
+
+  const box = document.getElementById("answers");
+  box.innerHTML = "";
+  q.a.forEach((rep, i)=>{
+    const btn = document.createElement("button");
+    btn.textContent = rep[0];
+    btn.onclick = () => choose(rep[1], q.e);
+    box.appendChild(btn);
+  });
+
+  document.getElementById("profileHint").textContent = dominantHint();
+}
+
+function choose(type, explanation){
+  scores[type]++;
+  answers[current] = type;
+
+  document.querySelectorAll("#answers button").forEach(b=>b.disabled=true);
+  const ex = document.getElementById("explain");
+  ex.innerHTML = `<strong>Comprendre :</strong> ${explanation}`;
+  ex.classList.add("show");
+  document.getElementById("nextBtn").style.display = "block";
+  document.getElementById("fill").style.width = `${((current+1)/questions.length)*100}%`;
+  document.getElementById("profileHint").textContent = dominantHint();
+}
+
+function nextQuestion(){
+  current++;
+  if(current >= questions.length){ showResult(); }
+  else { renderQuestion(); }
+}
+
+function dominantHint(){
+  const max = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0];
+  if(max[1]===0) return "Profil en construction";
+  if(max[0]==="SP") return "Tendance : souveraineté productive";
+  if(max[0]==="TMI") return "Tendance : transition marché intégré";
+  return "Tendance : mixte / arbitrage";
+}
+
+function showResult(){
+  show("result");
+  document.getElementById("scoreSP").textContent = scores.SP;
+  document.getElementById("scoreTMI").textContent = scores.TMI;
+  document.getElementById("scoreMIX").textContent = scores.MIX;
+
+  let profile = "Profil mixte / arbitrage";
+  let text = "Vous cherchez un compromis entre souveraineté, transition, coût complet et contraintes institutionnelles.";
+  if(scores.SP > scores.TMI && scores.SP > scores.MIX){
+    profile = "Souveraineté productive";
+    text = "Votre priorité est une énergie abondante, pilotable, compétitive et contrôlée nationalement.";
+  } else if(scores.TMI > scores.SP && scores.TMI > scores.MIX){
+    profile = "Transition marché intégré";
+    text = "Votre priorité est l'accélération de la transition dans un cadre européen, concurrentiel ou fortement renouvelable.";
+  }
+
+  document.getElementById("profileTitle").textContent = profile;
+  document.getElementById("profileText").textContent = text;
+
+  const ranked = partyProfiles.map(p=>{
+    const dist =
+      Math.abs(scores.SP - p.sp) +
+      Math.abs(scores.TMI - p.tmi) +
+      Math.abs(scores.MIX - p.mix);
+    return {...p, dist};
+  }).sort((a,b)=>a.dist-b.dist).slice(0,3);
+
+  const parties = document.getElementById("parties");
+  parties.innerHTML = "";
+  ranked.forEach((p,i)=>{
+    const div = document.createElement("div");
+    div.className = "party";
+    div.innerHTML = `<h3>${i+1}. ${p.name}</h3>
+      <p>${p.note}</p>
+      <p class="small">Proximité indicative : distance ${p.dist}. À consolider par matrice documentaire sourcée.</p>`;
+    parties.appendChild(div);
+  });
+}
+
+function simulate(mode){
+  scores = {SP:0,TMI:0,MIX:0};
+  if(mode==="SP") scores.SP = 19;
+  if(mode==="TMI") scores.TMI = 19;
+  if(mode==="MIX") scores.MIX = 19;
+  if(mode==="NUCUE") scores = {SP:10,TMI:6,MIX:8};
+  showResult();
+}
+
+function restart(){ startQuiz(); }
+function goHome(){ show("home"); }
+</script>
 </body>
 </html>
