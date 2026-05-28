@@ -227,6 +227,51 @@ button:disabled{
   letter-spacing:.08em;
   margin-bottom:12px;
 }
+.proof-links{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+.proof-links a{
+  display:block;
+  background:white;
+  border:1px solid var(--line);
+  border-left:4px solid var(--gold);
+  border-radius:8px;
+  padding:13px 15px;
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:800;
+}
+.proof-links a span{
+  display:block;
+  font-weight:400;
+  color:var(--soft);
+  font-size:13px;
+  margin-top:3px;
+}
+.method-box{
+  background:white;
+  border:1px solid var(--line);
+  border-left:5px solid var(--mix);
+  padding:18px;
+  border-radius:8px;
+  margin:18px 0;
+}
+.method-box p{
+  margin-bottom:10px;
+}
+.method-box ul{
+  padding-left:20px;
+  color:var(--soft);
+}
+.method-box a{
+  color:var(--gold2);
+  font-weight:800;
+  text-decoration:none;
+  border-bottom:1px solid var(--gold2);
+}
 footer{
   text-align:center;
   color:var(--soft);
@@ -236,6 +281,7 @@ footer{
 @media(min-width:720px){
   .scores{grid-template-columns:repeat(3,1fr)}
   .mode-grid{grid-template-columns:1fr 1fr}
+  .proof-links{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -289,6 +335,25 @@ footer{
       </div>
     </div>
 
+    <div class="proof-links">
+      <a href="https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk" target="_blank" rel="noopener">
+        Vérifier la matrice partis V4 →
+        <span>Référence unique du calcul politique du Pilier 1 Énergie.</span>
+      </a>
+      <a href="https://docs.google.com/document/d/1uuntTCmWe5kRUWNd3VKKjA6QTK6ROb_Y/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank" rel="noopener">
+        Lire le dossier de preuve →
+        <span>Chiffres clés, responsabilités politiques et logique énergétique.</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1uWPZXbBF4FozuJfFMeZuZirNKopLtqKK" target="_blank" rel="noopener">
+        Consulter les sources officielles →
+        <span>Dossier Drive des sources du Pilier 1.</span>
+      </a>
+      <a href="https://docs.google.com/document/d/1vP1BTIasJLdWNFQsBpWEAIKUVXX3B4JGMBzbjGhlHjo/edit" target="_blank" rel="noopener">
+        Voir l'archive de travail →
+        <span>Ancien cycle V1/V2/V3 et addenda, conservé pour traçabilité.</span>
+      </a>
+    </div>
+
     <div class="test">
       <div class="eyebrow">Mode test — sessions de validation</div>
       <p class="small">Permet de simuler 4 profils types pour vérifier la cohérence du résultat.</p>
@@ -340,17 +405,54 @@ footer{
     <h2>Partis les plus proches</h2>
     <div id="parties"></div>
 
+    <div class="method-box">
+      <h2>Comment ce résultat est calculé ?</h2>
+      <p>
+        Chaque réponse du QCM est codée en <strong>SP</strong>, <strong>TMI</strong> ou <strong>MIX</strong>.
+        Le score obtenu est ensuite comparé aux profils énergétiques des partis.
+      </p>
+      <ul>
+        <li><strong>SP</strong> : souveraineté productive, énergie pilotable, prix national, EDF stratégique, rendement industriel.</li>
+        <li><strong>TMI</strong> : transition / marché intégré, cadre européen, concurrence, priorité renouvelables ou logique climatique européenne.</li>
+        <li><strong>MIX</strong> : arbitrage, nuance, compromis ou position incomplètement tranchée.</li>
+      </ul>
+      <p style="margin-top:12px">
+        La proximité est calculée par distance simple entre votre score et les profils partis intégrés dans le prototype.
+        Ces profils sont dérivés de la <strong>Matrice partis — Pilier 1 Énergie — V4 consolidée</strong>.
+      </p>
+      <p>
+        <a href="https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk" target="_blank" rel="noopener">
+          Vérifier la matrice de calcul V4 →
+        </a>
+      </p>
+    </div>
+
     <div class="explain show">
       <strong>Note méthodologique :</strong> ce prototype ne remplace pas la matrice probatoire complète.
       Il donne une orientation énergétique dominante à partir des choix de l'utilisateur.
-      La proximité avec les partis doit être consolidée par la matrice documentaire sourcée.
-      <br><br>
-      <a href="https://docs.google.com/document/d/112KSvPQZBql6NU9BDFivrW_7hA5ZBqAtzr5ALQPdGTU/edit" target="_blank" rel="noopener" style="color:#8b6508;font-weight:800">
-        Voir la matrice documentaire des partis →
+      La proximité avec les partis doit être lue comme une indication, consolidée par la matrice V4 et les sources associées.
+    </div>
+
+    <div class="proof-links">
+      <a href="https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk" target="_blank" rel="noopener">
+        Matrice partis V4 →
+        <span>Référence unique du calcul et des réserves politiques.</span>
+      </a>
+      <a href="https://docs.google.com/document/d/1uuntTCmWe5kRUWNd3VKKjA6QTK6ROb_Y/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank" rel="noopener">
+        Dossier de preuve →
+        <span>Chiffres clés et responsabilité des décideurs politiques.</span>
+      </a>
+      <a href="https://drive.google.com/drive/folders/1uWPZXbBF4FozuJfFMeZuZirNKopLtqKK" target="_blank" rel="noopener">
+        Sources officielles →
+        <span>Documents sources du Pilier 1 Énergie.</span>
+      </a>
+      <a href="https://docs.google.com/document/d/1vP1BTIasJLdWNFQsBpWEAIKUVXX3B4JGMBzbjGhlHjo/edit" target="_blank" rel="noopener">
+        Archive V1/V2/V3 →
+        <span>Historique complet des arbitrages et addenda.</span>
       </a>
     </div>
 
-    <button class="secondary" onclick="toggleSources()">Voir / masquer les sources du QCM</button>
+    <button class="secondary" onclick="toggleSources()">Voir / masquer les sources question par question</button>
 
     <div id="sourceList" class="source-list"></div>
 
@@ -360,7 +462,7 @@ footer{
 </section>
 
 <footer>
-  Prototype V3.3 — Doctrine Éconologique — Pilier 1 Énergie — Mode rapide / mode approfondi
+  Prototype V3.4 — Doctrine Éconologique — Pilier 1 Énergie — QCM documenté avec matrice V4 consolidée
 </footer>
 
 </div>
@@ -368,11 +470,12 @@ footer{
 <script>
 const DOCS = {
   responsables: "https://docs.google.com/document/d/1uuntTCmWe5kRUWNd3VKKjA6QTK6ROb_Y/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true",
+  matrice: "https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk",
+  archiveMatrice: "https://docs.google.com/document/d/1vP1BTIasJLdWNFQsBpWEAIKUVXX3B4JGMBzbjGhlHjo/edit",
   pilier1: "https://docs.google.com/document/d/1PtKJ9hXyw2do3_hOOF0_Lj5l7zz0YYni4uQLhP7eQXQ/edit",
   cadrage: "https://docs.google.com/document/d/1D2Jh_CBgYJBIZEo3yEyqeMH1rlVwjFgq0lqjE8igM30/edit",
   chiffres: "https://docs.google.com/document/d/1AJ0ZLWGMitc94_METrXQSDibPJ393LySQTkgvfDAoqg/edit",
-  sources: "https://drive.google.com/drive/folders/1uWPZXbBF4FozuJfFMeZuZirNKopLtqKK",
-  matrice: "https://docs.google.com/document/d/112KSvPQZBql6NU9BDFivrW_7hA5ZBqAtzr5ALQPdGTU/edit"
+  sources: "https://drive.google.com/drive/folders/1uWPZXbBF4FozuJfFMeZuZirNKopLtqKK"
 };
 
 const questions = [
@@ -503,7 +606,7 @@ const questions = [
     ],
     e:"L'industrie lourde investit si elle peut anticiper un prix de l'énergie stable, fiable et compétitif sur le long terme.",
     sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Chiffres clés / 10 % à 60 % de l'énergie dans les coûts industriels / emplois préservés",
+    sourceSection:"Chiffres clés / énergie dans les coûts industriels / emplois préservés",
     sourceUrl:DOCS.responsables
   },
   {
@@ -516,7 +619,7 @@ const questions = [
     ],
     e:"Le tarif régulé peut être un instrument de souveraineté sociale s'il reflète le coût réel de production national et non une logique d'intermédiation artificielle.",
     sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"60–62 €/MWh / coût complet du nucléaire historique / Loi NOME-ARENH",
+    sourceSection:"Coût complet du nucléaire historique / Loi NOME-ARENH",
     sourceUrl:DOCS.responsables
   },
   {
@@ -541,9 +644,9 @@ const questions = [
       ["Oui, mais dans les limites du droit européen et des chaînes industrielles existantes.","MIX"]
     ],
     e:"La doctrine éconologique insiste sur le retour productif national des dépenses publiques : emplois, filières, compétences, fiscalité et valeur conservée sur le territoire.",
-    sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"80 % vs < 40 % / valeur économique conservée sur le territoire",
-    sourceUrl:DOCS.responsables
+    sourceTitle:"Matrice partis — Pilier 1 Énergie — V4 consolidée",
+    sourceSection:"A7 / aides publiques / contenu industriel / rendement national",
+    sourceUrl:DOCS.matrice
   },
   {
     theme:"Hydrogène",
@@ -619,22 +722,28 @@ const questions = [
       ["La France doit combiner nucléaire, renouvelables utiles, sobriété raisonnable et réforme du marché.","MIX"]
     ],
     e:"Cette dernière question synthétise les trois orientations dominantes du questionnaire : souveraineté productive, transition marché intégré, ou compromis national réformateur.",
-    sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Résumé final / L'énergie est le moteur du pays",
-    sourceUrl:DOCS.responsables
+    sourceTitle:"Matrice partis — Pilier 1 Énergie — V4 consolidée",
+    sourceSection:"Lecture politique / énergie comme système complet de souveraineté économique",
+    sourceUrl:DOCS.matrice
   }
 ];
 
 const partyProfiles = [
-  {name:"Debout la France", sp:18, tmi:1, mix:4, note:"Souveraineté productive énergétique forte."},
-  {name:"Les Patriotes", sp:18, tmi:0, mix:3, note:"Souveraineté énergétique et critique du cadre européen."},
-  {name:"Reconquête", sp:17, tmi:1, mix:4, note:"Orientation nucléaire et souveraineté productive."},
-  {name:"Rassemblement National", sp:15, tmi:3, mix:5, note:"Forte souveraineté énergétique, avec réserves sur certains arbitrages européens."},
-  {name:"Les Républicains", sp:12, tmi:5, mix:7, note:"Nucléaire fort, mais compatibilité plus élevée avec le cadre européen."},
-  {name:"PCF", sp:11, tmi:4, mix:10, note:"Singulier : planification publique, nucléaire et service public."},
-  {name:"Renaissance / Ensemble", sp:6, tmi:12, mix:8, note:"Nucléaire relancé, mais maintien du cadre européen et de la logique de transition intégrée."},
-  {name:"LFI", sp:4, tmi:14, mix:6, note:"Transition publique, renouvelables, sortie du nucléaire selon ligne dominante."},
-  {name:"EELV", sp:1, tmi:18, mix:4, note:"Transition renouvelable, sobriété, sortie du nucléaire."}
+  {name:"Debout la France", sp:18, tmi:0, mix:1, note:"SP forte : EDF public, nucléaire, rendement national, relocalisation productive."},
+  {name:"Les Patriotes", sp:18, tmi:0, mix:1, note:"SP très forte : Frexit énergétique, sortie du marché européen, monopole EDF, EPR2, arrêt éolien."},
+  {name:"République Souveraine", sp:17, tmi:0, mix:2, note:"SP forte : souveraineté énergétique, nucléaire sous contrôle d'État, renationalisation, planification."},
+  {name:"Reconquête", sp:16, tmi:0, mix:3, note:"SP forte : orientation nucléaire et souveraineté productive, avec certains axes moins documentés."},
+  {name:"Parti Communiste Français", sp:15, tmi:1, mix:3, note:"Cas singulier : souveraineté productive publique, pôle public de l'énergie, critique du marché européen."},
+  {name:"Rassemblement National", sp:15, tmi:1, mix:3, note:"SP forte, avec réserves A6/A7 sur marché européen et rendement industriel documenté."},
+  {name:"Nouvelle Énergie", sp:15, tmi:1, mix:3, note:"SP forte sur nucléaire et souveraineté énergétique, réserve A6/A7 sur marché européen et aides."},
+  {name:"Les Républicains", sp:14, tmi:2, mix:3, note:"SP majoritaire, nucléaire fort, mais réserve sur le cadre européen de l'électricité."},
+  {name:"UPR", sp:14, tmi:0, mix:5, note:"SP dominante : Frexit, nationalisation EDF, nouveaux réacteurs, mais A4/A5 moins documentés."},
+  {name:"Renaissance / Ensemble", sp:6, tmi:9, mix:4, note:"Soutien nucléaire réel, mais maintien dominant du cadre européen et du marché intégré."},
+  {name:"Parti Socialiste", sp:5, tmi:10, mix:4, note:"TMI dominant, avec nuances nucléaires et quelques éléments de préférence productive."},
+  {name:"La France Insoumise", sp:3, tmi:13, mix:3, note:"TMI dominant sur nucléaire et renouvelables, avec point SP sur service public de l'électricité."},
+  {name:"EELV / Les Écologistes", sp:1, tmi:17, mix:1, note:"TMI très fort : renouvelables, sobriété, sortie du nucléaire, transition européenne."},
+  {name:"MoDem", sp:0, tmi:0, mix:19, note:"Silence propre dans la matrice V4 : non classé dans les résultats de proximité.", eligible:false},
+  {name:"Horizons", sp:1, tmi:1, mix:17, note:"Sources faibles dans la matrice V4 : non classé dans les résultats de proximité.", eligible:false}
 ];
 
 let current = 0;
@@ -756,13 +865,17 @@ function showResult(){
   document.getElementById("profileTitle").textContent = profile;
   document.getElementById("profileText").textContent = text;
 
-  const ranked = partyProfiles.map(p=>{
-    const dist =
-      Math.abs(scores.SP - p.sp) +
-      Math.abs(scores.TMI - p.tmi) +
-      Math.abs(scores.MIX - p.mix);
-    return {...p, dist};
-  }).sort((a,b)=>a.dist-b.dist).slice(0,3);
+  const ranked = partyProfiles
+    .filter(p => p.eligible !== false)
+    .map(p=>{
+      const dist =
+        Math.abs(scores.SP - p.sp) +
+        Math.abs(scores.TMI - p.tmi) +
+        Math.abs(scores.MIX - p.mix);
+      return {...p, dist};
+    })
+    .sort((a,b)=>a.dist-b.dist)
+    .slice(0,3);
 
   const parties = document.getElementById("parties");
   parties.innerHTML = "";
@@ -772,7 +885,7 @@ function showResult(){
     div.className = "party";
     div.innerHTML = `<h3>${i+1}. ${p.name}</h3>
       <p>${p.note}</p>
-      <p class="small">Proximité indicative : distance ${p.dist}. À consolider par matrice documentaire sourcée.</p>`;
+      <p class="small">Proximité indicative : distance ${p.dist}. Profil dérivé de la matrice V4 consolidée.</p>`;
     parties.appendChild(div);
   });
 
@@ -783,6 +896,40 @@ function buildSourceList(){
   const list = document.getElementById("sourceList");
   list.className = "source-list";
   list.innerHTML = "";
+
+  const generalSources = [
+    {
+      title:"Matrice partis — Pilier 1 Énergie — V4 consolidée",
+      text:"Référence unique du calcul politique, des codes, des axes A1-A8 et des réserves.",
+      url:DOCS.matrice
+    },
+    {
+      title:"Dossier de preuve — P1 Énergie",
+      text:"Chiffres clés, responsabilité des décideurs politiques et logique économique du Pilier 1.",
+      url:DOCS.responsables
+    },
+    {
+      title:"Sources officielles — Pilier 1 Énergie",
+      text:"Dossier Drive des sources officielles et documents de vérification.",
+      url:DOCS.sources
+    },
+    {
+      title:"Archive de travail V1/V2/V3",
+      text:"Historique complet des arbitrages, addenda et audits IA conservé pour traçabilité.",
+      url:DOCS.archiveMatrice
+    }
+  ];
+
+  generalSources.forEach((s)=>{
+    const item = document.createElement("div");
+    item.className = "source-item";
+    item.innerHTML = `
+      <h3>${s.title}</h3>
+      <p class="small">${s.text}</p>
+      <a href="${s.url}" target="_blank" rel="noopener">Ouvrir →</a>
+    `;
+    list.appendChild(item);
+  });
 
   questions.forEach((q, i)=>{
     const item = document.createElement("div");
@@ -810,7 +957,7 @@ function simulate(mode){
   if(mode==="SP") scores.SP = 19;
   if(mode==="TMI") scores.TMI = 19;
   if(mode==="MIX") scores.MIX = 19;
-  if(mode==="NUCUE") scores = {SP:10,TMI:6,MIX:8};
+  if(mode==="NUCUE") scores = {SP:10,TMI:6,MIX:3};
 
   showResult();
 }
