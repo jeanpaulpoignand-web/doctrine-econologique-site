@@ -414,11 +414,11 @@ footer{
       <ul>
         <li><strong>SP</strong> : souveraineté productive, énergie pilotable, prix national, EDF stratégique, rendement industriel.</li>
         <li><strong>TMI</strong> : transition / marché intégré, cadre européen, concurrence, priorité renouvelables ou logique climatique européenne.</li>
-        <li><strong>MIX</strong> : arbitrage, nuance, compromis ou position incomplètement tranchée.</li>
+        <li><strong>MIX</strong> : arbitrage, réserve, silence, contradiction ou position incomplètement tranchée dans la matrice V4.</li>
       </ul>
       <p style="margin-top:12px">
-        La proximité est calculée par distance simple entre votre score et les profils partis intégrés dans le prototype.
-        Ces profils sont dérivés de la <strong>Matrice partis — Pilier 1 Énergie — V4 consolidée</strong>.
+        Les profils partis intégrés dans le prototype sont une traduction simplifiée de la
+        <strong>Matrice partis — Pilier 1 Énergie — V4 consolidée</strong>.
       </p>
       <p>
         <a href="https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk" target="_blank" rel="noopener">
@@ -462,7 +462,7 @@ footer{
 </section>
 
 <footer>
-  Prototype V3.5 — Doctrine Éconologique — Pilier 1 Énergie — QCM documenté avec matrice V4 consolidée
+  Prototype V3.6 — Doctrine Éconologique — Pilier 1 Énergie — QCM aligné sur matrice V4 consolidée
 </footer>
 
 </div>
@@ -729,21 +729,21 @@ const questions = [
 ];
 
 const partyProfiles = [
-  {name:"Debout la France", sp:18, tmi:0, mix:1, note:"SP forte : EDF public, nucléaire, rendement national, relocalisation productive."},
-  {name:"Les Patriotes", sp:18, tmi:0, mix:1, note:"SP très forte : Frexit énergétique, sortie du marché européen, monopole EDF, EPR2, arrêt éolien."},
-  {name:"République Souveraine", sp:17, tmi:0, mix:2, note:"SP forte : souveraineté énergétique, nucléaire sous contrôle d'État, renationalisation, planification."},
-  {name:"Reconquête", sp:16, tmi:0, mix:3, note:"SP forte : orientation nucléaire et souveraineté productive, avec certains axes moins documentés."},
-  {name:"Parti Communiste Français", sp:15, tmi:1, mix:3, note:"Cas singulier : souveraineté productive publique, pôle public de l'énergie, critique du marché européen."},
-  {name:"Rassemblement National", sp:15, tmi:1, mix:3, note:"SP forte, avec réserves A6/A7 sur marché européen et rendement industriel documenté."},
-  {name:"Nouvelle Énergie", sp:15, tmi:1, mix:3, note:"SP forte sur nucléaire et souveraineté énergétique, réserve A6/A7 sur marché européen et aides."},
-  {name:"Les Républicains", sp:14, tmi:2, mix:3, note:"SP majoritaire, nucléaire fort, mais réserve sur le cadre européen de l'électricité."},
-  {name:"UPR", sp:14, tmi:0, mix:5, note:"SP dominante : Frexit, nationalisation EDF, nouveaux réacteurs, mais A4/A5 moins documentés."},
-  {name:"Renaissance / Ensemble", sp:6, tmi:9, mix:4, note:"Soutien nucléaire réel, mais maintien dominant du cadre européen et du marché intégré."},
-  {name:"Parti Socialiste", sp:5, tmi:10, mix:4, note:"TMI dominant, avec nuances nucléaires et quelques éléments de préférence productive."},
-  {name:"La France Insoumise", sp:3, tmi:13, mix:3, note:"TMI dominant sur nucléaire et renouvelables, avec point SP sur service public de l'électricité."},
-  {name:"EELV / Les Écologistes", sp:1, tmi:17, mix:1, note:"TMI très fort : renouvelables, sobriété, sortie du nucléaire, transition européenne."},
+  {name:"Debout la France", sp:19, tmi:0, mix:0, note:"SP forte selon V4 : EDF public, nucléaire, rendement national, relocalisation productive."},
+  {name:"Les Patriotes", sp:18, tmi:0, mix:1, note:"SP très forte selon V4 : Frexit énergétique, sortie du marché européen, monopole EDF, EPR2, arrêt éolien ; A5 flou."},
+  {name:"République Souveraine", sp:19, tmi:0, mix:0, note:"SP forte selon V4 : souveraineté énergétique, nucléaire sous contrôle d'État, renationalisation, planification."},
+  {name:"Reconquête", sp:18, tmi:0, mix:1, note:"SP forte selon V4 : nucléaire, souveraineté productive, critique des intermittentes ; A5 flou."},
+  {name:"Parti Communiste Français", sp:19, tmi:0, mix:0, note:"Cas singulier selon V4 : souveraineté productive publique, pôle public de l'énergie, EDF/Engie en service public."},
+  {name:"UPR", sp:16, tmi:0, mix:3, note:"SP dominante selon V4 : Frexit, nationalisation EDF, nouveaux réacteurs ; réserves A4/A5."},
+  {name:"Les Républicains", sp:15, tmi:0, mix:4, note:"SP majoritaire selon V4 : nucléaire fort, mais réserve A6 sur le cadre européen de l'électricité."},
+  {name:"Nouvelle Énergie", sp:18, tmi:0, mix:1, note:"SP forte selon V4 : pro-nucléaire, EPR2/SMR/génération IV, critique PPE3 ; A5 flou."},
+  {name:"Rassemblement National", sp:12, tmi:0, mix:7, note:"SP forte selon V4, mais réserves A6/A7 : ambiguïtés sur marché européen et rendement industriel."},
+  {name:"Parti Socialiste", sp:3, tmi:14, mix:2, note:"TMI dominant selon V4, avec quelques éléments SP sur nucléaire existant et aides publiques."},
+  {name:"Renaissance / Ensemble", sp:1, tmi:12, mix:6, note:"TMI majoritaire selon V4 : soutien nucléaire réel, mais maintien du cadre européen et logique de marché intégré."},
+  {name:"La France Insoumise", sp:0, tmi:11, mix:8, note:"TMI dominant selon V4 : sortie du nucléaire et renouvelables, avec réserve service public sur A6."},
+  {name:"EELV / Les Écologistes", sp:1, tmi:18, mix:0, note:"TMI très fort selon V4 : renouvelables, sobriété, sortie du nucléaire ; A5 biométhane classé SP."},
   {name:"MoDem", sp:0, tmi:0, mix:19, note:"Silence propre dans la matrice V4 : non classé dans les résultats de proximité.", eligible:false},
-  {name:"Horizons", sp:1, tmi:1, mix:17, note:"Sources faibles dans la matrice V4 : non classé dans les résultats de proximité.", eligible:false}
+  {name:"Horizons", sp:0, tmi:0, mix:19, note:"Sources faibles dans la matrice V4 : non classé dans les résultats de proximité.", eligible:false}
 ];
 
 let current = 0;
