@@ -3,29 +3,165 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>S6 — Source originale</title>
+<title>S6 — Audit critique Gemini reformatté</title>
 <style>
-:root{--bg:#0f172a;--text:#f8fafc;--muted:#cbd5e1;--line:rgba(255,255,255,.14);--shadow:0 22px 70px rgba(0,0,0,.38);--radius:22px}
+:root{
+  --bg:#0f172a;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --line:rgba(255,255,255,.14);
+  --shadow:0 22px 70px rgba(0,0,0,.38);
+  --radius:22px;
+  --red:#ef4444;
+  --yellow:#facc15;
+  --green:#22c55e;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top left,rgba(59,130,246,.22),transparent 34rem),radial-gradient(circle at bottom right,rgba(248,113,113,.18),transparent 34rem),var(--bg);color:var(--text);min-height:100vh;padding:22px;display:flex;justify-content:center}
-main{width:min(980px,100%)}
-.card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden}
-.hero{padding:30px;border-bottom:1px solid var(--line)}
-.content{padding:26px 30px 30px}
-h1{margin:0 0 12px;font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.05;letter-spacing:-.04em}
-h2{font-size:clamp(1.18rem,2.6vw,1.55rem);line-height:1.2;margin:24px 0 12px}
-p,li{color:var(--muted);line-height:1.58}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at top left,rgba(59,130,246,.22),transparent 34rem),
+    radial-gradient(circle at bottom right,rgba(248,113,113,.18),transparent 34rem),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding:22px;
+  display:flex;
+  justify-content:center;
+}
+main{width:min(1080px,100%)}
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.sticky-return{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(15,23,42,.94);
+  backdrop-filter:blur(8px);
+  padding:10px;
+  border-bottom:1px solid var(--line);
+}
+.hero{
+  padding:34px 34px 28px;
+  border-bottom:1px solid var(--line);
+}
+.content{padding:28px 34px 34px}
+h1{
+  margin:0 0 12px;
+  font-size:clamp(1.75rem,4vw,2.85rem);
+  line-height:1.05;
+  letter-spacing:-.04em;
+}
+h2{
+  font-size:clamp(1.25rem,2.5vw,1.7rem);
+  line-height:1.2;
+  margin:30px 0 14px;
+}
+h3{
+  font-size:1.08rem;
+  margin:20px 0 10px;
+}
+p,li{
+  color:var(--muted);
+  line-height:1.62;
+}
 a{color:var(--text)}
-.notice{border:1px solid var(--line);background:rgba(255,255,255,.07);border-radius:18px;padding:16px;margin:16px 0;color:var(--muted);line-height:1.55}
-.notice strong{color:var(--text)}
-.button{display:inline-block;text-decoration:none;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:12px 16px;background:rgba(255,255,255,.08);font-weight:700;margin:6px 8px 6px 0}
+.button{
+  display:inline-block;
+  text-decoration:none;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:12px 16px;
+  background:rgba(255,255,255,.08);
+  font-weight:800;
+  margin:6px 8px 6px 0;
+}
 .primary{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.4)}
-.source-list{display:grid;gap:10px}
-.source{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.055)}
-.source strong{display:block}
-.source span{display:block;color:var(--muted);font-size:.9rem;line-height:1.45;margin-top:4px}
-.sticky-return{position:sticky;top:0;z-index:10;background:rgba(15,23,42,.92);backdrop-filter:blur(8px);padding:10px;border-bottom:1px solid var(--line)}
-@media(max-width:700px){body{padding:12px}.hero,.content{padding:22px}.button{width:100%;text-align:center}}
+.notice{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.07);
+  border-radius:18px;
+  padding:17px;
+  margin:18px 0;
+  color:var(--muted);
+  line-height:1.58;
+}
+.notice strong{color:var(--text)}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin:18px 0;
+}
+.kpi{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  padding:16px;
+}
+.kpi strong{
+  display:block;
+  font-size:1.1rem;
+  margin-bottom:5px;
+}
+.kpi span{display:block;color:var(--muted);line-height:1.45}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:18px;margin:16px 0}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th,td{border-bottom:1px solid var(--line);padding:13px;text-align:left;vertical-align:top;color:var(--muted)}
+th{color:var(--text);background:rgba(255,255,255,.08)}
+tr:last-child td{border-bottom:0}
+.callout{
+  border:1px solid var(--line);
+  border-left:8px solid var(--yellow);
+  border-radius:18px;
+  padding:17px;
+  background:rgba(255,255,255,.06);
+  margin:14px 0;
+}
+.callout.red{border-left-color:var(--red)}
+.callout.green{border-left-color:var(--green)}
+.callout strong{color:var(--text)}
+.badge{
+  display:inline-block;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:4px 10px;
+  margin:0 6px 8px 0;
+  color:var(--muted);
+  font-size:.83rem;
+}
+.toc{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.toc a{
+  text-decoration:none;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+  background:rgba(255,255,255,.055);
+}
+.source-box{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:17px;
+  background:rgba(255,255,255,.055);
+}
+@media(max-width:760px){
+  body{padding:12px}
+  .hero,.content{padding:22px}
+  .grid,.toc{grid-template-columns:1fr}
+  .button{width:100%;text-align:center}
+}
 </style>
 </head>
 <body>
@@ -35,24 +171,295 @@ a{color:var(--text)}
     <a class="button" href="../documents/index.html">Matrice documentaire</a>
     <a class="button" href="index.html">Liste des sources</a>
   </div>
+
   <section class="hero">
-    <h1>S6 — Source originale</h1>
-    <p>03 — BRUT IA — Gemini — Reverse politique France 2007-2026 — Dette Énergie Retraites — 2026-05-26</p>
+    <h1>S6 — Audit critique Gemini reformatté</h1>
+    <p>
+      Reverse politique France 2007–2026 — Dette, énergie, retraites.
+      Version remise en forme pour lecture publique, sans changer le fond analytique du document source.
+    </p>
   </section>
+
   <section class="content">
     <div class="notice">
-      <strong>Page intermédiaire GitHub :</strong>
-      cette page garde un chemin de retour vers le QCM avant d’ouvrir l’original Drive.
-      L’original s’ouvre dans un nouvel onglet quand le navigateur le permet.
+      <strong>Statut méthodologique :</strong>
+      cette page est une version structurée et lisible du document Gemini transmis.
+      Elle conserve les conclusions et les mécanismes économiques centraux, mais les présente sous forme exploitable pour le QCM :
+      tableaux, verdicts, risques, limites et points de contrôle. L’original Drive reste le document de contrôle.
     </div>
-    <h2>Rôle de cette source</h2>
-    <p>Stress-test Gemini / limites et risques macroéconomiques.</p>
-    <a class="button primary" href="https://docs.google.com/document/d/1Z6ncpU7W4eI3hUpPgWqEwV4oDRYBXUyfxtcpL-lRybI/edit?usp=drivesdk" target="_blank" rel="noopener">
-      Ouvrir l’original Drive dans un nouvel onglet ↗
-    </a>
-    <a class="button" href="../index.html">← Retour au QCM</a>
-    <a class="button" href="../documents/index.html">Retour à la matrice documentaire</a>
-    <p>Si l’original Drive s’ouvre dans le même onglet sur iPad, utilise le bouton retour du navigateur ou reviens ici via la page précédente.</p>
+
+    <div>
+      <a class="button primary" href="https://docs.google.com/document/d/1Z6ncpU7W4eI3hUpPgWqEwV4oDRYBXUyfxtcpL-lRybI/edit?usp=drivesdk" target="_blank" rel="noopener">
+        Ouvrir l’original Drive ↗
+      </a>
+      <a class="button" href="../index.html?mode=learn&q=5">Retour Q5 — Retraites</a>
+      <a class="button" href="../index.html?mode=learn&q=10">Retour Q10 — Souveraineté</a>
+    </div>
+
+    <h2>Lecture rapide</h2>
+    <div class="grid">
+      <div class="kpi">
+        <strong>Verdict macroéconomique</strong>
+        <span>Gemini classe le scénario Le Pen 2007 + Doctrine Éconologique devant la trajectoire réelle et devant le scénario LFI, à long terme.</span>
+      </div>
+      <div class="kpi">
+        <strong>Point décisif</strong>
+        <span>L’énergie nucléaire et la maîtrise de la dette sont présentées comme les deux verrous de souveraineté.</span>
+      </div>
+      <div class="kpi">
+        <strong>Limite importante</strong>
+        <span>Le scénario gagnant n’est pas gratuit : inflation domestique, épargne dirigée, contraintes sectorielles et pénuries possibles.</span>
+      </div>
+    </div>
+
+    <h2>Sommaire</h2>
+    <div class="toc">
+      <a href="#comparatif">1. Comparatif 2026</a>
+      <a href="#moteurs">2. Moteurs économiques</a>
+      <a href="#dette">3. Dette, taux, intérêts</a>
+      <a href="#retraites">4. Retraites</a>
+      <a href="#prorata">5. Scénario 2017–2026 proratisé</a>
+      <a href="#verdict">6. Verdict final</a>
+    </div>
+
+    <h2 id="comparatif">1. Comparatif 2026 des trois trajectoires</h2>
+    <p>
+      Gemini met en miroir la France réelle, une projection LFI et le modèle Le Pen 2007 + Doctrine Éconologique.
+      Le tableau ci-dessous reformate les indicateurs du document source.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Indicateur</th>
+            <th>France réelle 2026</th>
+            <th>Modèle LFI</th>
+            <th>Modèle Le Pen + Doctrine</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PIB nominal</td>
+            <td>~2 950 Md€</td>
+            <td>~3 650 Md€</td>
+            <td>~3 700 Md€</td>
+          </tr>
+          <tr>
+            <td>Croissance 2026</td>
+            <td>~1,0 %</td>
+            <td>-0,4 % — stagflation</td>
+            <td>+2,6 %</td>
+          </tr>
+          <tr>
+            <td>Chômage BIT</td>
+            <td>7,4 à 8,1 %</td>
+            <td>4,8 %</td>
+            <td>4,3 %</td>
+          </tr>
+          <tr>
+            <td>SMIC net mensuel</td>
+            <td>~1 450 €</td>
+            <td>~1 980 €</td>
+            <td>~2 050 €</td>
+          </tr>
+          <tr>
+            <td>Dette / PIB</td>
+            <td>117,4 %</td>
+            <td>152 %</td>
+            <td>88 %</td>
+          </tr>
+          <tr>
+            <td>Inflation 2026</td>
+            <td>~1,5 %</td>
+            <td>&gt; 5 % — chronique</td>
+            <td>~3,8 %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout red">
+      <strong>Passage décisif :</strong>
+      Gemini conclut que, si l’on suit les chiffres du dossier et l’orthodoxie macroéconomique,
+      le modèle Le Pen 2007 + Doctrine Éconologique produit les résultats macroéconomiques objectivement supérieurs en 2026.
+    </div>
+
+    <h2 id="moteurs">2. Moteurs économiques comparés</h2>
+
+    <h3>A. Création de valeur contre illusion monétaire</h3>
+    <p>
+      Dans le scénario Le Pen + Doctrine, le gain de PIB nominal est attribué à une combinaison de gains réels
+      et d’inflation domestique. Le pouvoir d’achat réel progresse selon Gemini.
+      Dans le scénario LFI, le PIB nominal progresse aussi, mais Gemini qualifie cette progression d’illusion monétaire
+      si la croissance réelle devient négative et si l’énergie renchérit le coût productif.
+    </p>
+
+    <div class="callout">
+      <strong>Lecture QCM :</strong>
+      ce point sert surtout les questions Q1, Q3, Q4 et Q6 :
+      salaire net, pouvoir d’achat réel, énergie et coût de la vie.
+    </div>
+
+    <h3>B. Financement et dette</h3>
+    <p>
+      Gemini oppose deux vulnérabilités : dette maîtrisée mais épargne dirigée dans le scénario Le Pen + Doctrine ;
+      dette très élevée et dépendance monétaire dans le scénario LFI.
+    </p>
+
+    <div class="callout red">
+      <strong>Point décisif :</strong>
+      les intérêts de dette sont analysés comme un effet d’éviction budgétaire :
+      chaque euro consacré aux intérêts ne finance pas les fonctions régaliennes, les retraites, l’hôpital, l’énergie ou l’investissement productif.
+    </div>
+
+    <h3>C. Marché du travail</h3>
+    <p>
+      Les deux scénarios réduisent le chômage, mais par des mécanismes différents.
+      Le Pen + Doctrine réduit le chômage par préférence productive, réindustrialisation et circuit national.
+      LFI réduit le chômage par garantie d’emploi publique, mais Gemini signale un risque de productivité plus faible et de sur-administration.
+    </p>
+
+    <h2 id="dette">3. Dette, taux, intérêts et souveraineté</h2>
+    <p>
+      Le mécanisme central de Gemini est la chaîne suivante :
+    </p>
+
+    <div class="callout red">
+      <strong>Chaîne macroéconomique :</strong>
+      déficit primaire → dette publique → ratio dette/PIB → perception du risque → taux d’intérêt →
+      charge d’intérêts → marges budgétaires → investissements souverains → retraites → niveau de vie réel.
+    </div>
+
+    <p>
+      La question décisive n’est donc pas seulement le montant des dépenses sociales ou le niveau du SMIC,
+      mais la capacité du pays à éviter que la charge d’intérêts ne prenne le dessus sur les choix démocratiques.
+    </p>
+
+    <h2 id="retraites">4. Retraites : deux risques de nature différente</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Modèle LFI</th>
+            <th>Modèle Le Pen + Doctrine</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Menace principale</td>
+            <td>Inflation et perte de valeur réelle des pensions.</td>
+            <td>Risque démographique et besoin de cotisants actifs.</td>
+          </tr>
+          <tr>
+            <td>Souveraineté financière</td>
+            <td>Faible si la dette dépend d’une BCE contrainte ou des marchés.</td>
+            <td>Moyenne à forte face aux marchés extérieurs, mais au prix d’une épargne plus dirigée.</td>
+          </tr>
+          <tr>
+            <td>Nature du risque</td>
+            <td>Payer les pensions en monnaie affaiblie.</td>
+            <td>Maintenir la valeur mais devoir résoudre le problème des cotisants et des pénuries de travail.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout green">
+      <strong>Conclusion retraites de Gemini :</strong>
+      le modèle Le Pen + Doctrine protège mieux les retraites à long terme,
+      car il conserve davantage d’emplois productifs, d’énergie pilotable, de base cotisante et de souveraineté budgétaire.
+    </div>
+
+    <h2 id="prorata">5. Scénario Le Pen + Doctrine appliqué seulement sur 2017–2026</h2>
+    <p>
+      Le document Gemini intègre aussi une comparaison plus prudente :
+      que se passerait-il si le scénario Le Pen + Doctrine ne commençait pas en 2007 mais en 2017 ?
+      Dans ce cas, il hérite déjà de la dette, de la désindustrialisation, de la loi NOME, de l’ARENH,
+      de l’euro, du marché européen de l’électricité et des choix passés.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Indicateur 2026</th>
+            <th>France réelle 2017–2026</th>
+            <th>Le Pen + Doctrine prorata 9 ans</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PIB nominal</td>
+            <td>~3 000 Md€</td>
+            <td>~3 300 Md€</td>
+          </tr>
+          <tr>
+            <td>Croissance réelle</td>
+            <td>~1,0 %</td>
+            <td>~1,5 à 1,8 %</td>
+          </tr>
+          <tr>
+            <td>Chômage BIT</td>
+            <td>~7,4 %</td>
+            <td>~5,8 %</td>
+          </tr>
+          <tr>
+            <td>SMIC net mensuel</td>
+            <td>~1 426 €</td>
+            <td>~1 850 €</td>
+          </tr>
+          <tr>
+            <td>Dette / PIB</td>
+            <td>117,4 %</td>
+            <td>~105 %</td>
+          </tr>
+          <tr>
+            <td>Intérêts</td>
+            <td>~74 Md€</td>
+            <td>~65 Md€</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>Lecture méthodologique :</strong>
+      le scénario 9 ans est moins spectaculaire que le scénario 19 ans,
+      mais il reste présenté comme supérieur à la trajectoire réelle sur l’énergie, l’emploi, la dette et le pouvoir d’achat réel.
+    </div>
+
+    <h2 id="verdict">6. Verdict final reformatté</h2>
+    <p>
+      Gemini désigne le scénario Le Pen 2007 + Doctrine Éconologique comme la trajectoire économiquement la plus favorable
+      au peuple français à long terme, sous réserve d’accepter ses coûts cachés :
+      inflation domestique plus élevée, épargne encadrée, marchés publics plus chers, rigidités sectorielles et pénuries possibles.
+    </p>
+
+    <div class="callout red">
+      <strong>Verdict retraites :</strong>
+      une retraite est un droit de tirage sur la production réelle du pays.
+      Le scénario Macron maintient le système en reculant l’âge légal.
+      Le scénario LFI promet un droit social fort mais fragilise la base productive selon Gemini.
+      Le scénario Doctrine maximise la base cotisante par réindustrialisation, énergie pilotable et moindre fuite des intérêts.
+    </div>
+
+    <h2>Utilisation dans le QCM</h2>
+    <div class="source-box">
+      <p><span class="badge">Q1</span> SMIC net et pouvoir d’achat réel.</p>
+      <p><span class="badge">Q2</span> Chômage et emploi productif.</p>
+      <p><span class="badge">Q4</span> Énergie comme prix racine.</p>
+      <p><span class="badge">Q5</span> Retraites, cotisants et soutenabilité.</p>
+      <p><span class="badge">Q10</span> Souveraineté budgétaire et capacité réelle de décision.</p>
+    </div>
+
+    <div style="margin-top:28px">
+      <a class="button" href="../index.html">← Retour au QCM</a>
+      <a class="button" href="../documents/index.html">Retour à la matrice documentaire</a>
+      <a class="button primary" href="https://docs.google.com/document/d/1Z6ncpU7W4eI3hUpPgWqEwV4oDRYBXUyfxtcpL-lRybI/edit?usp=drivesdk" target="_blank" rel="noopener">Original Drive ↗</a>
+    </div>
   </section>
 </main>
 </body>

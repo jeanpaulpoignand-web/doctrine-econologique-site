@@ -1,16 +1,24 @@
-# QCM 2007–2026 — Version V12
+# QCM 2007–2026 — Version V13
 
-Version complète reconstruite depuis la V10 validée, avec correction des sources.
+Version complète reconstruite depuis la V12, avec amélioration de la source S6.
 
-## Correction V12
+## Correction V13
 
-- Les dossiers `fiches/`, `documents/` et `sources/` sont conservés.
-- Les liens vers les sources passent par des pages intermédiaires GitHub.
-- Chaque page source contient :
-  - retour au QCM ;
-  - retour à la matrice documentaire ;
+- Conservation de l’architecture complète :
+  - `index.html`
+  - `fiches/`
+  - `documents/`
+  - `sources/`
+- La source `sources/s6.html` est refaite proprement :
+  - titre clair ;
+  - résumé exécutif ;
+  - tableaux comparatifs ;
+  - dette / taux / intérêts ;
+  - retraites ;
+  - verdict final ;
+  - boutons retour QCM ;
   - lien vers l’original Drive.
-- Les originaux Drive restent accessibles, mais ne cassent plus le parcours de lecture.
+- Les liens techniques restent stables : `sources/s6.html`.
 
 ## Structure
 
@@ -25,3 +33,7 @@ sources/
   ...
   s8.html
 ```
+
+## Déploiement
+
+Uploader `qcm_2007_2026_github_v13.zip` dans `qcm-general`, puis lancer le workflow V13.
