@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QCM National — Doctrine Éconologique</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="eyebrow">Doctrine Éconologique</p>
+      <h1>QCM National</h1>
+      <p class="subtitle">Pilier 15 — Fraude fiscale</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="intro" class="card">
+      <h2>Objectif du QCM</h2>
+      <p>
+        Ce questionnaire permet de tester vos positions sur la fraude fiscale :
+        vérité des chiffres, moyens de contrôle, TVA, facilitateurs, économie en espèces,
+        marchés publics et aides publiques.
+      </p>
+      <p class="notice">
+        Aucune donnée personnelle n’est collectée. Vos réponses restent stockées localement dans votre navigateur.
+      </p>
+      <button id="startBtn" class="primary-button">Commencer le QCM</button>
+    </section>
+
+    <section id="quiz" class="card hidden" aria-live="polite">
+      <div class="progress-wrap">
+        <div class="progress-text">
+          <span id="questionCounter">Question 1 / 10</span>
+          <span id="pillarLabel">Pilier 15</span>
+        </div>
+        <div class="progress-bar">
+          <div id="progressFill"></div>
+        </div>
+      </div>
+
+      <h2 id="questionTitle"></h2>
+      <p id="questionText" class="question-text"></p>
+
+      <div id="answers" class="answers"></div>
+
+      <details class="explanation-box">
+        <summary>Pourquoi cette question ?</summary>
+        <p id="explanation"></p>
+        <p id="confidence"></p>
+      </details>
+
+      <div class="nav-buttons">
+        <button id="prevBtn" class="secondary-button">Précédent</button>
+        <button id="nextBtn" class="primary-button">Suivant</button>
+      </div>
+    </section>
+
+    <section id="results" class="card hidden">
+      <h2>Résultats — Pilier 15</h2>
+      <p id="scoreSummary" class="score-summary"></p>
+      <div id="resultDetails"></div>
+      <div class="nav-buttons">
+        <button id="restartBtn" class="secondary-button">Recommencer</button>
+        <button id="exportBtn" class="primary-button">Exporter les résultats</button>
+      </div>
+      <pre id="exportBox" class="export-box hidden"></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Version V1 — QCM statique sans serveur — Pilier 15 Fraude fiscale.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
