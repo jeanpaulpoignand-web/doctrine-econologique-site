@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="color-scheme" content="light only">
 <title>Doctrine Éconologique — Souveraineté Française</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
-
 :root{
   --paper:#FDFBF7;--paper2:#FFFFFC;--warm:#F5F0E3;
   --ink:#0A0A0A;--soft:#1F1F1F;--muted:#564A36;
@@ -19,13 +14,11 @@
   --rouge:#8B2C1E;--or:#6B5520;--dark:#0E0E0E;
   --p1:#1F3864;--p2:#1A6B3A;--p3:#4A5159;--p4:#8B2C1E;--p5:#0E1B2E;
 }
-
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;color-scheme:light}
 body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.65;overflow-x:hidden}
 h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.15}
 a{color:inherit}
-
 .nav{
   position:sticky;top:0;z-index:50;background:rgba(253,251,247,.97);
   border-bottom:1px solid var(--line);padding:18px 32px;
@@ -38,14 +31,12 @@ a{color:inherit}
 .nav-links a{text-decoration:none}
 .nav-links a:hover{color:var(--rouge)}
 @media(max-width:600px){.nav-links{display:none}.nav{padding:14px 18px}.brand-name{font-size:21px}}
-
 .hero{padding:80px 28px 60px;text-align:center;max-width:880px;margin:auto}
 .hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--rouge);margin-bottom:28px}
 .hero h1{font-size:clamp(38px,7vw,76px);font-weight:500;margin-bottom:28px}
 .hero h1 em{color:var(--rouge)}
 .hero-lede{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.4vw,22px);max-width:650px;margin:0 auto 36px}
 .hero-byline{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:24px;max-width:360px;margin:auto}
-
 .ps-wrap{max-width:1080px;margin:auto;padding:0 28px 60px}
 .ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .ps-card{background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--rouge);padding:28px;border-radius:4px}
@@ -54,19 +45,16 @@ a{color:inherit}
 .ps-card.solution .ps-card-label{color:var(--or)}
 .ps-card h3{font-size:24px;margin-bottom:14px}
 @media(max-width:720px){.ps-grid{grid-template-columns:1fr}}
-
 .section{padding:70px 28px;max-width:1080px;margin:auto}
 .section-head{text-align:center;max-width:720px;margin:0 auto 48px}
 .section-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rouge);margin-bottom:12px}
 .section-title{font-size:clamp(30px,4.5vw,46px);font-weight:500;margin-bottom:16px}
 .section-title em{color:var(--rouge)}
 .section-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--soft)}
-
 .study-card{background:var(--paper2);border:1px solid var(--line);border-top:4px solid var(--rouge);border-radius:6px;padding:36px 32px;max-width:820px;margin:auto}
 .study-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);margin-bottom:16px}
 .study-card h3{font-size:clamp(28px,4vw,38px);margin-bottom:20px}
 .study-card p{font-size:17px;color:var(--soft);margin-bottom:24px}
-
 .study-stats{
   display:grid;
   grid-template-columns:1fr;
@@ -101,16 +89,15 @@ a{color:inherit}
 }
 .read-link{display:inline-flex;gap:8px;text-decoration:none;color:var(--rouge);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--rouge);padding-bottom:5px}
 .read-link:hover{color:var(--ink);border-bottom-color:var(--ink)}
-
 .pillars-wrap{max-width:1080px;margin:auto;padding:0 28px 70px}
 .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(max-width:880px){.pillars-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.pillars-grid{grid-template-columns:1fr}}
-
 .pillar-card{background:var(--paper2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:24px;min-height:340px;display:flex;flex-direction:column}
 .pillar-card.energie{--accent:var(--p1)}
 .pillar-card.garantie{--accent:var(--p2)}
 .pillar-card.finance{--accent:var(--p3)}
+.pillar-card.aspa{--accent:var(--p4)}
 .pillar-card.culture{--accent:var(--p4)}
 .pillar-card.democratie{--accent:var(--p5)}
 .pillar-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;font-weight:700}
@@ -124,7 +111,6 @@ a{color:inherit}
 .pillar-highlight-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
 .pillar-highlight-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700}
 .pillar-highlight-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--soft)}
-
 .pillar-image{
   width:100%;
   margin-top:16px;
@@ -133,7 +119,6 @@ a{color:inherit}
   display:block;
   box-shadow:0 4px 18px rgba(0,0,0,.08);
 }
-
 .position-dark{background:var(--dark);color:#F0EBDC;padding:80px 28px;text-align:center}
 .position-dark .inner{max-width:760px;margin:auto}
 .position-dark h2{color:#F0EBDC;font-size:clamp(30px,4.5vw,46px);font-weight:500}
@@ -145,7 +130,6 @@ a{color:inherit}
 .position-cta{display:inline-flex;gap:12px;align-items:center;background:#D4593F;color:white;text-decoration:none;padding:20px 36px;border-radius:4px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
 .label-beta{font-family:'IBM Plex Mono',monospace;font-size:9px;background:rgba(0,0,0,.25);padding:3px 7px;border-radius:2px}
 .position-note{font-family:'Cormorant Garamond',serif;font-style:italic;color:#B8AE94;margin-top:22px}
-
 .committee-intro{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;max-width:720px;text-align:center;margin:0 auto 48px}
 .committee-intro em{color:var(--rouge);font-style:normal;font-weight:700}
 .ia-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:900px;margin:auto}
@@ -157,7 +141,6 @@ a{color:inherit}
 .ia-pub{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase}
 .ia-role{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--soft)}
 .committee-note{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-align:center;margin:40px auto 0;max-width:760px}
-
 .colophon{background:var(--warm);padding:64px 28px 28px;border-top:1px solid var(--line)}
 .colophon-inner{max-width:1080px;margin:auto}
 .colophon-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;text-align:center;max-width:680px;margin:0 auto 48px}
@@ -171,14 +154,11 @@ a{color:inherit}
 .colophon-col li{margin-bottom:8px}
 .colophon-bottom{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .colophon-bottom em{color:var(--rouge);font-style:normal}
-
 .fade-in{opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}
 .fade-in.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
-
 <body>
-
 <nav class="nav">
   <a href="#accueil" class="brand">
     <span class="brand-name">Doctrine Éconologique</span>
@@ -192,14 +172,12 @@ a{color:inherit}
     <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank">Drive</a></li>
   </ul>
 </nav>
-
 <section class="hero" id="accueil">
   <div class="hero-kicker">Manifeste</div>
   <h1>Une France qui produit,<br><em>répare</em>, transmet.</h1>
-  <p class="hero-lede">Un cadre institutionnel français pour la souveraineté énergétique, la durabilité obligatoire, le capital humain reclassé et la démocratie décisionnelle. Cinq piliers actifs, documentés, sourcés et soumis à audit contradictoire multi-IA.</p>
+  <p class="hero-lede">Un cadre institutionnel français pour la souveraineté énergétique, la durabilité obligatoire, le capital humain reclassé, la justice contributive et la démocratie décisionnelle. Six piliers actifs, documentés, sourcés et soumis à audit contradictoire multi-IA.</p>
   <div class="hero-byline">Jean Paul Poignand · Côte d'Azur & Besançon</div>
 </section>
-
 <div class="ps-wrap">
   <div class="ps-grid">
     <div class="ps-card fade-in">
@@ -209,24 +187,21 @@ a{color:inherit}
     </div>
     <div class="ps-card solution fade-in">
       <div class="ps-card-label">◆ La doctrine</div>
-      <h3>Cinq piliers, une logique : produire, réparer, transmettre</h3>
-      <p>Énergie souveraine, garantie décennale, vérité des coûts publics, éconologie culturelle, démocratie décisionnelle. Chaque pilier documenté, chiffré, et soumis au crible de cinq intelligences artificielles.</p>
+      <h3>Six piliers, une logique : produire, réparer, transmettre</h3>
+      <p>Énergie souveraine, garantie décennale, vérité des coûts publics, réparation des retraites, éconologie culturelle, démocratie décisionnelle. Chaque pilier documenté, chiffré, et soumis au crible de cinq intelligences artificielles.</p>
     </div>
   </div>
 </div>
-
 <section class="section" id="decouvrir">
   <div class="section-head fade-in">
     <div class="section-kicker">Étude courte · 2 minutes</div>
     <h2 class="section-title">Commencer par <em>un chiffre</em>.</h2>
     <p class="section-sub">Avant la doctrine, l'observation. Cinq questions pour ouvrir les yeux sur ce que la France finance sans le savoir.</p>
   </div>
-
   <div class="study-card fade-in">
     <div class="study-label">Étude 11 — Frontaliers</div>
     <h3>Ce que la France finance sans le savoir.</h3>
     <p>Chaque matin, 374 000 travailleurs quittent leur domicile en France pour produire de la valeur en Suisse, au Luxembourg ou à Monaco. La France les a formés, soignés, scolarisés — et continue de financer leurs infrastructures. Combien les pays bénéficiaires remboursent-ils ?</p>
-
     <div class="study-stats">
       <div class="study-stat-box">
         <div class="study-stat-num">374 000</div>
@@ -241,21 +216,17 @@ a{color:inherit}
         <div class="study-stat-label">Compensation annuelle allouée</div>
       </div>
     </div>
-
     <a href="./qcm-immigrants-journee/" class="read-link">Commencer le QCM <span>→</span></a>
   </div>
 </section>
-
 <section id="piliers">
   <div class="section-head fade-in" style="padding:0 28px">
     <div class="section-kicker">Les piliers actifs</div>
-    <h2 class="section-title">Sommaire des <em>cinq piliers</em>.</h2>
-    <p class="section-sub">Cinq fiches consolidées, qualifiées [FAIT] / [HYPOTHÈSE] / [ANALYSE], passées au crible de cinq intelligences artificielles contradictoires.</p>
+    <h2 class="section-title">Sommaire des <em>six piliers</em>.</h2>
+    <p class="section-sub">Six fiches consolidées, qualifiées [FAIT] / [HYPOTHÈSE] / [ANALYSE], passées au crible de cinq intelligences artificielles contradictoires.</p>
   </div>
-
   <div class="pillars-wrap">
     <div class="pillars-grid">
-
       <article class="pillar-card energie fade-in">
         <div class="pillar-num">Pilier I</div>
         <h3>Énergie souveraine</h3>
@@ -266,7 +237,6 @@ a{color:inherit}
           <a href="./qcm-energie/" class="pillar-qcm-button">Faire le QCM Énergie</a>
         </div>
       </article>
-
       <article class="pillar-card garantie fade-in">
         <div class="pillar-num">Pilier II</div>
         <h3>Garantie décennale</h3>
@@ -281,7 +251,6 @@ a{color:inherit}
           </div>
         </div>
       </article>
-
       <article class="pillar-card finance fade-in">
         <div class="pillar-num">Pilier III</div>
         <h3>Financement public</h3>
@@ -296,7 +265,21 @@ a{color:inherit}
           </div>
         </div>
       </article>
-
+      <article class="pillar-card aspa fade-in">
+        <div class="pillar-num">Pilier IV</div>
+        <h3>Réparation des retraites</h3>
+        <div class="pillar-tagline">Minimum vieillesse, ASPA et justice contributive.</div>
+        <div class="pillar-stat">Solidarité nationale · cotisations · dignité des anciens</div>
+        <div class="pillar-actions">
+          <a href="./qcm-aspa/" class="pillar-link">Lire le pilier →</a>
+          <a href="./qcm-aspa/" class="pillar-qcm-button">Faire le QCM ASPA</a>
+          <div class="pillar-highlight">
+            <div class="pillar-highlight-label">Idée force</div>
+            <div class="pillar-highlight-num">Justice contributive</div>
+            <div class="pillar-highlight-text">protéger les anciens pauvres sans effacer l'effort de ceux qui ont cotisé</div>
+          </div>
+        </div>
+      </article>
       <article class="pillar-card culture fade-in">
         <div class="pillar-num">Pilier VII</div>
         <h3>Éconologie culturelle</h3>
@@ -304,22 +287,19 @@ a{color:inherit}
         <div class="pillar-stat">Reçu fiscal culturel · création de proximité</div>
         <div class="pillar-actions">
           <a href="https://drive.google.com/file/d/1XfUSpFL7MQEpBuXi6owVlqxqh3J4mEMT/view" target="_blank" class="pillar-link">Lire le pilier →</a>
-
           <div class="pillar-highlight">
             <div class="pillar-highlight-label">Idée force</div>
             <div class="pillar-highlight-num">Reçu fiscal culturel</div>
             <div class="pillar-highlight-text">chaque contribuable voit ce qu'il finance</div>
           </div>
-<img
-  src="./assets/recu-fiscal-culturel.webp"
-  alt="Reçu fiscal culturel — coût apparent et coût réel d'une sortie culturelle"
-  class="pillar-image"
-  loading="lazy"
->
-     
+          <img
+            src="./assets/recu-fiscal-culturel.webp"
+            alt="Reçu fiscal culturel — coût apparent et coût réel d'une sortie culturelle"
+            class="pillar-image"
+            loading="lazy"
+          >
         </div>
       </article>
-
       <article class="pillar-card democratie fade-in">
         <div class="pillar-num">Pilier XIII</div>
         <h3>Démocratie décisionnelle</h3>
@@ -330,11 +310,9 @@ a{color:inherit}
           <a href="./qcm-general/" class="pillar-qcm-button">Lancer le bulletin</a>
         </div>
       </article>
-
     </div>
   </div>
 </section>
-
 <div class="position-dark" id="positionner">
   <div class="inner">
     <div class="section-head fade-in">
@@ -342,27 +320,22 @@ a{color:inherit}
       <h2>Quel parti porte <em>vos idées</em> ?</h2>
       <p class="section-sub">Vingt-cinq questions concrètes. À la fin, une matrice compare vos réponses aux positions documentées des principaux partis politiques.</p>
     </div>
-
     <div class="manifesto-text fade-in">
       <span class="line">Le peuple informé <span class="verb">vote</span>.</span>
       <span class="line">Les élus <span class="verb">exécutent</span>.</span>
       <span class="line">Les partis <span class="verb">se positionnent</span>.</span>
       <span class="line">La matrice <span class="verb">vérifie</span>.</span>
     </div>
-
     <a href="./qcm-general/" class="position-cta fade-in">Lancer le bulletin décisionnel <span>→</span><span class="label-beta">BÊTA</span></a>
     <p class="position-note fade-in">Version de travail en audit. La matrice des partis est consolidée au fur et à mesure que les sources officielles sont vérifiées et archivées.</p>
   </div>
 </div>
-
 <section class="section" id="methode">
   <div class="section-head fade-in">
     <div class="section-kicker">Méthode</div>
     <h2 class="section-title">Le <em>comité de rédaction</em>.</h2>
   </div>
-
   <p class="committee-intro fade-in">La doctrine est construite par <em>triangulation contradictoire</em>. Chaque thèse est soumise à cinq intelligences artificielles aux biais et architectures distincts. Leurs désaccords révèlent les angles morts. Les arbitrages restent humains.</p>
-
   <div class="ia-grid">
     <div class="ia-card fade-in"><div class="ia-mark claude">C</div><div class="ia-name">Claude</div><div class="ia-pub">Anthropic</div><div class="ia-role">Architecte, intégrateur</div></div>
     <div class="ia-card fade-in"><div class="ia-mark gpt">G</div><div class="ia-name">ChatGPT</div><div class="ia-pub">OpenAI</div><div class="ia-role">Rigueur institutionnelle</div></div>
@@ -370,49 +343,44 @@ a{color:inherit}
     <div class="ia-card fade-in"><div class="ia-mark grok">X</div><div class="ia-name">Grok</div><div class="ia-pub">xAI</div><div class="ia-role">Données de terrain</div></div>
     <div class="ia-card fade-in"><div class="ia-mark perplexity">P</div><div class="ia-name">Perplexity</div><div class="ia-pub">Perplexity AI</div><div class="ia-role">Sourcing systématique</div></div>
   </div>
-
   <p class="committee-note">Anthropic, OpenAI, Google, xAI et Perplexity AI sont des marques de leurs propriétaires respectifs. Leur mention ne suggère aucun partenariat ni endossement.</p>
 </section>
-
 <footer class="colophon">
   <div class="colophon-inner">
     <p class="colophon-quote">Une société prospère ne peut pas durablement dissimuler ce qu'elle produit, ce qu'elle consomme, et qui paie réellement.</p>
-
     <div class="colophon-cols">
       <div class="colophon-brand">
         <h3>Doctrine Éconologique</h3>
-        <p>Cadre institutionnel français pour souveraineté énergétique, production locale, durabilité obligatoire et reprise de contrôle économique. Travail citoyen ouvert, audit contradictoire multi-IA, arbitrage humain.</p>
+        <p>Cadre institutionnel français pour souveraineté énergétique, production locale, durabilité obligatoire, justice contributive et reprise de contrôle économique. Travail citoyen ouvert, audit contradictoire multi-IA, arbitrage humain.</p>
       </div>
-
       <div class="colophon-col">
         <h4>Piliers</h4>
         <ul>
           <li><a href="https://docs.google.com/document/d/1uuntTCmWe5kRUWNd3VKKjA6QTK6ROb_Y/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank">Énergie</a></li>
           <li><a href="https://docs.google.com/document/d/11bhh1gCXhoxqFHWEuaag5Ur5fEm_ax1e/edit" target="_blank">Garantie décennale</a></li>
           <li><a href="https://docs.google.com/document/d/1A4ieIVuJU_CyyWOT0ktv6Kjw_d6VUM_zGATNCiAFGjg/edit" target="_blank">Financement</a></li>
+          <li><a href="./qcm-aspa/">Retraites & minimum vieillesse</a></li>
           <li><a href="https://drive.google.com/file/d/1XfUSpFL7MQEpBuXi6owVlqxqh3J4mEMT/view" target="_blank">Culture</a></li>
           <li><a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank">Démocratie</a></li>
         </ul>
       </div>
-
       <div class="colophon-col">
         <h4>Outils citoyens</h4>
         <ul>
           <li><a href="./qcm-immigrants-journee/">Étude 11 — Frontaliers</a></li>
           <li><a href="./qcm-energie/">QCM Énergie</a></li>
+          <li><a href="./qcm-aspa/">QCM ASPA</a></li>
           <li><a href="./qcm-general/">Bulletin décisionnel</a></li>
           <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank">Drive complet</a></li>
         </ul>
       </div>
     </div>
-
     <div class="colophon-bottom">
       <div>© 2026 — Jean Paul Poignand · Côte d'Azur & Besançon</div>
       <div>Architecture web : JP Poignand <em>avec assistance Claude (Anthropic)</em></div>
     </div>
   </div>
 </footer>
-
 <script>
 const observer=new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
@@ -421,6 +389,5 @@ const observer=new IntersectionObserver((entries)=>{
 },{threshold:.08});
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 </script>
-
 </body>
 </html>
