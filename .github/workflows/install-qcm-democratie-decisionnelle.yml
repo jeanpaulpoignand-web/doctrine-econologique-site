@@ -16,13 +16,13 @@ jobs:
 
       - name: Check ZIP exists
         run: |
-          test -f qcm-democratie-decisionnelle-v5-github-ready.zip
+          test -f qcm-democratie-decisionnelle-v6-github-ready.zip
 
       - name: Unzip source project
         run: |
           rm -rf /tmp/qcm-democratie-decisionnelle
           mkdir -p /tmp/qcm-democratie-decisionnelle
-          unzip -q qcm-democratie-decisionnelle-v5-github-ready.zip -d /tmp/qcm-democratie-decisionnelle
+          unzip -q qcm-democratie-decisionnelle-v6-github-ready.zip -d /tmp/qcm-democratie-decisionnelle
 
           test -f /tmp/qcm-democratie-decisionnelle/qcm-democratie-decisionnelle/package.json
           test -f /tmp/qcm-democratie-decisionnelle/qcm-democratie-decisionnelle/src/VoteParIdees.jsx
@@ -54,5 +54,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add qcm-democratie-decisionnelle
-          git commit -m "Install QCM démocratie décisionnelle V5" || echo "No changes to commit"
+          git commit -m "Install QCM démocratie décisionnelle V6" || echo "No changes to commit"
           git push
