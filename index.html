@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -100,6 +102,7 @@ a{color:inherit}
 .pillar-card.aspa{--accent:var(--p4)}
 .pillar-card.culture{--accent:var(--p4)}
 .pillar-card.democratie{--accent:var(--p5)}
+.pillar-card.fraude{--accent:var(--or)}
 .pillar-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;font-weight:700}
 .pillar-card h3{font-size:23px;margin:8px 0 10px}
 .pillar-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--soft);margin-bottom:14px}
@@ -175,7 +178,7 @@ a{color:inherit}
 <section class="hero" id="accueil">
   <div class="hero-kicker">Manifeste</div>
   <h1>Une France qui produit,<br><em>répare</em>, transmet.</h1>
-  <p class="hero-lede">Un cadre institutionnel français pour la souveraineté énergétique, la durabilité obligatoire, le capital humain reclassé, la justice contributive et la démocratie décisionnelle. Six piliers actifs, documentés, sourcés et soumis à audit contradictoire multi-IA.</p>
+  <p class="hero-lede">Un cadre institutionnel français pour la souveraineté énergétique, la durabilité obligatoire, le capital humain reclassé, la justice contributive et la démocratie décisionnelle. Sept piliers actifs, documentés, sourcés et soumis à audit contradictoire multi-IA.</p>
   <div class="hero-byline">Jean Paul Poignand · Côte d'Azur & Besançon</div>
 </section>
 <div class="ps-wrap">
@@ -187,8 +190,8 @@ a{color:inherit}
     </div>
     <div class="ps-card solution fade-in">
       <div class="ps-card-label">◆ La doctrine</div>
-      <h3>Six piliers, une logique : produire, réparer, transmettre</h3>
-      <p>Énergie souveraine, garantie décennale, vérité des coûts publics, réparation des retraites, éconologie culturelle, démocratie décisionnelle. Chaque pilier documenté, chiffré, et soumis au crible de cinq intelligences artificielles.</p>
+      <h3>Sept piliers, une logique : produire, réparer, transmettre</h3>
+      <p>Énergie souveraine, garantie décennale, vérité des coûts publics, réparation des retraites, éconologie culturelle, démocratie décisionnelle et justice contributive fiscale. Chaque pilier documenté, chiffré, et soumis au crible de cinq intelligences artificielles.</p>
     </div>
   </div>
 </div>
@@ -222,8 +225,8 @@ a{color:inherit}
 <section id="piliers">
   <div class="section-head fade-in" style="padding:0 28px">
     <div class="section-kicker">Les piliers actifs</div>
-    <h2 class="section-title">Sommaire des <em>six piliers</em>.</h2>
-    <p class="section-sub">Six fiches consolidées, qualifiées [FAIT] / [HYPOTHÈSE] / [ANALYSE], passées au crible de cinq intelligences artificielles contradictoires.</p>
+    <h2 class="section-title">Sommaire des <em>sept piliers</em>.</h2>
+    <p class="section-sub">Sept fiches consolidées, qualifiées [FAIT] / [HYPOTHÈSE] / [ANALYSE], passées au crible de cinq intelligences artificielles contradictoires.</p>
   </div>
   <div class="pillars-wrap">
     <div class="pillars-grid">
@@ -310,6 +313,21 @@ a{color:inherit}
           <a href="./qcm-general/" class="pillar-qcm-button">Lancer le bulletin</a>
         </div>
       </article>
+      <article class="pillar-card fraude fade-in">
+        <div class="pillar-num">Pilier XV</div>
+        <h3>Fraude fiscale</h3>
+        <div class="pillar-tagline">Vérité des chiffres, justice contributive et souveraineté fiscale effective.</div>
+        <div class="pillar-stat">Écart fiscal · TVA · contrôle fiscal · facilitateurs</div>
+        <div class="pillar-actions">
+          <a href="./qcm-fraude-fiscale/" class="pillar-link">Lire le pilier →</a>
+          <a href="./qcm-fraude-fiscale/" class="pillar-qcm-button">Faire le QCM Fraude fiscale</a>
+          <div class="pillar-highlight">
+            <div class="pillar-highlight-label">Idée force</div>
+            <div class="pillar-highlight-num">Aucun chiffre central unique</div>
+            <div class="pillar-highlight-text">distinguer faits DGFiP, estimations sectorielles et ordres de grandeur non officiels</div>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -362,6 +380,7 @@ a{color:inherit}
           <li><a href="./qcm-aspa/">Retraites & minimum vieillesse</a></li>
           <li><a href="https://drive.google.com/file/d/1XfUSpFL7MQEpBuXi6owVlqxqh3J4mEMT/view" target="_blank">Culture</a></li>
           <li><a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank">Démocratie</a></li>
+          <li><a href="./qcm-fraude-fiscale/">Fraude fiscale</a></li>
         </ul>
       </div>
       <div class="colophon-col">
@@ -370,6 +389,7 @@ a{color:inherit}
           <li><a href="./qcm-immigrants-journee/">Étude 11 — Frontaliers</a></li>
           <li><a href="./qcm-energie/">QCM Énergie</a></li>
           <li><a href="./qcm-aspa/">QCM ASPA</a></li>
+          <li><a href="./qcm-fraude-fiscale/">QCM Fraude fiscale</a></li>
           <li><a href="./qcm-general/">Bulletin décisionnel</a></li>
           <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank">Drive complet</a></li>
         </ul>
@@ -390,4 +410,8 @@ const observer=new IntersectionObserver((entries)=>{
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 </script>
 </body>
-</html>
+</html>'''
+
+path = Path("/mnt/data/index.html")
+path.write_text(html, encoding="utf-8")
+path.as_posix()
