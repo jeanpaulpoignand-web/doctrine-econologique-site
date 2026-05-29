@@ -1,34 +1,52 @@
 {
   "pillarId": "P15",
   "pillarTitle": "Fraude fiscale",
-  "version": "1.0",
-  "methodNote": "V1 centrée sur les questions citoyennes prioritaires du Pilier 15. Les réponses ne sont pas envoyées à un serveur.",
+  "version": "1.1",
+  "sources": {
+    "DOC_SYNTH_V3": {
+      "label": "Synthèse Active V3",
+      "url": "https://docs.google.com/document/d/1VwnppvfOj0b16VYTHwqbZ5qg1j9qydJ07RxzY7oVzGc/edit?usp=drivesdk"
+    },
+    "DOC_ALLER_DROIT": {
+      "label": "Aller droit au but",
+      "url": "https://docs.google.com/document/d/1997QWegX51hzxODEF9XVoU0_i08yA3Jvo_AaR1wXwaE/edit?usp=drivesdk"
+    },
+    "DOC_QCM_FINAL": {
+      "label": "QCM finalisé — module citoyen",
+      "url": "https://docs.google.com/document/d/1UbpRfSGWhCS6TtRlmGQbeDfcWaLS5kTPS1hsNRvBUKs/edit?usp=drivesdk"
+    }
+  },
   "questions": [
     {
       "id": "Q15_001",
-      "title": "Écart fiscal officiel",
-      "question": "L’État devrait-il publier chaque année une estimation officielle de l’écart fiscal global ?",
+      "modes": [
+        "quick",
+        "long"
+      ],
+      "title": "Transparence de l’écart fiscal",
+      "question": "Quel niveau de transparence l’État doit-il appliquer à l’écart fiscal ?",
+      "context": "Le sujet n’est pas de fabriquer un chiffre spectaculaire, mais de distinguer ce qui est mesuré, estimé, notifié et réellement recouvré.",
       "weight": 3,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, chaque année, avec méthode publique et données détaillées.",
+          "label": "Publication annuelle, méthode publique, ventilation par impôt et taux de recouvrement.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, mais seulement tous les deux ou trois ans.",
+          "label": "Publication périodique, avec prudence méthodologique et fourchettes.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, les chiffres actuels du contrôle fiscal suffisent.",
-          "value": "no_moderate"
+          "label": "Publication limitée aux seuls résultats du contrôle fiscal.",
+          "value": "partial"
         },
         {
           "id": "D",
-          "label": "Non, ce serait trop incertain ou politiquement manipulable.",
-          "value": "no_strong"
+          "label": "Pas de publication globale : trop d’incertitude et trop de risque politique.",
+          "value": "no_moderate"
         },
         {
           "id": "E",
@@ -37,33 +55,43 @@
         }
       ],
       "doctrinalPosition": "yes_strong",
-      "explanation": "L’absence d’estimation officielle robuste empêche un pilotage transparent de la lutte contre la fraude.",
-      "confidence": "high"
+      "explanation": "La ligne doctrinale demande une mesure officielle robuste sans confondre faits administratifs et estimations.",
+      "methodNote": "Le QCM refuse tout chiffre central unique tant que l’État ne publie pas d’écart fiscal global robuste.",
+      "confidence": "high",
+      "sources": [
+        "DOC_SYNTH_V3",
+        "DOC_ALLER_DROIT"
+      ]
     },
     {
       "id": "Q15_002",
+      "modes": [
+        "quick",
+        "long"
+      ],
       "title": "Moyens humains du contrôle fiscal",
-      "question": "La lutte contre la fraude fiscale doit-elle passer par un renforcement des effectifs humains du contrôle fiscal ?",
+      "question": "Face à une fraude plus complexe, quelle place donner aux effectifs humains du contrôle fiscal ?",
+      "context": "La baisse des effectifs et la montée des outils numériques posent une question : peut-on contrôler mieux avec moins d’humains ?",
       "weight": 2,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, les effectifs humains doivent être renforcés.",
+          "label": "Renforcer les effectifs humains, surtout sur les dossiers complexes.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, mais surtout sur les dossiers complexes.",
+          "label": "Stabiliser les effectifs et mieux cibler les contrôles.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, l’intelligence artificielle peut compenser.",
-          "value": "no_moderate"
+          "label": "Remplacer progressivement une partie des effectifs par l’IA.",
+          "value": "partial"
         },
         {
           "id": "D",
-          "label": "Non, il faut réduire les contrôles.",
+          "label": "Réduire les contrôles pour alléger les contraintes économiques.",
           "value": "no_strong"
         },
         {
@@ -73,34 +101,43 @@
         }
       ],
       "doctrinalPosition": "yes_strong",
-      "explanation": "Le data mining améliore le ciblage, mais ne remplace pas les vérificateurs, enquêteurs et agents de recouvrement.",
-      "confidence": "high"
+      "explanation": "Le data mining cible, mais l’enquête et le recouvrement nécessitent des agents compétents.",
+      "methodNote": "La V3 distingue programmation des contrôles et rendement financier réel.",
+      "confidence": "high",
+      "sources": [
+        "DOC_SYNTH_V3"
+      ]
     },
     {
       "id": "Q15_003",
+      "modes": [
+        "quick",
+        "long"
+      ],
       "title": "Data mining et IA",
-      "question": "L’intelligence artificielle doit-elle être utilisée comme outil de ciblage fiscal, sans remplacer les agents humains ?",
+      "question": "Quelle doit être la place du data mining et de l’IA dans le contrôle fiscal ?",
+      "context": "L’audit Perplexity a montré une nuance importante : beaucoup de contrôles ciblés par data mining, mais une part plus faible des droits.",
       "weight": 2,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, comme complément encadré aux contrôleurs humains.",
+          "label": "Outil de ciblage utile, mais encadré et complémentaire des agents.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, et elle peut remplacer une grande partie des contrôleurs.",
+          "label": "Outil central pouvant remplacer une partie importante du contrôle humain.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, c’est trop risqué pour les libertés publiques.",
-          "value": "no_moderate"
+          "label": "Usage limité aux dossiers de grande fraude.",
+          "value": "partial"
         },
         {
           "id": "D",
-          "label": "Non, il faut abandonner ces outils.",
-          "value": "no_strong"
+          "label": "Refus de ces outils par risque de surveillance abusive.",
+          "value": "no_moderate"
         },
         {
           "id": "E",
@@ -109,28 +146,37 @@
         }
       ],
       "doctrinalPosition": "yes_strong",
-      "explanation": "L’audit probatoire rappelle que le data mining cible beaucoup de contrôles, mais représente une part plus faible des droits recouvrés.",
-      "confidence": "medium"
+      "explanation": "La doctrine accepte l’IA comme outil, mais refuse d’en faire un substitut complet à l’expertise humaine.",
+      "methodNote": "Il faut toujours distinguer volume de contrôles ciblés et droits effectivement générés.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_SYNTH_V3"
+      ]
     },
     {
       "id": "Q15_004",
-      "title": "Fraude TVA autonome",
-      "question": "La fraude à la TVA doit-elle être traitée comme un sous-pilier autonome de la lutte contre la fraude fiscale ?",
+      "modes": [
+        "quick",
+        "long"
+      ],
+      "title": "Fraude TVA",
+      "question": "La fraude à la TVA doit-elle être traitée séparément du reste de la fraude fiscale ?",
+      "context": "La TVA est mieux mesurable que d’autres fraudes et implique des mécanismes spécifiques : carrousels, fausses factures, e-commerce.",
       "weight": 2,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, car elle est mieux mesurable et souvent organisée.",
+          "label": "Oui, comme sous-pilier autonome avec tableau de bord dédié.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, mais uniquement au niveau européen.",
+          "label": "Oui, mais surtout au niveau européen.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, elle doit rester dans le bloc général.",
+          "label": "Non, elle doit rester dans le bloc fraude fiscale global.",
           "value": "no_moderate"
         },
         {
@@ -145,33 +191,43 @@
         }
       ],
       "doctrinalPosition": "yes_strong",
-      "explanation": "La TVA dispose d’indicateurs spécifiques et de mécanismes identifiables comme les carrousels TVA.",
-      "confidence": "high"
+      "explanation": "La TVA dispose d’indicateurs et de mécanismes assez spécifiques pour justifier un bloc autonome.",
+      "methodNote": "Le chiffre TVA doit rester qualifié comme estimation sectorielle, jamais comme mesure globale de la fraude fiscale.",
+      "confidence": "high",
+      "sources": [
+        "DOC_SYNTH_V3",
+        "DOC_ALLER_DROIT"
+      ]
     },
     {
       "id": "Q15_005",
+      "modes": [
+        "quick",
+        "long"
+      ],
       "title": "Marchés publics",
-      "question": "Une entreprise condamnée pour fraude fiscale grave devrait-elle pouvoir être temporairement exclue des marchés publics ?",
+      "question": "Quelle sanction appliquer aux entreprises condamnées pour fraude fiscale grave vis-à-vis des marchés publics ?",
+      "context": "La question oppose fermeté politique et garanties juridiques : proportionnalité, décision définitive, durée de l’exclusion.",
       "weight": 2,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, systématiquement en cas de fraude grave.",
+          "label": "Exclusion automatique en cas de fraude grave.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, mais après décision définitive et selon la gravité.",
+          "label": "Exclusion temporaire possible, après décision définitive et selon la gravité.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, une amende financière suffit.",
+          "label": "Amende financière seulement, sans exclusion des marchés publics.",
           "value": "no_moderate"
         },
         {
           "id": "D",
-          "label": "Non, cela pénaliserait trop l’activité économique.",
+          "label": "Aucune sanction économique supplémentaire.",
           "value": "no_strong"
         },
         {
@@ -181,34 +237,43 @@
         }
       ],
       "doctrinalPosition": "yes_moderate",
-      "explanation": "La mesure est politiquement forte, mais doit respecter la proportionnalité et les droits de la défense.",
-      "confidence": "medium"
+      "explanation": "La ligne doctrinale soutient l’exclusion, mais avec garanties juridiques solides.",
+      "methodNote": "Un audit juridique hostile reste utile avant transformation législative.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_QCM_FINAL"
+      ]
     },
     {
       "id": "Q15_006",
+      "modes": [
+        "quick",
+        "long"
+      ],
       "title": "Aides publiques",
-      "question": "Les aides publiques aux entreprises devraient-elles être conditionnées à une conformité fiscale renforcée ?",
+      "question": "Comment articuler aides publiques et conformité fiscale ?",
+      "context": "Le principe : l’argent public ne devrait pas soutenir des acteurs condamnés pour fraude grave, mais la règle doit être applicable.",
       "weight": 2,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, toute aide publique doit exiger une conformité stricte.",
+          "label": "Condition stricte de conformité fiscale pour toute aide publique.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, surtout pour les grandes entreprises et montants importants.",
+          "label": "Condition renforcée surtout pour grandes entreprises et aides importantes.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, fiscalité et aides publiques doivent rester séparées.",
-          "value": "no_moderate"
+          "label": "Contrôle limité, pour éviter la complexité administrative.",
+          "value": "partial"
         },
         {
           "id": "D",
-          "label": "Non, cela créerait trop de complexité.",
-          "value": "no_strong"
+          "label": "Séparer totalement aides publiques et contrôle fiscal.",
+          "value": "no_moderate"
         },
         {
           "id": "E",
@@ -217,33 +282,42 @@
         }
       ],
       "doctrinalPosition": "yes_moderate",
-      "explanation": "L’argent public ne devrait pas soutenir les acteurs qui violent gravement leurs obligations fiscales.",
-      "confidence": "medium"
+      "explanation": "La doctrine soutient la conditionnalité, en particulier pour les aides significatives.",
+      "methodNote": "Attention au droit européen des aides d’État et à la proportionnalité.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_QCM_FINAL"
+      ]
     },
     {
       "id": "Q15_007",
-      "title": "Facilitateurs de fraude",
-      "question": "Les intermédiaires qui organisent sciemment des montages frauduleux doivent-ils être sanctionnés plus lourdement ?",
+      "modes": [
+        "quick",
+        "long"
+      ],
+      "title": "Facilitateurs",
+      "question": "Comment traiter les intermédiaires qui conçoivent ou vendent des montages frauduleux ?",
+      "context": "La difficulté est de distinguer conseil fiscal légal, optimisation agressive, abus de droit et fraude organisée.",
       "weight": 3,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, car ils rendent possible la fraude organisée.",
+          "label": "Sanctions fortes dès qu’un montage frauduleux est vendu ou organisé.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, mais seulement avec preuve d’intention frauduleuse.",
+          "label": "Sanctions renforcées seulement si l’intention frauduleuse est démontrée.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, seul le contribuable doit être sanctionné.",
+          "label": "Sanctionner principalement le contribuable final.",
           "value": "no_moderate"
         },
         {
           "id": "D",
-          "label": "Non, cela menacerait le conseil fiscal légal.",
+          "label": "Éviter toute sanction spécifique pour ne pas menacer le conseil légal.",
           "value": "no_strong"
         },
         {
@@ -253,33 +327,43 @@
         }
       ],
       "doctrinalPosition": "yes_moderate",
-      "explanation": "Il faut distinguer conseil fiscal légal, optimisation agressive et montage frauduleux.",
-      "confidence": "medium"
+      "explanation": "Le levier est important, mais juridiquement sensible.",
+      "methodNote": "La doctrine ne criminalise pas le conseil fiscal légal.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_SYNTH_V3",
+        "DOC_QCM_FINAL"
+      ]
     },
     {
       "id": "Q15_008",
+      "modes": [
+        "quick",
+        "long"
+      ],
       "title": "Économie en espèces",
-      "question": "La fraude en espèces et les sous-déclarations de petits acteurs doivent-elles être intégrées au pilier, sans stigmatiser une profession ?",
+      "question": "La fraude de proximité et les revenus en espèces non déclarés doivent-ils être intégrés au Pilier 15 ?",
+      "context": "Ne parler que des multinationales crée un biais. Mais désigner des professions entières serait injuste.",
       "weight": 1,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, il faut couvrir tout le spectre de la fraude.",
+          "label": "Oui, couvrir tout le spectre sans stigmatiser une profession.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, mais ce n’est pas prioritaire face aux montages internationaux.",
+          "label": "Oui, mais priorité aux fraudes organisées et internationales.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, il faut se concentrer sur les multinationales.",
+          "label": "Non, le sujet doit rester centré sur les grandes structures.",
           "value": "no_moderate"
         },
         {
           "id": "D",
-          "label": "Non, les petits acteurs doivent être largement tolérés.",
+          "label": "Non, la petite fraude doit être largement tolérée.",
           "value": "no_strong"
         },
         {
@@ -289,28 +373,37 @@
         }
       ],
       "doctrinalPosition": "yes_strong",
-      "explanation": "Le pilier couvre tout le spectre : fraude diffuse, organisée, internationale et blanchiment.",
-      "confidence": "medium"
+      "explanation": "Le Pilier 15 couvre tout le spectre, du liquide non déclaré aux montages internationaux.",
+      "methodNote": "Traiter les mécanismes, pas désigner des métiers.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_ALLER_DROIT"
+      ]
     },
     {
       "id": "Q15_009",
+      "modes": [
+        "quick",
+        "long"
+      ],
       "title": "Taux de recouvrement",
-      "question": "Le taux de recouvrement effectif des montants notifiés après contrôle fiscal devrait-il être publié comme indicateur de souveraineté fiscale ?",
+      "question": "Faut-il publier le taux de recouvrement effectif des montants notifiés après contrôle fiscal ?",
+      "context": "Notifier n’est pas encaisser. Le recouvrement mesure une part de la souveraineté fiscale réelle.",
       "weight": 2,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, notifier ne suffit pas : il faut encaisser.",
+          "label": "Oui, comme indicateur public de souveraineté fiscale effective.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, mais seulement comme indicateur technique.",
+          "label": "Oui, mais comme indicateur technique accompagné d’explications.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, les montants notifiés suffisent.",
+          "label": "Non, les montants notifiés suffisent au débat public.",
           "value": "no_moderate"
         },
         {
@@ -325,33 +418,42 @@
         }
       ],
       "doctrinalPosition": "yes_strong",
-      "explanation": "Un État qui notifie mais ne recouvre pas pleinement perd une partie de sa souveraineté fiscale effective.",
-      "confidence": "high"
+      "explanation": "La distinction entre notifié et recouvré est centrale pour éviter les effets d’annonce.",
+      "methodNote": "L’indicateur doit être expliqué pour éviter les interprétations abusives.",
+      "confidence": "high",
+      "sources": [
+        "DOC_SYNTH_V3"
+      ]
     },
     {
       "id": "Q15_010",
-      "title": "Refus d’un chiffre central unique",
-      "question": "Faut-il refuser tout chiffre central unique de fraude fiscale tant que l’État ne produit pas d’estimation officielle robuste ?",
+      "modes": [
+        "quick",
+        "long"
+      ],
+      "title": "Chiffre central unique",
+      "question": "Comment présenter le coût global de la fraude fiscale tant qu’il n’existe pas d’estimation officielle robuste ?",
+      "context": "La V3 a corrigé le 80–100 Md€ : estimation syndicale reprise parlementairement, non validée officiellement par l’État.",
       "weight": 3,
       "answers": [
         {
           "id": "A",
-          "label": "Oui, il faut distinguer faits, estimations et périmètres.",
+          "label": "Refuser un chiffre central unique et distinguer tous les périmètres.",
           "value": "yes_strong"
         },
         {
           "id": "B",
-          "label": "Oui, mais on peut garder un ordre de grandeur public.",
+          "label": "Utiliser une fourchette publique, mais avec fortes réserves.",
           "value": "yes_moderate"
         },
         {
           "id": "C",
-          "label": "Non, un chiffre unique simplifie le débat.",
+          "label": "Garder un chiffre simple pour parler au grand public.",
           "value": "no_moderate"
         },
         {
           "id": "D",
-          "label": "Non, il ne faut communiquer aucun chiffre.",
+          "label": "Ne plus communiquer aucun chiffre sur le sujet.",
           "value": "no_strong"
         },
         {
@@ -361,8 +463,233 @@
         }
       ],
       "doctrinalPosition": "yes_strong",
-      "explanation": "Le 80–100 Md€ doit être qualifié comme estimation syndicale reprise parlementairement, non comme fait officiel.",
-      "confidence": "high"
+      "explanation": "La crédibilité impose de distinguer faits DGFiP, estimations sectorielles et ordres de grandeur non officiels.",
+      "methodNote": "Le 80–100 Md€ ne doit jamais être présenté comme un fait officiel.",
+      "confidence": "high",
+      "sources": [
+        "DOC_SYNTH_V3",
+        "DOC_ALLER_DROIT"
+      ]
+    },
+    {
+      "id": "Q15_011",
+      "modes": [
+        "long"
+      ],
+      "title": "Bénéficiaires effectifs",
+      "question": "Quel niveau de transparence appliquer aux bénéficiaires réels des sociétés et structures opaques ?",
+      "context": "Les sociétés écrans et structures opaques compliquent la lutte contre fraude, blanchiment et montages internationaux.",
+      "weight": 2,
+      "answers": [
+        {
+          "id": "A",
+          "label": "Accès renforcé pour autorités, avec garanties de vie privée.",
+          "value": "yes_strong"
+        },
+        {
+          "id": "B",
+          "label": "Accès public très large.",
+          "value": "yes_moderate"
+        },
+        {
+          "id": "C",
+          "label": "Maintien des règles actuelles.",
+          "value": "partial"
+        },
+        {
+          "id": "D",
+          "label": "Limiter fortement ces registres pour protéger la confidentialité économique.",
+          "value": "no_moderate"
+        },
+        {
+          "id": "E",
+          "label": "Sans avis.",
+          "value": "neutral"
+        }
+      ],
+      "doctrinalPosition": "yes_strong",
+      "explanation": "La transparence des bénéficiaires effectifs est utile, mais doit rester juridiquement équilibrée.",
+      "methodNote": "Vie privée et secret des affaires légitime doivent être préservés.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_QCM_FINAL"
+      ]
+    },
+    {
+      "id": "Q15_012",
+      "modes": [
+        "long"
+      ],
+      "title": "Prix de transfert",
+      "question": "Quelle priorité donner au contrôle des prix de transfert dans les groupes multinationaux ?",
+      "context": "Les prix de transfert sont normaux dans les groupes, mais peuvent déplacer artificiellement les bénéfices.",
+      "weight": 2,
+      "answers": [
+        {
+          "id": "A",
+          "label": "Priorité forte sur les grands groupes à risque.",
+          "value": "yes_strong"
+        },
+        {
+          "id": "B",
+          "label": "Contrôle ciblé, sans présumer que tout prix de transfert est frauduleux.",
+          "value": "yes_moderate"
+        },
+        {
+          "id": "C",
+          "label": "Priorité secondaire : sujet trop technique et international.",
+          "value": "partial"
+        },
+        {
+          "id": "D",
+          "label": "Limiter le contrôle pour préserver l’attractivité économique.",
+          "value": "no_moderate"
+        },
+        {
+          "id": "E",
+          "label": "Sans avis.",
+          "value": "neutral"
+        }
+      ],
+      "doctrinalPosition": "yes_moderate",
+      "explanation": "Le sujet est important, mais les chiffres ventilés doivent rester prudents.",
+      "methodNote": "L’audit probatoire a demandé de requalifier les chiffres non vérifiés sur les prix de transfert.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_SYNTH_V3"
+      ]
+    },
+    {
+      "id": "Q15_013",
+      "modes": [
+        "long"
+      ],
+      "title": "Blanchiment",
+      "question": "Les revenus criminels et le blanchiment doivent-ils être traités à part de la fraude fiscale classique ?",
+      "context": "Trafic, contrebande, recel et commerces de façade relèvent d’abord du pénal, mais produisent aussi des revenus occultes.",
+      "weight": 1,
+      "answers": [
+        {
+          "id": "A",
+          "label": "Oui, axe pénal et fiscal distinct mais relié.",
+          "value": "yes_strong"
+        },
+        {
+          "id": "B",
+          "label": "Oui, seulement quand il y a revenus occultes imposables.",
+          "value": "yes_moderate"
+        },
+        {
+          "id": "C",
+          "label": "Non, tout doit rester sous le seul angle fiscal.",
+          "value": "no_moderate"
+        },
+        {
+          "id": "D",
+          "label": "Non, cela relève uniquement de la police et de la justice.",
+          "value": "no_strong"
+        },
+        {
+          "id": "E",
+          "label": "Sans avis.",
+          "value": "neutral"
+        }
+      ],
+      "doctrinalPosition": "yes_strong",
+      "explanation": "Le blanchiment est un sujet distinct, mais il croise la fraude fiscale lorsque des revenus occultes sont réinjectés.",
+      "methodNote": "Ne pas confondre fraude fiscale classique et criminalité organisée.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_ALLER_DROIT"
+      ]
+    },
+    {
+      "id": "Q15_014",
+      "modes": [
+        "long"
+      ],
+      "title": "Responsabilité politique",
+      "question": "Comment traiter la responsabilité politique dans la lutte contre la fraude fiscale ?",
+      "context": "Le pilier identifie des responsabilités structurelles : effectifs, lois, mesure de l’écart fiscal, articulation fisc/justice.",
+      "weight": 2,
+      "answers": [
+        {
+          "id": "A",
+          "label": "Établir une chronologie sourcée des décisions, sans accusation nominative non prouvée.",
+          "value": "yes_strong"
+        },
+        {
+          "id": "B",
+          "label": "Désigner les gouvernements responsables par période, avec prudence.",
+          "value": "yes_moderate"
+        },
+        {
+          "id": "C",
+          "label": "Rester uniquement sur l’analyse technique, sans politique.",
+          "value": "partial"
+        },
+        {
+          "id": "D",
+          "label": "Désigner directement les responsables sans attendre une chronologie complète.",
+          "value": "no_moderate"
+        },
+        {
+          "id": "E",
+          "label": "Sans avis.",
+          "value": "neutral"
+        }
+      ],
+      "doctrinalPosition": "yes_strong",
+      "explanation": "La crédibilité impose une chaîne probatoire : personne, décision, date, effet mesurable.",
+      "methodNote": "Une annexe chronologique politique reste à produire.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_SYNTH_V3"
+      ]
+    },
+    {
+      "id": "Q15_015",
+      "modes": [
+        "long"
+      ],
+      "title": "Priorité avant hausse d’impôt",
+      "question": "La lutte contre la fraude doit-elle être prioritaire avant toute hausse d’impôt sur les contribuables ordinaires ?",
+      "context": "Le principe doctrinal est : récupérer ce qui est déjà dû avant d’augmenter la pression sur les contribuables captifs.",
+      "weight": 2,
+      "answers": [
+        {
+          "id": "A",
+          "label": "Oui, priorité absolue à la récupération de ce qui est déjà dû.",
+          "value": "yes_strong"
+        },
+        {
+          "id": "B",
+          "label": "Oui, mais cela ne suffira pas forcément à régler tous les déficits.",
+          "value": "yes_moderate"
+        },
+        {
+          "id": "C",
+          "label": "Les deux sujets doivent être traités séparément.",
+          "value": "partial"
+        },
+        {
+          "id": "D",
+          "label": "Non, les hausses d’impôts peuvent être décidées indépendamment.",
+          "value": "no_moderate"
+        },
+        {
+          "id": "E",
+          "label": "Sans avis.",
+          "value": "neutral"
+        }
+      ],
+      "doctrinalPosition": "yes_moderate",
+      "explanation": "La lutte contre la fraude est prioritaire, mais il faut éviter de promettre qu’elle résoudra tout mécaniquement.",
+      "methodNote": "La doctrine refuse les chiffres miraculeux et les promesses budgétaires non sourcées.",
+      "confidence": "medium",
+      "sources": [
+        "DOC_ALLER_DROIT"
+      ]
     }
   ]
 }

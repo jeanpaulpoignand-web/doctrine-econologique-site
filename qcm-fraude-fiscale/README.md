@@ -1,30 +1,11 @@
-# qcm-national-v1
+# QCM Fraude fiscale — V1.1
 
-V1 statique du QCM National — Doctrine Éconologique.
+Améliorations V1.1 :
+- bouton retour au site ;
+- choix QCM rapide / QCM long pédagogique ;
+- questions reformulées de manière moins orientée ;
+- liens documentaires vers la Synthèse Active V3, Aller droit au but et QCM finalisé ;
+- écran de résultat avec retour au site.
 
-## Contenu
-
-- `index.html`
-- `assets/css/style.css`
-- `assets/js/app.js`
-- `data/questions_pilier_15.json`
-
-## Lancement local
-
-Ouvrir `index.html` dans un navigateur moderne.
-
-Si le chargement JSON est bloqué par le navigateur en local, lancer un petit serveur local :
-
-```bash
-python -m http.server 8000
-```
-
-Puis ouvrir :
-
-```text
-http://localhost:8000
-```
-
-## Statut
-
-Prototype V1 centré sur le Pilier 15 — Fraude fiscale.
+Dossier cible GitHub :
+`qcm-fraude-fiscale/`

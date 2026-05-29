@@ -1,237 +1,45 @@
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+:root{
+  --bg:#f5f6f8;--card:#fff;--text:#18202a;--muted:#5d6b7a;--border:#d9dee6;
+  --primary:#1f4f8f;--primary-dark:#153866;--accent:#e8f0ff;--warning:#fff6df;
+  --danger:#8f1f1f;--success:#176b3a;--shadow:0 8px 28px rgba(20,35,55,.08)
 }
-
-:root {
-  --bg: #f5f6f8;
-  --card: #ffffff;
-  --text: #18202a;
-  --muted: #5d6b7a;
-  --border: #d9dee6;
-  --primary: #1f4f8f;
-  --primary-dark: #153866;
-  --accent: #e8f0ff;
-  --danger: #8f1f1f;
-  --success: #176b3a;
-  --shadow: 0 8px 28px rgba(20, 35, 55, 0.08);
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.5;
-  background: var(--bg);
-  color: var(--text);
-}
-
-.container {
-  width: min(920px, 100%);
-  margin: 0 auto;
-  padding: 16px;
-}
-
-.site-header {
-  background: linear-gradient(135deg, #17233a, #244f86);
-  color: white;
-  padding: 28px 0;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.82rem;
-  opacity: 0.85;
-  margin: 0 0 6px;
-}
-
-h1, h2, h3 {
-  line-height: 1.15;
-}
-
-h1 {
-  margin: 0;
-  font-size: clamp(2rem, 7vw, 4rem);
-}
-
-.subtitle {
-  font-size: 1.15rem;
-  opacity: 0.92;
-}
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 24px;
-  margin: 24px 0;
-}
-
-.notice {
-  background: var(--accent);
-  border-left: 4px solid var(--primary);
-  padding: 12px;
-  border-radius: 10px;
-}
-
-.hidden {
-  display: none !important;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
-  border: 0;
-}
-
-.primary-button,
-.secondary-button {
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-weight: 700;
-}
-
-.primary-button {
-  background: var(--primary);
-  color: white;
-}
-
-.primary-button:hover {
-  background: var(--primary-dark);
-}
-
-.secondary-button {
-  background: #edf1f7;
-  color: var(--text);
-}
-
-.progress-wrap {
-  margin-bottom: 20px;
-}
-
-.progress-text {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: var(--muted);
-}
-
-.progress-bar {
-  height: 10px;
-  background: #e4e9f1;
-  border-radius: 999px;
-  overflow: hidden;
-  margin-top: 8px;
-}
-
-#progressFill {
-  height: 100%;
-  width: 0%;
-  background: var(--primary);
-  transition: width 0.2s ease;
-}
-
-.question-text {
-  font-size: 1.15rem;
-}
-
-.answers {
-  display: grid;
-  gap: 10px;
-  margin: 18px 0;
-}
-
-.answer-button {
-  width: 100%;
-  text-align: left;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: white;
-  color: var(--text);
-}
-
-.answer-button:hover {
-  border-color: var(--primary);
-  background: #f8fbff;
-}
-
-.answer-button.selected {
-  border-color: var(--primary);
-  background: var(--accent);
-  outline: 2px solid rgba(31, 79, 143, 0.12);
-}
-
-.explanation-box {
-  border-top: 1px solid var(--border);
-  padding-top: 12px;
-  color: var(--muted);
-}
-
-.explanation-box summary {
-  color: var(--text);
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.nav-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.score-summary {
-  font-size: 1.25rem;
-  font-weight: 800;
-}
-
-.result-item {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px;
-  margin: 10px 0;
-}
-
-.result-item.ok {
-  border-left: 5px solid var(--success);
-}
-
-.result-item.partial {
-  border-left: 5px solid #d79a00;
-}
-
-.result-item.ko {
-  border-left: 5px solid var(--danger);
-}
-
-.export-box {
-  white-space: pre-wrap;
-  overflow-x: auto;
-  background: #101828;
-  color: #e7eefc;
-  padding: 16px;
-  border-radius: 12px;
-}
-
-.site-footer {
-  color: var(--muted);
-  padding: 20px 0 36px;
-}
-
-@media (max-width: 620px) {
-  .card {
-    padding: 18px;
-    border-radius: 14px;
-  }
-
-  .nav-buttons {
-    flex-direction: column;
-  }
-
-  .primary-button,
-  .secondary-button {
-    width: 100%;
-  }
-}
+body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;background:var(--bg);color:var(--text)}
+.container{width:min(940px,100%);margin:0 auto;padding:16px}
+.site-header{background:linear-gradient(135deg,#17233a,#244f86);color:white;padding:28px 0}
+.header-inner{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;opacity:.85;margin:0 0 6px}
+h1,h2,h3{line-height:1.15} h1{margin:0;font-size:clamp(2rem,7vw,4rem)} .subtitle{font-size:1.15rem;opacity:.92}
+.back-link,.small-link{color:inherit;text-decoration:none;font-weight:800}
+.back-link{background:rgba(255,255,255,.12);padding:10px 14px;border-radius:10px;white-space:nowrap}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:24px;margin:24px 0}
+.hidden{display:none!important}
+.notice{background:var(--accent);border-left:4px solid var(--primary);padding:12px;border-radius:10px}
+button{font:inherit;cursor:pointer;border:0}
+.primary-button,.secondary-button,.ghost-button{padding:12px 18px;border-radius:10px;font-weight:800}
+.primary-button{background:var(--primary);color:white}.primary-button:hover{background:var(--primary-dark)}
+.secondary-button{background:#edf1f7;color:var(--text)}.ghost-button{background:transparent;border:1px solid var(--border);color:var(--text)}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.mode-card{text-align:left;background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.mode-card strong{display:block;font-size:1.2rem;margin-bottom:8px}.mode-card span{color:var(--muted)}
+.mode-card:hover{border-color:var(--primary);background:#f8fbff}
+.doc-links{border:1px solid var(--border);background:#fbfcff;border-radius:14px;padding:16px;margin:18px 0}
+.doc-links ul{margin:0;padding-left:20px}.doc-links a{color:var(--primary);font-weight:700}
+.top-actions{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px;align-items:center}
+.progress-wrap{margin-bottom:20px}.progress-text{display:flex;justify-content:space-between;gap:12px;font-size:.95rem;color:var(--muted)}
+.progress-bar{height:10px;background:#e4e9f1;border-radius:999px;overflow:hidden;margin-top:8px}
+#progressFill{height:100%;width:0%;background:var(--primary);transition:width .2s ease}
+.context-box{background:var(--warning);border-left:4px solid #d79a00;border-radius:10px;padding:14px;margin-bottom:16px;color:#3b2b00}
+.question-text{font-size:1.15rem}
+.answers{display:grid;gap:10px;margin:18px 0}
+.answer-button{width:100%;text-align:left;padding:14px;border-radius:12px;border:1px solid var(--border);background:white;color:var(--text)}
+.answer-button:hover{border-color:var(--primary);background:#f8fbff}.answer-button.selected{border-color:var(--primary);background:var(--accent);outline:2px solid rgba(31,79,143,.12)}
+.explanation-box{border-top:1px solid var(--border);padding-top:12px;color:var(--muted)}.explanation-box summary{color:var(--text);font-weight:800;cursor:pointer}
+.source-list{margin-top:10px}.source-list a{color:var(--primary);font-weight:700}
+.nav-buttons{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
+.score-summary{font-size:1.25rem;font-weight:900}.result-note{color:var(--muted)}
+.result-item{border:1px solid var(--border);border-radius:12px;padding:14px;margin:10px 0}
+.result-item.ok{border-left:5px solid var(--success)}.result-item.partial{border-left:5px solid #d79a00}.result-item.ko{border-left:5px solid var(--danger)}
+.export-box{white-space:pre-wrap;overflow-x:auto;background:#101828;color:#e7eefc;padding:16px;border-radius:12px}
+.site-footer{color:var(--muted);padding:20px 0 36px}
+@media(max-width:700px){.header-inner,.top-actions,.nav-buttons{flex-direction:column;align-items:stretch}.mode-grid{grid-template-columns:1fr}.primary-button,.secondary-button,.ghost-button,.back-link{width:100%;text-align:center}.card{padding:18px;border-radius:14px}}
