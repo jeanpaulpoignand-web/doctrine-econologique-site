@@ -1,54 +1,95 @@
-<!DOCTYPE html>
+from pathlib import Path
+import json, zipfile, shutil
+
+base = Path("/mnt/data/qcm-fraude-fiscale-v1-1")
+if base.exists():
+    shutil.rmtree(base)
+
+(base / "assets" / "css").mkdir(parents=True, exist_ok=True)
+(base / "assets" / "js").mkdir(parents=True, exist_ok=True)
+(base / "data").mkdir(parents=True, exist_ok=True)
+
+index_html = """<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QCM National — Doctrine Éconologique</title>
+  <title>QCM — Pilier 15 Fraude fiscale</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <p class="eyebrow">Doctrine Éconologique</p>
-      <h1>QCM National</h1>
-      <p class="subtitle">Pilier 15 — Fraude fiscale</p>
+    <div class="container header-inner">
+      <div>
+        <p class="eyebrow">Doctrine Éconologique</p>
+        <h1>Pilier 15 — Fraude fiscale</h1>
+        <p class="subtitle">Vérité des chiffres, justice contributive et souveraineté fiscale effective.</p>
+      </div>
+      <a class="back-link" href="../index.html">← Retour au site</a>
     </div>
   </header>
 
   <main class="container">
     <section id="intro" class="card">
-      <h2>Objectif du QCM</h2>
+      <h2>Choisir le mode de QCM</h2>
       <p>
-        Ce questionnaire permet de tester vos positions sur la fraude fiscale :
-        vérité des chiffres, moyens de contrôle, TVA, facilitateurs, économie en espèces,
-        marchés publics et aides publiques.
+        Ce module propose deux formats. Le mode rapide permet de se positionner vite.
+        Le mode long ajoute les explications, les nuances et les liens documentaires.
       </p>
+
+      <div class="mode-grid">
+        <button id="quickModeBtn" class="mode-card">
+          <strong>QCM rapide</strong>
+          <span>10 questions prioritaires, résultat immédiat.</span>
+        </button>
+        <button id="longModeBtn" class="mode-card">
+          <strong>QCM long / pédagogique</strong>
+          <span>15 questions avec contexte, prudence méthodologique et sources.</span>
+        </button>
+      </div>
+
+      <div class="doc-links">
+        <h3>Documents utiles</h3>
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1VwnppvfOj0b16VYTHwqbZ5qg1j9qydJ07RxzY7oVzGc/edit?usp=drivesdk" target="_blank" rel="noopener">Synthèse Active V3 — Pilier 15</a></li>
+          <li><a href="https://docs.google.com/document/d/1997QWegX51hzxODEF9XVoU0_i08yA3Jvo_AaR1wXwaE/edit?usp=drivesdk" target="_blank" rel="noopener">Aller droit au but — Fraude fiscale</a></li>
+          <li><a href="https://docs.google.com/document/d/1UbpRfSGWhCS6TtRlmGQbeDfcWaLS5kTPS1hsNRvBUKs/edit?usp=drivesdk" target="_blank" rel="noopener">QCM finalisé — Module citoyen</a></li>
+        </ul>
+      </div>
+
       <p class="notice">
-        Aucune donnée personnelle n’est collectée. Vos réponses restent stockées localement dans votre navigateur.
+        Aucune donnée personnelle n’est collectée. Les réponses restent stockées localement dans votre navigateur.
       </p>
-      <button id="startBtn" class="primary-button">Commencer le QCM</button>
     </section>
 
     <section id="quiz" class="card hidden" aria-live="polite">
+      <div class="top-actions">
+        <a href="../index.html" class="small-link">← Retour au site</a>
+        <button id="switchModeBtn" class="ghost-button" type="button">Changer de mode</button>
+      </div>
+
       <div class="progress-wrap">
         <div class="progress-text">
           <span id="questionCounter">Question 1 / 10</span>
-          <span id="pillarLabel">Pilier 15</span>
+          <span id="modeLabel">Mode rapide</span>
         </div>
         <div class="progress-bar">
           <div id="progressFill"></div>
         </div>
       </div>
 
+      <div id="contextBox" class="context-box hidden"></div>
+
       <h2 id="questionTitle"></h2>
       <p id="questionText" class="question-text"></p>
 
       <div id="answers" class="answers"></div>
 
-      <details class="explanation-box">
-        <summary>Pourquoi cette question ?</summary>
+      <details id="detailsBox" class="explanation-box">
+        <summary>Explication et prudence méthodologique</summary>
         <p id="explanation"></p>
-        <p id="confidence"></p>
+        <p id="methodNote"></p>
+        <div id="sourceLinks"></div>
       </details>
 
       <div class="nav-buttons">
@@ -58,23 +99,661 @@
     </section>
 
     <section id="results" class="card hidden">
+      <div class="top-actions">
+        <a href="../index.html" class="small-link">← Retour au site</a>
+        <button id="changeModeFromResultsBtn" class="ghost-button" type="button">Changer de mode</button>
+      </div>
       <h2>Résultats — Pilier 15</h2>
       <p id="scoreSummary" class="score-summary"></p>
+      <p class="result-note">
+        Ce score mesure l’alignement avec la ligne doctrinale du Pilier 15. Il ne remplace pas une analyse politique complète.
+      </p>
       <div id="resultDetails"></div>
       <div class="nav-buttons">
         <button id="restartBtn" class="secondary-button">Recommencer</button>
         <button id="exportBtn" class="primary-button">Exporter les résultats</button>
       </div>
       <pre id="exportBox" class="export-box hidden"></pre>
+
+      <div class="doc-links result-docs">
+        <h3>Pour approfondir</h3>
+        <ul>
+          <li><a href="../index.html">Retour à l’accueil du site</a></li>
+          <li><a href="https://docs.google.com/document/d/1VwnppvfOj0b16VYTHwqbZ5qg1j9qydJ07RxzY7oVzGc/edit?usp=drivesdk" target="_blank" rel="noopener">Lire la Synthèse Active V3</a></li>
+          <li><a href="https://docs.google.com/document/d/1997QWegX51hzxODEF9XVoU0_i08yA3Jvo_AaR1wXwaE/edit?usp=drivesdk" target="_blank" rel="noopener">Lire la version courte “Aller droit au but”</a></li>
+        </ul>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>Version V1 — QCM statique sans serveur — Pilier 15 Fraude fiscale.</p>
+      <p>Version V1.1 — Pilier 15 Fraude fiscale — QCM rapide et QCM long pédagogique.</p>
     </div>
   </footer>
 
   <script src="assets/js/app.js"></script>
 </body>
 </html>
+"""
+
+style_css = """*{box-sizing:border-box}
+:root{
+  --bg:#f5f6f8;--card:#fff;--text:#18202a;--muted:#5d6b7a;--border:#d9dee6;
+  --primary:#1f4f8f;--primary-dark:#153866;--accent:#e8f0ff;--warning:#fff6df;
+  --danger:#8f1f1f;--success:#176b3a;--shadow:0 8px 28px rgba(20,35,55,.08)
+}
+body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;background:var(--bg);color:var(--text)}
+.container{width:min(940px,100%);margin:0 auto;padding:16px}
+.site-header{background:linear-gradient(135deg,#17233a,#244f86);color:white;padding:28px 0}
+.header-inner{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;opacity:.85;margin:0 0 6px}
+h1,h2,h3{line-height:1.15} h1{margin:0;font-size:clamp(2rem,7vw,4rem)} .subtitle{font-size:1.15rem;opacity:.92}
+.back-link,.small-link{color:inherit;text-decoration:none;font-weight:800}
+.back-link{background:rgba(255,255,255,.12);padding:10px 14px;border-radius:10px;white-space:nowrap}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:24px;margin:24px 0}
+.hidden{display:none!important}
+.notice{background:var(--accent);border-left:4px solid var(--primary);padding:12px;border-radius:10px}
+button{font:inherit;cursor:pointer;border:0}
+.primary-button,.secondary-button,.ghost-button{padding:12px 18px;border-radius:10px;font-weight:800}
+.primary-button{background:var(--primary);color:white}.primary-button:hover{background:var(--primary-dark)}
+.secondary-button{background:#edf1f7;color:var(--text)}.ghost-button{background:transparent;border:1px solid var(--border);color:var(--text)}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.mode-card{text-align:left;background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.mode-card strong{display:block;font-size:1.2rem;margin-bottom:8px}.mode-card span{color:var(--muted)}
+.mode-card:hover{border-color:var(--primary);background:#f8fbff}
+.doc-links{border:1px solid var(--border);background:#fbfcff;border-radius:14px;padding:16px;margin:18px 0}
+.doc-links ul{margin:0;padding-left:20px}.doc-links a{color:var(--primary);font-weight:700}
+.top-actions{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px;align-items:center}
+.progress-wrap{margin-bottom:20px}.progress-text{display:flex;justify-content:space-between;gap:12px;font-size:.95rem;color:var(--muted)}
+.progress-bar{height:10px;background:#e4e9f1;border-radius:999px;overflow:hidden;margin-top:8px}
+#progressFill{height:100%;width:0%;background:var(--primary);transition:width .2s ease}
+.context-box{background:var(--warning);border-left:4px solid #d79a00;border-radius:10px;padding:14px;margin-bottom:16px;color:#3b2b00}
+.question-text{font-size:1.15rem}
+.answers{display:grid;gap:10px;margin:18px 0}
+.answer-button{width:100%;text-align:left;padding:14px;border-radius:12px;border:1px solid var(--border);background:white;color:var(--text)}
+.answer-button:hover{border-color:var(--primary);background:#f8fbff}.answer-button.selected{border-color:var(--primary);background:var(--accent);outline:2px solid rgba(31,79,143,.12)}
+.explanation-box{border-top:1px solid var(--border);padding-top:12px;color:var(--muted)}.explanation-box summary{color:var(--text);font-weight:800;cursor:pointer}
+.source-list{margin-top:10px}.source-list a{color:var(--primary);font-weight:700}
+.nav-buttons{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
+.score-summary{font-size:1.25rem;font-weight:900}.result-note{color:var(--muted)}
+.result-item{border:1px solid var(--border);border-radius:12px;padding:14px;margin:10px 0}
+.result-item.ok{border-left:5px solid var(--success)}.result-item.partial{border-left:5px solid #d79a00}.result-item.ko{border-left:5px solid var(--danger)}
+.export-box{white-space:pre-wrap;overflow-x:auto;background:#101828;color:#e7eefc;padding:16px;border-radius:12px}
+.site-footer{color:var(--muted);padding:20px 0 36px}
+@media(max-width:700px){.header-inner,.top-actions,.nav-buttons{flex-direction:column;align-items:stretch}.mode-grid{grid-template-columns:1fr}.primary-button,.secondary-button,.ghost-button,.back-link{width:100%;text-align:center}.card{padding:18px;border-radius:14px}}
+"""
+
+sources = {
+    "DOC_SYNTH_V3": {
+        "label": "Synthèse Active V3",
+        "url": "https://docs.google.com/document/d/1VwnppvfOj0b16VYTHwqbZ5qg1j9qydJ07RxzY7oVzGc/edit?usp=drivesdk"
+    },
+    "DOC_ALLER_DROIT": {
+        "label": "Aller droit au but",
+        "url": "https://docs.google.com/document/d/1997QWegX51hzxODEF9XVoU0_i08yA3Jvo_AaR1wXwaE/edit?usp=drivesdk"
+    },
+    "DOC_QCM_FINAL": {
+        "label": "QCM finalisé — module citoyen",
+        "url": "https://docs.google.com/document/d/1UbpRfSGWhCS6TtRlmGQbeDfcWaLS5kTPS1hsNRvBUKs/edit?usp=drivesdk"
+    }
+}
+
+questions_all = [
+    {
+      "id": "Q15_001", "modes": ["quick","long"], "title": "Transparence de l’écart fiscal",
+      "question": "Quel niveau de transparence l’État doit-il appliquer à l’écart fiscal ?",
+      "context": "Le sujet n’est pas de fabriquer un chiffre spectaculaire, mais de distinguer ce qui est mesuré, estimé, notifié et réellement recouvré.",
+      "weight": 3,
+      "answers": [
+        {"id":"A","label":"Publication annuelle, méthode publique, ventilation par impôt et taux de recouvrement.","value":"yes_strong"},
+        {"id":"B","label":"Publication périodique, avec prudence méthodologique et fourchettes.","value":"yes_moderate"},
+        {"id":"C","label":"Publication limitée aux seuls résultats du contrôle fiscal.","value":"partial"},
+        {"id":"D","label":"Pas de publication globale : trop d’incertitude et trop de risque politique.","value":"no_moderate"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong",
+      "explanation":"La ligne doctrinale demande une mesure officielle robuste sans confondre faits administratifs et estimations.",
+      "methodNote":"Le QCM refuse tout chiffre central unique tant que l’État ne publie pas d’écart fiscal global robuste.",
+      "confidence":"high","sources":["DOC_SYNTH_V3","DOC_ALLER_DROIT"]
+    },
+    {
+      "id":"Q15_002","modes":["quick","long"],"title":"Moyens humains du contrôle fiscal",
+      "question":"Face à une fraude plus complexe, quelle place donner aux effectifs humains du contrôle fiscal ?",
+      "context":"La baisse des effectifs et la montée des outils numériques posent une question : peut-on contrôler mieux avec moins d’humains ?",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Renforcer les effectifs humains, surtout sur les dossiers complexes.","value":"yes_strong"},
+        {"id":"B","label":"Stabiliser les effectifs et mieux cibler les contrôles.","value":"yes_moderate"},
+        {"id":"C","label":"Remplacer progressivement une partie des effectifs par l’IA.","value":"partial"},
+        {"id":"D","label":"Réduire les contrôles pour alléger les contraintes économiques.","value":"no_strong"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong","explanation":"Le data mining cible, mais l’enquête et le recouvrement nécessitent des agents compétents.",
+      "methodNote":"La V3 distingue programmation des contrôles et rendement financier réel.",
+      "confidence":"high","sources":["DOC_SYNTH_V3"]
+    },
+    {
+      "id":"Q15_003","modes":["quick","long"],"title":"Data mining et IA",
+      "question":"Quelle doit être la place du data mining et de l’IA dans le contrôle fiscal ?",
+      "context":"L’audit Perplexity a montré une nuance importante : beaucoup de contrôles ciblés par data mining, mais une part plus faible des droits.",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Outil de ciblage utile, mais encadré et complémentaire des agents.","value":"yes_strong"},
+        {"id":"B","label":"Outil central pouvant remplacer une partie importante du contrôle humain.","value":"yes_moderate"},
+        {"id":"C","label":"Usage limité aux dossiers de grande fraude.","value":"partial"},
+        {"id":"D","label":"Refus de ces outils par risque de surveillance abusive.","value":"no_moderate"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong","explanation":"La doctrine accepte l’IA comme outil, mais refuse d’en faire un substitut complet à l’expertise humaine.",
+      "methodNote":"Il faut toujours distinguer volume de contrôles ciblés et droits effectivement générés.",
+      "confidence":"medium","sources":["DOC_SYNTH_V3"]
+    },
+    {
+      "id":"Q15_004","modes":["quick","long"],"title":"Fraude TVA",
+      "question":"La fraude à la TVA doit-elle être traitée séparément du reste de la fraude fiscale ?",
+      "context":"La TVA est mieux mesurable que d’autres fraudes et implique des mécanismes spécifiques : carrousels, fausses factures, e-commerce.",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Oui, comme sous-pilier autonome avec tableau de bord dédié.","value":"yes_strong"},
+        {"id":"B","label":"Oui, mais surtout au niveau européen.","value":"yes_moderate"},
+        {"id":"C","label":"Non, elle doit rester dans le bloc fraude fiscale global.","value":"no_moderate"},
+        {"id":"D","label":"Non, ce n’est pas prioritaire.","value":"no_strong"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong","explanation":"La TVA dispose d’indicateurs et de mécanismes assez spécifiques pour justifier un bloc autonome.",
+      "methodNote":"Le chiffre TVA doit rester qualifié comme estimation sectorielle, jamais comme mesure globale de la fraude fiscale.",
+      "confidence":"high","sources":["DOC_SYNTH_V3","DOC_ALLER_DROIT"]
+    },
+    {
+      "id":"Q15_005","modes":["quick","long"],"title":"Marchés publics",
+      "question":"Quelle sanction appliquer aux entreprises condamnées pour fraude fiscale grave vis-à-vis des marchés publics ?",
+      "context":"La question oppose fermeté politique et garanties juridiques : proportionnalité, décision définitive, durée de l’exclusion.",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Exclusion automatique en cas de fraude grave.","value":"yes_strong"},
+        {"id":"B","label":"Exclusion temporaire possible, après décision définitive et selon la gravité.","value":"yes_moderate"},
+        {"id":"C","label":"Amende financière seulement, sans exclusion des marchés publics.","value":"no_moderate"},
+        {"id":"D","label":"Aucune sanction économique supplémentaire.","value":"no_strong"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_moderate","explanation":"La ligne doctrinale soutient l’exclusion, mais avec garanties juridiques solides.",
+      "methodNote":"Un audit juridique hostile reste utile avant transformation législative.",
+      "confidence":"medium","sources":["DOC_QCM_FINAL"]
+    },
+    {
+      "id":"Q15_006","modes":["quick","long"],"title":"Aides publiques",
+      "question":"Comment articuler aides publiques et conformité fiscale ?",
+      "context":"Le principe : l’argent public ne devrait pas soutenir des acteurs condamnés pour fraude grave, mais la règle doit être applicable.",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Condition stricte de conformité fiscale pour toute aide publique.","value":"yes_strong"},
+        {"id":"B","label":"Condition renforcée surtout pour grandes entreprises et aides importantes.","value":"yes_moderate"},
+        {"id":"C","label":"Contrôle limité, pour éviter la complexité administrative.","value":"partial"},
+        {"id":"D","label":"Séparer totalement aides publiques et contrôle fiscal.","value":"no_moderate"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_moderate","explanation":"La doctrine soutient la conditionnalité, en particulier pour les aides significatives.",
+      "methodNote":"Attention au droit européen des aides d’État et à la proportionnalité.",
+      "confidence":"medium","sources":["DOC_QCM_FINAL"]
+    },
+    {
+      "id":"Q15_007","modes":["quick","long"],"title":"Facilitateurs",
+      "question":"Comment traiter les intermédiaires qui conçoivent ou vendent des montages frauduleux ?",
+      "context":"La difficulté est de distinguer conseil fiscal légal, optimisation agressive, abus de droit et fraude organisée.",
+      "weight":3,
+      "answers":[
+        {"id":"A","label":"Sanctions fortes dès qu’un montage frauduleux est vendu ou organisé.","value":"yes_strong"},
+        {"id":"B","label":"Sanctions renforcées seulement si l’intention frauduleuse est démontrée.","value":"yes_moderate"},
+        {"id":"C","label":"Sanctionner principalement le contribuable final.","value":"no_moderate"},
+        {"id":"D","label":"Éviter toute sanction spécifique pour ne pas menacer le conseil légal.","value":"no_strong"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_moderate","explanation":"Le levier est important, mais juridiquement sensible.",
+      "methodNote":"La doctrine ne criminalise pas le conseil fiscal légal.",
+      "confidence":"medium","sources":["DOC_SYNTH_V3","DOC_QCM_FINAL"]
+    },
+    {
+      "id":"Q15_008","modes":["quick","long"],"title":"Économie en espèces",
+      "question":"La fraude de proximité et les revenus en espèces non déclarés doivent-ils être intégrés au Pilier 15 ?",
+      "context":"Ne parler que des multinationales crée un biais. Mais désigner des professions entières serait injuste.",
+      "weight":1,
+      "answers":[
+        {"id":"A","label":"Oui, couvrir tout le spectre sans stigmatiser une profession.","value":"yes_strong"},
+        {"id":"B","label":"Oui, mais priorité aux fraudes organisées et internationales.","value":"yes_moderate"},
+        {"id":"C","label":"Non, le sujet doit rester centré sur les grandes structures.","value":"no_moderate"},
+        {"id":"D","label":"Non, la petite fraude doit être largement tolérée.","value":"no_strong"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong","explanation":"Le Pilier 15 couvre tout le spectre, du liquide non déclaré aux montages internationaux.",
+      "methodNote":"Traiter les mécanismes, pas désigner des métiers.",
+      "confidence":"medium","sources":["DOC_ALLER_DROIT"]
+    },
+    {
+      "id":"Q15_009","modes":["quick","long"],"title":"Taux de recouvrement",
+      "question":"Faut-il publier le taux de recouvrement effectif des montants notifiés après contrôle fiscal ?",
+      "context":"Notifier n’est pas encaisser. Le recouvrement mesure une part de la souveraineté fiscale réelle.",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Oui, comme indicateur public de souveraineté fiscale effective.","value":"yes_strong"},
+        {"id":"B","label":"Oui, mais comme indicateur technique accompagné d’explications.","value":"yes_moderate"},
+        {"id":"C","label":"Non, les montants notifiés suffisent au débat public.","value":"no_moderate"},
+        {"id":"D","label":"Non, ce serait trop complexe à interpréter.","value":"no_strong"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong","explanation":"La distinction entre notifié et recouvré est centrale pour éviter les effets d’annonce.",
+      "methodNote":"L’indicateur doit être expliqué pour éviter les interprétations abusives.",
+      "confidence":"high","sources":["DOC_SYNTH_V3"]
+    },
+    {
+      "id":"Q15_010","modes":["quick","long"],"title":"Chiffre central unique",
+      "question":"Comment présenter le coût global de la fraude fiscale tant qu’il n’existe pas d’estimation officielle robuste ?",
+      "context":"La V3 a corrigé le 80–100 Md€ : estimation syndicale reprise parlementairement, non validée officiellement par l’État.",
+      "weight":3,
+      "answers":[
+        {"id":"A","label":"Refuser un chiffre central unique et distinguer tous les périmètres.","value":"yes_strong"},
+        {"id":"B","label":"Utiliser une fourchette publique, mais avec fortes réserves.","value":"yes_moderate"},
+        {"id":"C","label":"Garder un chiffre simple pour parler au grand public.","value":"no_moderate"},
+        {"id":"D","label":"Ne plus communiquer aucun chiffre sur le sujet.","value":"no_strong"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong","explanation":"La crédibilité impose de distinguer faits DGFiP, estimations sectorielles et ordres de grandeur non officiels.",
+      "methodNote":"Le 80–100 Md€ ne doit jamais être présenté comme un fait officiel.",
+      "confidence":"high","sources":["DOC_SYNTH_V3","DOC_ALLER_DROIT"]
+    },
+    {
+      "id":"Q15_011","modes":["long"],"title":"Bénéficiaires effectifs",
+      "question":"Quel niveau de transparence appliquer aux bénéficiaires réels des sociétés et structures opaques ?",
+      "context":"Les sociétés écrans et structures opaques compliquent la lutte contre fraude, blanchiment et montages internationaux.",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Accès renforcé pour autorités, avec garanties de vie privée.","value":"yes_strong"},
+        {"id":"B","label":"Accès public très large.","value":"yes_moderate"},
+        {"id":"C","label":"Maintien des règles actuelles.","value":"partial"},
+        {"id":"D","label":"Limiter fortement ces registres pour protéger la confidentialité économique.","value":"no_moderate"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong","explanation":"La transparence des bénéficiaires effectifs est utile, mais doit rester juridiquement équilibrée.",
+      "methodNote":"Vie privée et secret des affaires légitime doivent être préservés.",
+      "confidence":"medium","sources":["DOC_QCM_FINAL"]
+    },
+    {
+      "id":"Q15_012","modes":["long"],"title":"Prix de transfert",
+      "question":"Quelle priorité donner au contrôle des prix de transfert dans les groupes multinationaux ?",
+      "context":"Les prix de transfert sont normaux dans les groupes, mais peuvent déplacer artificiellement les bénéfices.",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Priorité forte sur les grands groupes à risque.","value":"yes_strong"},
+        {"id":"B","label":"Contrôle ciblé, sans présumer que tout prix de transfert est frauduleux.","value":"yes_moderate"},
+        {"id":"C","label":"Priorité secondaire : sujet trop technique et international.","value":"partial"},
+        {"id":"D","label":"Limiter le contrôle pour préserver l’attractivité économique.","value":"no_moderate"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_moderate","explanation":"Le sujet est important, mais les chiffres ventilés doivent rester prudents.",
+      "methodNote":"L’audit probatoire a demandé de requalifier les chiffres non vérifiés sur les prix de transfert.",
+      "confidence":"medium","sources":["DOC_SYNTH_V3"]
+    },
+    {
+      "id":"Q15_013","modes":["long"],"title":"Blanchiment",
+      "question":"Les revenus criminels et le blanchiment doivent-ils être traités à part de la fraude fiscale classique ?",
+      "context":"Trafic, contrebande, recel et commerces de façade relèvent d’abord du pénal, mais produisent aussi des revenus occultes.",
+      "weight":1,
+      "answers":[
+        {"id":"A","label":"Oui, axe pénal et fiscal distinct mais relié.","value":"yes_strong"},
+        {"id":"B","label":"Oui, seulement quand il y a revenus occultes imposables.","value":"yes_moderate"},
+        {"id":"C","label":"Non, tout doit rester sous le seul angle fiscal.","value":"no_moderate"},
+        {"id":"D","label":"Non, cela relève uniquement de la police et de la justice.","value":"no_strong"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong","explanation":"Le blanchiment est un sujet distinct, mais il croise la fraude fiscale lorsque des revenus occultes sont réinjectés.",
+      "methodNote":"Ne pas confondre fraude fiscale classique et criminalité organisée.",
+      "confidence":"medium","sources":["DOC_ALLER_DROIT"]
+    },
+    {
+      "id":"Q15_014","modes":["long"],"title":"Responsabilité politique",
+      "question":"Comment traiter la responsabilité politique dans la lutte contre la fraude fiscale ?",
+      "context":"Le pilier identifie des responsabilités structurelles : effectifs, lois, mesure de l’écart fiscal, articulation fisc/justice.",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Établir une chronologie sourcée des décisions, sans accusation nominative non prouvée.","value":"yes_strong"},
+        {"id":"B","label":"Désigner les gouvernements responsables par période, avec prudence.","value":"yes_moderate"},
+        {"id":"C","label":"Rester uniquement sur l’analyse technique, sans politique.","value":"partial"},
+        {"id":"D","label":"Désigner directement les responsables sans attendre une chronologie complète.","value":"no_moderate"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_strong","explanation":"La crédibilité impose une chaîne probatoire : personne, décision, date, effet mesurable.",
+      "methodNote":"Une annexe chronologique politique reste à produire.",
+      "confidence":"medium","sources":["DOC_SYNTH_V3"]
+    },
+    {
+      "id":"Q15_015","modes":["long"],"title":"Priorité avant hausse d’impôt",
+      "question":"La lutte contre la fraude doit-elle être prioritaire avant toute hausse d’impôt sur les contribuables ordinaires ?",
+      "context":"Le principe doctrinal est : récupérer ce qui est déjà dû avant d’augmenter la pression sur les contribuables captifs.",
+      "weight":2,
+      "answers":[
+        {"id":"A","label":"Oui, priorité absolue à la récupération de ce qui est déjà dû.","value":"yes_strong"},
+        {"id":"B","label":"Oui, mais cela ne suffira pas forcément à régler tous les déficits.","value":"yes_moderate"},
+        {"id":"C","label":"Les deux sujets doivent être traités séparément.","value":"partial"},
+        {"id":"D","label":"Non, les hausses d’impôts peuvent être décidées indépendamment.","value":"no_moderate"},
+        {"id":"E","label":"Sans avis.","value":"neutral"}
+      ],
+      "doctrinalPosition":"yes_moderate","explanation":"La lutte contre la fraude est prioritaire, mais il faut éviter de promettre qu’elle résoudra tout mécaniquement.",
+      "methodNote":"La doctrine refuse les chiffres miraculeux et les promesses budgétaires non sourcées.",
+      "confidence":"medium","sources":["DOC_ALLER_DROIT"]
+    }
+]
+
+data = {
+    "pillarId": "P15",
+    "pillarTitle": "Fraude fiscale",
+    "version": "1.1",
+    "sources": sources,
+    "questions": questions_all
+}
+
+app_js = r"""const state = {
+  data: null,
+  mode: "quick",
+  index: 0,
+  answers: {}
+};
+
+const STORAGE_KEY = "qcm-fraude-fiscale-v1-1";
+
+const els = {
+  intro: document.getElementById("intro"),
+  quiz: document.getElementById("quiz"),
+  results: document.getElementById("results"),
+  quickModeBtn: document.getElementById("quickModeBtn"),
+  longModeBtn: document.getElementById("longModeBtn"),
+  switchModeBtn: document.getElementById("switchModeBtn"),
+  changeModeFromResultsBtn: document.getElementById("changeModeFromResultsBtn"),
+  prevBtn: document.getElementById("prevBtn"),
+  nextBtn: document.getElementById("nextBtn"),
+  restartBtn: document.getElementById("restartBtn"),
+  exportBtn: document.getElementById("exportBtn"),
+  exportBox: document.getElementById("exportBox"),
+  questionCounter: document.getElementById("questionCounter"),
+  modeLabel: document.getElementById("modeLabel"),
+  progressFill: document.getElementById("progressFill"),
+  contextBox: document.getElementById("contextBox"),
+  questionTitle: document.getElementById("questionTitle"),
+  questionText: document.getElementById("questionText"),
+  answers: document.getElementById("answers"),
+  explanation: document.getElementById("explanation"),
+  methodNote: document.getElementById("methodNote"),
+  sourceLinks: document.getElementById("sourceLinks"),
+  scoreSummary: document.getElementById("scoreSummary"),
+  resultDetails: document.getElementById("resultDetails")
+};
+
+async function loadQuestions() {
+  const response = await fetch("data/questions_pilier_15.json");
+  if (!response.ok) throw new Error("Impossible de charger les questions.");
+  state.data = await response.json();
+  state.answers = loadStoredAnswers();
+}
+
+function getQuestions() {
+  return state.data.questions.filter(q => q.modes.includes(state.mode));
+}
+
+function loadStoredAnswers() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveAnswers() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state.answers));
+}
+
+function startQuiz(mode) {
+  state.mode = mode;
+  state.index = 0;
+  els.intro.classList.add("hidden");
+  els.results.classList.add("hidden");
+  els.quiz.classList.remove("hidden");
+  renderQuestion();
+}
+
+function backToIntro() {
+  els.quiz.classList.add("hidden");
+  els.results.classList.add("hidden");
+  els.intro.classList.remove("hidden");
+}
+
+function renderQuestion() {
+  const questions = getQuestions();
+  const q = questions[state.index];
+  const current = state.answers[q.id];
+
+  els.questionCounter.textContent = `Question ${state.index + 1} / ${questions.length}`;
+  els.modeLabel.textContent = state.mode === "quick" ? "QCM rapide" : "QCM long / pédagogique";
+  els.progressFill.style.width = `${((state.index + 1) / questions.length) * 100}%`;
+
+  els.questionTitle.textContent = q.title;
+  els.questionText.textContent = q.question;
+
+  if (state.mode === "long" && q.context) {
+    els.contextBox.textContent = q.context;
+    els.contextBox.classList.remove("hidden");
+  } else {
+    els.contextBox.classList.add("hidden");
+  }
+
+  els.explanation.textContent = q.explanation || "";
+  els.methodNote.textContent = q.methodNote ? `Note : ${q.methodNote}` : "";
+  renderSources(q);
+
+  els.answers.innerHTML = "";
+  q.answers.forEach(answer => {
+    const button = document.createElement("button");
+    button.className = "answer-button";
+    if (current === answer.value) button.classList.add("selected");
+    button.type = "button";
+    button.textContent = `${answer.id}. ${answer.label}`;
+    button.addEventListener("click", () => {
+      state.answers[q.id] = answer.value;
+      saveAnswers();
+      renderQuestion();
+    });
+    els.answers.appendChild(button);
+  });
+
+  els.prevBtn.disabled = state.index === 0;
+  els.nextBtn.textContent = state.index === questions.length - 1 ? "Voir les résultats" : "Suivant";
+}
+
+function renderSources(question) {
+  if (!question.sources || !question.sources.length) {
+    els.sourceLinks.innerHTML = "";
+    return;
+  }
+
+  const links = question.sources
+    .map(id => state.data.sources[id])
+    .filter(Boolean)
+    .map(src => `<li><a href="${src.url}" target="_blank" rel="noopener">${src.label}</a></li>`)
+    .join("");
+
+  els.sourceLinks.innerHTML = `<div class="source-list"><strong>Documents liés :</strong><ul>${links}</ul></div>`;
+}
+
+function nextQuestion() {
+  const questions = getQuestions();
+  if (state.index < questions.length - 1) {
+    state.index++;
+    renderQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function prevQuestion() {
+  if (state.index > 0) {
+    state.index--;
+    renderQuestion();
+  }
+}
+
+function compareAnswers(userValue, doctrinalValue) {
+  if (!userValue || userValue === "neutral") return null;
+  if (userValue === doctrinalValue) return 100;
+
+  const closePairs = [
+    ["yes_strong", "yes_moderate"],
+    ["no_strong", "no_moderate"],
+    ["partial", "yes_moderate"],
+    ["partial", "no_moderate"]
+  ];
+
+  if (isClose(userValue, doctrinalValue, closePairs)) return 75;
+  if (userValue === "partial" || doctrinalValue === "partial") return 50;
+
+  const bothYes = userValue.startsWith("yes") && doctrinalValue.startsWith("yes");
+  const bothNo = userValue.startsWith("no") && doctrinalValue.startsWith("no");
+  if (bothYes || bothNo) return 60;
+
+  return 0;
+}
+
+function isClose(a, b, pairs) {
+  return pairs.some(([x, y]) => (a === x && b === y) || (a === y && b === x));
+}
+
+function calculateScore() {
+  let weightedScore = 0;
+  let totalWeight = 0;
+  let answered = 0;
+
+  const details = getQuestions().map(q => {
+    const userValue = state.answers[q.id];
+    const score = compareAnswers(userValue, q.doctrinalPosition);
+    const weight = q.weight || 1;
+
+    if (userValue && userValue !== "neutral") answered++;
+    if (score !== null) {
+      weightedScore += score * weight;
+      totalWeight += weight;
+    }
+
+    return { question: q, userValue, score, weight };
+  });
+
+  const finalScore = totalWeight > 0 ? Math.round(weightedScore / totalWeight) : 0;
+  return { finalScore, answered, total: getQuestions().length, details };
+}
+
+function showResults() {
+  els.quiz.classList.add("hidden");
+  els.results.classList.remove("hidden");
+
+  const result = calculateScore();
+  els.scoreSummary.textContent = `Score d’alignement avec la ligne doctrinale du Pilier 15 : ${result.finalScore} % — ${result.answered}/${result.total} questions répondues.`;
+
+  els.resultDetails.innerHTML = "";
+  result.details.forEach(item => {
+    const div = document.createElement("div");
+    const status = item.score === null ? "partial" : item.score >= 75 ? "ok" : item.score >= 50 ? "partial" : "ko";
+    div.className = `result-item ${status}`;
+    div.innerHTML = `
+      <h3>${item.question.id} — ${item.question.title}</h3>
+      <p><strong>Votre réponse :</strong> ${translateValue(item.userValue)}</p>
+      <p><strong>Position doctrinale :</strong> ${translateValue(item.question.doctrinalPosition)}</p>
+      <p><strong>Score :</strong> ${item.score === null ? "neutralisé" : item.score + " %"}</p>
+      <p>${item.question.explanation}</p>
+    `;
+    els.resultDetails.appendChild(div);
+  });
+}
+
+function exportResults() {
+  const result = calculateScore();
+  const payload = {
+    date: new Date().toISOString(),
+    pillarId: state.data.pillarId,
+    pillarTitle: state.data.pillarTitle,
+    mode: state.mode,
+    version: state.data.version,
+    score: result.finalScore,
+    answered: result.answered,
+    total: result.total,
+    answers: state.answers
+  };
+  els.exportBox.textContent = JSON.stringify(payload, null, 2);
+  els.exportBox.classList.remove("hidden");
+}
+
+function restartQuiz() {
+  if (confirm("Voulez-vous effacer vos réponses et recommencer ?")) {
+    state.index = 0;
+    state.answers = {};
+    localStorage.removeItem(STORAGE_KEY);
+    els.results.classList.add("hidden");
+    els.exportBox.classList.add("hidden");
+    els.intro.classList.remove("hidden");
+  }
+}
+
+function translateValue(value) {
+  const map = {
+    yes_strong: "Oui fortement",
+    yes_moderate: "Oui avec réserve",
+    partial: "Position intermédiaire",
+    neutral: "Sans avis",
+    no_moderate: "Non avec nuance",
+    no_strong: "Non fortement"
+  };
+  return map[value] || "Non répondu";
+}
+
+function bindEvents() {
+  els.quickModeBtn.addEventListener("click", () => startQuiz("quick"));
+  els.longModeBtn.addEventListener("click", () => startQuiz("long"));
+  els.switchModeBtn.addEventListener("click", backToIntro);
+  els.changeModeFromResultsBtn.addEventListener("click", backToIntro);
+  els.nextBtn.addEventListener("click", nextQuestion);
+  els.prevBtn.addEventListener("click", prevQuestion);
+  els.restartBtn.addEventListener("click", restartQuiz);
+  els.exportBtn.addEventListener("click", exportResults);
+}
+
+loadQuestions()
+  .then(bindEvents)
+  .catch(error => {
+    document.body.innerHTML = `<main class="container"><section class="card"><h1>Erreur</h1><p>${error.message}</p></section></main>`;
+  });
+"""
+
+readme = """# QCM Fraude fiscale — V1.1
+
+Améliorations V1.1 :
+- bouton retour au site ;
+- choix QCM rapide / QCM long pédagogique ;
+- questions reformulées de manière moins orientée ;
+- liens documentaires vers la Synthèse Active V3, Aller droit au but et QCM finalisé ;
+- écran de résultat avec retour au site.
+
+Dossier cible GitHub :
+`qcm-fraude-fiscale/`
+"""
+
+(base / "index.html").write_text(index_html, encoding="utf-8")
+(base / "assets" / "css" / "style.css").write_text(style_css, encoding="utf-8")
+(base / "assets" / "js" / "app.js").write_text(app_js, encoding="utf-8")
+(base / "data" / "questions_pilier_15.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+(base / "README.md").write_text(readme, encoding="utf-8")
+
+zip_path = Path("/mnt/data/qcm-fraude-fiscale-v1-1.zip")
+if zip_path.exists():
+    zip_path.unlink()
+
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+    for path in base.rglob("*"):
+        z.write(path, path.relative_to(base.parent))
+
+zip_path.as_posix()
