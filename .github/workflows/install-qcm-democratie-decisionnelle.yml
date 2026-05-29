@@ -1,0 +1,58 @@
+name: Install QCM Democratie Decisionnelle from ZIP
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install-qcm-democratie-decisionnelle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check ZIP exists
+        run: |
+          test -f qcm-democratie-decisionnelle-v3-github-ready.zip
+
+      - name: Unzip source project
+        run: |
+          rm -rf /tmp/qcm-democratie-decisionnelle
+          mkdir -p /tmp/qcm-democratie-decisionnelle
+          unzip -q qcm-democratie-decisionnelle-v3-github-ready.zip -d /tmp/qcm-democratie-decisionnelle
+
+          test -f /tmp/qcm-democratie-decisionnelle/qcm-democratie-decisionnelle/package.json
+          test -f /tmp/qcm-democratie-decisionnelle/qcm-democratie-decisionnelle/src/VoteParIdees.jsx
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: /tmp/qcm-democratie-decisionnelle/qcm-democratie-decisionnelle
+        run: npm install
+
+      - name: Build React app
+        working-directory: /tmp/qcm-democratie-decisionnelle/qcm-democratie-decisionnelle
+        run: npm run build
+
+      - name: Install built files into repository
+        run: |
+          rm -rf qcm-democratie-decisionnelle
+          mkdir -p qcm-democratie-decisionnelle
+
+          cp -R /tmp/qcm-democratie-decisionnelle/qcm-democratie-decisionnelle/dist/* qcm-democratie-decisionnelle/
+
+          test -f qcm-democratie-decisionnelle/index.html
+
+      - name: Commit installed QCM Democratie Decisionnelle files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add qcm-democratie-decisionnelle
+          git commit -m "Install QCM démocratie décisionnelle Pilier 13" || echo "No changes to commit"
+          git push
