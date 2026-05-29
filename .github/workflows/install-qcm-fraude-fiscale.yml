@@ -1,0 +1,43 @@
+name: Install QCM Fraude Fiscale from ZIP
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unzip-qcm-fraude-fiscale:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check ZIP exists
+        run: |
+          test -f qcm-national-v1.zip
+
+      - name: Unzip QCM Fraude Fiscale
+        run: |
+          rm -rf /tmp/qcm-fraude-fiscale
+          mkdir -p /tmp/qcm-fraude-fiscale
+          unzip -q qcm-national-v1.zip -d /tmp/qcm-fraude-fiscale
+
+          rm -rf qcm-fraude-fiscale
+          mkdir -p qcm-fraude-fiscale
+
+          cp -R /tmp/qcm-fraude-fiscale/qcm-national-v1/* qcm-fraude-fiscale/
+
+          test -f qcm-fraude-fiscale/index.html
+          test -f qcm-fraude-fiscale/assets/css/style.css
+          test -f qcm-fraude-fiscale/assets/js/app.js
+          test -f qcm-fraude-fiscale/data/questions_pilier_15.json
+
+      - name: Commit installed QCM Fraude Fiscale files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add qcm-fraude-fiscale
+          git commit -m "Install QCM fraude fiscale V1" || echo "No changes to commit"
+          git push
