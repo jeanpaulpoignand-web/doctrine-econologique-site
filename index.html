@@ -120,6 +120,72 @@ a{color:inherit}
   display:block;
   box-shadow:0 4px 18px rgba(0,0,0,.08);
 }
+.pillar-card.democratie{
+  position:relative;
+  overflow:hidden;
+  min-height:540px;
+  background:
+    radial-gradient(circle at 80% 15%, rgba(31,56,100,.08), transparent 34%),
+    linear-gradient(180deg, #FFFFFC 0%, #F8F6EF 100%);
+}
+.pillar-card.democratie::before{
+  content:'';
+  position:absolute;
+  inset:18px 18px auto auto;
+  width:120px;
+  height:360px;
+  opacity:.07;
+  background:
+    linear-gradient(90deg, transparent 0 12%, var(--p5) 12% 18%, transparent 18% 26%, var(--p5) 26% 32%, transparent 32% 40%, var(--p5) 40% 46%, transparent 46% 54%, var(--p5) 54% 60%, transparent 60% 68%, var(--p5) 68% 74%, transparent 74% 100%);
+  border-top:18px solid var(--p5);
+  border-bottom:22px solid var(--p5);
+  border-radius:8px;
+  pointer-events:none;
+}
+.pillar-card.democratie > *{position:relative;z-index:1}
+.democratie-ticket{
+  margin:12px 0 14px;
+  padding:18px 16px;
+  border:1px solid rgba(14,27,46,.25);
+  border-radius:8px;
+  background:
+    linear-gradient(135deg, rgba(14,27,46,.06), rgba(255,255,252,.95)),
+    repeating-linear-gradient(90deg, rgba(14,27,46,.035) 0 1px, transparent 1px 12px);
+  box-shadow:0 8px 24px rgba(14,27,46,.08);
+}
+.democratie-ticket-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  color:var(--p5);
+  font-weight:700;
+  margin-bottom:8px;
+}
+.democratie-ticket-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:25px;
+  font-weight:700;
+  line-height:1.05;
+  color:var(--ink);
+}
+.democratie-ticket-text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:14px;
+  color:var(--soft);
+  margin-top:8px;
+}
+.pillar-card.democratie .pillar-qcm-button{
+  box-shadow:0 10px 22px rgba(14,27,46,.22);
+  transform:translateY(0);
+  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+.pillar-card.democratie .pillar-qcm-button:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.06);
+  box-shadow:0 14px 30px rgba(14,27,46,.28);
+}
 .position-dark{background:var(--dark);color:#F0EBDC;padding:80px 28px;text-align:center}
 .position-dark .inner{max-width:760px;margin:auto}
 .position-dark h2{color:#F0EBDC;font-size:clamp(30px,4.5vw,46px);font-weight:500}
@@ -303,12 +369,22 @@ a{color:inherit}
       </article>
       <article class="pillar-card democratie fade-in">
         <div class="pillar-num">Pilier XIII</div>
-        <h3>Démocratie décisionnelle</h3>
-        <div class="pillar-tagline">Le peuple informé décide sur les sujets, pas sur les visages.</div>
-        <div class="pillar-stat">QCM 25 questions · matrice 325 cases</div>
+        <h3>Et si on votait différemment ?</h3>
+        <div class="pillar-tagline">Le peuple informé vote sur les sujets avant les étiquettes.</div>
+        <div class="pillar-stat">Bulletin citoyen dynamique · 12 axes · 15 partis · 3 barres de suivi</div>
+        <div class="democratie-ticket">
+          <div class="democratie-ticket-label">Bulletin citoyen</div>
+          <div class="democratie-ticket-title">Votez vos idées</div>
+          <div class="democratie-ticket-text">Puis découvrez les partis les plus proches, les écarts et les angles morts démocratiques.</div>
+        </div>
+        <div class="pillar-highlight">
+          <div class="pillar-highlight-label">Projet suivant</div>
+          <div class="pillar-highlight-num">Et si on avait voté différemment ?</div>
+          <div class="pillar-highlight-text">Comparer les conséquences possibles d'autres choix politiques passés.</div>
+        </div>
         <div class="pillar-actions">
           <a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank" class="pillar-link">Lire le pilier →</a>
-          <a href="./qcm-general/" class="pillar-qcm-button">Lancer le bulletin</a>
+          <a href="./qcm-democratie-decisionnelle/" class="pillar-qcm-button">Lancer le bulletin citoyen</a>
         </div>
       </article>
       <article class="pillar-card fraude fade-in">
@@ -332,9 +408,9 @@ a{color:inherit}
 <div class="position-dark" id="positionner">
   <div class="inner">
     <div class="section-head fade-in">
-      <div class="section-kicker">Bulletin décisionnel</div>
+      <div class="section-kicker">Bulletin citoyen dynamique</div>
       <h2>Quel parti porte <em>vos idées</em> ?</h2>
-      <p class="section-sub">Vingt-cinq questions concrètes. À la fin, une matrice compare vos réponses aux positions documentées des principaux partis politiques.</p>
+      <p class="section-sub">Douze questions concrètes. À la fin, une matrice compare vos réponses aux positions documentées des principaux partis politiques, puis signale les angles morts démocratiques.</p>
     </div>
     <div class="manifesto-text fade-in">
       <span class="line">Le peuple informé <span class="verb">vote</span>.</span>
@@ -342,7 +418,7 @@ a{color:inherit}
       <span class="line">Les partis <span class="verb">se positionnent</span>.</span>
       <span class="line">La matrice <span class="verb">vérifie</span>.</span>
     </div>
-    <a href="./qcm-general/" class="position-cta fade-in">Lancer le bulletin décisionnel <span>→</span><span class="label-beta">BÊTA</span></a>
+    <a href="./qcm-democratie-decisionnelle/" class="position-cta fade-in">Lancer le bulletin citoyen <span>→</span><span class="label-beta">BÊTA</span></a>
     <p class="position-note fade-in">Version de travail en audit. La matrice des partis est consolidée au fur et à mesure que les sources officielles sont vérifiées et archivées.</p>
   </div>
 </div>
@@ -388,7 +464,7 @@ a{color:inherit}
           <li><a href="./qcm-energie/">QCM Énergie</a></li>
           <li><a href="./qcm-aspa/">QCM ASPA</a></li>
           <li><a href="./qcm-fraude-fiscale/">QCM Fraude fiscale</a></li>
-          <li><a href="./qcm-general/">Bulletin décisionnel</a></li>
+          <li><a href="./qcm-democratie-decisionnelle/">Et si on votait différemment ?</a></li>
           <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank">Drive complet</a></li>
         </ul>
       </div>
@@ -408,8 +484,4 @@ const observer=new IntersectionObserver((entries)=>{
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 </script>
 </body>
-</html>'''
-
-path = Path("/mnt/data/index.html")
-path.write_text(html, encoding="utf-8")
-path.as_posix()
+</html>
