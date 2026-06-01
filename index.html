@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,13 +31,13 @@ a{color:inherit}
 .nav-links a{text-decoration:none}
 .nav-links a:hover{color:var(--rouge)}
 @media(max-width:600px){.nav-links{display:none}.nav{padding:14px 18px}.brand-name{font-size:21px}}
-.hero{padding:80px 28px 46px;text-align:center;max-width:880px;margin:auto}
+.hero{padding:80px 28px 60px;text-align:center;max-width:880px;margin:auto}
 .hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--rouge);margin-bottom:28px}
 .hero h1{font-size:clamp(38px,7vw,76px);font-weight:500;margin-bottom:28px}
 .hero h1 em{color:var(--rouge)}
 .hero-lede{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.4vw,22px);max-width:650px;margin:0 auto 36px}
 .hero-byline{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:24px;max-width:360px;margin:auto}
-.ps-wrap{max-width:1080px;margin:auto;padding:0 28px 54px}
+.ps-wrap{max-width:1080px;margin:auto;padding:0 28px 60px}
 .ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .ps-card{background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--rouge);padding:28px;border-radius:4px}
 .ps-card.solution{border-left-color:var(--or)}
@@ -46,120 +45,50 @@ a{color:inherit}
 .ps-card.solution .ps-card-label{color:var(--or)}
 .ps-card h3{font-size:24px;margin-bottom:14px}
 @media(max-width:720px){.ps-grid{grid-template-columns:1fr}}
-
 .section{padding:70px 28px;max-width:1080px;margin:auto}
 .section-head{text-align:center;max-width:720px;margin:0 auto 48px}
 .section-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rouge);margin-bottom:12px}
 .section-title{font-size:clamp(30px,4.5vw,46px);font-weight:500;margin-bottom:16px}
 .section-title em{color:var(--rouge)}
 .section-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--soft)}
-
-.entry-wrap{max-width:1080px;margin:auto;padding:0 28px 72px}
-.entry-card{
-  position:relative;overflow:hidden;
-  background:
-    radial-gradient(circle at 82% 18%, rgba(14,27,46,.08), transparent 34%),
-    linear-gradient(180deg,#FFFFFC 0%,#F8F6EF 100%);
-  border:1px solid var(--line);
-  border-left:5px solid var(--p5);
-  border-radius:8px;
-  padding:34px;
-  box-shadow:0 16px 40px rgba(14,27,46,.07);
-}
-.entry-card::before{
-  content:'';
-  position:absolute;
-  right:18px;
-  top:24px;
-  width:210px;
-  height:420px;
-  background:url('./assets/pilier-antique-filigrane.svg') center/contain no-repeat;
-  opacity:.42;
-  pointer-events:none;
-}
-.entry-card > *{position:relative;z-index:1}
-.entry-kicker{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
-  color:var(--p5);
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-weight:700;
-  margin-bottom:16px;
-}
-.entry-card h2{
-  font-size:clamp(36px,5.6vw,64px);
-  font-weight:600;
-  margin-bottom:18px;
-}
-.entry-card h2 em{color:var(--rouge);font-style:italic}
-.entry-lede{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:clamp(20px,2.6vw,28px);
-  color:var(--soft);
-  max-width:680px;
-  margin-bottom:28px;
-}
-.entry-tools{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
-.entry-tool{
-  display:flex;
-  flex-direction:column;
-  min-height:230px;
-  text-decoration:none;
-  color:var(--ink);
-  border:1px solid rgba(14,27,46,.24);
-  border-radius:8px;
-  padding:24px;
-  background:
-    linear-gradient(135deg,rgba(14,27,46,.055),rgba(255,255,252,.94)),
-    repeating-linear-gradient(90deg,rgba(14,27,46,.032) 0 1px,transparent 1px 12px);
-  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
-}
-.entry-tool:hover{
-  transform:translateY(-3px);
-  border-color:var(--p5);
-  box-shadow:0 14px 30px rgba(14,27,46,.15);
-}
-.entry-tool-label{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--p5);
-  font-weight:700;
-  margin-bottom:12px;
-}
-.entry-tool h3{font-size:32px;margin-bottom:14px}
-.entry-tool p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--soft);margin-bottom:auto}
-.entry-tool-cta{
-  margin-top:22px;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  font-weight:700;
-  color:var(--rouge);
-}
-@media(max-width:760px){
-  .entry-tools{grid-template-columns:1fr}
-  .entry-card{padding:26px}
-  .entry-card::before{right:-26px;top:70px;width:180px;height:360px}
-}
-
 .study-card{background:var(--paper2);border:1px solid var(--line);border-top:4px solid var(--rouge);border-radius:6px;padding:36px 32px;max-width:820px;margin:auto}
 .study-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);margin-bottom:16px}
 .study-card h3{font-size:clamp(28px,4vw,38px);margin-bottom:20px}
 .study-card p{font-size:17px;color:var(--soft);margin-bottom:24px}
-.study-stats{display:grid;grid-template-columns:1fr;gap:14px;padding:22px;background:var(--paper);border:1px solid var(--faint);border-radius:5px;margin-bottom:28px}
-.study-stat-box{background:var(--paper2);border:1px solid var(--faint);border-left:4px solid var(--rouge);border-radius:4px;padding:16px 18px}
+.study-stats{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  padding:22px;
+  background:var(--paper);
+  border:1px solid var(--faint);
+  border-radius:5px;
+  margin-bottom:28px;
+}
+.study-stat-box{
+  background:var(--paper2);
+  border:1px solid var(--faint);
+  border-left:4px solid var(--rouge);
+  border-radius:4px;
+  padding:16px 18px;
+}
 .study-stat-box.allouee{border-left-color:var(--or)}
-.study-stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,48px);font-weight:700;color:var(--rouge);line-height:1;margin-bottom:8px}
+.study-stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,5vw,48px);
+  font-weight:700;
+  color:var(--rouge);
+  line-height:1;
+  margin-bottom:8px;
+}
 .study-stat-box.allouee .study-stat-num{color:var(--or)}
-.study-stat-label{font-size:14px;color:var(--muted);font-weight:700}
+.study-stat-label{
+  font-size:14px;
+  color:var(--muted);
+  font-weight:700;
+}
 .read-link{display:inline-flex;gap:8px;text-decoration:none;color:var(--rouge);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--rouge);padding-bottom:5px}
 .read-link:hover{color:var(--ink);border-bottom-color:var(--ink)}
-
 .pillars-wrap{max-width:1080px;margin:auto;padding:0 28px 70px}
 .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(max-width:880px){.pillars-grid{grid-template-columns:repeat(2,1fr)}}
@@ -170,6 +99,7 @@ a{color:inherit}
 .pillar-card.finance{--accent:var(--p3)}
 .pillar-card.aspa{--accent:var(--p4)}
 .pillar-card.culture{--accent:var(--p4)}
+.pillar-card.democratie{--accent:var(--p5)}
 .pillar-card.fraude{--accent:var(--or)}
 .pillar-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;font-weight:700}
 .pillar-card h3{font-size:23px;margin:8px 0 10px}
@@ -182,23 +112,91 @@ a{color:inherit}
 .pillar-highlight-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
 .pillar-highlight-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700}
 .pillar-highlight-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--soft)}
-.pillar-image{width:100%;margin-top:16px;border-radius:8px;border:1px solid var(--line);display:block;box-shadow:0 4px 18px rgba(0,0,0,.08)}
-
+.pillar-image{
+  width:100%;
+  margin-top:16px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  display:block;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+.pillar-card.democratie{
+  position:relative;
+  overflow:hidden;
+  min-height:540px;
+  background:
+    radial-gradient(circle at 80% 15%, rgba(31,56,100,.08), transparent 34%),
+    linear-gradient(180deg, #FFFFFC 0%, #F8F6EF 100%);
+}
+.pillar-card.democratie::before{
+  content:'';
+  position:absolute;
+  inset:18px 18px auto auto;
+  width:120px;
+  height:360px;
+  opacity:.07;
+  background:
+    linear-gradient(90deg, transparent 0 12%, var(--p5) 12% 18%, transparent 18% 26%, var(--p5) 26% 32%, transparent 32% 40%, var(--p5) 40% 46%, transparent 46% 54%, var(--p5) 54% 60%, transparent 60% 68%, var(--p5) 68% 74%, transparent 74% 100%);
+  border-top:18px solid var(--p5);
+  border-bottom:22px solid var(--p5);
+  border-radius:8px;
+  pointer-events:none;
+}
+.pillar-card.democratie > *{position:relative;z-index:1}
+.democratie-ticket{
+  margin:12px 0 14px;
+  padding:18px 16px;
+  border:1px solid rgba(14,27,46,.25);
+  border-radius:8px;
+  background:
+    linear-gradient(135deg, rgba(14,27,46,.06), rgba(255,255,252,.95)),
+    repeating-linear-gradient(90deg, rgba(14,27,46,.035) 0 1px, transparent 1px 12px);
+  box-shadow:0 8px 24px rgba(14,27,46,.08);
+}
+.democratie-ticket-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  color:var(--p5);
+  font-weight:700;
+  margin-bottom:8px;
+}
+.democratie-ticket-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:25px;
+  font-weight:700;
+  line-height:1.05;
+  color:var(--ink);
+}
+.democratie-ticket-text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:14px;
+  color:var(--soft);
+  margin-top:8px;
+}
+.pillar-card.democratie .pillar-qcm-button{
+  box-shadow:0 10px 22px rgba(14,27,46,.22);
+  transform:translateY(0);
+  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+.pillar-card.democratie .pillar-qcm-button:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.06);
+  box-shadow:0 14px 30px rgba(14,27,46,.28);
+}
 .position-dark{background:var(--dark);color:#F0EBDC;padding:80px 28px;text-align:center}
-.position-dark .inner{max-width:840px;margin:auto}
-.position-dark h2{color:#F0EBDC;font-size:clamp(30px,4.5vw,48px);font-weight:500}
+.position-dark .inner{max-width:760px;margin:auto}
+.position-dark h2{color:#F0EBDC;font-size:clamp(30px,4.5vw,46px);font-weight:500}
 .position-dark h2 em{color:#D4593F}
 .position-dark .section-sub{color:#B8AE94;margin-bottom:40px}
-.manifesto-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,4vw,38px);border-top:1px solid #C9A95B;border-bottom:1px solid #C9A95B;padding:44px 20px;margin-bottom:36px}
+.manifesto-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,4vw,38px);border-top:1px solid #C9A95B;border-bottom:1px solid #C9A95B;padding:44px 20px;margin-bottom:40px}
 .manifesto-text .line{display:block}
 .manifesto-text .verb{color:#D4593F;font-style:normal}
-.position-actions{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
-.position-cta{display:flex;justify-content:center;align-items:center;gap:12px;background:#D4593F;color:white;text-decoration:none;padding:20px 26px;border-radius:4px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
-.position-cta.secondary{background:#0E1B2E;border:1px solid rgba(240,235,220,.25)}
-@media(max-width:720px){.position-actions{grid-template-columns:1fr}}
+.position-cta{display:inline-flex;gap:12px;align-items:center;background:#D4593F;color:white;text-decoration:none;padding:20px 36px;border-radius:4px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
 .label-beta{font-family:'IBM Plex Mono',monospace;font-size:9px;background:rgba(0,0,0,.25);padding:3px 7px;border-radius:2px}
 .position-note{font-family:'Cormorant Garamond',serif;font-style:italic;color:#B8AE94;margin-top:22px}
-
 .committee-intro{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;max-width:720px;text-align:center;margin:0 auto 48px}
 .committee-intro em{color:var(--rouge);font-style:normal;font-weight:700}
 .ia-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:900px;margin:auto}
@@ -210,7 +208,6 @@ a{color:inherit}
 .ia-pub{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase}
 .ia-role{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--soft)}
 .committee-note{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-align:center;margin:40px auto 0;max-width:760px}
-
 .colophon{background:var(--warm);padding:64px 28px 28px;border-top:1px solid var(--line)}
 .colophon-inner{max-width:1080px;margin:auto}
 .colophon-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;text-align:center;max-width:680px;margin:0 auto 48px}
@@ -242,36 +239,12 @@ a{color:inherit}
     <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank">Drive</a></li>
   </ul>
 </nav>
-
 <section class="hero" id="accueil">
   <div class="hero-kicker">Manifeste</div>
   <h1>Une France qui produit,<br><em>répare</em>, transmet.</h1>
   <p class="hero-lede">Un cadre institutionnel français pour la souveraineté énergétique, la durabilité obligatoire, le capital humain reclassé, la justice contributive et la démocratie décisionnelle. Sept piliers actifs, documentés, sourcés et soumis à audit contradictoire multi-IA.</p>
   <div class="hero-byline">Jean Paul Poignand · Côte d'Azur & Besançon</div>
 </section>
-
-<div class="entry-wrap">
-  <section class="entry-card fade-in" aria-label="Outils citoyens principaux">
-    <div class="entry-kicker">Bulletin citoyen dynamique</div>
-    <h2>Et si on votait <em>différemment</em> ?</h2>
-    <p class="entry-lede">Deux portes d’entrée : voter sur les idées avant les étiquettes, ou explorer ce qui aurait pu changer si la France avait fait d’autres choix politiques.</p>
-    <div class="entry-tools">
-      <a class="entry-tool" href="./qcm-democratie-decisionnelle/">
-        <div class="entry-tool-label">Bulletin citoyen</div>
-        <h3>Votez vos idées</h3>
-        <p>Répondez à 12 axes concrets, puis découvrez les partis politiques les plus proches, les écarts et les angles morts démocratiques.</p>
-        <div class="entry-tool-cta">Lancer le bulletin →</div>
-      </a>
-      <a class="entry-tool" href="./qcm-general/">
-        <div class="entry-tool-label">Histoire alternative</div>
-        <h3>Et si on avait voté différemment ?</h3>
-        <p>Explorer les conséquences possibles de choix électoraux passés et comparer leurs effets économiques, sociaux et productifs.</p>
-        <div class="entry-tool-cta">Explorer les scénarios →</div>
-      </a>
-    </div>
-  </section>
-</div>
-
 <div class="ps-wrap">
   <div class="ps-grid">
     <div class="ps-card fade-in">
@@ -286,7 +259,6 @@ a{color:inherit}
     </div>
   </div>
 </div>
-
 <section class="section" id="decouvrir">
   <div class="section-head fade-in">
     <div class="section-kicker">Étude courte · 2 minutes</div>
@@ -311,15 +283,14 @@ a{color:inherit}
         <div class="study-stat-label">Compensation annuelle allouée</div>
       </div>
     </div>
-    <a href="./qcm-immigrants-journee/" class="read-link">Je veux en savoir plus <span>→</span></a>
+    <a href="./qcm-immigrants-journee/" class="read-link">Commencer le QCM <span>→</span></a>
   </div>
 </section>
-
 <section id="piliers">
   <div class="section-head fade-in" style="padding:0 28px">
-    <div class="section-kicker">Les piliers documentés</div>
-    <h2 class="section-title">Sommaire des <em>piliers</em>.</h2>
-    <p class="section-sub">Les piliers conservent leur numérotation pour assurer la traçabilité de la doctrine et permettre l’approfondissement via les documents sources.</p>
+    <div class="section-kicker">Les piliers actifs</div>
+    <h2 class="section-title">Sommaire des <em>sept piliers</em>.</h2>
+    <p class="section-sub">Sept fiches consolidées, qualifiées [FAIT] / [HYPOTHÈSE] / [ANALYSE], passées au crible de cinq intelligences artificielles contradictoires.</p>
   </div>
   <div class="pillars-wrap">
     <div class="pillars-grid">
@@ -330,7 +301,7 @@ a{color:inherit}
         <div class="pillar-stat">Nucléaire · biométhane local · rendement national</div>
         <div class="pillar-actions">
           <a href="https://docs.google.com/document/d/1uuntTCmWe5kRUWNd3VKKjA6QTK6ROb_Y/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank" class="pillar-link">Lire le pilier →</a>
-          <a href="./qcm-energie/" class="pillar-qcm-button">Je veux en savoir plus</a>
+          <a href="./qcm-energie/" class="pillar-qcm-button">Faire le QCM Énergie</a>
         </div>
       </article>
       <article class="pillar-card garantie fade-in">
@@ -368,7 +339,7 @@ a{color:inherit}
         <div class="pillar-stat">Solidarité nationale · cotisations · dignité des anciens</div>
         <div class="pillar-actions">
           <a href="./qcm-aspa/" class="pillar-link">Lire le pilier →</a>
-          <a href="./qcm-aspa/" class="pillar-qcm-button">Je veux en savoir plus</a>
+          <a href="./qcm-aspa/" class="pillar-qcm-button">Faire le QCM ASPA</a>
           <div class="pillar-highlight">
             <div class="pillar-highlight-label">Idée force</div>
             <div class="pillar-highlight-num">Justice contributive</div>
@@ -388,7 +359,32 @@ a{color:inherit}
             <div class="pillar-highlight-num">Reçu fiscal culturel</div>
             <div class="pillar-highlight-text">chaque contribuable voit ce qu'il finance</div>
           </div>
-          <img src="./assets/recu-fiscal-culturel.webp" alt="Reçu fiscal culturel — coût apparent et coût réel d'une sortie culturelle" class="pillar-image" loading="lazy">
+          <img
+            src="./assets/recu-fiscal-culturel.webp"
+            alt="Reçu fiscal culturel — coût apparent et coût réel d'une sortie culturelle"
+            class="pillar-image"
+            loading="lazy"
+          >
+        </div>
+      </article>
+      <article class="pillar-card democratie fade-in">
+        <div class="pillar-num">Pilier XIII</div>
+        <h3>Et si on votait différemment ?</h3>
+        <div class="pillar-tagline">Le peuple informé vote sur les sujets avant les étiquettes.</div>
+        <div class="pillar-stat">Bulletin citoyen dynamique · 12 axes · 15 partis · 3 barres de suivi</div>
+        <div class="democratie-ticket">
+          <div class="democratie-ticket-label">Bulletin citoyen</div>
+          <div class="democratie-ticket-title">Votez vos idées</div>
+          <div class="democratie-ticket-text">Puis découvrez les partis les plus proches, les écarts et les angles morts démocratiques.</div>
+        </div>
+        <div class="pillar-highlight">
+          <div class="pillar-highlight-label">Projet suivant</div>
+          <div class="pillar-highlight-num">Et si on avait voté différemment ?</div>
+          <div class="pillar-highlight-text">Comparer les conséquences possibles d'autres choix politiques passés.</div>
+        </div>
+        <div class="pillar-actions">
+          <a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank" class="pillar-link">Lire le pilier →</a>
+          <a href="./qcm-democratie-decisionnelle/" class="pillar-qcm-button">Lancer le bulletin citoyen</a>
         </div>
       </article>
       <article class="pillar-card fraude fade-in">
@@ -398,7 +394,7 @@ a{color:inherit}
         <div class="pillar-stat">Écart fiscal · TVA · contrôle fiscal · facilitateurs</div>
         <div class="pillar-actions">
           <a href="./qcm-fraude-fiscale/" class="pillar-link">Lire le pilier →</a>
-          <a href="./qcm-fraude-fiscale/" class="pillar-qcm-button">Je veux en savoir plus</a>
+          <a href="./qcm-fraude-fiscale/" class="pillar-qcm-button">Faire le QCM Fraude fiscale</a>
           <div class="pillar-highlight">
             <div class="pillar-highlight-label">Idée force</div>
             <div class="pillar-highlight-num">Aucun chiffre central unique</div>
@@ -409,28 +405,23 @@ a{color:inherit}
     </div>
   </div>
 </section>
-
 <div class="position-dark" id="positionner">
   <div class="inner">
     <div class="section-head fade-in">
       <div class="section-kicker">Bulletin citoyen dynamique</div>
-      <h2>Quel <em>parti politique</em> porte vos idées ?</h2>
-      <p class="section-sub">Deux entrées complémentaires : voter sur les sujets aujourd’hui, ou explorer ce que d’autres choix politiques passés auraient pu produire.</p>
+      <h2>Quel parti porte <em>vos idées</em> ?</h2>
+      <p class="section-sub">Douze questions concrètes. À la fin, une matrice compare vos réponses aux positions documentées des principaux partis politiques, puis signale les angles morts démocratiques.</p>
     </div>
     <div class="manifesto-text fade-in">
       <span class="line">Le peuple informé <span class="verb">vote</span>.</span>
       <span class="line">Les élus <span class="verb">exécutent</span>.</span>
-      <span class="line">Les partis politiques <span class="verb">se positionnent</span>.</span>
+      <span class="line">Les partis <span class="verb">se positionnent</span>.</span>
       <span class="line">La matrice <span class="verb">vérifie</span>.</span>
     </div>
-    <div class="position-actions">
-      <a href="./qcm-democratie-decisionnelle/" class="position-cta fade-in">Et si on votait différemment ? <span>→</span><span class="label-beta">BÊTA</span></a>
-      <a href="./qcm-general/" class="position-cta secondary fade-in">Et si on avait voté différemment ? <span>→</span></a>
-    </div>
-    <p class="position-note fade-in">Version de travail en audit. La matrice des partis politiques est consolidée au fur et à mesure que les sources officielles sont vérifiées et archivées.</p>
+    <a href="./qcm-democratie-decisionnelle/" class="position-cta fade-in">Lancer le bulletin citoyen <span>→</span><span class="label-beta">BÊTA</span></a>
+    <p class="position-note fade-in">Version de travail en audit. La matrice des partis est consolidée au fur et à mesure que les sources officielles sont vérifiées et archivées.</p>
   </div>
 </div>
-
 <section class="section" id="methode">
   <div class="section-head fade-in">
     <div class="section-kicker">Méthode</div>
@@ -446,7 +437,6 @@ a{color:inherit}
   </div>
   <p class="committee-note">Anthropic, OpenAI, Google, xAI et Perplexity AI sont des marques de leurs propriétaires respectifs. Leur mention ne suggère aucun partenariat ni endossement.</p>
 </section>
-
 <footer class="colophon">
   <div class="colophon-inner">
     <p class="colophon-quote">Une société prospère ne peut pas durablement dissimuler ce qu'elle produit, ce qu'elle consomme, et qui paie réellement.</p>
@@ -463,18 +453,18 @@ a{color:inherit}
           <li><a href="https://docs.google.com/document/d/1A4ieIVuJU_CyyWOT0ktv6Kjw_d6VUM_zGATNCiAFGjg/edit" target="_blank">Financement</a></li>
           <li><a href="./qcm-aspa/">Retraites & minimum vieillesse</a></li>
           <li><a href="https://drive.google.com/file/d/1XfUSpFL7MQEpBuXi6owVlqxqh3J4mEMT/view" target="_blank">Culture</a></li>
+          <li><a href="https://docs.google.com/document/d/1BpjgVzgGmCHc8JJo0IekN1hjgaV6TVefx_kuHbLB8-w/edit" target="_blank">Démocratie</a></li>
           <li><a href="./qcm-fraude-fiscale/">Fraude fiscale</a></li>
         </ul>
       </div>
       <div class="colophon-col">
         <h4>Outils citoyens</h4>
         <ul>
-          <li><a href="./qcm-democratie-decisionnelle/">Et si on votait différemment ?</a></li>
-          <li><a href="./qcm-general/">Et si on avait voté différemment ?</a></li>
           <li><a href="./qcm-immigrants-journee/">Étude 11 — Frontaliers</a></li>
-          <li><a href="./qcm-energie/">Énergie — en savoir plus</a></li>
-          <li><a href="./qcm-aspa/">ASPA — en savoir plus</a></li>
-          <li><a href="./qcm-fraude-fiscale/">Fraude fiscale — en savoir plus</a></li>
+          <li><a href="./qcm-energie/">QCM Énergie</a></li>
+          <li><a href="./qcm-aspa/">QCM ASPA</a></li>
+          <li><a href="./qcm-fraude-fiscale/">QCM Fraude fiscale</a></li>
+          <li><a href="./qcm-democratie-decisionnelle/">Et si on votait différemment ?</a></li>
           <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank">Drive complet</a></li>
         </ul>
       </div>
@@ -485,7 +475,6 @@ a{color:inherit}
     </div>
   </div>
 </footer>
-
 <script>
 const observer=new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
