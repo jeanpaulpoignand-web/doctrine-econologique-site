@@ -18,7 +18,25 @@
 .doctrine-info p { font-size: .85rem; color: var(--muted, #7d8590); line-height: 1.6; margin-bottom: .8rem; }
 .doctrine-info .soft { font-style: italic; }
 
-    </style>
+    
+.forgotten-proof-panel{margin-top:26px;border:1px solid rgba(56,189,248,.32);background:linear-gradient(135deg,#0ea5e918,#0f172adb);border-radius:28px;padding:26px;box-shadow:0 18px 50px rgba(0,0,0,.22)}
+.forgotten-proof-panel h2{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.4rem);color:#e0f2fe}
+.forgotten-proof-panel .intro{color:#cbd5e1;max-width:940px;margin:0 0 18px;line-height:1.65}
+.forgotten-proof-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:18px}
+.forgotten-proof-card{border:1px solid rgba(148,163,184,.25);border-radius:22px;background:linear-gradient(135deg,#02061766,#1e293b88);padding:18px;display:flex;flex-direction:column;min-height:100%}
+.forgotten-proof-card .fp-icon{font-size:2rem;margin-bottom:10px}
+.forgotten-proof-card small{color:#7dd3fc;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+.forgotten-proof-card h3{font-size:1.02rem;line-height:1.25;margin:8px 0 10px;color:#fff}
+.forgotten-proof-card .punch{color:#dbeafe;font-size:.92rem;line-height:1.48;margin:0 0 12px}
+.figure-list{display:grid;gap:7px;margin:10px 0 16px;padding:0;list-style:none}
+.figure-list li{border-left:3px solid #38bdf8;padding:7px 9px;background:#ffffff0a;border-radius:10px;color:#e5eefc;font-size:.86rem;line-height:1.35}
+.source-btn{margin-top:auto;display:inline-flex;justify-content:center;align-items:center;text-decoration:none;border-radius:14px;padding:11px 12px;background:linear-gradient(135deg,#0284c7,#22c55e);color:white;font-weight:900;font-size:.88rem}
+.source-btn:hover{filter:brightness(1.08)}
+.forgotten-proof-note{margin-top:16px;color:#bae6fd;font-size:.94rem;line-height:1.55;border-top:1px solid rgba(148,163,184,.22);padding-top:14px}
+@media(max-width:1050px){.forgotten-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.forgotten-proof-grid{grid-template-columns:1fr}.forgotten-proof-panel{padding:20px}}
+
+</style>
   </head>
   <body>
     <div id="root"></div>
@@ -41,21 +59,18 @@ const parties = [
 ];
 
 const axes = [
-  // Convention moteur V7.3 : les partyScores restent inchangés.
-  // Le champ inv sert uniquement à convertir l'affichage du curseur.
-  // Objectif : ne pas mettre le même camp toujours du même côté visuel.
   {id:'energie', icon:'⚡', title:'Énergie', q:'La France doit-elle reprendre le contrôle complet de son électricité pour garantir une énergie abondante, stable et bon marché ?', left:'Marché européen / concurrence', right:'Souveraineté publique / prix national maîtrisé', measure:'Le curseur mesure le degré de reprise en main publique, nationale et productive de l’électricité.', tags:['EDF','Prix','Industrie','Nucléaire'], inv:false},
-  {id:'sante', icon:'🏥', title:'Santé / déserts médicaux', q:'Face aux déserts médicaux, quel principe doit primer ?', left:'Priorité nationale de santé publique', right:'Libre circulation totale', measure:'Le curseur mesure la priorité donnée au maintien des soignants formés en France et à la couverture médicale du territoire.', tags:['Médecins','Territoires','Formation','Service public'], inv:true},
+  {id:'sante', icon:'🏥', title:'Santé / déserts médicaux', q:'Face aux déserts médicaux, quel principe doit primer ?', left:'Libre circulation totale', right:'Priorité nationale de santé publique', measure:'Le curseur mesure la priorité donnée au maintien des soignants formés en France et à la couverture médicale du territoire.', tags:['Médecins','Territoires','Formation','Service public'], inv:true},
   {id:'agri', icon:'🌾', title:'Agriculture locale', q:'Faut-il privilégier une agriculture locale protégée ou rester dans une logique de libre-échange alimentaire ?', left:'Libre-échange alimentaire', right:'Protection productive locale', measure:'Le curseur mesure la priorité donnée à l’autonomie alimentaire, aux producteurs français et aux circuits courts.', tags:['Agriculture','Prix','Importations','Souveraineté'], inv:false},
-  {id:'industrie', icon:'🏭', title:'Emploi / industrie', q:'La France doit-elle conditionner davantage ses aides et ses achats publics à la production sur le territoire ?', left:'Priorité productive nationale', right:'Ouverture sans contrainte', measure:'Le curseur mesure le niveau d’exigence industrielle attaché à l’argent public et aux marchés publics.', tags:['Emploi','Relocalisation','Achats publics','Conditionnalité'], inv:true},
-  {id:'immigration', icon:'🧭', title:'Immigration / intégration', q:'La politique migratoire doit-elle être guidée d’abord par l’ouverture ou par la capacité réelle d’intégration ?', left:'Ouverture prioritaire', right:'Capacité d’intégration mesurée', measure:'Le curseur mesure le degré de régulation par le logement, l’emploi, l’école, la sécurité et les finances publiques.', tags:['Logement','Emploi','Asile','Intégration'], inv:false},
-  {id:'fiscalite', icon:'💶', title:'Fiscalité / multinationales', q:'Faut-il taxer les grandes entreprises selon leur activité réelle en France plutôt que selon leur optimisation juridique ?', left:'Taxation au lieu réel d’activité', right:'Fiscalité concurrentielle', measure:'Le curseur mesure l’exigence de justice fiscale envers les acteurs globalisés.', tags:['Multinationales','Fiscalité','Optimisation','Justice'], inv:true},
-  {id:'dette', icon:'📊', title:'Dette / argent public', q:'Comment contrôler l’usage de l’argent public et la dette de fonctionnement ?', left:'Gestion budgétaire classique', right:'Contrôle du retour réel pour le peuple', measure:'Le curseur mesure l’exigence de transparence, d’évaluation et de retour social mesurable des dépenses publiques.', tags:['Dette','ROI public','Subventions','Contrôle'], inv:false},
-  {id:'ecologie', icon:'🌍', title:'Écologie concrète', q:'L’écologie doit-elle d’abord passer par des interdictions générales ou par une écologie productive et mesurable ?', left:'Production durable et mesurable', right:'Normes et interdictions', measure:'Le curseur mesure la priorité donnée à l’efficacité écologique réelle, industrielle et sociale.', tags:['CO₂','Réparation','Production','Mesure'], inv:true},
-  {id:'education', icon:'📚', title:'Éducation', q:'L’école doit-elle privilégier l’autonomie pédagogique ou un socle national exigeant et vérifiable ?', left:'Autonomie locale forte', right:'Socle national contrôlé', measure:'Le curseur mesure l’importance accordée à la transmission, aux savoirs fondamentaux et à l’évaluation nationale.', tags:['École','Transmission','Niveau','Mérite'], inv:false},
-  {id:'culture', icon:'🎭', title:'Culture / médias', q:'La culture et les médias doivent-ils rester très subventionnés ou rendre plus visibles leurs coûts réels ?', left:'Vérité des coûts et transparence', right:'Subvention large peu visible', measure:'Le curseur mesure la priorité donnée à la transparence financière sans supprimer l’accès culturel.', tags:['Médias','Culture','Coûts','Transparence'], inv:true},
+  {id:'industrie', icon:'🏭', title:'Emploi / industrie', q:'La France doit-elle conditionner davantage ses aides et ses achats publics à la production sur le territoire ?', left:'Ouverture sans contrainte', right:'Priorité productive nationale', measure:'Le curseur mesure le niveau d’exigence industrielle attaché à l’argent public et aux marchés publics.', tags:['Emploi','Relocalisation','Achats publics','Conditionnalité'], inv:false},
+  {id:'immigration', icon:'🧭', title:'Immigration / intégration', q:'La politique migratoire doit-elle être guidée d’abord par l’ouverture ou par la capacité réelle d’intégration ?', left:'Ouverture prioritaire', right:'Capacité d’intégration mesurée', measure:'Le curseur mesure le degré de régulation par le logement, l’emploi, l’école, la sécurité et les finances publiques.', tags:['Logement','Emploi','Asile','Intégration'], inv:true},
+  {id:'fiscalite', icon:'💶', title:'Fiscalité / multinationales', q:'Faut-il taxer les grandes entreprises selon leur activité réelle en France plutôt que selon leur optimisation juridique ?', left:'Fiscalité concurrentielle', right:'Taxation au lieu réel d’activité', measure:'Le curseur mesure l’exigence de justice fiscale envers les acteurs globalisés.', tags:['Multinationales','Fiscalité','Optimisation','Justice'], inv:false},
+  {id:'dette', icon:'📊', title:'Dette / argent public', q:'Comment contrôler l’usage de l’argent public et la dette de fonctionnement ?', left:'Gestion budgétaire classique', right:'Contrôle du retour réel pour le peuple', measure:'Le curseur mesure l’exigence de transparence, d’évaluation et de retour social mesurable des dépenses publiques.', tags:['Dette','ROI public','Subventions','Contrôle'], inv:true},
+  {id:'ecologie', icon:'🌍', title:'Écologie concrète', q:'L’écologie doit-elle d’abord passer par des interdictions générales ou par une écologie productive et mesurable ?', left:'Normes et interdictions', right:'Production durable et mesurable', measure:'Le curseur mesure la priorité donnée à l’efficacité écologique réelle, industrielle et sociale.', tags:['CO₂','Réparation','Production','Mesure'], inv:false},
+  {id:'education', icon:'📚', title:'Éducation', q:'L’école doit-elle privilégier l’autonomie pédagogique ou un socle national exigeant et vérifiable ?', left:'Autonomie locale forte', right:'Socle national contrôlé', measure:'Le curseur mesure l’importance accordée à la transmission, aux savoirs fondamentaux et à l’évaluation nationale.', tags:['École','Transmission','Niveau','Mérite'], inv:true},
+  {id:'culture', icon:'🎭', title:'Culture / médias', q:'La culture et les médias doivent-ils rester très subventionnés ou rendre plus visibles leurs coûts réels ?', left:'Subvention large peu visible', right:'Vérité des coûts et transparence', measure:'Le curseur mesure la priorité donnée à la transparence financière sans supprimer l’accès culturel.', tags:['Médias','Culture','Coûts','Transparence'], inv:false},
   {id:'controle', icon:'🗳️', title:'Contrôle des élus', q:'Comment les citoyens doivent-ils contrôler les engagements politiques ?', left:'Démocratie représentative classique', right:'Suivi public des engagements', measure:'Le curseur mesure l’importance accordée au contrôle citoyen direct, au suivi des promesses et à la responsabilité politique.', tags:['Mandat','Bilan','Référendum','Contrôle citoyen'], inv:false, blindSpot:true},
-  {id:'europe', icon:'🇪🇺', title:'Europe / souveraineté', q:'La France doit-elle accepter les contraintes européennes actuelles ou reprendre sa liberté de décision sur les sujets vitaux ?', left:'Souveraineté nationale prioritaire', right:'Cadre européen prioritaire', measure:'Le curseur mesure le niveau de reprise de décision nationale sur énergie, budget, industrie, frontières et droit.', tags:['UE','Traités','Budget','Souveraineté'], inv:true}
+  {id:'europe', icon:'🇪🇺', title:'Europe / souveraineté', q:'La France doit-elle accepter les contraintes européennes actuelles ou reprendre sa liberté de décision sur les sujets vitaux ?', left:'Cadre européen prioritaire', right:'Souveraineté nationale prioritaire', measure:'Le curseur mesure le niveau de reprise de décision nationale sur énergie, budget, industrie, frontières et droit.', tags:['UE','Traités','Budget','Souveraineté'], inv:true}
 ];
 
 const strategic = [
@@ -89,6 +104,75 @@ partyScores.lfi=[54,48,55,50,38,80,82,78,72,76,70,36];
 partyScores.eelv=[82,35,60,32,25,68,72,90,66,82,64,18];
 partyScores.gens=[76,34,50,30,22,66,70,84,68,80,60,20];
 
+
+const forgottenQuestions = [
+  {
+    icon:'⚡',
+    title:'Énergie',
+    question:'Combien coûte réellement la perte de souveraineté électrique ?',
+    punch:'Une énergie abondante, pilotable et bon marché conditionne tout le reste : industrie, salaires, prix et indépendance.',
+    figures:[
+      'Document court d’orientation — Pilier 1 Énergie souveraine',
+      'Objectif : relier électricité, compétitivité, emploi et souveraineté productive',
+      'Question décisive : prix national maîtrisé ou dépendance au marché européen'
+    ],
+    sourceTitle:'ALLER DROIT AU BUT — Résultat global — Pilier 1 Énergie',
+    sourceUrl:'https://docs.google.com/document/d/1PtKJ9hXyw2do3_hOOF0_Lj5l7zz0YYni4uQLhP7eQXQ'
+  },
+  {
+    icon:'🧓',
+    title:'Grand âge / EHPAD',
+    question:'Et si revaloriser le grand âge coûtait moins cher que ne rien faire ?',
+    punch:'Le débat public présente souvent le grand âge comme une dépense. La question oubliée est celle du retour économique : emplois, hospitalisations évitées, intérim réduit, maintien à domicile.',
+    figures:[
+      'Ordre de grandeur travaillé : investissement ≈ 2,5 Md€/an',
+      'Bilan net doctrinal à tester : jusqu’à +2,55 Md€/an à pleine charge',
+      'Sources officielles séparées des hypothèses doctrinales'
+    ],
+    sourceTitle:'ALLER DROIT AU BUT — Pilier 5 Grand âge EHPAD ROI',
+    sourceUrl:'https://drive.google.com/file/d/1MYR7QlgKAUhU1uThJb4iHCm33nPyoLIl'
+  },
+  {
+    icon:'🏛️',
+    title:'ASPA / succession',
+    question:'Pourquoi récupère-t-on facilement sur les petits patrimoines français, mais beaucoup moins sur certains patrimoines hors de portée ?',
+    punch:'L’ASPA est censée être récupérable sur succession. La vraie question est : récupérable contre qui, dans quels pays, avec quels accords et quelles limites ?',
+    figures:[
+      'Sujet : ASPA, récupération successorale, réciprocité',
+      'Point juridique central : article L815-13 du Code de la sécurité sociale',
+      'Question citoyenne : égalité réelle de recouvrement ou asymétrie de fait'
+    ],
+    sourceTitle:'SOURCE — Cartographie officielle consolidée — Pilier 4 ASPA',
+    sourceUrl:'https://drive.google.com/file/d/1vVU9WZw3DCMXDDS8M2qm70hnAPb0eTF1'
+  },
+  {
+    icon:'🔧',
+    title:'Garantie 10 ans / obsolescence',
+    question:'Combien le jetable coûte-t-il réellement aux ménages ?',
+    punch:'Une garantie longue transmissible change le rapport de force : le fabricant doit produire durable, le consommateur garde de la valeur, la réparation locale redevient rationnelle.',
+    figures:[
+      'Proposition : garantie légale de durabilité transmissible de 10 ans',
+      'Cible : électroménager, électronique, véhicules, machinisme',
+      'Effet attendu : pouvoir d’achat, réparation, valeur résiduelle, relocalisation'
+    ],
+    sourceTitle:'SYNTHÈSE — Pilier 2 Garantie décennale transmissible',
+    sourceUrl:'https://docs.google.com/document/d/12gYUH_ElLuLf_VWQ4tE6xN43ogaYqU2A2CSuwFX3WPo'
+  },
+  {
+    icon:'🌍',
+    title:'Frontaliers / capital humain',
+    question:'Qui paie quand un pays forme, loge et équipe les travailleurs captés chaque jour par un voisin plus riche ?',
+    punch:'Le frontalier n’est pas un problème individuel. C’est une question de compensation : formation, infrastructures, logement, chômage, pression salariale et valeur ajoutée captée ailleurs.',
+    figures:[
+      'Sujet : Luxembourg, Suisse, Monaco, travailleurs frontaliers résidant en France',
+      'Taux politique discuté : compensation globale autour de 8 à 10 %',
+      'Question oubliée : qui rembourse le capital humain financé par la France ?'
+    ],
+    sourceTitle:'Étude 11 — Taux de compensation capital humain frontaliers',
+    sourceUrl:'https://drive.google.com/file/d/1JbbSklVJkeNpUUbkK1eDvSsOrEldVQym'
+  }
+];
+
 let state = { screen:'home', modeFutur:false, answers: axes.map(()=>50), selectedParty:null };
 const root = document.getElementById('root');
 function esc(s){return String(s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}
@@ -98,18 +182,30 @@ function proximity(user, party){return Math.max(0,100-Math.abs(user-party))}
 function results(){return parties.map(p=>{const per=axes.map((a,i)=>proximity(calcVal(i), partyScores[p.id][i])); return {...p, score: Math.round(per.reduce((a,b)=>a+b,0)/per.length), per};}).sort((a,b)=>b.score-a.score)}
 function blindSpots(){const rows=[]; axes.forEach((a,i)=>{const best=Math.max(...parties.map(p=>proximity(calcVal(i),partyScores[p.id][i]))); if(best<70 || a.blindSpot) rows.push({axis:a.title,best,reason:a.blindSpot?'suivi des engagements et responsabilité politique insuffisamment couverts':'proximité faible avec l’offre politique'});}); return rows;}
 function toggle(){state.modeFutur=!state.modeFutur; render()}
-function home(){return `<main class="page hero-page"><section class="hero-card"><span class="hero-kicker">Pilier XIII · Prototype V8.2</span><h1>Bulletin de vote du futur proche</h1><p class="hero-lead">Vos idées d'abord. Les partis seulement à la fin.</p>
-<label class="switch-row">
-  <em>QCM simple</em>
-  <input type="checkbox" ${state.modeFutur?'checked':''} onchange="app.toggle()">
-  <span></span>
-  <em>Mode futur : 3 barres</em>
-</label>
-<div class="hero-grid"><button class="choice-card" onclick="app.go('ideas')"><span class="choice-icon">🗳️</span><strong>Voter pour mes idées</strong><em>12 questions, curseurs dynamiques, puis votre proximité politique calculée.</em></button><button class="choice-card secondary" onclick="app.go('classic')"><span class="choice-icon">🏛️</span><strong>Voter pour un parti</strong><em>Choisissez directement votre formation politique.</em></button></div></section></main>`}
+function home(){return `<main class="page hero-page"><section class="hero-card"><span class="hero-kicker">Pilier XIII · Prototype V8.2</span><h1>Bulletin de vote du futur proche</h1><p class="hero-lead">Vos idées d'abord. Les partis seulement à la fin.</p><div class="hero-grid"><button class="choice-card" onclick="app.go('ideas')"><span class="choice-icon">🗳️</span><strong>Voter pour mes idées</strong><em>12 questions, curseurs dynamiques, puis votre proximité politique calculée.</em></button><button class="choice-card secondary" onclick="app.go('classic')"><span class="choice-icon">🏛️</span><strong>Voter pour un parti</strong><em>Choisissez directement votre formation politique.</em></button></div></section></main>`}
 function ideas(){let i=state.step||0, a=axes[i], shown=displayVal(i), tone=shown<42?'left':shown>58?'right':'center'; let strength=Math.abs(shown-50)/50; return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">${i+1}/12</span></nav><section class="panel heading-panel"><div><h1>Vos positions</h1><p>Les partis sont masqués pendant le vote. Déplacez le jeton : le texte et la couleur changent pour clarifier votre position.</p></div><div class="progress-wrap"><strong>${i+1}/12</strong><div class="progress"><span style="width:${((i+1)/12)*100}%"></span></div></div></section><section class="single-axis"><article class="axis-card tone-${tone}" style="--strength:${strength}"><div class="axis-head"><span class="axis-emoji">${a.icon}</span><div><small>Question · ${esc(a.title)}</small><h2>${esc(a.q)}</h2><p class="measure">${esc(a.measure)}</p></div></div><div class="scale"><span>${esc(a.left)}</span><b>${shown}/100</b><span>${esc(a.right)}</span></div><input class="premium-slider" type="range" min="0" max="100" value="${shown}" style="--value:${shown};--strength:${strength}" oninput="app.setAnswer(${i}, this.value)"><div class="dynamic-box ${tone}"><strong>${tone==='left'?'Position plutôt gauche du curseur':tone==='right'?'Position plutôt droite du curseur':'Position équilibrée'}</strong><p>${tone==='center'?'Vous recherchez un équilibre entre les deux principes.':tone==='left'?'Vous privilégiez davantage : '+esc(a.left)+'.':'Vous privilégiez davantage : '+esc(a.right)+'.'}</p></div><div class="keywords">${a.tags.map(t=>`<span class="active ${tone}">${esc(t)}</span>`).join('')}</div>${state.modeFutur?`<div class="three-bars"><div class="bar-line"><span>Votre vote</span><b>${shown}</b><div class="progress personal"><span style="width:${shown}%"></span></div></div><div class="bar-line"><span>Résultat simulé</span><b>${Math.max(0,Math.min(100,shown-8+((i*7)%17)))}</b><div class="progress blue"><span style="width:${Math.max(0,Math.min(100,shown-8+((i*7)%17)))}%"></span></div></div><div class="bar-line"><span>Application réelle</span><b>${Math.max(0,Math.min(100,35+((i*13)%45)))}</b><div class="progress green"><span style="width:${Math.max(0,Math.min(100,35+((i*13)%45)))}%"></span></div></div></div>`:''}</article><div class="actions"><button class="ghost" ${i===0?'disabled':''} onclick="app.prev()">← Précédent</button><button class="btn primary" onclick="app.next()">${i===11?'Voir le résultat':'Question suivante →'}</button></div></section></main>`}
 function classic(){return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Vote classique</span></nav><section class="panel"><h1>Vote classique par parti</h1><p>Cette entrée reproduit le geste électoral traditionnel : vous choisissez directement une formation politique.</p><div class="vote-grid">${parties.map(p=>`<button class="vote-card" style="--party:${p.color}" onclick="app.selectParty('${p.id}')"><span class="party-dot"></span><strong>${esc(p.name)}</strong><em>${esc(p.family)}</em></button>`).join('')}</div>${state.selectedParty?`<div class="method-box"><h2>Choix enregistré</h2><p>Vous avez choisi : <strong>${esc(parties.find(p=>p.id===state.selectedParty).name)}</strong>. Cette entrée cohabite avec le bulletin par idées, elle ne le remplace pas.</p></div>`:''}</section></main>`}
 function forgotten(){return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Angles morts</span></nav><section class="panel"><h1>Questions oubliées</h1><p>Ce module séparé ne modifie pas le résultat principal. Il sert à rendre visibles des sujets stratégiques peu traités, peu chiffrés ou mal suivis par l’offre politique dominante.</p><div class="forgotten-grid">${strategic.map((s,i)=>`<article class="forgotten-card"><b>${String(i+1).padStart(2,'0')}</b><strong>${esc(s[0])}</strong><p>${esc(s[1])}</p><span>Couverture politique à documenter / souvent faible</span></article>`).join('')}</div></section></main>`}
-function result(){const r=results(), b=blindSpots(); return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Résultat</span></nav><section class="panel"><div class="result-hero"><div><h1>Résultat par idées</h1><p>Le classement indique les proximités. Il ne doit pas masquer les attentes peu représentées.</p></div><div class="winner" style="--party:${r[0].color}"><span>Plus proche</span><strong>${esc(r[0].name)}</strong><b>${r[0].score}%</b></div></div><div class="party-list">${r.map((p,i)=>`<div class="party-row"><span class="rank">${i+1}</span><strong>${esc(p.name)}<small>${esc(p.family)}</small></strong><div class="progress"><span style="width:${p.score}%;background:${p.color}"></span></div><b>${p.score}%</b></div>`).join('')}</div><div class="alert-panel"><h2>Attentes peu représentées</h2><p>Un bulletin citoyen ne doit pas forcer artificiellement un gagnant quand l’offre politique répond mal à une attente.</p>${b.map(x=>`<article><strong>${esc(x.axis)}</strong><span>${x.best}% de meilleure proximité — ${esc(x.reason)}</span></article>`).join('') || '<article><strong>Aucun angle mort détecté</strong><span>Vos réponses trouvent une représentation suffisante dans la matrice actuelle.</span></article>'}</div><div class="method-box"><h2>Méthode et traçabilité</h2><p>La méthode est consultée après le vote : matrice V7.3 bis, scores 0–100, indices de confiance, sources, exclusions des silences ou données insuffisantes.</p></div><div class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions avec des curseurs dynamiques, puis découvrez les proximités politiques, les convergences, les divergences et la robustesse documentaire.</p><div class="promise-row"><span>12 axes V7.3</span><span>14 partis</span><span>Curseur premium</span><span>Textes dynamiques</span><span>Sources traçables</span></div><p class="soft">Ce n'est pas un comparateur partisan classique. Vous positionnez vos idées. Le moteur compare ensuite vos réponses à une matrice sourcée V7.3 bis.</p></div></section></main>`}
+
+function forgottenProofPanel(){
+  return `<div class="forgotten-proof-panel">
+    <h2>5 questions oubliées qui méritent un vote</h2>
+    <p class="intro">Ces sujets ne modifient pas votre résultat partisan. Ils servent à montrer ce que le débat politique traite mal ou trop peu. Chaque carte renvoie vers un document propre du Drive : le lecteur peut vérifier les chiffres, les sources et les limites.</p>
+    <div class="forgotten-proof-grid">
+      ${forgottenQuestions.map(f=>`<article class="forgotten-proof-card">
+        <div class="fp-icon">${f.icon}</div>
+        <small>${esc(f.title)}</small>
+        <h3>${esc(f.question)}</h3>
+        <p class="punch">${esc(f.punch)}</p>
+        <ul class="figure-list">${f.figures.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+        <a class="source-btn" href="${f.sourceUrl}" target="_blank" rel="noopener">Lire le document ↗</a>
+      </article>`).join('')}
+    </div>
+    <p class="forgotten-proof-note"><strong>Principe :</strong> le vote ne devrait pas seulement choisir un parti. Il devrait aussi révéler les sujets que les partis ne chiffrent pas assez clairement.</p>
+  </div>`;
+}
+
+function result(){const r=results(), b=blindSpots(); return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Résultat</span></nav><section class="panel"><div class="result-hero"><div><h1>Résultat par idées</h1><p>Le classement indique les proximités. Il ne doit pas masquer les attentes peu représentées.</p></div><div class="winner" style="--party:${r[0].color}"><span>Plus proche</span><strong>${esc(r[0].name)}</strong><b>${r[0].score}%</b></div></div><div class="party-list">${r.map((p,i)=>`<div class="party-row"><span class="rank">${i+1}</span><strong>${esc(p.name)}<small>${esc(p.family)}</small></strong><div class="progress"><span style="width:${p.score}%;background:${p.color}"></span></div><b>${p.score}%</b></div>`).join('')}</div><div class="alert-panel"><h2>Attentes peu représentées</h2><p>Un bulletin citoyen ne doit pas forcer artificiellement un gagnant quand l’offre politique répond mal à une attente.</p>${b.map(x=>`<article><strong>${esc(x.axis)}</strong><span>${x.best}% de meilleure proximité — ${esc(x.reason)}</span></article>`).join('') || '<article><strong>Aucun angle mort détecté</strong><span>Vos réponses trouvent une représentation suffisante dans la matrice actuelle.</span></article>'}</div>${forgottenProofPanel()}<div class="method-box"><h2>Méthode et traçabilité</h2><p>La méthode est consultée après le vote : matrice V7.3 bis, scores 0–100, indices de confiance, sources, exclusions des silences ou données insuffisantes.</p></div><div class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions avec des curseurs dynamiques, puis découvrez les proximités politiques, les convergences, les divergences et la robustesse documentaire.</p><div class="promise-row"><span>12 axes V7.3</span><span>14 partis</span><span>Curseur premium</span><span>Textes dynamiques</span><span>Sources traçables</span></div><p class="soft">Ce n'est pas un comparateur partisan classique. Vous positionnez vos idées. Le moteur compare ensuite vos réponses à une matrice sourcée V7.3 bis.</p></div></section></main>`}
 function render(){root.innerHTML = state.screen==='home'?home():state.screen==='ideas'?ideas():state.screen==='classic'?classic():state.screen==='forgotten'?forgotten():result();}
 window.app={go(s){state.screen=s; if(s==='ideas')state.step=0; render()}, toggle, setAnswer(i,v){let val=Number(v); state.answers[i]=axes[i].inv?100-val:val; render()}, next(){ if((state.step||0)>=11){state.screen='result'} else state.step=(state.step||0)+1; render()}, prev(){state.step=Math.max(0,(state.step||0)-1); render()}, selectParty(id){state.selectedParty=id; render()}};
 render();
