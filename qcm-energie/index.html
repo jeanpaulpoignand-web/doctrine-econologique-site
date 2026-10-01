@@ -134,6 +134,18 @@ button:disabled{
   margin:16px 0;
 }
 .source-box.show{display:block}
+.doctrine-box{
+  display:none;
+  background:#fff4df;
+  border:1px solid var(--line);
+  border-left:4px solid var(--mix);
+  padding:16px;
+  border-radius:6px;
+  margin:16px 0;
+  color:var(--soft);
+}
+.doctrine-box.show{display:block}
+.doctrine-box strong{color:var(--ink)}
 .source-box strong{
   color:var(--ink);
 }
@@ -145,6 +157,18 @@ button:disabled{
   text-decoration:none;
   border-bottom:1px solid var(--gold2);
 }
+.fiche-access{
+  display:none;
+  margin:16px 0 20px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-left:5px solid var(--gold);
+  border-radius:10px;
+  background:#fffaf0;
+}
+.fiche-access.show{display:block}
+.fiche-access strong{display:block;margin-bottom:6px}
+.fiche-access a{font-weight:800;color:var(--ink)}
 .result-banner{
   background:var(--ink);
   color:white;
@@ -272,6 +296,26 @@ button:disabled{
   text-decoration:none;
   border-bottom:1px solid var(--gold2);
 }
+.briefing-grid{
+  display:grid;
+  gap:16px;
+  margin-top:18px;
+}
+.briefing-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:18px;
+  box-shadow:0 6px 18px rgba(0,0,0,.04);
+}
+.briefing-card h3{margin-bottom:8px}
+.briefing-card p{color:var(--soft)}
+.briefing-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
 footer{
   text-align:center;
   color:var(--soft);
@@ -282,6 +326,7 @@ footer{
   .scores{grid-template-columns:repeat(3,1fr)}
   .mode-grid{grid-template-columns:1fr 1fr}
   .proof-links{grid-template-columns:1fr 1fr}
+  .briefing-grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -328,10 +373,10 @@ footer{
       <div class="mode-card">
         <h3>Mode approfondi</h3>
         <p>
-          Version pédagogique et documentée. Après chaque réponse, une explication courte
-          et un lien vers la source Google Drive apparaissent.
+          Version pédagogique et documentée. Un écran des cinq clés prépare le lecteur,
+          puis chaque question propose une fiche d’aide avant de répondre.
         </p>
-        <button onclick="startQuiz('approfondi')">Commencer en mode approfondi</button>
+        <button onclick="showBriefing()">Commencer en mode approfondi</button>
       </div>
     </div>
 
@@ -340,7 +385,7 @@ footer{
         Vérifier la matrice partis V4 →
         <span>Référence unique du calcul politique du Pilier 1 Énergie.</span>
       </a>
-      <a href="https://docs.google.com/document/d/1uuntTCmWe5kRUWNd3VKKjA6QTK6ROb_Y/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank" rel="noopener">
+      <a href="https://docs.google.com/document/d/1pTCXW9W5J2jVpjhuDgaB_wUqsc08W7xD/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank" rel="noopener">
         Lire le dossier de preuve →
         <span>Chiffres clés, responsabilités politiques et logique énergétique.</span>
       </a>
@@ -365,6 +410,51 @@ footer{
   </div>
 </section>
 
+<section id="briefing" class="screen">
+  <div class="card">
+    <div class="eyebrow">Mode approfondi · Avant de répondre</div>
+    <h2>Les cinq clés du Pilier 1 Énergie</h2>
+    <p>
+      Le mode approfondi ne cherche pas à influencer la réponse : il donne les repères
+      indispensables pour répondre en connaissance de cause. Les 19 questions restent les mêmes,
+      mais chacune dispose maintenant d'une fiche d'aide dédiée.
+    </p>
+
+    <div class="briefing-grid">
+      <div class="briefing-card">
+        <h3>1. Prix de revient</h3>
+        <p>L'énergie entre dans l'industrie, les transports, l'agriculture, les services et le coût de la vie. Une énergie chère diffuse ses effets dans toute l'économie.</p>
+      </div>
+      <div class="briefing-card">
+        <h3>2. Pilotable ou intermittent</h3>
+        <p>Un système électrique ne se juge pas seulement au coût apparent du MWh : réseau, stockage, back-up, maintenance et disponibilité changent le coût complet.</p>
+      </div>
+      <div class="briefing-card">
+        <h3>3. Marché européen</h3>
+        <p>La question porte sur le lien entre coût réel de production français, règles européennes et prix payé par les ménages ou l'industrie.</p>
+      </div>
+      <div class="briefing-card">
+        <h3>4. Rendement national</h3>
+        <p>Une politique énergétique peut réduire du CO2 tout en important massivement ses composants. Le critère éconologique ajoute la valeur conservée en France.</p>
+      </div>
+      <div class="briefing-card">
+        <h3>5. Lecture politique</h3>
+        <p>Le résultat compare vos réponses à la matrice V4 : souveraineté productive, transition / marché intégré, ou arbitrage mixte selon les axes A1 à A8.</p>
+      </div>
+      <div class="briefing-card">
+        <h3>19 fiches d'aide</h3>
+        <p>Avant chaque question, un lien permet d'ouvrir la fiche correspondante : contexte, logiques de réponse, point de vigilance et source documentaire.</p>
+      </div>
+    </div>
+
+    <div class="briefing-actions">
+      <button onclick="startQuiz('approfondi')">Commencer le QCM approfondi</button>
+      <button class="secondary" onclick="startQuiz('rapide')">Répondre sans préparation</button>
+      <button class="secondary" onclick="goHome()">Retour au choix des modes</button>
+    </div>
+  </div>
+</section>
+
 <section id="quiz" class="screen">
   <div class="card">
     <div id="modeBadge" class="mode-badge">Mode rapide</div>
@@ -377,10 +467,12 @@ footer{
 
     <div class="eyebrow" id="theme">Énergie</div>
     <div class="question" id="questionText"></div>
+    <div class="fiche-access" id="ficheAccess"></div>
 
     <div id="answers"></div>
 
     <div class="explain" id="explain"></div>
+    <div class="doctrine-box" id="doctrineBox"></div>
     <div class="source-box" id="sourceBox"></div>
 
     <button id="nextBtn" style="display:none" onclick="nextQuestion()">Question suivante →</button>
@@ -438,7 +530,7 @@ footer{
         Matrice partis V4 →
         <span>Référence unique du calcul et des réserves politiques.</span>
       </a>
-      <a href="https://docs.google.com/document/d/1uuntTCmWe5kRUWNd3VKKjA6QTK6ROb_Y/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank" rel="noopener">
+      <a href="https://docs.google.com/document/d/1pTCXW9W5J2jVpjhuDgaB_wUqsc08W7xD/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank" rel="noopener">
         Dossier de preuve →
         <span>Chiffres clés et responsabilité des décideurs politiques.</span>
       </a>
@@ -462,14 +554,14 @@ footer{
 </section>
 
 <footer>
-  Prototype V3.6 — Doctrine Éconologique — Pilier 1 Énergie — QCM aligné sur matrice V4 consolidée
+  Prototype V3.7 — 1 octobre 2026 — Doctrine Éconologique — Pilier 1 Énergie — QCM aligné sur matrice V4 consolidée
 </footer>
 
 </div>
 
 <script>
 const DOCS = {
-  responsables: "https://docs.google.com/document/d/1uuntTCmWe5kRUWNd3VKKjA6QTK6ROb_Y/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true",
+  responsables: "https://docs.google.com/document/d/1pTCXW9W5J2jVpjhuDgaB_wUqsc08W7xD/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true",
   matrice: "https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk",
   archiveMatrice: "https://docs.google.com/document/d/1vP1BTIasJLdWNFQsBpWEAIKUVXX3B4JGMBzbjGhlHjo/edit",
   pilier1: "https://docs.google.com/document/d/1PtKJ9hXyw2do3_hOOF0_Lj5l7zz0YYni4uQLhP7eQXQ/edit",
@@ -487,10 +579,11 @@ const questions = [
       ["Un déterminant central du prix de revient, de l'emploi industriel et du pouvoir d'achat.","SP"],
       ["Un sujet important mais qui doit être arbitré avec le climat et les règles européennes.","MIX"]
     ],
-    e:"Dans une économie productive, l'énergie n'est pas un poste secondaire : elle conditionne les prix de revient, les marges industrielles, l'emploi et le pouvoir d'achat.",
-    sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Ce qu'il faut comprendre / Résumé final / Chiffres clés",
-    sourceUrl:DOCS.responsables
+    e:"Cette question mesure la place que vous donnez au prix de l’énergie dans l’économie : coût secondaire, variable centrale du prix de revient, ou sujet à arbitrer avec d’autres contraintes.",
+    doctrine:"La Doctrine Éconologique considère que l’énergie est un déterminant central du prix de revient français, donc du pouvoir d’achat, de l’emploi industriel et de la souveraineté productive.",
+    sourceTitle:"Pilier I — Énergie souveraine",
+    sourceSection:"IDÉE FORCE / LE CONSTAT CENTRAL / POURQUOI L’ÉNERGIE CHANGE TOUTE L’ÉCONOMIE",
+    sourceUrl:DOCS.pilier1
   },
   {
     theme:"Nucléaire",
@@ -500,9 +593,10 @@ const questions = [
       ["Non, il faut organiser la sortie progressive du nucléaire au profit des renouvelables.","TMI"],
       ["Oui, mais dans un mix équilibré avec renouvelables et sobriété.","MIX"]
     ],
-    e:"Le nucléaire est pilotable, bas-carbone et structurant pour la souveraineté électrique française. Les abandons de Superphénix et d'ASTRID illustrent la perte d'options technologiques de long terme.",
+    e:"Cette question met en balance pilotabilité, sûreté, déchets, coûts de long terme, délais industriels, émissions carbone et autonomie de la filière électrique.",
+    doctrine:"La Doctrine Éconologique privilégie une relance nucléaire longue, incluant maintenance, EPR2, recherche, génération IV et compétences industrielles nationales.",
     sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Superphénix / ASTRID / Responsabilité des décideurs politiques",
+    sourceSection:"RESPONSABILITÉ DES DÉCIDEURS POLITIQUES / SUPERPHÉNIX / ASTRID",
     sourceUrl:DOCS.responsables
   },
   {
@@ -513,9 +607,10 @@ const questions = [
       ["Non, la France doit retrouver un prix national lié à son coût réel de production.","SP"],
       ["Il faut réformer le marché européen sans forcément en sortir totalement.","MIX"]
     ],
-    e:"La question centrale est l'écart entre le coût réel de production du parc français et les prix de marché importés par les règles européennes.",
+    e:"Cette question porte sur la manière dont le prix de l’électricité est formé : coût réel national, prix de marché européen, ou réforme intermédiaire du cadre existant.",
+    doctrine:"La Doctrine Éconologique défend un prix français plus directement relié au coût réel de production national, tout en distinguant coopération technique et dépendance tarifaire.",
     sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Ouverture du marché / Loi du 10 février 2000 / Loi NOME-ARENH",
+    sourceSection:"OUVERTURE DU MARCHÉ — Loi du 10 février 2000 / LOI NOME / ARENH",
     sourceUrl:DOCS.responsables
   },
   {
@@ -526,9 +621,10 @@ const questions = [
       ["Un acteur parmi d'autres dans un marché concurrentiel ouvert.","TMI"],
       ["Un acteur public fort, mais compatible avec des règles européennes rénovées.","MIX"]
     ],
-    e:"EDF peut être vu soit comme outil de souveraineté productive, soit comme simple acteur de marché. Le dispositif ARENH a créé une couche d'intermédiaires commerciaux entre EDF et les consommateurs.",
+    e:"Cette question oppose plusieurs visions d’EDF : opérateur stratégique intégré, acteur concurrentiel ordinaire, ou opérateur public fort dans un cadre européen rénové.",
+    doctrine:"La Doctrine Éconologique voit EDF comme un outil stratégique de souveraineté productive, de stabilité tarifaire et de politique industrielle.",
     sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Loi NOME / ARENH / EDF et fournisseurs non producteurs",
+    sourceSection:"LOI NOME / ARENH",
     sourceUrl:DOCS.responsables
   },
   {
@@ -539,10 +635,11 @@ const questions = [
       ["Priorité limitée : production intermittente, dépendance matérielle et rendement territorial discutable.","SP"],
       ["Développement au cas par cas selon l'acceptabilité locale et le coût système.","MIX"]
     ],
-    e:"Le débat ne porte pas seulement sur le kWh produit, mais sur le coût système : intermittence, réseau, stockage, back-up, acceptabilité et dépendance industrielle.",
-    sourceTitle:"Sources officielles — Pilier 1 Énergie",
-    sourceSection:"Coût système / intermittence / réseau / stockage / back-up",
-    sourceUrl:DOCS.sources
+    e:"Cette question demande comment évaluer l’éolien terrestre : production bas-carbone installée, coût du système complet, acceptabilité locale et dépendances matérielles.",
+    doctrine:"La Doctrine Éconologique juge l’éolien terrestre avec prudence et demande de compter le coût système, le rendement national, l’acceptabilité et les dépendances industrielles.",
+    sourceTitle:"Note de Cadrage Stratégique — Énergie",
+    sourceSection:"II.6.2 — Éolien terrestre",
+    sourceUrl:DOCS.cadrage
   },
   {
     theme:"Solaire",
@@ -552,10 +649,11 @@ const questions = [
       ["Un axe majeur devant remplacer progressivement le nucléaire.","TMI"],
       ["Un complément secondaire, non pilotable, à ne pas confondre avec une base industrielle.","SP"]
     ],
-    e:"Le solaire peut être utile, notamment en complément, mais il ne joue pas le même rôle qu'une énergie pilotable de base dans une stratégie industrielle.",
-    sourceTitle:"Sources officielles — Pilier 1 Énergie",
-    sourceSection:"Solaire / complément non pilotable / coût système",
-    sourceUrl:DOCS.sources
+    e:"Cette question porte sur le rôle du solaire photovoltaïque : pilier de transition, complément ciblé, ou filière à limiter selon sa non-pilotabilité et sa chaîne industrielle.",
+    doctrine:"La Doctrine Éconologique accepte le solaire comme complément utile, surtout sur surfaces déjà artificialisées, mais refuse de le confondre avec une base pilotable industrielle.",
+    sourceTitle:"Note de Cadrage Stratégique — Énergie",
+    sourceSection:"II.6.1 — Photovoltaïque / II.1.1 — RNG_CAPEX",
+    sourceUrl:DOCS.cadrage
   },
   {
     theme:"Gaz",
@@ -565,9 +663,10 @@ const questions = [
       ["Un outil d'appoint pilotable, mais à sécuriser et à réduire par la production nationale bas-carbone.","MIX"],
       ["Un levier stratégique temporaire, à remplacer par nucléaire, biométhane et chaleur locale.","SP"]
     ],
-    e:"La sécurité énergétique exige des moyens pilotables. Le sujet est leur origine, leur coût, leur dépendance extérieure et leur trajectoire de remplacement.",
+    e:"Cette question arbitre entre réduction rapide d’une énergie fossile, maintien d’un appoint pilotable, et trajectoire de remplacement par d’autres moyens.",
+    doctrine:"La Doctrine Éconologique traite le gaz comme un levier temporaire de sécurité, à réduire par des solutions pilotables bas-carbone, territoriales ou nationales.",
     sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Résumé final / Si l'énergie est chère / Si l'énergie est abondante et compétitive",
+    sourceSection:"Repère transversal : RESPONSABILITÉ DES DÉCIDEURS POLITIQUES. Les sources RTE et NaTran de la fiche font foi pour les chiffres gaz/prix.",
     sourceUrl:DOCS.responsables
   },
   {
@@ -578,9 +677,10 @@ const questions = [
       ["Oui, mais surtout comme complément dans une stratégie de transition globale.","MIX"],
       ["Ce n'est pas une priorité face à l'électrification renouvelable.","TMI"]
     ],
-    e:"Le biométhane peut être un outil de souveraineté locale s'il reste territorial, utile au réseau et sans concurrence excessive avec l'alimentation.",
+    e:"Cette question évalue le biométhane selon ses volumes, son coût, son ancrage agricole, son effet territorial, ses intrants et son utilité pour le réseau.",
+    doctrine:"La Doctrine Éconologique soutient un biométhane local et contrôlé, utile au réseau et au territoire, sans concurrence excessive avec l’alimentation.",
     sourceTitle:"Note de Cadrage Stratégique — Énergie",
-    sourceSection:"Biométhane territorial / production locale / souveraineté énergétique",
+    sourceSection:"II.6.4 — Biométhane / II.1.1 — RNG_CAPEX",
     sourceUrl:DOCS.cadrage
   },
   {
@@ -591,10 +691,11 @@ const questions = [
       ["Non, elle peut aider mais ne remplace pas une production abondante et compétitive.","SP"],
       ["Elle doit accompagner l'efficacité et la production pilotable, sans devenir décroissance imposée.","MIX"]
     ],
-    e:"La sobriété peut réduire certaines tensions, mais une économie productive a besoin d'énergie disponible, stable et compétitive.",
-    sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Ce qu'il faut comprendre / L'énergie est le moteur du pays",
-    sourceUrl:DOCS.responsables
+    e:"Cette question distingue sobriété choisie, efficacité énergétique, baisse contrainte de la demande et stratégie de production abondante ou limitée.",
+    doctrine:"La Doctrine Éconologique accepte la sobriété raisonnable et l’efficacité, mais refuse d’en faire un substitut à une production abondante, pilotable et compétitive.",
+    sourceTitle:"Pilier I — Énergie souveraine",
+    sourceSection:"LE CONSTAT CENTRAL",
+    sourceUrl:DOCS.pilier1
   },
   {
     theme:"Industrie",
@@ -604,10 +705,11 @@ const questions = [
       ["Adaptation industrielle à la transition et aux signaux de marché.","TMI"],
       ["Contrats de long terme et compromis entre coût, climat et sécurité.","MIX"]
     ],
-    e:"L'industrie lourde investit si elle peut anticiper un prix de l'énergie stable, fiable et compétitif sur le long terme.",
-    sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Chiffres clés / énergie dans les coûts industriels / emplois préservés",
-    sourceUrl:DOCS.responsables
+    e:"Cette question demande quel signal énergétique rend possible la réindustrialisation : prix stable, adaptation au marché, contrats de long terme ou compromis climatique.",
+    doctrine:"La Doctrine Éconologique place le prix bas, stable, pilotable et prévisible au cœur d’une stratégie de réindustrialisation.",
+    sourceTitle:"Pilier I — Énergie souveraine",
+    sourceSection:"POURQUOI L’ÉNERGIE CHANGE TOUTE L’ÉCONOMIE / EFFETS ÉCONOMIQUES ATTENDUS",
+    sourceUrl:DOCS.pilier1
   },
   {
     theme:"Tarifs",
@@ -617,9 +719,10 @@ const questions = [
       ["Non, les prix doivent refléter le marché, avec aides ciblées aux ménages modestes.","TMI"],
       ["Oui, mais avec réforme progressive et ciblage social.","MIX"]
     ],
-    e:"Le tarif régulé peut être un instrument de souveraineté sociale s'il reflète le coût réel de production national et non une logique d'intermédiation artificielle.",
+    e:"Cette question met en balance protection des ménages, signal de marché, coût réel de production, ciblage social et financement durable du système électrique.",
+    doctrine:"La Doctrine Éconologique défend un tarif régulé durable s’il reflète le coût réel de production national et protège ménages, PME et industrie.",
     sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Coût complet du nucléaire historique / Loi NOME-ARENH",
+    sourceSection:"CHIFFRES CLÉS (coût complet du nucléaire historique : 60,3 €/MWh, 2026-2028, CRE) / LOI NOME / ARENH",
     sourceUrl:DOCS.responsables
   },
   {
@@ -630,9 +733,10 @@ const questions = [
       ["Elles sont utiles, mais ne doivent pas imposer le prix ni la stratégie française.","SP"],
       ["Elles doivent rester un outil technique, avec réforme des règles de prix.","MIX"]
     ],
-    e:"Une interconnexion technique n'implique pas forcément une dépendance politique complète au prix de marché. Le sujet est de distinguer coopération technique et souveraineté tarifaire.",
+    e:"Cette question distingue le rôle technique des interconnexions, la solidarité européenne, l’optimisation du réseau et les règles de prix associées.",
+    doctrine:"La Doctrine Éconologique accepte les interconnexions comme outil technique, mais refuse qu’elles imposent automatiquement le prix et la stratégie française.",
     sourceTitle:"Note de Cadrage Stratégique — Énergie",
-    sourceSection:"Interconnexions / marché européen / souveraineté de prix",
+    sourceSection:"Repère transversal : MOUVEMENT I — DIAGNOSTIC FINANCIER. Pas de section dédiée aux interconnexions dans ce document ; la source RTE de la fiche fait foi pour les données d’échanges.",
     sourceUrl:DOCS.cadrage
   },
   {
@@ -643,10 +747,11 @@ const questions = [
       ["Non, il faut prioriser la baisse rapide du carbone au meilleur coût européen.","TMI"],
       ["Oui, mais dans les limites du droit européen et des chaînes industrielles existantes.","MIX"]
     ],
-    e:"La doctrine éconologique insiste sur le retour productif national des dépenses publiques : emplois, filières, compétences, fiscalité et valeur conservée sur le territoire.",
-    sourceTitle:"Matrice partis — Pilier 1 Énergie — V4 consolidée",
-    sourceSection:"A7 / aides publiques / contenu industriel / rendement national",
-    sourceUrl:DOCS.matrice
+    e:"Cette question porte sur les critères à appliquer aux aides publiques : baisse rapide du carbone, contenu industriel national, contraintes européennes et efficacité budgétaire.",
+    doctrine:"La Doctrine Éconologique demande de conditionner les aides au rendement national : emplois, filières, composants, compétences, fiscalité et valeur conservée en France.",
+    sourceTitle:"Note de Cadrage Stratégique — Énergie",
+    sourceSection:"II.1 — Définir correctement le RNG / III.3 — Sept propositions de politique publique",
+    sourceUrl:DOCS.cadrage
   },
   {
     theme:"Hydrogène",
@@ -656,9 +761,10 @@ const questions = [
       ["Un grand pilier central de la transition énergétique.","TMI"],
       ["Un levier utile seulement s'il repose sur une électricité nucléaire abondante et bon marché.","SP"]
     ],
-    e:"L'hydrogène n'est pas une source primaire : il dépend du coût, de l'abondance et de la stabilité de l'électricité utilisée pour le produire.",
+    e:"Cette question évalue l’hydrogène selon ses usages, son rendement global, le coût de l’électricité nécessaire et sa place réelle dans la transition.",
+    doctrine:"La Doctrine Éconologique réserve l’hydrogène aux usages pertinents et le juge crédible seulement si l’électricité d’entrée est abondante, bas-carbone et compétitive.",
     sourceTitle:"Pilier I — Énergie souveraine",
-    sourceSection:"Hydrogène / électricité abondante / coût de production",
+    sourceSection:"Repère transversal : LE PROBLÈME DU COÛT SYSTÈME (stockage, back-up). Le document ne traite pas spécifiquement de l'hydrogène ; les sources Commission européenne et AIE de la fiche font foi.",
     sourceUrl:DOCS.pilier1
   },
   {
@@ -669,9 +775,10 @@ const questions = [
       ["Les objectifs climatiques européens doivent structurer les choix nationaux.","TMI"],
       ["Il faut concilier objectifs climatiques, acceptabilité sociale et autonomie industrielle.","MIX"]
     ],
-    e:"L'opposition entre climat et souveraineté est souvent artificielle : une production bas-carbone nationale peut servir à la fois l'écologie, l'industrie et l'indépendance.",
+    e:"Cette question demande comment hiérarchiser objectifs climatiques, autonomie industrielle, acceptabilité sociale, coûts et cadre européen.",
+    doctrine:"La Doctrine Éconologique articule climat et souveraineté autour d’une production bas-carbone nationale, créatrice de valeur industrielle et de sécurité économique.",
     sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Fessenheim / réacteurs pilotables bas carbone / résumé final",
+    sourceSection:"FESSENHEIM / RESPONSABILITÉ DES DÉCIDEURS POLITIQUES",
     sourceUrl:DOCS.responsables
   },
   {
@@ -682,10 +789,11 @@ const questions = [
       ["Non, si cela détruit les filières françaises et remplace une dépendance par une autre.","SP"],
       ["Seulement si l'importation s'accompagne d'une stratégie industrielle française.","MIX"]
     ],
-    e:"Un équipement bas-carbone importé peut réduire certaines émissions tout en augmentant une dépendance productive, industrielle ou technologique.",
-    sourceTitle:"Sources officielles — Pilier 1 Énergie",
-    sourceSection:"Importations industrielles / dépendance matérielle / rendement national",
-    sourceUrl:DOCS.sources
+    e:"Cette question met en balance coût immédiat, rapidité de déploiement, émissions évitées, dépendance industrielle et reconstruction de filières locales.",
+    doctrine:"La Doctrine Éconologique refuse de remplacer une dépendance énergétique par une dépendance industrielle et demande une stratégie de contenu productif français ou européen.",
+    sourceTitle:"Note de Cadrage Stratégique — Énergie",
+    sourceSection:"II.4 — Données douanières stratégiques utilisées / II.6 — Analyse par filière",
+    sourceUrl:DOCS.cadrage
   },
   {
     theme:"Planification",
@@ -695,9 +803,10 @@ const questions = [
       ["Partiellement, mais avec signaux de marché et coordination européenne.","MIX"],
       ["Le marché et la régulation européenne doivent guider l'allocation efficace.","TMI"]
     ],
-    e:"Les infrastructures énergétiques ont des cycles longs. Les décisions comme Superphénix, Fessenheim, ASTRID, NOME ou ARENH produisent des effets pendant des décennies.",
+    e:"Cette question porte sur le degré de planification publique nécessaire pour des infrastructures, compétences et investissements énergétiques à horizon long.",
+    doctrine:"La Doctrine Éconologique défend une planification énergétique d’État sur les infrastructures de souveraineté, les compétences critiques et les prix de long terme.",
     sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Responsabilité des décideurs politiques / Superphénix / Fessenheim / ASTRID / NOME",
+    sourceSection:"RESPONSABILITÉ DES DÉCIDEURS POLITIQUES / SUPERPHÉNIX / FESSENHEIM / ASTRID / LOI NOME / ARENH",
     sourceUrl:DOCS.responsables
   },
   {
@@ -708,10 +817,11 @@ const questions = [
       ["Dans la transition renouvelable, l'efficacité et la baisse rapide des émissions.","TMI"],
       ["Dans un portefeuille équilibré, contrôlé par coût complet et sécurité d'approvisionnement.","MIX"]
     ],
-    e:"Le choix budgétaire révèle le modèle : souveraineté productive, transition marché intégré, ou compromis contrôlé par coût complet et sécurité d'approvisionnement.",
-    sourceTitle:"P1 Énergie — Chiffres clés & responsabilité des décideurs politiques",
-    sourceSection:"Chiffres clés / coût système évité / gains potentiels / emplois préservés",
-    sourceUrl:DOCS.responsables
+    e:"Cette question demande quel critère doit guider l’argent public : filières pilotables, transition rapide, efficacité énergétique, coût complet ou portefeuille diversifié.",
+    doctrine:"La Doctrine Éconologique priorise les dépenses qui combinent coût soutenable, effet écologique réel, sécurité d’approvisionnement et rendement national élevé.",
+    sourceTitle:"Note de Cadrage Stratégique — Énergie",
+    sourceSection:"III.3 — Sept propositions de politique publique",
+    sourceUrl:DOCS.cadrage
   },
   {
     theme:"Doctrine",
@@ -721,12 +831,18 @@ const questions = [
       ["La transition doit accélérer dans un cadre européen, renouvelable et concurrentiel.","TMI"],
       ["La France doit combiner nucléaire, renouvelables utiles, sobriété raisonnable et réforme du marché.","MIX"]
     ],
-    e:"Cette dernière question synthétise les trois orientations dominantes du questionnaire : souveraineté productive, transition marché intégré, ou compromis national réformateur.",
+    e:"Cette question sert de synthèse : elle demande quelle phrase exprime le mieux votre hiérarchie générale après les arbitrages précédents.",
+    doctrine:"La Doctrine Éconologique résume sa position par une énergie abondante, pilotable, compétitive et majoritairement nationale, au service de la puissance productive.",
     sourceTitle:"Matrice partis — Pilier 1 Énergie — V4 consolidée",
-    sourceSection:"Lecture politique / énergie comme système complet de souveraineté économique",
+    sourceSection:"6. LECTURE POLITIQUE",
     sourceUrl:DOCS.matrice
   }
 ];
+
+function driveReference(url){
+  const match = String(url).match(/\/d\/([^/]+)/);
+  return match ? match[1] : "";
+}
 
 const partyProfiles = [
   {name:"Debout la France", sp:19, tmi:0, mix:0, note:"SP forte selon V4 : EDF public, nucléaire, rendement national, relocalisation productive."},
@@ -750,11 +866,37 @@ let current = 0;
 let scores = {SP:0,TMI:0,MIX:0};
 let answers = [];
 let modeLecture = "rapide";
+const fichePages = [
+  "fiches/q1-prix-energie.html",
+  "fiches/q2-nucleaire.html",
+  "fiches/q3-marche-europeen.html",
+  "fiches/q4-edf.html",
+  "fiches/q5-eolien-terrestre.html",
+  "fiches/q6-solaire.html",
+  "fiches/q7-gaz.html",
+  "fiches/q8-biomethane.html",
+  "fiches/q9-sobriete.html",
+  "fiches/q10-industrie.html",
+  "fiches/q11-tarifs.html",
+  "fiches/q12-interconnexions.html",
+  "fiches/q13-rendement-national.html",
+  "fiches/q14-hydrogene.html",
+  "fiches/q15-climat-souverainete.html",
+  "fiches/q16-importations.html",
+  "fiches/q17-planification.html",
+  "fiches/q18-priorite-budgetaire.html",
+  "fiches/q19-doctrine.html"
+];
 
 function show(id){
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   window.scrollTo(0,0);
+}
+
+function showBriefing(){
+  modeLecture = "approfondi";
+  show("briefing");
 }
 
 function startQuiz(mode){
@@ -777,8 +919,24 @@ function renderQuestion(){
   document.getElementById("theme").textContent = q.theme;
   document.getElementById("questionText").textContent = q.q;
 
+  const ficheAccess = document.getElementById("ficheAccess");
+  if(modeLecture === "approfondi"){
+    ficheAccess.innerHTML = `
+      <strong>Avant de répondre en connaissance de cause</strong>
+      <span class="small">Cette fiche explique le contexte, les trois logiques possibles et le point de vigilance de la question.</span><br>
+      <a href="${fichePages[current]}" target="_blank" rel="noopener">Lire la fiche d'aide de la question ${current+1} →</a>
+    `;
+    ficheAccess.classList.add("show");
+  } else {
+    ficheAccess.innerHTML = "";
+    ficheAccess.classList.remove("show");
+  }
+
   document.getElementById("explain").className = "explain";
   document.getElementById("explain").innerHTML = "";
+
+  document.getElementById("doctrineBox").className = "doctrine-box";
+  document.getElementById("doctrineBox").innerHTML = "";
 
   document.getElementById("sourceBox").className = "source-box";
   document.getElementById("sourceBox").innerHTML = "";
@@ -795,7 +953,7 @@ function renderQuestion(){
     box.appendChild(btn);
   });
 
-  document.getElementById("profileHint").textContent = dominantHint();
+  document.getElementById("profileHint").textContent = modeLecture === "approfondi" ? dominantHint() : "Mode rapide : profil masqué";
 }
 
 function choose(type){
@@ -806,19 +964,25 @@ function choose(type){
 
   document.querySelectorAll("#answers button").forEach(b=>b.disabled=true);
   document.getElementById("fill").style.width = `${((current+1)/questions.length)*100}%`;
-  document.getElementById("profileHint").textContent = dominantHint();
+  document.getElementById("profileHint").textContent = modeLecture === "approfondi" ? dominantHint() : "Mode rapide : profil masqué";
 
   if(modeLecture === "approfondi"){
     const ex = document.getElementById("explain");
     ex.innerHTML = `<strong>Comprendre :</strong> ${q.e}`;
     ex.classList.add("show");
 
+    const doctrine = document.getElementById("doctrineBox");
+    doctrine.innerHTML = `<strong>Position de la Doctrine Éconologique [ANALYSE] :</strong> ${q.doctrine}`;
+    doctrine.classList.add("show");
+
     const source = document.getElementById("sourceBox");
     source.innerHTML = `
       <strong>Source documentaire :</strong><br>
       ${q.sourceTitle}<br>
+      <span class="small">Référence Drive : ${driveReference(q.sourceUrl)}</span><br>
       <span class="small">Section à lire : ${q.sourceSection}</span><br>
-      <a href="${q.sourceUrl}" target="_blank" rel="noopener">Ouvrir la source Google Drive →</a>
+      <a href="${q.sourceUrl}" target="_blank" rel="noopener">Ouvrir la source Google Drive →</a><br>
+      <a href="${fichePages[current]}" target="_blank" rel="noopener">Relire la fiche d'aide →</a>
     `;
     source.classList.add("show");
 
@@ -937,6 +1101,7 @@ function buildSourceList(){
     item.innerHTML = `
       <h3>Question ${i+1} — ${q.theme}</h3>
       <p><strong>Document :</strong> ${q.sourceTitle}</p>
+      <p><strong>Référence Drive :</strong> ${driveReference(q.sourceUrl)}</p>
       <p><strong>Section :</strong> ${q.sourceSection}</p>
       <p class="small">${q.e}</p>
       <a href="${q.sourceUrl}" target="_blank" rel="noopener">Ouvrir la source →</a>
