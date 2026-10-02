@@ -236,6 +236,23 @@ a{color:inherit}
 .colophon-bottom em{color:var(--rouge);font-style:normal}
 .fade-in{opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}
 .fade-in.visible{opacity:1;transform:translateY(0)}
+/* Pilier VII — deux billets (cinéma / Opéra de Paris) */
+.p7-billets{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+.p7-kicker{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
+.p7-billet{position:relative;background:var(--warm);border:1px solid var(--line);border-radius:6px;padding:12px 16px}
+.p7-billet::before,.p7-billet::after{content:"";position:absolute;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--paper2);border:1px solid var(--line)}
+.p7-billet::before{left:-8px;border-left-color:transparent;border-bottom-color:transparent;transform:rotate(45deg)}
+.p7-billet::after{right:-8px;border-right-color:transparent;border-top-color:transparent;transform:rotate(45deg)}
+.p7-entete{display:flex;flex-direction:column;border-bottom:1px dashed var(--line);padding-bottom:8px;margin-bottom:8px}
+.p7-lieu{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.p7-oeuvre{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;line-height:1.2}
+.p7-ligne{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px;color:var(--soft)}
+.p7-ligne strong{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--ink);white-space:nowrap}
+.p7-public strong{color:var(--rouge)}
+.p7-opera .p7-public strong{font-size:30px}
+.p7-chute{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;line-height:1.3;margin-top:2px}
+.p7-slogan{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--rouge)}
+.p7-sources{font-family:'IBM Plex Mono',monospace;font-size:9px;line-height:1.5;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -412,7 +429,22 @@ Ce que ça change par rapport à ce qui est actuellement en ligne (vu sur ta cap
             <div class="pillar-highlight-num">Reçu fiscal culturel</div>
             <div class="pillar-highlight-text">chaque contribuable voit ce qu'il finance</div>
           </div>
-          <img src="./assets/recu-fiscal-culturel.webp" alt="Reçu fiscal culturel — coût apparent et coût réel d'une sortie culturelle" class="pillar-image" loading="lazy">
+          <figure class="p7-billets" aria-label="Deux billets : ce que paie le spectateur et ce que paie l'argent public, au cinéma et à l'Opéra de Paris">
+            <div class="p7-kicker">Ce que vous payez · ce que paie le contribuable</div>
+            <div class="p7-billet p7-cinema">
+              <div class="p7-entete"><span class="p7-lieu">Cinéma de quartier</span><span class="p7-oeuvre">Séance du soir</span></div>
+              <div class="p7-ligne"><span>Vous payez</span><strong>12,50 €</strong></div>
+              <div class="p7-ligne p7-public"><span>Subvention publique</span><strong>≈ 2 €</strong></div>
+            </div>
+            <div class="p7-billet p7-opera">
+              <div class="p7-entete"><span class="p7-lieu">Opéra national de Paris</span><span class="p7-oeuvre">La Traviata</span></div>
+              <div class="p7-ligne"><span>Vous payez</span><strong>95 €</strong></div>
+              <div class="p7-ligne p7-public"><span>Subvention publique</span><strong>≈ 120 €</strong></div>
+            </div>
+            <p class="p7-chute">À l'opéra, le contribuable paie environ 60&nbsp;fois plus par place qu'au cinéma.</p>
+            <p class="p7-slogan">Le peuple paie, l'élite assiste.</p>
+            <figcaption class="p7-sources">Calcul : soutien du CNC au cinéma 315,5&nbsp;M€ ÷ 156,2&nbsp;M d'entrées (CNC, 2025), financé surtout par des taxes sur le secteur · subvention de l'État 100,7&nbsp;M€ ÷ 829&nbsp;274 spectateurs (Opéra de Paris, 2024). Prix des places : exemples.</figcaption>
+          </figure>
         </div>
       </article>
       <article class="pillar-card fraude fade-in">
