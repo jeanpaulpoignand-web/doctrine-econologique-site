@@ -3,18 +3,9 @@
   "pillarTitle": "Fraude fiscale",
   "version": "1.1",
   "sources": {
-    "DOC_SYNTH_V3": {
-      "label": "Synthèse Active V3",
-      "url": "https://docs.google.com/document/d/1VwnppvfOj0b16VYTHwqbZ5qg1j9qydJ07RxzY7oVzGc/edit?usp=drivesdk"
-    },
-    "DOC_ALLER_DROIT": {
-      "label": "Aller droit au but",
-      "url": "https://docs.google.com/document/d/1997QWegX51hzxODEF9XVoU0_i08yA3Jvo_AaR1wXwaE/edit?usp=drivesdk"
-    },
-    "DOC_QCM_FINAL": {
-      "label": "QCM finalisé — module citoyen",
-      "url": "https://docs.google.com/document/d/1UbpRfSGWhCS6TtRlmGQbeDfcWaLS5kTPS1hsNRvBUKs/edit?usp=drivesdk"
-    }
+    "DOC_SYNTH_V3": { "label": "Fiche « Aller droit au but » — Pilier XV", "url": "../fiches/pilier-15-aller-droit-au-but.pdf" },
+    "DOC_ALLER_DROIT": { "label": "Fiche « Aller droit au but » — Pilier XV", "url": "../fiches/pilier-15-aller-droit-au-but.pdf" },
+    "DOC_QCM_FINAL": { "label": "Fiche « Aller droit au but » — Pilier XV", "url": "../fiches/pilier-15-aller-droit-au-but.pdf" }
   },
   "questions": [
     {

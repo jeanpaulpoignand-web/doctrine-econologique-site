@@ -36,7 +36,7 @@ a{color:inherit}
 .nav-links{display:flex;gap:26px;list-style:none;font-size:14px;font-weight:700}
 .nav-links a{text-decoration:none}
 .nav-links a:hover{color:var(--rouge)}
-@media(max-width:600px){.nav-links{display:none}.nav{padding:14px 18px}.brand-name{font-size:21px}}
+@media(max-width:600px){.nav{padding:10px 16px 6px;flex-wrap:wrap;row-gap:4px}.brand-name{font-size:21px}.nav-links{width:100%;gap:20px;font-size:13px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}.nav-links::-webkit-scrollbar{display:none}.nav-links a{display:inline-block;padding:8px 0}}
 .hero{padding:80px 28px 46px;text-align:center;max-width:880px;margin:auto}
 .hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--rouge);margin-bottom:28px}
 .hero h1{font-size:clamp(38px,7vw,76px);font-weight:500;margin-bottom:28px}
@@ -178,6 +178,7 @@ a{color:inherit}
 .pillar-card.fraude{--accent:var(--or)}
 .pillar-card{scroll-margin-top:96px}
 section[id]{scroll-margin-top:84px}
+@media(max-width:600px){.pillar-card{scroll-margin-top:112px}section[id]{scroll-margin-top:100px}}
 .pillar-card.grandage{--accent:#5B3A6E}
 .pillar-card.batiment{--accent:#7A4E1D}
 .pillar-card.frontaliers{--accent:#2E5A3C}
@@ -192,7 +193,7 @@ section[id]{scroll-margin-top:84px}
 .pillar-link{display:block;align-self:stretch;background:var(--accent);color:#fff;text-decoration:none;text-align:center;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:14px 12px 12px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .pillar-link small{display:block;margin-top:4px;font-size:10.5px;font-weight:500;letter-spacing:.3px;text-transform:none;opacity:.9}
 .pillar-link:hover{filter:brightness(1.1)}
-.pillar-link~.pillar-link{background:none;box-shadow:none;color:var(--accent);padding:2px 0;text-align:left;font-size:12px;letter-spacing:.5px;border-bottom:1px solid var(--accent);align-self:flex-start}
+.pillar-link~.pillar-link{background:none;box-shadow:none;color:var(--accent);padding:12px 0;text-align:left;font-size:12px;letter-spacing:.5px;border-bottom:none;text-decoration:underline;text-underline-offset:4px;align-self:flex-start}
 .pillar-qcm-button{background:transparent;color:var(--accent);border:1.5px solid var(--accent);text-decoration:none;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:11px;border-radius:4px}
 .pillar-highlight{background:rgba(0,0,0,.03);border-left:2px solid var(--accent);padding:12px;border-radius:0 4px 4px 0}
 .pillar-highlight-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
@@ -417,6 +418,7 @@ section[id]{scroll-margin-top:84px}
         <div class="pillar-stat">Ratios de soignants · domicile d’abord · retour des soignants</div>
         <div class="pillar-actions">
           <a href="./fiches/pilier-05-aller-droit-au-but.pdf" target="_blank" class="pillar-link">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages</small></a>
+          <a href="./fiches/pilier-05-annexe-chiffres.pdf" target="_blank" class="pillar-link">Annexe chiffrée →</a>
           <div class="pillar-highlight">
             <div class="pillar-highlight-label">En 2050 (DREES)</div>
             <div class="pillar-highlight-num">2,8 millions</div>
@@ -445,6 +447,7 @@ section[id]{scroll-margin-top:84px}
         <div class="pillar-stat">Reçu fiscal culturel · création de proximité</div>
         <div class="pillar-actions">
           <a href="./fiches/pilier-07-aller-droit-au-but.pdf" target="_blank" class="pillar-link">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages</small></a>
+          <a href="./fiches/pilier-07-annexe-chiffrage.pdf" target="_blank" class="pillar-link">Annexe de chiffrage →</a>
           <div class="pillar-highlight">
             <div class="pillar-highlight-label">Idée force</div>
             <div class="pillar-highlight-num">Reçu fiscal culturel</div>

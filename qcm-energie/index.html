@@ -389,21 +389,9 @@ footer{
     </div>
 
     <div class="proof-links">
-      <a href="https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk" target="_blank" rel="noopener">
-        Vérifier la matrice partis V4 →
-        <span>Référence unique du calcul politique du Pilier 1 Énergie.</span>
-      </a>
-      <a href="https://docs.google.com/document/d/1ekv_b_iXCp3X_7Mi-f_pgqAiZ2zTKOU6/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank" rel="noopener">
-        Lire le dossier de preuve →
-        <span>Chiffres clés, responsabilités politiques et logique énergétique.</span>
-      </a>
-      <a href="https://drive.google.com/drive/folders/1uWPZXbBF4FozuJfFMeZuZirNKopLtqKK" target="_blank" rel="noopener">
-        Consulter les sources officielles →
-        <span>Dossier Drive des sources du Pilier 1.</span>
-      </a>
-      <a href="https://docs.google.com/document/d/1vP1BTIasJLdWNFQsBpWEAIKUVXX3B4JGMBzbjGhlHjo/edit" target="_blank" rel="noopener">
-        Voir l'archive de travail →
-        <span>Ancien cycle V1/V2/V3 et addenda, conservé pour traçabilité.</span>
+      <a href="../fiches/pilier-01-aller-droit-au-but.pdf" target="_blank" rel="noopener">
+        Lire la fiche du Pilier I →
+        <span>Chiffres clés sourcés, responsabilités politiques et réforme proposée (PDF).</span>
       </a>
     </div>
 
@@ -520,11 +508,6 @@ footer{
         Les profils partis intégrés dans le prototype sont une traduction simplifiée de la
         <strong>Matrice partis — Pilier 1 Énergie — V4 consolidée</strong>.
       </p>
-      <p>
-        <a href="https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk" target="_blank" rel="noopener">
-          Vérifier la matrice de calcul V4 →
-        </a>
-      </p>
     </div>
 
     <div class="explain show">
@@ -534,21 +517,9 @@ footer{
     </div>
 
     <div class="proof-links">
-      <a href="https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk" target="_blank" rel="noopener">
-        Matrice partis V4 →
-        <span>Référence unique du calcul et des réserves politiques.</span>
-      </a>
-      <a href="https://docs.google.com/document/d/1ekv_b_iXCp3X_7Mi-f_pgqAiZ2zTKOU6/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true" target="_blank" rel="noopener">
-        Dossier de preuve →
-        <span>Chiffres clés et responsabilité des décideurs politiques.</span>
-      </a>
-      <a href="https://drive.google.com/drive/folders/1uWPZXbBF4FozuJfFMeZuZirNKopLtqKK" target="_blank" rel="noopener">
-        Sources officielles →
-        <span>Documents sources du Pilier 1 Énergie.</span>
-      </a>
-      <a href="https://docs.google.com/document/d/1vP1BTIasJLdWNFQsBpWEAIKUVXX3B4JGMBzbjGhlHjo/edit" target="_blank" rel="noopener">
-        Archive V1/V2/V3 →
-        <span>Historique complet des arbitrages et addenda.</span>
+      <a href="../fiches/pilier-01-aller-droit-au-but.pdf" target="_blank" rel="noopener">
+        Lire la fiche du Pilier I →
+        <span>Chiffres clés sourcés, responsabilités politiques et réforme proposée (PDF).</span>
       </a>
     </div>
 
@@ -592,15 +563,8 @@ window.addEventListener("message",function(e){
 });
 document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeFiche(); });
 
-const DOCS = {
-  responsables: "https://docs.google.com/document/d/1ekv_b_iXCp3X_7Mi-f_pgqAiZ2zTKOU6/edit?usp=drivesdk&ouid=109879797383229152682&rtpof=true&sd=true",
-  matrice: "https://docs.google.com/document/d/1mvqHOk2p-Nn-OUBx-PKQ4S5TmgH5PWctSK13SkK4J5M/edit?usp=drivesdk",
-  archiveMatrice: "https://docs.google.com/document/d/1vP1BTIasJLdWNFQsBpWEAIKUVXX3B4JGMBzbjGhlHjo/edit",
-  pilier1: "https://docs.google.com/document/d/1PtKJ9hXyw2do3_hOOF0_Lj5l7zz0YYni4uQLhP7eQXQ/edit",
-  cadrage: "https://docs.google.com/document/d/1D2Jh_CBgYJBIZEo3yEyqeMH1rlVwjFgq0lqjE8igM30/edit",
-  chiffres: "https://docs.google.com/document/d/1AJ0ZLWGMitc94_METrXQSDibPJ393LySQTkgvfDAoqg/edit",
-  sources: "https://drive.google.com/drive/folders/1uWPZXbBF4FozuJfFMeZuZirNKopLtqKK"
-};
+const FICHE_I = "../fiches/pilier-01-aller-droit-au-but.pdf";
+const DOCS = { responsables:FICHE_I, matrice:FICHE_I, archiveMatrice:FICHE_I, pilier1:FICHE_I, cadrage:FICHE_I, chiffres:FICHE_I, sources:FICHE_I };
 
 const questions = [
   {
@@ -1011,9 +975,7 @@ function choose(type){
     source.innerHTML = `
       <strong>Source documentaire :</strong><br>
       ${q.sourceTitle}<br>
-      <span class="small">Référence Drive : ${driveReference(q.sourceUrl)}</span><br>
-      <span class="small">Section à lire : ${q.sourceSection}</span><br>
-      <a href="${q.sourceUrl}" target="_blank" rel="noopener">Ouvrir la source Google Drive →</a><br>
+      <a href="${q.sourceUrl}" target="_blank" rel="noopener">Lire la fiche du Pilier I (PDF) →</a><br>
       <a href="${fichePages[current]}" onclick="return openFiche(this.href)">Relire la fiche d'aide →</a>
     `;
     source.classList.add("show");
@@ -1095,24 +1057,9 @@ function buildSourceList(){
 
   const generalSources = [
     {
-      title:"Matrice partis — Pilier 1 Énergie — V4 consolidée",
-      text:"Référence unique du calcul politique, des codes, des axes A1-A8 et des réserves.",
-      url:DOCS.matrice
-    },
-    {
-      title:"Dossier de preuve — P1 Énergie",
-      text:"Chiffres clés, responsabilité des décideurs politiques et logique économique du Pilier 1.",
-      url:DOCS.responsables
-    },
-    {
-      title:"Sources officielles — Pilier 1 Énergie",
-      text:"Dossier Drive des sources officielles et documents de vérification.",
-      url:DOCS.sources
-    },
-    {
-      title:"Archive de travail V1/V2/V3",
-      text:"Historique complet des arbitrages, addenda et audits IA conservé pour traçabilité.",
-      url:DOCS.archiveMatrice
+      title:"Fiche « Aller droit au but » — Pilier I Énergie",
+      text:"Chiffres clés sourcés, responsabilités politiques et réforme proposée.",
+      url:DOCS.pilier1
     }
   ];
 
@@ -1133,10 +1080,8 @@ function buildSourceList(){
     item.innerHTML = `
       <h3>Question ${i+1} — ${q.theme}</h3>
       <p><strong>Document :</strong> ${q.sourceTitle}</p>
-      <p><strong>Référence Drive :</strong> ${driveReference(q.sourceUrl)}</p>
-      <p><strong>Section :</strong> ${q.sourceSection}</p>
       <p class="small">${q.e}</p>
-      <a href="${q.sourceUrl}" target="_blank" rel="noopener">Ouvrir la source →</a>
+      <a href="${q.sourceUrl}" target="_blank" rel="noopener">Lire la fiche du Pilier I →</a>
     `;
     list.appendChild(item);
   });

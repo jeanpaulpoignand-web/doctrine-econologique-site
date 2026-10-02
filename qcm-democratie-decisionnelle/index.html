@@ -123,9 +123,9 @@ const forgottenQuestions = [
     title:'Énergie',
     question:'Combien coûte réellement la perte de souveraineté électrique ?',
     punch:'Une énergie abondante, pilotable et bon marché conditionne tout le reste : industrie, salaires, prix et indépendance.',
-    figures:['16 Md€ de surcoût énergétique en 2022','Nucléaire historique : environ 60–62 €/MWh','Facture énergétique nationale 2022 : environ 115 Md€'],
-    sourceTitle:'Synthèse Énergie',
-    sourceUrl:'https://drive.google.com/file/d/16mBA1BRM1zDF9Wiy843EMxbU0TBC8aSQ/view',
+    figures:['53 Md€ d\'importations d\'énergies fossiles en 2025 (RTE)','Nucléaire historique : 60,3 €/MWh de coût complet (CRE, 2026-2028)','16 Md€ de solde commercial perdu en 2022 avec l\'indisponibilité nucléaire (Banque de France, scénario)'],
+    sourceTitle:'Fiche Pilier I — Énergie',
+    sourceUrl:'../fiches/pilier-01-aller-droit-au-but.pdf',
     extraLinks:[]
   },
   {
@@ -133,10 +133,12 @@ const forgottenQuestions = [
     title:'Garantie 10 ans',
     question:'Combien le jetable coûte-t-il réellement aux ménages ?',
     punch:'Une garantie longue transmissible change le rapport de force : le fabricant doit produire durable.',
-    figures:['1 000 Md$/an liés au renouvellement prématuré','+5 à +7 millions d\'emplois locaux estimés','62 Mt/an de déchets électroniques'],
-    sourceTitle:'Synthèse Garantie 10 ans',
-    sourceUrl:'https://docs.google.com/document/d/12gYUH_ElLuLf_VWQ4tE6xN43ogaYqU2A2CSuwFX3WPo/edit',
-    extraLinks:[]
+    figures:['9 à 12 Md€ par an d\'économie estimée pour les ménages français','2,3 Mt d\'équipements mis sur le marché en 2024, 45 017 t seulement réemployées (ADEME)','Garantie légale actuelle : 2 ans, perdue à la revente'],
+    sourceTitle:'Fiche Pilier II — Garantie décennale',
+    sourceUrl:'../fiches/pilier-02-aller-droit-au-but.pdf',
+    extraLinks:[
+      {label:'Dossier complet',url:'../fiches/pilier-02-dossier-complet.pdf'}
+    ]
   },
   {
     icon:'🏛️',
@@ -144,37 +146,30 @@ const forgottenQuestions = [
     question:'Pourquoi récupère-t-on facilement sur les petits patrimoines français, mais beaucoup moins sur certains patrimoines hors de portée ?',
     punch:'L\'ASPA est censée être récupérable sur succession. La vraie question est : récupérable contre qui, où, et avec quelles limites ?',
     figures:['ASPA 2026 : 1 043,59 €/mois personne seule','Seuil récupération métropole : 108 586,14 €','Données par nationalité non publiées clairement'],
-    sourceTitle:'Note stratégique ASPA',
-    sourceUrl:'https://docs.google.com/document/d/1L9WMxDXNqSixpnttbQhX3uuY4RdOy_FnGYr9Swi56mI/edit',
-    extraLinks:[
-      {label:'Synthèse 5 IA ASPA',url:'https://docs.google.com/document/d/1_nstuw2WKprnNYJguI5KXFQUyQhC02OYWpaLSKNsZ_4/edit'},
-      {label:'Méthode données publiques',url:'https://docs.google.com/document/d/1LZnW42QN9_OCpOQGPTZBljWfS097kVVaA5FAWJWg8as/edit'}
-    ]
+    sourceTitle:'Fiche Pilier IV — ASPA',
+    sourceUrl:'../fiches/pilier-04-aller-droit-au-but.pdf',
+    extraLinks:[]
   },
   {
     icon:'🌍',
-        title:'Frontaliers / capital humain',
+    title:'Frontaliers / capital humain',
     question:'Qui paie quand un travailleur perd son emploi après avoir produit sa valeur chez un voisin plus riche ?',
-    punch:'La France assume seule l\'indemnisation chômage ; Suisse et Luxembourg n\'en remboursent qu\'une fraction.',
-    figures:['410 000 travailleurs frontaliers quotidiens','803 M€/an de surcoût pour l\'assurance chômage française','20,5 % seulement remboursés par les pays d\'emploi — source Unédic 2023'],
-    sourceTitle:'Synthèse Frontaliers',
-    sourceUrl:'https://docs.google.com/document/d/11M44ACm4n1Tj4gESRcXnDdvW2qEnCG9SQ3gTzo7waHE/edit',
-
-    extraLinks:[
-      {label:'Étude 10 — double peine',url:'https://drive.google.com/file/d/1mrIU-B3cvjxfl3kcN9GN8E58M2CpJfsE/view'},
-      {label:'Document complémentaire',url:'https://drive.google.com/file/d/1OmgppuK6vq6pGhxr_GAvkVoDl2wlsonN/view'}
-    ]
+    punch:'La France indemnise le chômage des frontaliers ; les pays d\'emploi n\'en remboursent qu\'environ un quart.',
+    figures:['450 000 résidents de France travaillant dans un pays voisin (2022)','860 M€ de surcoût net pour l\'assurance chômage française en 2025','Environ 25 % seulement remboursés par les pays d\'emploi — Unédic 2025'],
+    sourceTitle:'Fiche Pilier VIII — Frontaliers',
+    sourceUrl:'../fiches/pilier-08-aller-droit-au-but.pdf',
+    extraLinks:[]
   },
   {
     icon:'🧓',
     title:'Grand âge / EHPAD',
     question:'Et si revaloriser le grand âge coûtait moins cher que ne rien faire ?',
-    punch:'Le débat public présente souvent le grand âge comme une dépense. La question oubliée est celle du retour économique.',
-    figures:['Investissement travaillé : ≈ 2,5 Md€/an','Bilan doctrinal à tester : jusqu\'à +2,55 Md€/an','Annexe data avec classement des chiffres par robustesse'],
-    sourceTitle:'Résultat global EHPAD',
-    sourceUrl:'https://drive.google.com/file/d/1MYR7QlgKAUhU1uThJb4iHCm33nPyoLIl/view',
+    punch:'Le débat public présente souvent le grand âge comme une dépense. La question oubliée est celle du coût de l\'inaction.',
+    figures:['2,0 millions de seniors en perte d\'autonomie en 2021, environ 2,8 millions au début des années 2050 (DREES)','156 000 à 202 000 emplois de plus nécessaires en 2050 selon le scénario (DREES)','4,1 % des postes vacants en EHPAD en 2023 (CNSA)'],
+    sourceTitle:'Fiche Pilier V — Grand âge',
+    sourceUrl:'../fiches/pilier-05-aller-droit-au-but.pdf',
     extraLinks:[
-      {label:'Annexe data Perplexity',url:'https://drive.google.com/file/d/1PMwidPYB6Hkqyjwuxc31Ml5dIGen1fH_/view'}
+      {label:'Annexe chiffrée',url:'../fiches/pilier-05-annexe-chiffres.pdf'}
     ]
   }
 ];
@@ -198,7 +193,7 @@ function home(){return `<main class="page hero-page"><section class="hero-card">
 <div class="hero-grid"><button class="choice-card" onclick="app.go('ideas')"><span class="choice-icon">🗳️</span><strong>Voter pour mes idées</strong><em>12 questions, curseurs dynamiques, puis votre proximité politique calculée.</em></button><button class="choice-card secondary" onclick="app.go('classic')"><span class="choice-icon">🏛️</span><strong>Voter pour un parti</strong><em>Choisissez directement votre formation politique.</em></button></div>
 <div class="home-forgotten-callout">
   <h2>5 questions complémentaires que les partis ne chiffrent presque jamais</h2>
-  <p>Énergie, grand âge, ASPA, obsolescence, frontaliers : ces sujets ne changent pas votre score, mais ils peuvent changer votre manière de voter. Chaque question renvoie vers un document Drive propre.</p>
+  <p>Énergie, grand âge, ASPA, obsolescence, frontaliers : ces sujets ne changent pas votre score, mais ils peuvent changer votre manière de voter. Chaque question renvoie vers la fiche publique du pilier.</p>
   <div class="home-forgotten-row"><span>⚡ Énergie</span><span>🧓 EHPAD</span><span>🏛️ ASPA</span><span>🔧 Garantie 10 ans</span><span>🌍 Frontaliers</span></div>
   <button class="home-forgotten-btn" onclick="app.go('forgotten')">Lire les 5 questions oubliées →</button>
 </div>
@@ -210,7 +205,7 @@ function forgotten(){return `<main class="page"><nav class="top-nav"><button cla
 function forgottenProofPanel(){
   return `<div class="forgotten-proof-panel">
     <h2>5 questions oubliées qui méritent un vote</h2>
-    <p class="intro">Ces sujets ne modifient pas votre résultat partisan. Ils servent à montrer ce que le débat politique traite mal ou trop peu. Chaque carte renvoie vers un document propre du Drive : le lecteur peut vérifier les chiffres, les sources et les limites.</p>
+    <p class="intro">Ces sujets ne modifient pas votre résultat partisan. Ils servent à montrer ce que le débat politique traite mal ou trop peu. Chaque carte renvoie vers la fiche publique du pilier : le lecteur peut vérifier les chiffres, les sources et les limites.</p>
     <div class="forgotten-proof-grid">
       ${forgottenQuestions.map(f=>{
         const hasExtras = (f.extraLinks||[]).length > 0;

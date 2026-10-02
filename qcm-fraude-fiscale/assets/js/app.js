@@ -124,6 +124,7 @@ function renderSources(question) {
   const links = question.sources
     .map(id => state.data.sources[id])
     .filter(Boolean)
+    .filter((src, i, all) => all.findIndex(o => o.url === src.url) === i)
     .map(src => `<li><a href="${src.url}" target="_blank" rel="noopener">${src.label}</a></li>`)
     .join("");
 

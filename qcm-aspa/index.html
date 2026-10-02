@@ -204,7 +204,7 @@
 <div class="wrap">
 
   <div class="topbar">
-    <a class="retour" href="https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/?v=2">⬅ Retour au site</a>
+    <a class="retour" href="../index.html#pilier-4">⬅ Retour au site</a>
   </div>
 
   <header class="hero">
@@ -268,14 +268,9 @@
 </div>
 
 <script>
-/* ---------- DOCUMENTS DOCTRINE (partage public vérifié) ---------- */
-const DOC = {
-  master:{l:"Synthèse Master — 5 IA cross-validée (Pilier 4)", u:"https://docs.google.com/document/d/1_nstuw2WKprnNYJguI5KXFQUyQhC02OYWpaLSKNsZ_4/edit"},
-  carto :{l:"Cartographie officielle consolidée — textes & articles CSS", u:"https://drive.google.com/file/d/1vVU9WZw3DCMXDDS8M2qm70hnAPb0eTF1/view"},
-  acc68 :{l:"Sources, chiffrage & accord franco-algérien de 1968", u:"https://docs.google.com/document/d/1qpVyYgYxn6Qb-g0_uK2QIclek2hUjYd0k0TLHpvQuLo/edit"},
-  l814  :{l:"Synthèse ASPA vs L.814-2 — Algérie", u:"https://docs.google.com/document/d/16we4pX9X4ajhyFSWxdPhCfScg2rkgbnatUCDI6CoMUc/edit"},
-  reforme:{l:"Réforme ASPA 2004-2006 — responsabilité politique", u:"https://drive.google.com/file/d/1RWSEuTM9sRnzV1xTem8eu4zMblxW5-uZ/view"}
-};
+/* ---------- DOCUMENT DOCTRINE PUBLIC ---------- */
+const FICHE_IV = {l:"Fiche « Aller droit au but » — Pilier IV (PDF)", u:"../fiches/pilier-04-aller-droit-au-but.pdf"};
+const DOC = { master:FICHE_IV, carto:FICHE_IV, acc68:FICHE_IV, l814:FICHE_IV, reforme:FICHE_IV };
 /* ---------- SOURCES OFFICIELLES (URL vérifiées) ---------- */
 const SRC = {
   sp     :{l:"Service-Public — ASPA (fiche F16871)", u:"https://www.service-public.gouv.fr/particuliers/vosdroits/F16871"},
@@ -573,7 +568,7 @@ function resultat(){
     </div>
 
     <div class="row-nav" style="justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <a class="btn btn-ghost" href="https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/?v=2">⬅ Retour au site</a>
+      <a class="btn btn-ghost" href="../index.html#pilier-4">⬅ Retour au site</a>
       <button class="btn btn-primary" onclick="demarrer(mode)">↻ Recommencer</button>
     </div>
   `;
