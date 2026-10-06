@@ -212,7 +212,7 @@
   <header class="hero">
     <div class="eyebrow">Doctrine Éconologique</div>
     <h1><span class="pil">Pilier X</span>Et si la France s’habillait elle-même ?</h1>
-    <p class="sous">10 questions pour comprendre ce qui serait possible, à quel prix, et qui y gagnerait. Des faits sourcés : la conclusion vous appartient.</p>
+    <p class="sous">11 questions pour comprendre ce qui serait possible, à quel prix, et qui y gagnerait. Des faits sourcés : la conclusion vous appartient.</p>
   </header>
 
   <!-- ============ INTRO ============ -->
@@ -236,7 +236,7 @@
     </div>
 
     <div class="meta-intro">
-      <span>📄 10 questions</span>
+      <span>📄 11 questions</span>
       <span>🗂️ 2 blocs</span>
       <span>🔗 Sources à la fin</span>
     </div>
@@ -287,7 +287,8 @@ const SRC = {
   ffc      :{l:"Fédération française de la chaussure — Bilan économique 2024-2025", u:"https://www.chaussuredefrance.com/sites/default/files/2025-09/Bilan%20Economique%20FFC%202024-25_BD_site.pdf"},
   gaulois  :{l:"Le Gaulois Jeans — site de la marque", u:"https://legauloisjeans.com"},
   tuffery  :{l:"Les Indiscrétions — Julien Tuffery, le coût du made in France (2026)", u:"https://lesindiscretions.com/a-laffiche/julien-tuffery-le-cout-du-made-in-france/"},
-  insee    :{l:"Insee — Consommation des ménages en 2024", u:"https://www.insee.fr/fr/statistiques/8582021"}
+  insee    :{l:"Insee — Consommation des ménages en 2024", u:"https://www.insee.fr/fr/statistiques/8582021"},
+  payet    :{l:"Payet (2021) — Empreinte carbone du textile en France, revue Sustainability", u:"https://www.mdpi.com/2071-1050/13/5/2422"}
 };
 
 /* ---------- QUESTIONS ---------- */
@@ -338,6 +339,11 @@ const Q = [
  o:[`Plus cher, environ 250 €`,`Le même prix, 180 €`,`Environ 80 €, moins qu’un Levi’s 501 fabriqué en Asie (≈ 110 €)`,`Environ 20 €`], c:2, tags:["CALCUL","HYPOTHÈSE"],
  e:`Environ 80 € (entre 60 et 105 €) : à grande échelle, la filature, le tissage et la couture coûtent bien moins cher qu’en atelier. Ce calcul a été corrigé après trois audits indépendants (Perplexity, Grok, ChatGPT). Mais attention : vendu en boutique, avec les marges de la marque et du magasin, le même jean remonterait autour de 150 €. Le gain d’échelle n’arrive au client que si la marque vend en direct, comme le fait déjà Le Gaulois, qui fabrique ses jeans en lin près de Lyon.`,
  doc:DOC.annexe, src:SRC.gaulois},
+
+{bloc:"B", t:`Fabriquer en France, est-ce vraiment meilleur pour le climat ?`,
+ o:[`Non : le bateau annule tout le gain`,`Il n’y a aucune différence`,`Oui, mais à peine : environ 5 % de moins`,`Oui : environ moitié moins de CO₂ par kilo, et cinq fois moins au nécessaire`], c:3, tags:["FAIT","CALCUL"],
+ e:`Oui : un kilo de textile fabriqué en France émet environ moitié moins de CO₂ qu’un kilo importé (27,7 kg contre 54). La raison n’est pas le bateau, qui ne pèse que 2 à 3 % de l’empreinte, mais l’usine : la filature, le tissage et la teinture font plus de 70 % des émissions, et l’électricité y est 20 à 30 fois plus carbonée en Chine, en Inde ou au Bangladesh qu’en France. Au nécessaire et fabriqué en France, l’habillement des Français passerait d’environ 23 à 4 ou 5 millions de tonnes de CO₂ par an : environ − 80 %, à peu près le niveau compatible avec l’accord de Paris. Le chiffre de référence vient d’une étude publiée en 2021, commandée par l’Union des industries textiles ; il a été vérifié par trois intelligences artificielles.`,
+ doc:DOC.annexe, src:SRC.payet},
 
 {bloc:"B", t:`Au fond, qu’est-ce qui manque pour que la France s’habille elle-même ?`,
  o:[`La matière première`,`Une décision politique, et le temps de former`,`Le savoir-faire, perdu pour toujours`,`Des clients`], c:1, tags:["ANALYSE","HYPOTHÈSE"],
