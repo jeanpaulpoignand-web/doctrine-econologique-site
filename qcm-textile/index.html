@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QCM — Pilier X · Textile | Doctrine Éconologique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Libre+Franklin:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bleu-fonce:#6B3A4E;
+    --bleu-moyen:#8E5A70;
+    --gris:#404040;
+    --gris-doux:#6b6b6b;
+    --papier:#f6f2e9;
+    --papier-2:#fbf8f1;
+    --carte:#ffffff;
+    --vert:#2f7d4f;
+    --vert-bg:#e7f3ec;
+    --rouge:#a8362f;
+    --rouge-bg:#f6e7e5;
+    --ambre:#9c5b00;
+    --ambre-bg:#f7ecd9;
+    --violet:#5e3a96;
+    --violet-bg:#efe8f7;
+    --neutre:#555;
+    --neutre-bg:#eceae4;
+    --bord:#e4ddcd;
+    --ombre:0 1px 2px rgba(107,58,78,.05),0 8px 30px rgba(31,78,121,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Libre Franklin',system-ui,sans-serif;
+    color:var(--gris);
+    line-height:1.6;
+    background-color:var(--papier);
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(142,90,112,.07), transparent 40%),
+      radial-gradient(circle at 88% 92%, rgba(107,58,78,.05), transparent 42%);
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+    padding:0 18px 60px;
+  }
+  .wrap{max-width:740px;margin:0 auto}
+
+  /* ---------- EN-TÊTE ---------- */
+  .topbar{padding:20px 0 6px}
+  .retour{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--bleu-moyen);text-decoration:none;font-weight:600;
+    transition:color .2s;
+  }
+  .retour:hover{color:var(--bleu-fonce)}
+  header.hero{
+    text-align:center;padding:26px 0 18px;border-bottom:1px solid var(--bord);
+    margin-bottom:30px;
+  }
+  .eyebrow{
+    font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--bleu-moyen);font-weight:600;margin-bottom:14px;
+  }
+  h1{
+    font-family:'Fraunces',Georgia,serif;font-weight:600;
+    font-size:clamp(2rem,7vw,2.9rem);color:var(--bleu-fonce);
+    line-height:1.05;letter-spacing:-.01em;
+  }
+  h1 .pil{display:block;font-size:.42em;font-weight:500;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gris-doux);margin-bottom:10px}
+  .hero p.sous{
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.08rem;
+    color:var(--gris-doux);max-width:520px;margin:16px auto 0;
+  }
+
+  .card{
+    background:var(--carte);border:1px solid var(--bord);border-radius:14px;
+    box-shadow:var(--ombre);padding:28px 26px;
+  }
+
+  /* ---------- ÉCRAN INTRO ---------- */
+  .intro-txt{font-size:1rem;color:var(--gris);margin-bottom:6px}
+  .intro-txt strong{color:var(--bleu-fonce)}
+  .note-neutre{
+    font-size:.9rem;color:var(--gris-doux);font-style:italic;
+    border-left:3px solid var(--bleu-moyen);padding:4px 0 4px 14px;margin:18px 0 26px;
+  }
+  .modes{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+  @media(max-width:540px){.modes{grid-template-columns:1fr}}
+  .mode{
+    text-align:left;cursor:pointer;border:1.5px solid var(--bord);
+    border-radius:12px;padding:18px 18px 20px;background:var(--papier-2);
+    transition:transform .15s,border-color .15s,box-shadow .15s;
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .mode:hover{transform:translateY(-3px);border-color:var(--bleu-moyen);box-shadow:var(--ombre)}
+  .mode .ic{font-size:1.5rem}
+  .mode h3{font-family:'Fraunces',serif;font-size:1.18rem;color:var(--bleu-fonce);font-weight:600}
+  .mode p{font-size:.86rem;color:var(--gris-doux);line-height:1.45}
+  .mode .go{
+    margin-top:10px;align-self:flex-start;font-weight:600;font-size:.85rem;
+    color:#fff;background:var(--bleu-fonce);padding:8px 16px;border-radius:8px;
+  }
+  .mode.lente .go{background:var(--bleu-moyen)}
+  .meta-intro{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;
+    font-size:.8rem;color:var(--gris-doux);justify-content:center}
+  .meta-intro span{display:inline-flex;align-items:center;gap:6px}
+
+  /* ---------- PROGRESSION ---------- */
+  .prog-head{display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:10px;font-size:.8rem;color:var(--gris-doux)}
+  .prog-head .bloc-tag{font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .bar{height:6px;background:var(--neutre-bg);border-radius:99px;overflow:hidden;margin-bottom:24px}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--bleu-moyen),var(--bleu-fonce));
+    border-radius:99px;transition:width .45s cubic-bezier(.4,0,.2,1)}
+
+  /* ---------- QUESTION ---------- */
+  .qnum{font-family:'Fraunces',serif;font-size:.95rem;color:var(--bleu-moyen);font-weight:600;margin-bottom:8px}
+  .qtext{font-family:'Fraunces',serif;font-size:1.32rem;line-height:1.35;color:var(--bleu-fonce);
+    font-weight:500;margin-bottom:22px}
+  .opts{display:flex;flex-direction:column;gap:11px}
+  .opt{
+    text-align:left;font-family:inherit;font-size:.98rem;color:var(--gris);
+    background:var(--papier-2);border:1.5px solid var(--bord);border-radius:11px;
+    padding:14px 16px;cursor:pointer;transition:all .15s;display:flex;gap:12px;align-items:flex-start;
+    line-height:1.4;
+  }
+  .opt .lettre{
+    flex:0 0 26px;height:26px;border-radius:7px;background:#fff;border:1.5px solid var(--bord);
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;
+    color:var(--bleu-moyen);transition:all .15s;
+  }
+  .opt:hover:not(:disabled){border-color:var(--bleu-moyen);background:#fff;transform:translateX(2px)}
+  .opt:disabled{cursor:default}
+  .opt.bonne{border-color:var(--vert);background:var(--vert-bg)}
+  .opt.bonne .lettre{background:var(--vert);border-color:var(--vert);color:#fff}
+  .opt.mauvaise{border-color:var(--rouge);background:var(--rouge-bg)}
+  .opt.mauvaise .lettre{background:var(--rouge);border-color:var(--rouge);color:#fff}
+  .opt.attenue{opacity:.55}
+
+  /* ---------- FEEDBACK ---------- */
+  .fb{margin-top:20px;border-radius:12px;padding:0;max-height:0;overflow:hidden;
+    opacity:0;transition:max-height .4s ease,opacity .35s ease,padding .4s ease}
+  .fb.show{max-height:1200px;opacity:1;padding:18px 18px 20px;
+    background:var(--papier-2);border:1px solid var(--bord)}
+  .badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+  .badge{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    padding:3px 9px;border-radius:6px}
+  .b-fait{color:var(--bleu-fonce);background:#f1e6eb}
+  .b-est{color:var(--ambre);background:var(--ambre-bg)}
+  .b-hyp{color:var(--violet);background:var(--violet-bg)}
+  .b-ver{color:var(--neutre);background:var(--neutre-bg)}
+  .fb .verdict{font-weight:700;font-size:.92rem;margin-bottom:6px}
+  .fb .verdict.ok{color:var(--vert)}
+  .fb .verdict.no{color:var(--rouge)}
+  .fb .exp{font-size:.94rem;color:var(--gris);line-height:1.55}
+  .fb .liens{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+  .lien{display:inline-flex;align-items:center;gap:9px;font-size:.84rem;
+    text-decoration:none;color:var(--bleu-fonce);font-weight:500;
+    background:#fff;border:1px solid var(--bord);border-radius:8px;padding:9px 12px;
+    transition:border-color .15s,transform .15s}
+  .lien:hover{border-color:var(--bleu-moyen);transform:translateX(2px)}
+  .lien .pic{flex:0 0 auto;font-size:1rem}
+  .lien small{display:block;color:var(--gris-doux);font-weight:400;font-size:.74rem}
+
+  /* ---------- BOUTONS ---------- */
+  .row-nav{margin-top:24px;display:flex;justify-content:flex-end}
+  .btn{font-family:inherit;font-weight:600;font-size:.92rem;cursor:pointer;border:none;
+    border-radius:9px;padding:12px 22px;transition:background .15s,transform .12s}
+  .btn-primary{background:var(--bleu-fonce);color:#fff}
+  .btn-primary:hover{background:#52293a;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--bleu-moyen);border:1.5px solid var(--bord)}
+  .btn-ghost:hover{border-color:var(--bleu-moyen)}
+  .hidden{display:none!important}
+
+  /* ---------- RÉSULTAT ---------- */
+  .score-num{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:600;color:var(--bleu-fonce);
+    text-align:center;line-height:1}
+  .score-num small{font-size:.4em;color:var(--gris-doux)}
+  .score-msg{text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;
+    color:var(--gris-doux);margin:10px auto 4px;max-width:480px}
+  .sect{margin-top:30px}
+  .sect h2{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--bleu-fonce);font-weight:600;
+    margin-bottom:4px;display:flex;align-items:center;gap:9px}
+  .sect .lead{font-size:.9rem;color:var(--gris-doux);margin-bottom:16px}
+  .src-list{display:flex;flex-direction:column;gap:8px}
+  .meth{background:var(--papier-2);border:1px solid var(--bord);border-radius:12px;padding:20px 20px 6px}
+  .meth p{font-size:.92rem;margin-bottom:14px;color:var(--gris)}
+  .ia-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+  @media(max-width:540px){.ia-grid{grid-template-columns:1fr}}
+  .ia{font-size:.85rem;border-left:3px solid var(--bleu-moyen);padding:2px 0 2px 12px}
+  .ia b{color:var(--bleu-fonce)}
+  .quali{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+  footer{text-align:center;font-size:.78rem;color:var(--gris-doux);margin-top:40px;
+    padding-top:20px;border-top:1px solid var(--bord);line-height:1.7}
+  footer a{color:var(--bleu-moyen);text-decoration:none}
+
+  .fade{animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .b-calc{color:var(--vert);background:var(--vert-bg)}
+  .b-ana{color:var(--rouge);background:var(--rouge-bg)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="retour" href="../index.html#pilier-10">⬅ Retour au site</a>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow">Doctrine Éconologique</div>
+    <h1><span class="pil">Pilier X</span>Et si la France s’habillait elle-même ?</h1>
+    <p class="sous">10 questions pour comprendre ce qui serait possible, à quel prix, et qui y gagnerait. Des faits sourcés : la conclusion vous appartient.</p>
+  </header>
+
+  <!-- ============ INTRO ============ -->
+  <section id="intro" class="card fade">
+    <p class="intro-txt">Le vêtement est l’objet industriel que nous portons <strong>sur la peau, tous les jours</strong>. Presque tout est fabriqué ailleurs. Ce questionnaire pose une seule question : <strong>si la France décidait demain de fabriquer elle-même ses vêtements et ses chaussures, serait-ce possible, et qui y gagnerait ?</strong></p>
+    <p class="note-neutre">Ce QCM n’émet aucun jugement. Chaque réponse est qualifiée [FAIT], [CALCUL], [HYPOTHÈSE] ou [ANALYSE], et renvoie aux documents du Pilier X et aux sources. Les calculs ont été vérifiés par plusieurs intelligences artificielles.</p>
+
+    <div class="modes">
+      <button class="mode rapide" onclick="demarrer('rapide')">
+        <span class="ic">⚡</span>
+        <h3>Version rapide</h3>
+        <p>On enchaîne. Réponse, explication courte, question suivante. Cinq minutes.</p>
+        <span class="go">Commencer →</span>
+      </button>
+      <button class="mode lente" onclick="demarrer('lente')">
+        <span class="ic">📖</span>
+        <h3>Version approfondie</h3>
+        <p>Chaque question ouvre l’explication complète, le document du Pilier X et la source.</p>
+        <span class="go">Commencer →</span>
+      </button>
+    </div>
+
+    <div class="meta-intro">
+      <span>📄 10 questions</span>
+      <span>🗂️ 2 blocs</span>
+      <span>🔗 Sources à la fin</span>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="quiz" class="card hidden">
+    <div class="prog-head">
+      <span class="bloc-tag" id="blocTag"></span>
+      <span id="progTxt"></span>
+    </div>
+    <div class="bar"><i id="progBar"></i></div>
+
+    <div id="qbody"></div>
+
+    <div class="fb" id="fb"></div>
+
+    <div class="row-nav">
+      <button class="btn btn-primary hidden" id="nextBtn" onclick="suivante()">Question suivante →</button>
+    </div>
+  </section>
+
+  <!-- ============ RÉSULTAT ============ -->
+  <section id="result" class="card hidden"></section>
+
+  <footer>
+    Doctrine Éconologique · Pilier X — Textile, habillement, chaussure · Document à vocation informative.<br>
+    Porteur : Jean Paul Poignand. Méthode de validation croisée multi-IA.
+  </footer>
+
+</div>
+
+<script>
+/* ---------- DOCUMENTS DE LA DOCTRINE ---------- */
+const DOC = {
+  fiche :{l:"Fiche « Aller droit au but » — Pilier X (PDF)", u:"../fiches/pilier-10-aller-droit-au-but.pdf"},
+  note  :{l:"Note — Et si la France fabriquait tout ce qu’elle porte ? (PDF)", u:"../fiches/pilier-10-note-autonomie.pdf"},
+  annexe:{l:"Annexe — Le lin, l’eau et la matière française (PDF)", u:"../fiches/pilier-10-annexe-lin-eau.pdf"}
+};
+/* ---------- SOURCES ---------- */
+const SRC = {
+  refashion:{l:"Refashion — Baromètre annuel de la consommation 2026", u:"https://media-pro.refashion.fr/2026/06/2026-cp-barometre-annuel-de-la-consommation.pdf"},
+  lin      :{l:"FranceAgriMer — Fiche filière lin 2026", u:"https://www.franceagrimer.fr/sites/default/files/2026-02/22_FICHE_FILIERE_LIN_2026.pdf"},
+  boussac  :{l:"Archives nationales — Fonds Boussac et l’État", u:"https://francearchives.gouv.fr/fr/file/f6b8a8d1403bb6951f7506d4e73fdcd17fe1e972/FR_751079802_BOUSSAC.pdf"},
+  eau      :{l:"Chapagain, Hoekstra et al. (2006) — L’empreinte eau du coton", u:"https://ayhoekstra.nl/pubs/Chapagain-et-al-2006a.pdf"},
+  celc     :{l:"FashionUnited — Le lin européen et l’analyse du cycle de vie de la CELC", u:"https://fashionunited.fr/actualite/business/le-lin-europeen-confirme-sa-place-sur-le-podium-des-fibres-vertueuses/2022030829143"},
+  hcsp     :{l:"Haut-Commissariat à la stratégie et au plan — Billet fast fashion (janvier 2026)", u:"https://www.strategie-plan.gouv.fr/files/files/Publications/2026/2026-01-09%20-%20PDV%20Fast-fashion/HCSP-2026-BILLET-Fastfashion_8janvier20h-CLEAN_0.pdf"},
+  ffc      :{l:"Fédération française de la chaussure — Bilan économique 2024-2025", u:"https://www.chaussuredefrance.com/sites/default/files/2025-09/Bilan%20Economique%20FFC%202024-25_BD_site.pdf"},
+  gaulois  :{l:"Le Gaulois Jeans — site de la marque", u:"https://legauloisjeans.com"},
+  tuffery  :{l:"Les Indiscrétions — Julien Tuffery, le coût du made in France (2026)", u:"https://lesindiscretions.com/a-laffiche/julien-tuffery-le-cout-du-made-in-france/"},
+  insee    :{l:"Insee — Consommation des ménages en 2024", u:"https://www.insee.fr/fr/statistiques/8582021"}
+};
+
+/* ---------- QUESTIONS ---------- */
+const Q = [
+/* ===== BLOC A — EST-CE POSSIBLE ? ===== */
+{bloc:"A", t:`Sur les vêtements achetés en France, quelle part y est fabriquée ?`,
+ o:[`Environ 3 %`,`Environ 15 %`,`Environ 30 %`,`Environ la moitié`], c:0, tags:["FAIT"],
+ e:`Environ 3 % seulement : 95 à 97 % des vêtements vendus en France sont importés, selon un chiffre cité à l’Assemblée nationale. En 2025, les Français ont acheté 3,6 milliards d’articles textiles et de chaussures neufs, soit environ 43 vêtements et 4 paires par habitant et par an.`,
+ doc:DOC.fiche, src:SRC.refashion},
+
+{bloc:"A", t:`Le lin est la fibre qui pousse sans arrosage dans le nord de la France. Quelle part du lin textile du monde la France produit-elle ?`,
+ o:[`Moins de 5 %`,`Environ 20 %`,`100 %, et tout est filé en France`,`Environ 61 %, mais il est surtout filé en Chine et en Inde`], c:3, tags:["FAIT"],
+ e:`La France produit environ 61 % de la fibre longue de lin du monde : c’est le premier producteur mondial. Mais environ 85 % du lin européen part dans des filatures chinoises et indiennes, puis revient chez nous en tissu ou en vêtement. La filature de lin rouverte à Béthune en 2022 a fermé en 2025.`,
+ doc:DOC.annexe, src:SRC.lin},
+
+{bloc:"A", t:`En 1984, Bernard Arnault reprend le groupe textile Boussac avec l’appui de l’État. Que s’est-il passé ensuite ?`,
+ o:[`L’emploi a été maintenu comme prévu`,`Le plan présenté à l’État prévoyait 12 252 emplois ; deux ans plus tard, il en restait 9 800`,`Le groupe a été nationalisé`,`Les usines ont toutes été modernisées en France`], c:1, tags:["FAIT","ANALYSE"],
+ e:`Le plan industriel présenté à l’État prévoyait le maintien de 12 252 emplois ; le groupe tombe à 9 800 salariés dès 1986, puis le textile est vendu et le luxe (Dior) devient le socle de LVMH. Le déclin avait commencé avant 1984, et le caractère contraignant de l’engagement n’est pas établi. La leçon retenue par la Doctrine : toute aide publique doit être liée à un engagement d’emploi écrit, chiffré et remboursable s’il n’est pas tenu.`,
+ doc:DOC.fiche, src:SRC.boussac},
+
+{bloc:"A", t:`Fabriquer en France tout ce que nous achetons aujourd’hui (43 vêtements et 4 paires par personne et par an) : est-ce possible ?`,
+ o:[`Pas à ce volume ; mais au « nécessaire » (15 vêtements et 2 paires faits pour durer), oui`,`Oui, sans rien changer`,`Non, et ce ne le sera jamais`,`Seulement pour les chaussures`], c:0, tags:["HYPOTHÈSE"],
+ e:`Au volume actuel, il faudrait environ 930 000 emplois et 91 000 personnes à former chaque année : c’est hors de portée. Au nécessaire, 15 vêtements et 2 paires faits pour durer et réparés, il faut environ 580 000 emplois directs (400 000 à 780 000), pour un budget de 572 € par personne et par an, contre 651 € aujourd’hui. Cinq intelligences artificielles, raisonnant chacune de leur côté, arrivent à la même conclusion : l’autonomie oblige à revenir au nécessaire.`,
+ doc:DOC.note, src:SRC.insee},
+
+{bloc:"A", t:`Qu’est-ce qui fixe le rythme d’une telle reconstruction ?`,
+ o:[`L’argent : c’est hors de prix`,`La matière : on n’a pas de fibres`,`Rien : tout pourrait être fait en un an`,`La formation : il faut former des dizaines de milliers de personnes par an pendant dix ans`], c:3, tags:["FAIT","HYPOTHÈSE"],
+ e:`La formation : il faudrait former environ 56 000 personnes par an pendant dix ans, et il faut 18 mois à 2 ans pour former un tricoteur. L’investissement, environ 27 milliards d’euros sur dix ans, reste deux fois inférieur au plan France 2030. La matière existe en grande partie : lin, chanvre, laine et textiles recyclés pourraient fournir les trois quarts de la matière du vestiaire du nécessaire. Reste une dépendance : les machines viennent surtout d’Italie, d’Allemagne et du Japon.`,
+ doc:DOC.note, src:null},
+
+/* ===== BLOC B — QUI Y GAGNE ? ===== */
+{bloc:"B", t:`Combien d’eau faut-il pour fabriquer un tee-shirt en coton, en moyenne mondiale ?`,
+ o:[`Environ 20 litres`,`Environ 270 litres`,`Environ 2 700 litres`,`Environ 27 000 litres`], c:2, tags:["FAIT","CALCUL"],
+ e:`Environ 2 700 litres pour un tee-shirt et 10 850 litres pour un kilo de vêtement en coton, de la culture au produit fini ; 84 % de cette eau est prélevée hors d’Europe, en Inde ou en Ouzbékistan. Le lin d’Europe de l’Ouest, lui, n’est pas irrigué, sauf circonstances exceptionnelles. Le seul coton de nos vêtements représente environ 41 000 litres d’eau par Français et par an, soit neuf mois de sa consommation d’eau potable.`,
+ doc:DOC.annexe, src:SRC.eau},
+
+{bloc:"B", t:`Qu’est-ce qui pèse le plus sur l’environnement dans la vie d’un vêtement ?`,
+ o:[`Le transport en bateau depuis l’Asie`,`Le nombre de vêtements produits, l’énergie de la filature et de la teinture, la chimie et la durée de vie`,`L’emballage`,`Le lavage à la main`], c:1, tags:["ANALYSE"],
+ e:`Ce n’est pas le bateau : le transport ne pèse que quelques pourcents de l’empreinte d’un vêtement. Ce qui compte, c’est combien on en fabrique, avec quelle électricité on file et on teint, quelle chimie on emploie, et combien de temps on le garde. Fabriqué en France, un vêtement est filé et teint avec une électricité très peu carbonée, sous les règles chimiques européennes ; or c’est un produit qui touche la peau tous les jours. Mais le plus gros gain pour la planète vient d’en acheter moins, et de les faire durer.`,
+ doc:DOC.fiche, src:null},
+
+{bloc:"B", t:`Sur vingt ans, une paire cousue Goodyear à 350 €, ressemelée quatre fois, coûte-t-elle plus cher que des paires collées à 70 € remplacées tous les 18 mois ?`,
+ o:[`Non : environ 910 € contre 930 €, mais une paire au lieu de treize`,`Oui, deux fois plus cher`,`Oui, dix fois plus cher`,`On ne peut pas comparer`], c:0, tags:["CALCUL"],
+ e:`Non : environ 910 € pour la paire cousue (350 € et quatre ressemelages à environ 140 €), contre 930 € pour treize paires collées à 70 €. Même budget, mais une paire au lieu de treize : treize fois moins de matière et de déchets, et du travail de cordonnier en France. Le vrai obstacle n’est pas le coût, c’est d’avancer 350 € d’un coup ; d’où la proposition d’une avance remboursable pour l’achat durable.`,
+ doc:DOC.fiche, src:null},
+
+{bloc:"B", t:`Un jean 100 % lin fabriqué dans un atelier français coûte aujourd’hui environ 180 €. Fabriqué à grande échelle et vendu en direct, combien coûterait-il ?`,
+ o:[`Plus cher, environ 250 €`,`Le même prix, 180 €`,`Environ 80 €, moins qu’un Levi’s 501 fabriqué en Asie (≈ 110 €)`,`Environ 20 €`], c:2, tags:["CALCUL","HYPOTHÈSE"],
+ e:`Environ 80 € (entre 60 et 105 €) : à grande échelle, la filature, le tissage et la couture coûtent bien moins cher qu’en atelier. Ce calcul a été corrigé après trois audits indépendants (Perplexity, Grok, ChatGPT). Mais attention : vendu en boutique, avec les marges de la marque et du magasin, le même jean remonterait autour de 150 €. Le gain d’échelle n’arrive au client que si la marque vend en direct, comme le fait déjà Le Gaulois, qui fabrique ses jeans en lin près de Lyon.`,
+ doc:DOC.annexe, src:SRC.gaulois},
+
+{bloc:"B", t:`Au fond, qu’est-ce qui manque pour que la France s’habille elle-même ?`,
+ o:[`La matière première`,`Une décision politique, et le temps de former`,`Le savoir-faire, perdu pour toujours`,`Des clients`], c:1, tags:["ANALYSE","HYPOTHÈSE"],
+ e:`Une décision politique, et dix ans pour former. Les leviers sont connus : lier toute aide publique à un engagement d’emploi opposable, filer le lin français en France, habiller les agents publics en fabriqué en France ou en Europe, rendre l’achat durable accessible aux ménages modestes, former avant de construire. À la clé, selon le modèle de la Doctrine : environ 580 000 emplois, un budget vêtements un peu plus bas qu’aujourd’hui, une collectivité qui récupère en cotisations et en impôts ce que le consommateur paie de plus, et beaucoup moins de vêtements jetés. Le jour où l’on fabrique ici tout ce qu’on porte, on ne garde que ce qui sert.`,
+ doc:DOC.fiche, src:null}
+];
+
+/* ---------- LOGIQUE ---------- */
+let mode="rapide", idx=0, score=0, repondu=false;
+const $=id=>document.getElementById(id);
+const blocNom={A:"Bloc A · Est-ce possible ?", B:"Bloc B · Qui y gagne ?"};
+const badgeClass={"FAIT":"b-fait","CALCUL":"b-calc","HYPOTHÈSE":"b-hyp","ANALYSE":"b-ana","ESTIMATION":"b-est","À VÉRIFIER":"b-ver"};
+
+function demarrer(m){
+  mode=m; idx=0; score=0;
+  $("intro").classList.add("hidden");
+  $("result").classList.add("hidden");
+  $("quiz").classList.remove("hidden");
+  afficher();
+}
+
+function afficher(){
+  repondu=false;
+  const q=Q[idx];
+  $("blocTag").textContent=blocNom[q.bloc];
+  $("progTxt").textContent="Question "+(idx+1)+" / "+Q.length;
+  $("progBar").style.width=((idx)/Q.length*100)+"%";
+  const lettres=["A","B","C","D"];
+  let html='<div class="fade"><div class="qnum">Q'+(idx+1)+'</div><div class="qtext">'+q.t+'</div><div class="opts">';
+  q.o.forEach((opt,i)=>{
+    html+='<button class="opt" data-i="'+i+'" onclick="repondre('+i+')"><span class="lettre">'+lettres[i]+'</span><span>'+opt+'</span></button>';
+  });
+  html+='</div></div>';
+  $("qbody").innerHTML=html;
+  const fb=$("fb"); fb.className="fb"; fb.innerHTML="";
+  $("nextBtn").classList.add("hidden");
+  $("nextBtn").textContent = (idx===Q.length-1) ? "Voir le résultat →" : "Question suivante →";
+}
+
+function repondre(i){
+  if(repondu) return;
+  repondu=true;
+  const q=Q[idx];
+  document.querySelectorAll(".opt").forEach(b=>{
+    b.disabled=true;
+    const bi=+b.dataset.i;
+    if(bi===q.c) b.classList.add("bonne");
+    else if(bi===i) b.classList.add("mauvaise");
+    else b.classList.add("attenue");
+  });
+  const ok=(i===q.c);
+  if(ok) score++;
+  let fbHtml='<div class="badges">'+q.tags.map(t=>'<span class="badge '+badgeClass[t]+'">'+t+'</span>').join("")+'</div>';
+  fbHtml+='<div class="verdict '+(ok?"ok":"no")+'">'+(ok?"✓ Exact":"✗ Réponse exacte : "+["A","B","C","D"][q.c])+'</div>';
+  if(mode==="lente"){
+    fbHtml+='<div class="exp">'+q.e+'</div>';
+    let liens='<div class="liens">';
+    if(q.doc) liens+='<a class="lien" target="_blank" rel="noopener" href="'+q.doc.u+'"><span class="pic">📄</span><span>Document de la Doctrine<small>'+q.doc.l+'</small></span></a>';
+    if(q.src) liens+='<a class="lien" target="_blank" rel="noopener" href="'+q.src.u+'"><span class="pic">🔗</span><span>Source<small>'+q.src.l+'</small></span></a>';
+    liens+='</div>';
+    fbHtml+=liens;
+  } else {
+    fbHtml+='<div class="exp">'+q.e.split(". ")[0].replace(/\.$/,"")+'.</div>';
+  }
+  const fb=$("fb"); fb.innerHTML=fbHtml; fb.classList.add("show");
+  $("progBar").style.width=((idx+1)/Q.length*100)+"%";
+  $("nextBtn").classList.remove("hidden");
+  $("nextBtn").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function suivante(){
+  if(idx<Q.length-1){ idx++; afficher(); window.scrollTo({top:0,behavior:"smooth"}); }
+  else resultat();
+}
+
+function resultat(){
+  $("quiz").classList.add("hidden");
+  const r=$("result"); r.classList.remove("hidden"); r.classList.add("fade");
+  const pct=Math.round(score/Q.length*100);
+  let msg;
+  if(pct>=80) msg="Vous avez l’essentiel : au nécessaire, s’habiller français est possible. C’est une décision, pas une fatalité.";
+  else if(pct>=50) msg="Les grandes lignes sont là. La fiche et l’annexe du Pilier X complètent le tableau.";
+  else msg="Un sujet plein d’idées reçues, à commencer par le bateau. Les documents ci-dessous éclairent tout.";
+  const allSrc=Object.values(SRC);
+  const srcHtml=allSrc.map(s=>'<a class="lien" target="_blank" rel="noopener" href="'+s.u+'"><span class="pic">🔗</span><span>'+s.l+'</span></a>').join("");
+  const docHtml=Object.values(DOC).map(d=>'<a class="lien" target="_blank" rel="noopener" href="'+d.u+'"><span class="pic">📄</span><span>'+d.l+'</span></a>').join("");
+  r.innerHTML=`
+    <div class="score-num">${score}<small> / ${Q.length}</small></div>
+    <p class="score-msg">${msg}</p>
+    <div class="sect">
+      <h2>🗂️ Documents du Pilier X</h2>
+      <p class="lead">La fiche, la note sur l’autonomie et l’annexe chiffrée.</p>
+      <div class="src-list">${docHtml}</div>
+    </div>
+    <div class="sect">
+      <h2>🔗 Sources</h2>
+      <p class="lead">Chiffres et études de référence, vérifiables par tous.</p>
+      <div class="src-list">${srcHtml}</div>
+    </div>
+    <div class="sect">
+      <h2>🧭 Méthode</h2>
+      <p class="lead">Validation croisée multi-IA et niveau de preuve affiché.</p>
+      <div class="meth">
+        <p>Chaque réponse est classée selon son niveau de preuve, sans mélanger un fait, un calcul et une hypothèse :</p>
+        <div class="quali">
+          <span class="badge b-fait">FAIT</span>
+          <span class="badge b-calc">CALCUL</span>
+          <span class="badge b-hyp">HYPOTHÈSE</span>
+          <span class="badge b-ana">ANALYSE</span>
+        </div>
+        <p>Les contenus sont produits puis confrontés par plusieurs intelligences artificielles, chacune dans son rôle :</p>
+        <div class="ia-grid">
+          <div class="ia"><b>Claude</b> — architecture et arbitrage</div>
+          <div class="ia"><b>Perplexity</b> — données sourcées</div>
+          <div class="ia"><b>Gemini</b> — macroéconomie et climat</div>
+          <div class="ia"><b>Grok</b> — terrain</div>
+          <div class="ia"><b>ChatGPT</b> — dimensionnement et vérification des calculs</div>
+        </div>
+        <p style="font-style:italic;color:var(--gris-doux)">Ce questionnaire présente des faits sourcés et des calculs dont les hypothèses sont écrites. À chacun de conclure.</p>
+      </div>
+    </div>
+    <div class="row-nav" style="justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <a class="btn btn-ghost" href="../index.html#pilier-10">⬅ Retour au site</a>
+      <button class="btn btn-primary" onclick="demarrer(mode)">↻ Recommencer</button>
+    </div>
+  `;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
