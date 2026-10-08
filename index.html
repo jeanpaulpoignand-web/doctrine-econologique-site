@@ -43,6 +43,16 @@ a{color:inherit}
 .hero h1 em{color:var(--rouge)}
 .hero-lede{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.4vw,22px);max-width:650px;margin:0 auto 36px}
 .hero-byline{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:24px;max-width:360px;margin:auto}
+.finalite-wrap{max-width:1080px;margin:0 auto 36px;padding:0 28px}
+.finalite-card{background:var(--paper2);border:1px solid var(--line);border-left:4px solid var(--rouge);border-radius:6px;padding:22px 26px}
+.finalite-card h2{font-size:clamp(26px,3.5vw,36px);font-weight:600;margin-bottom:12px}
+.finalite-card p{font-size:15px;line-height:1.5;margin-bottom:12px}
+.finalite-card blockquote{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;line-height:1.35;color:var(--soft);margin:14px 0}
+.finalite-card cite{font-size:14px;font-style:normal}
+.finalite-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 18px;background:var(--rouge);color:#fff;border-radius:4px;text-decoration:none;font-size:14px;font-weight:700}
+.finalite-button:hover{filter:brightness(1.1)}
+.finalite-button:focus-visible{outline:3px solid var(--or);outline-offset:4px}
+@media(max-width:600px){.finalite-wrap{padding:0 16px}.finalite-card{padding:20px}.finalite-card p{font-size:16px}.finalite-button{width:100%}}
 .ps-wrap{max-width:1080px;margin:auto;padding:0 28px 54px}
 .ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .ps-card{background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--rouge);padding:28px;border-radius:4px}
@@ -287,6 +297,17 @@ section[id]{scroll-margin-top:84px}
   <h1>Une France qui produit,<br><em>répare</em>, transmet.</h1>
   <p class="hero-lede">Un cadre institutionnel français pour la souveraineté énergétique, la durabilité obligatoire, le capital humain reclassé, la justice contributive et la démocratie décisionnelle. Quinze numéros, quatorze piliers publiés, un chantier : le XIV, Amortissement de la dette, non audité.</p>
   <div class="hero-byline">Jean Paul Poignand · Côte d'Azur & Besançon</div>
+</section>
+
+<section class="finalite-wrap" aria-labelledby="finalite-titre">
+  <div class="finalite-card">
+    <h2 id="finalite-titre">La finalité de ce site : le vote responsable</h2>
+    <p>Chaque pilier de la doctrine apporte des leviers chiffrés et sourcés. Le bulletin d'arbitrage les réunit : vous cochez, vous déplacez les curseurs, et vous voyez ce que chaque choix coûte ou fait perdre.</p>
+    <p>Notre objectif : qu'en France, chaque citoyen puisse un jour, au moment de sa déclaration de revenus, répartir l'effort budgétaire en connaissance de cause, puis découvrir les choix de ses compatriotes.</p>
+    <p><strong>Dès 2026, c'est techniquement possible.</strong> Il commencerait par une consultation budgétaire citoyenne, facultative et anonyme. Ensuite viendrait une part réelle de l'impôt sur le revenu, de 1 à 5 %, affectée selon les choix exprimés, comme le fait déjà l'Italie.</p>
+    <blockquote>« Tous les Citoyens ont le droit de constater, par eux-mêmes ou par leurs représentants, la nécessité de la contribution publique […] d'en suivre l'emploi. » <cite>— Déclaration des droits de l'homme et du citoyen, article 14</cite></blockquote>
+    <a class="finalite-button" href="bulletin-arbitrage/">Essayer le bulletin d'arbitrage →</a>
+  </div>
 </section>
 
 <div class="entry-wrap">
