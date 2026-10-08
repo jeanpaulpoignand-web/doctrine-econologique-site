@@ -45,9 +45,11 @@
 .pillar-card,.choice input,input[type="range"]{scroll-margin-top:220px}
 .slider-body{padding-top:22px}.slider-control{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:18px}.slider-control input{flex:1 1 180px;min-width:0;width:100%;height:48px;accent-color:var(--accent);cursor:pointer}.slider-control .amount{font-size:1.8rem;white-space:nowrap}.slider-stops{padding-left:22px}.slider-stops li{margin:8px 0}.plain-piste{border:1px solid var(--line);border-radius:24px;padding:16px 20px;background:var(--warm);font-weight:600}.information{padding:22px}.information h3{margin-top:0;font-size:1.4rem;font-family:'Cormorant Garamond',serif}.information p{margin-bottom:0}
 html{scroll-padding-top:190px}.society-title{grid-column:1/-1;margin:6px 0 0;font-family:'IBM Plex Sans',sans-serif;font-size:1.05rem;color:var(--muted);letter-spacing:.02em;text-transform:uppercase}.hypothesis-banner{background:var(--warm);border-left:4px solid var(--accent);padding:16px 20px;margin:0 0 24px;font-weight:600}
+.site-return-bar{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);padding:4px max(24px,calc((100vw - 1072px)/2));min-height:56px}.site-return-bar .back{display:inline-flex;align-items:center;min-height:48px}.counter{top:56px}html{scroll-padding-top:246px}
 </style></head>
 <body>
-<header><a class="back" href="../index.html#pilier-14">← Retour au pilier XIV du site</a><h1>Bulletin d'arbitrage — Amortir la dette</h1><p class="subtitle">Il faut trouver environ 82 Md€ par an de plus que ce que prévoit l'État. Où les prenez-vous ?</p><div class="intro"><p>Pour atteindre environ 4 points d'excédent primaire à partir de 2031, il faut 2,7 points de PIB de plus que la trajectoire du Trésor (rapport sur la dette, 6 octobre 2026), soit environ 82 Md€ par an (PIB 2026).</p><p>Cochez les mesures que vous acceptez.</p><p>Ce que vous ne trouvez pas, le prélèvement dédié doit le combler.</p></div></header>
+<nav class="site-return-bar" aria-label="Retour au site"><a class="back" data-back href="../index.html#pilier-14">← Retour au site</a></nav>
+<header><h1>Bulletin d'arbitrage — Amortir la dette</h1><p class="subtitle">Il faut trouver environ 82 Md€ par an de plus que ce que prévoit l'État. Où les prenez-vous ?</p><div class="intro"><p>Pour atteindre environ 4 points d'excédent primaire à partir de 2031, il faut 2,7 points de PIB de plus que la trajectoire du Trésor (rapport sur la dette, 6 octobre 2026), soit environ 82 Md€ par an (PIB 2026).</p><p>Cochez les mesures que vous acceptez.</p><p>Ce que vous ne trouvez pas, le prélèvement dédié doit le combler.</p></div></header>
 <aside class="counter" aria-label="Compteur"><div role="status" aria-live="polite" aria-atomic="true"><strong>Trouvé : <span id="found">0,0</span> Md€ / 82 Md€</strong><label class="sr-only" for="progress">Trouvé sur 82 Md€</label><progress id="progress" max="82" value="0">0 / 82</progress><p>Prélèvement dédié nécessaire : <span id="levy">82,0</span> Md€, soit <span id="points">2,69</span> point(s) de PIB</p><p>dont production (hypothèse) : <span id="production-counter">0,0</span> Md€</p><p class="warning" hidden>au-delà du maximum prévu par la Doctrine (3 points de PIB)</p></div></aside>
 <main><noscript>Cet exercice nécessite JavaScript pour mettre à jour le compteur.</noscript><p class="exclusive" id="exclusive-message" role="status" aria-live="polite"></p>
 <section aria-labelledby="section-A"><h2 id="section-A">Économies de dépense</h2><div class="cards">
@@ -267,8 +269,20 @@ html{scroll-padding-top:190px}.society-title{grid-column:1/-1;margin:6px 0 0;fon
 <li>U3 — <a href="https://www.senat.fr/rap/l25-139-34/l25-139-34_mono.html" target="_blank" rel="noopener noreferrer">Aide publique au développement (mission budgétaire)<span class="new-tab-note">(s’ouvre dans un nouvel onglet)</span></a></li>
 <li>D1 — <a href="https://www.senat.fr/rap/l25-666/l25-666-syn.pdf" target="_blank" rel="noopener noreferrer">Budget des armées<span class="new-tab-note">(s’ouvre dans un nouvel onglet)</span></a></li>
 <li>C1, C2 — <a href="../fiches/pilier-05-aller-droit-au-but.pdf" target="_blank" rel="noopener noreferrer">Fiche du pilier V<span class="new-tab-note">(s’ouvre dans un nouvel onglet)</span></a></li>
-<li>C3 — <a href="../fiches/pilier-02-aller-droit-au-but.pdf" target="_blank" rel="noopener noreferrer">Fiche du pilier II (chiffres de la synthèse arbitrée V3)<span class="new-tab-note">(s’ouvre dans un nouvel onglet)</span></a></li></ul><a class="back" href="../index.html#pilier-14">← Retour au pilier XIV du site</a><div><button type="button" id="reset">Remettre à zéro</button></div></footer>
+<li>C3 — <a href="../fiches/pilier-02-aller-droit-au-but.pdf" target="_blank" rel="noopener noreferrer">Fiche du pilier II (chiffres de la synthèse arbitrée V3)<span class="new-tab-note">(s’ouvre dans un nouvel onglet)</span></a></li></ul><a class="back" data-back href="../index.html#pilier-14">← Retour au site</a><div><button type="button" id="reset">Remettre à zéro</button></div></footer>
 <script>
+document.querySelectorAll('a[data-back]').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    try {
+      var r = document.referrer;
+      if (r && new URL(r).origin === location.origin && history.length > 1) {
+        e.preventDefault();
+        history.back();
+      }
+    } catch (_) {}
+  });
+});
+
 'use strict';
 const choices = Array.from(document.querySelectorAll('input[type="checkbox"]'));
 const exclusive = {A2:['A3'], A3:['A2'], A8:['P2'], P2:['A8'], A11:['A12'], A12:['A11'], B5:['B9','B10'], B9:['B5'], B10:['B5'], C1:['C2'], C2:['C1']};
