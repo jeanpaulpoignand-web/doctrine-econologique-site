@@ -14,7 +14,7 @@
         <h1>Pilier 15 — Fraude fiscale</h1>
         <p class="subtitle">Vérité des chiffres, justice contributive et souveraineté fiscale effective.</p>
       </div>
-      <a class="back-link" href="../index.html#pilier-15">← Retour au site</a>
+      <a class="back-link" data-back href="../index.html#pilier-15">← Retour au site</a>
     </div>
   </header>
 
@@ -51,7 +51,7 @@
 
     <section id="quiz" class="card hidden" aria-live="polite">
       <div class="top-actions">
-        <a href="../index.html#pilier-15" class="small-link">← Retour au site</a>
+        <a href="../index.html#pilier-15" class="small-link" data-back>← Retour au site</a>
         <button id="switchModeBtn" class="ghost-button" type="button">Changer de mode</button>
       </div>
 
@@ -87,7 +87,7 @@
 
     <section id="results" class="card hidden">
       <div class="top-actions">
-        <a href="../index.html#pilier-15" class="small-link">← Retour au site</a>
+        <a href="../index.html#pilier-15" class="small-link" data-back>← Retour au site</a>
         <button id="changeModeFromResultsBtn" class="ghost-button" type="button">Changer de mode</button>
       </div>
       <h2>Résultats — Pilier 15</h2>
@@ -105,7 +105,7 @@
       <div class="doc-links result-docs">
         <h3>Pour approfondir</h3>
           <ul>
-            <li><a href="../index.html#pilier-15">Retour au Pilier XV sur le site</a></li>
+            <li><a href="../index.html#pilier-15" data-back>Retour au Pilier XV sur le site</a></li>
             <li><a href="../fiches/pilier-15-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche « Aller droit au but » du Pilier XV (s'ouvre dans un nouvel onglet)</a></li>
           </ul>
       </div>
@@ -119,5 +119,18 @@
   </footer>
 
   <script src="assets/js/app.js"></script>
+  <script>
+  document.querySelectorAll('a[data-back]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      try {
+        var r = document.referrer;
+        if (r && new URL(r).origin === location.origin && history.length > 1) {
+          e.preventDefault();
+          history.back();
+        }
+      } catch (_) {}
+    });
+  });
+  </script>
 </body>
 </html>

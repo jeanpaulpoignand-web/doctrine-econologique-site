@@ -222,6 +222,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    min-height: 48px;
     color: #dbeafe;
     text-decoration: none;
     font-size: 13px;
@@ -237,12 +238,16 @@
     background: rgba(255,255,255,0.2);
     color: white;
   }
+  .back-link:focus-visible {
+    outline: 3px solid #fca5a5;
+    outline-offset: 4px;
+  }
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <a href="../" class="back-link">← Retour au site Doctrine</a>
+    <a href="../index.html#pilier-8" class="back-link" data-back>← Retour au site</a>
     <div class="tag">Doctrine Éconologique — QCM corrigé</div>
     <h1>Les immigrants de la journée</h1>
     <div class="subtitle">Version robuste, sans Google Apps Script, avec réponses chiffrées harmonisées pour ne pas donner la solution par la forme.</div>
@@ -424,6 +429,17 @@ function restartQuiz() {
 el.next.addEventListener("click", nextQuestion);
 el.restart.addEventListener("click", restartQuiz);
 renderQuestion();
+document.querySelectorAll('a[data-back]').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    try {
+      var r = document.referrer;
+      if (r && new URL(r).origin === location.origin && history.length > 1) {
+        e.preventDefault();
+        history.back();
+      }
+    } catch (_) {}
+  });
+});
 </script>
 </body>
 </html>

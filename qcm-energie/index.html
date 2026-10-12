@@ -208,12 +208,15 @@ button:disabled{
 .screen{display:none}
 .screen.active{display:block}
 .back{
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  min-height:48px;
   color:var(--gold2);
   text-decoration:none;
   font-weight:700;
   margin-bottom:18px;
 }
+.back:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 .source-list{
   display:none;
   margin-top:18px;
@@ -342,7 +345,7 @@ footer{
 <body>
 <div class="container">
 
-<a href="../" class="back">← Retour au site Doctrine</a>
+<a href="../index.html#pilier-1" class="back" data-back>← Retour au site</a>
 
 <section id="home" class="screen active">
   <div class="hero">
@@ -1111,6 +1114,17 @@ function restart(){
 function goHome(){
   show("home");
 }
+document.querySelectorAll('a[data-back]').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    try {
+      var r = document.referrer;
+      if (r && new URL(r).origin === location.origin && history.length > 1) {
+        e.preventDefault();
+        history.back();
+      }
+    } catch (_) {}
+  });
+});
 </script>
 </body>
 </html>

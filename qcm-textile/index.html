@@ -48,12 +48,13 @@
   /* ---------- EN-TÊTE ---------- */
   .topbar{padding:20px 0 6px}
   .retour{
-    display:inline-flex;align-items:center;gap:7px;
+    display:inline-flex;align-items:center;gap:7px;min-height:48px;
     font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;
     color:var(--bleu-moyen);text-decoration:none;font-weight:600;
     transition:color .2s;
   }
   .retour:hover{color:var(--bleu-fonce)}
+  .retour:focus-visible,.btn:focus-visible{outline:3px solid var(--bleu-moyen);outline-offset:4px}
   header.hero{
     text-align:center;padding:26px 0 18px;border-bottom:1px solid var(--bord);
     margin-bottom:30px;
@@ -206,7 +207,7 @@
 <div class="wrap">
 
   <div class="topbar">
-    <a class="retour" href="../index.html#pilier-10">⬅ Retour au site</a>
+    <a class="retour" data-back href="../index.html#pilier-10">⬅ Retour au site</a>
   </div>
 
   <header class="hero">
@@ -466,12 +467,29 @@ function resultat(){
       </div>
     </div>
     <div class="row-nav" style="justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <a class="btn btn-ghost" href="../index.html#pilier-10">⬅ Retour au site</a>
+      <a class="btn btn-ghost" data-back href="../index.html#pilier-10">⬅ Retour au site</a>
       <button class="btn btn-primary" onclick="demarrer(mode)">↻ Recommencer</button>
     </div>
   `;
+  bindBackLinks();
   window.scrollTo({top:0,behavior:"smooth"});
 }
+function bindBackLinks(){
+  document.querySelectorAll('a[data-back]').forEach(function (a) {
+    if (a.dataset.backBound) return;
+    a.dataset.backBound = "1";
+    a.addEventListener('click', function (e) {
+      try {
+        var r = document.referrer;
+        if (r && new URL(r).origin === location.origin && history.length > 1) {
+          e.preventDefault();
+          history.back();
+        }
+      } catch (_) {}
+    });
+  });
+}
+bindBackLinks();
 </script>
 </body>
 </html>
