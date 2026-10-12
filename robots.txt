@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/sitemap.xml
