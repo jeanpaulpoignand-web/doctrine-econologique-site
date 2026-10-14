@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="description" content="QCM citoyen — Pilier XVII : propreté publique, responsabilité du déchet et consigne mégots.">
+<title>QCM — Pilier XVII · Consigne mégots | Doctrine Éconologique</title>
+<style>
+:root{
+  --paper:#FDFBF7;--paper2:#FFFFFC;--warm:#F5F0E3;--ink:#0A0A0A;--soft:#272727;
+  --muted:#645B4D;--line:#C9C0AA;--faint:#E3DCCB;--accent:#315D50;--accent2:#6B5520;
+  --danger:#8B2C1E;--shadow:0 10px 30px rgba(31,40,35,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;line-height:1.55}
+button,a{font:inherit}
+a{color:inherit}
+.wrap{max-width:780px;margin:0 auto;padding:0 18px 56px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0 8px}
+.back{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-size:.9rem;font-weight:700;text-decoration:none}
+.audit{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--accent2);color:var(--accent2);border-radius:999px;padding:6px 10px}
+.hero{text-align:center;padding:28px 0 24px}
+.eyebrow{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:800}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif}
+h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.08;margin:12px 0}
+.lede{max-width:650px;margin:0 auto;color:var(--muted);font-size:1rem}
+.card{background:var(--paper2);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:26px}
+.notice{margin-top:18px;padding:13px 14px;background:var(--warm);border-left:3px solid var(--accent);font-size:.9rem;color:var(--soft)}
+.btn{border:0;border-radius:9px;padding:12px 18px;min-height:46px;cursor:pointer;font-weight:750}
+.btn-primary{background:var(--accent);color:white}
+.btn-secondary{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.btn:focus-visible,.answer:focus-visible,.back:focus-visible{outline:3px solid #9A7B25;outline-offset:3px}
+.actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:22px}
+.hidden{display:none!important}
+.progress-meta{display:flex;justify-content:space-between;gap:10px;font-size:.82rem;color:var(--muted);margin-bottom:8px}
+.progress{height:7px;background:var(--faint);border-radius:99px;overflow:hidden;margin-bottom:24px}
+.progress>span{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.qtag{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.qtitle{font-size:1.45rem;line-height:1.3;margin:8px 0 20px}
+.answers{display:grid;gap:10px}
+.answer{width:100%;text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:11px;padding:14px 15px;cursor:pointer;color:var(--soft);line-height:1.42}
+.answer:hover{border-color:var(--accent)}
+.answer.selected{border-color:var(--accent);box-shadow:0 0 0 2px rgba(49,93,80,.14);background:#F3F8F5}
+.answer.neutral{border-style:dashed}
+.answer .letter{font-weight:850;color:var(--accent);margin-right:8px}
+.info{margin-top:16px;padding:14px 15px;background:var(--warm);border:1px solid var(--faint);border-radius:10px;font-size:.92rem;color:var(--soft)}
+.info strong{color:var(--accent2)}
+.result-intro{margin-bottom:20px;color:var(--muted)}
+.axis{margin:18px 0}
+.axis-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.axis-name{font-weight:800}
+.axis-label{font-size:.83rem;color:var(--muted)}
+.axisbar{height:9px;background:var(--faint);border-radius:999px;overflow:hidden;margin-top:7px}
+.axisbar span{display:block;height:100%;background:var(--accent);border-radius:999px}
+.axis-note{font-size:.84rem;color:var(--muted);margin-top:5px}
+.proposal{margin-top:22px;border-top:1px solid var(--line);padding-top:22px}
+.proposal h2{font-size:1.5rem}
+.proposal h3{font-size:1.12rem;margin:20px 0 7px}
+.proposal p{margin:0 0 11px}
+.tag{font-size:.7rem;font-weight:850;letter-spacing:.04em;color:var(--accent2)}
+.sources{font-size:.82rem;color:var(--muted);background:var(--warm);padding:14px;border-radius:10px;margin-top:18px}
+.sources a{color:var(--accent);text-underline-offset:2px}
+footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:28px}
+@media(max-width:560px){
+  .wrap{padding:0 12px 40px}.card{padding:20px 16px}.topbar{align-items:flex-start;flex-direction:column}
+  .actions{justify-content:stretch}.actions .btn{width:100%}.answer{font-size:1rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="../index.html#pilier-17" data-back>← Retour au Pilier XVII</a>
+    <span class="audit">Version de travail en audit</span>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow">Doctrine Éconologique · Pilier XVII</div>
+    <h1>Propreté publique et responsabilité du déchet</h1>
+    <p class="lede">9 choix de politique publique autour d’une éventuelle consigne sur les mégots. Il n’y a pas de « bonne réponse » affichée : le résultat décrit vos arbitrages.</p>
+  </header>
+
+  <main>
+    <section id="intro" class="card">
+      <h2>Avant de commencer</h2>
+      <p>Le questionnaire porte sur l’organisation du coût du déchet, pas sur le jugement du fait de fumer. Il ne demande pas si vous êtes fumeur ou non.</p>
+      <div class="notice"><strong>Vie privée :</strong> aucune donnée n’est envoyée, collectée ou stockée. Les réponses restent uniquement en mémoire dans cette page et disparaissent lorsque vous la fermez ou la rechargez.</div>
+      <div class="actions"><button class="btn btn-primary" id="startBtn" type="button">Commencer →</button></div>
+    </section>
+
+    <section id="quiz" class="card hidden">
+      <div class="progress-meta"><span id="counter" aria-live="polite">Question 1 / 9</span><span id="dimension"></span></div>
+      <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
+      <div class="qtag" id="qtag"></div>
+      <h2 class="qtitle" id="question"></h2>
+      <div class="answers" id="answers"></div>
+      <div class="info hidden" id="infoBox" role="status" aria-live="polite"></div>
+      <div class="actions">
+        <button class="btn btn-secondary" id="prevBtn" type="button">← Précédent</button>
+        <button class="btn btn-primary" id="nextBtn" type="button" disabled>Suivant →</button>
+      </div>
+    </section>
+
+    <section id="results" class="card hidden">
+      <h2>Votre profil de décision</h2>
+      <p class="result-intro">Ces six axes résument vos préférences. Ils ne constituent ni une note civique ni un score d’adhésion à la doctrine.</p>
+      <div id="axes"></div>
+      <div class="actions">
+        <button class="btn btn-secondary" id="restartBtn" type="button">Recommencer</button>
+        <button class="btn btn-primary" id="understandBtn" type="button">Comprendre la proposition du Pilier XVII →</button>
+      </div>
+
+      <div id="proposal" class="proposal hidden">
+        <h2>Comprendre la proposition du Pilier XVII</h2>
+        <h3>Le problème posé</h3>
+        <p><span class="tag">[FAIT]</span> La Ville de Paris estime à <strong>10 M€ par an</strong> le coût du jet de mégots au sol pour la collectivité et indique <strong>4 à 5 millions de mégots ramassés par jour</strong>. Source : Ville de Paris, communiqué du 20 mai 2025.</p>
+        <p><span class="tag">[FAIT]</span> L’OFDT relève <strong>23 326 tonnes de cigarettes</strong> vendues en 2025 dans le réseau des buralistes, soit un ordre de grandeur d’environ 23 à 29 milliards de cigarettes selon la conversion retenue, et environ <strong>22 800 buralistes</strong>.</p>
+        <p><span class="tag">[FAIT]</span> Alcome a été agréé le 28 juillet 2021 pour six ans. Pour 2026, le barème 2026 communiqué par Alcome à ses adhérents indique 2,84 € pour 1 000 unités mises sur le marché, soit environ 5,7 centimes par paquet de 20 ; ce barème a été adressé au ministère « sous réserve de retour ».</p>
+
+        <h3>Le mécanisme proposé</h3>
+        <p><span class="tag">[PROPOSITION]</span> Ajouter une consigne remboursable liée au paquet, avec un montant déterminé après expérimentation plutôt qu’arrêté d’avance.</p>
+        <p><span class="tag">[PROPOSITION À L’ÉTUDE]</span> Une autre voie est également étudiée : fixer aux producteurs un objectif chiffré de réduction des déchets abandonnés, mesuré indépendamment et assorti de sanctions réelles, tout en leur laissant le choix du moyen. Dans cette variante, une consigne ne deviendrait nécessaire que si l’objectif est manqué. Cette option n’est pas arrêtée comme position de la Doctrine.</p>
+        <p><span class="tag">[PROPOSITION À L’ÉTUDE]</span> Une contribution des producteurs pourrait aussi être liée au résultat mesuré : elle diminuerait lorsque les déchets abandonnés reculent selon une mesure indépendante. Cette architecture d’incitation n’est pas arrêtée comme position de la Doctrine.</p>
+        <p><span class="tag">[PROPOSITION]</span> Permettre le remboursement sans achat d’un nouveau paquet et rémunérer les points de reprise pour le service réellement rendu.</p>
+        <p><span class="tag">[PROPOSITION]</span> Faire financer la reprise, la logistique, le contrôle et le traitement par la filière des producteurs, selon le principe de responsabilité du déchet final.</p>
+
+        <h3>Traçabilité et vie privée</h3>
+        <p><span class="tag">[FAIT]</span> Chaque paquet porte un identifiant unique dans le système européen depuis le 20 mai 2019. Le suivi européen s’arrête avant la vente au consommateur.</p>
+        <p><span class="tag">[PROPOSITION]</span> Un droit de remboursement utilisable une seule fois pourrait s’appuyer sur le paquet et un registre de consigne indépendant, sans compte nominatif du fumeur.</p>
+        <p><span class="tag">[ANALYSE]</span> Le code du paquet ne prouve pas que chaque mégot rapporté provient physiquement de ce paquet : il sert surtout à authentifier le droit au remboursement et à empêcher les remboursements multiples.</p>
+
+        <h3>Contenant et traitement</h3>
+        <p><span class="tag">[FAIT]</span> Selon la directrice générale d’Alcome, citée par Maire-info, un mégot pèse environ 0,22 g.</p>
+        <p><span class="tag">[PROPOSITION]</span> Un pilote comparerait plusieurs contenants sur la sécurité, l’hygiène, l’usage et leur propre bilan environnemental.</p>
+        <p><span class="tag">[PROPOSITION]</span> Aucun recyclage systématique n’est promis. Le traitement retenu devrait être celui dont le bilan environnemental complet est le mieux démontré.</p>
+
+        <h3>Ce qui reste ouvert</h3>
+        <p><span class="tag">[HYPOTHÈSE]</span> Le montant de la consigne, le contenant, le coût réel de la reprise, le dispositif antifraude et le traitement final doivent être testés avant toute généralisation.</p>
+        <p><span class="tag">[PROPOSITION]</span> Le principe pourrait ensuite être étudié pour d’autres déchets diffus uniquement si son efficacité, son coût et son bilan environnemental sont démontrés.</p>
+
+        <div class="sources">
+          Sources :<br>
+          <a href="https://www.ofdt.fr/sites/ofdt/files/2026-05/note-bilan-tabac-2026.pdf" target="_blank" rel="noopener">OFDT — « Tabagisme et arrêt du tabac en 2025 » (note de bilan, mai 2026)</a><br>
+          <a href="https://presse.paris.fr/communiques/9853" target="_blank" rel="noopener">Ville de Paris — « La Ville de Paris lance son plan de lutte contre les mégots » (20 mai 2025)</a><br>
+          <a href="https://health.ec.europa.eu/system/files/2018-10/tt_manual_en_0.pdf" target="_blank" rel="noopener">Commission européenne — manuel du système de traçabilité des produits du tabac</a><br>
+          <a href="https://www.maire-info.com/dechets/alcome-une-nouvelle-filiere-pour-aider-les-communes-au-nettoiement-des-megots-article-26204" target="_blank" rel="noopener">Maire-info — entretien avec la directrice générale d’Alcome (11 mars 2022), poids indicatif d’un mégot</a><br>
+          <a href="https://alcome.eco/ressources-documentaires/" target="_blank" rel="noopener">Alcome — ressources documentaires</a> ·
+          <a href="https://alcome.eco/wp-content/uploads/2026/05/20250930-information-bareme-2026-adherent.pdf" target="_blank" rel="noopener">Alcome — barème 2026 communiqué aux adhérents, sous réserve de retour du ministère</a>.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Doctrine Éconologique · Pilier XVII · Version de travail en audit · 14 octobre 2026</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var axesMeta = {
+    responsibility:{name:"Responsabilité économique", low:"coût davantage mutualisé", mid:"responsabilité partagée", high:"responsabilité davantage portée par la filière"},
+    incentive:{name:"Intensité de l’incitation", low:"incitation faible", mid:"incitation expérimentale et graduée", high:"incitation forte"},
+    convenience:{name:"Commodité du retour", low:"réseau spécialisé ou contraintes plus fortes", mid:"retour encadré", high:"retour de proximité et indépendant d’un nouvel achat"},
+    traceability:{name:"Traçabilité proportionnée", low:"contrôle léger", mid:"contrôle technique limité", high:"antifraude renforcé sans suivi nominatif"},
+    safety:{name:"Sécurité et praticité du retour", low:"peu de standardisation", mid:"solutions à comparer", high:"contenant dédié ou sécurisé"},
+    environment:{name:"Rigueur environnementale", low:"priorité à l’élimination simple", mid:"traitement encadré", high:"choix fondé sur un bilan environnemental démontré"}
+  };
+
+  var questions = [
+    {
+      title:"Le principe de la consigne",
+      text:"Lorsqu’un produit génère un déchet diffus fréquemment abandonné dans l’espace public, faut-il créer une consigne remboursable pour donner une valeur économique au retour de ce déchet ?",
+      dimension:"Instrument économique",
+      shuffle:false,
+      info:"La Q1 compare plusieurs instruments. Une obligation de résultat fixe une cible mesurée indépendamment et assortie d’une sanction, sans imposer d’emblée le moyen utilisé pour l’atteindre. Cette variante est à l’étude au même titre que la consigne et n’est pas une position doctrinale arrêtée.",
+      options:[
+        ["Oui, une consigne remboursable, lorsque le déchet est identifiable, récupérable et que le système est proportionné.",{responsibility:2,incentive:2}],
+        ["Oui, mais uniquement après une expérimentation démontrant son efficacité et son coût.",{responsibility:2,incentive:1.5}],
+        ["Imposer aux producteurs un objectif chiffré de réduction des déchets abandonnés, avec sanction réelle et mesure indépendante, et les laisser choisir le moyen ; une consigne ne s’imposerait que si l’objectif est manqué.",{responsibility:2,incentive:1.5}],
+        ["Non : renforcer les amendes ou conserver les dispositifs actuels.",{responsibility:.5,incentive:.25}]
+      ]
+    },
+    {
+      title:"Comment fixer le montant ?",
+      text:"Comment devrait être déterminé le montant d’une éventuelle consigne sur un paquet de cigarettes ?",
+      dimension:"Intensité de l’incitation",
+      shuffle:false,
+      info:"Aucun système national de consigne sur les mégots n'existe. Les travaux préparatoires envisagent des plages de l'ordre de 1 à 5 € par paquet, à tester par un pilote. [HYPOTHÈSE]",
+      options:[
+        ["Par une expérimentation comparant plusieurs montants, la fraude et les coûts.",{incentive:1.5}],
+        ["Par un montant élevé dès le départ afin de créer une incitation très forte.",{incentive:2}],
+        ["Par un montant faible afin de limiter la contrainte financière.",{incentive:.5}],
+        ["Il ne devrait pas y avoir de consigne.",{incentive:0}]
+      ]
+    },
+    {
+      title:"Remboursement sans nouvel achat",
+      text:"Une personne qui rapporte les mégots et le support prévu doit-elle pouvoir récupérer sa consigne sans acheter un nouveau paquet ?",
+      dimension:"Commodité du retour",
+      shuffle:false,
+      info:"Le remboursement sans nouvel achat n’est pas une règle existante : c’est un choix de conception proposé pour que la restitution du déchet ne soit pas conditionnée à l’achat d’un nouveau paquet.",
+      options:[
+        ["Oui, dans tous les points de reprise prévus par le dispositif.",{convenience:2}],
+        ["Oui, mais seulement dans certains points de reprise.",{convenience:1}],
+        ["Non, le remboursement peut être lié à l’achat du paquet suivant.",{convenience:.5}],
+        ["Non, le remboursement en argent ne devrait pas être prévu.",{convenience:0}]
+      ]
+    },
+    {
+      title:"Qui doit payer la filière ?",
+      text:"Qui devrait financer la reprise, la collecte, le transport, le contrôle et le traitement des mégots ?",
+      dimension:"Responsabilité économique",
+      shuffle:true,
+      info:"Les prix du tabac sont proposés par les fabricants puis homologués par l'État (OFDT). [ANALYSE] Une contribution fixe peut être répercutée dans le prix de vente ; une contribution liée au résultat mesuré donne au producteur un intérêt à réduire les déchets.",
+      options:[
+        ["Les producteurs, par une contribution fixe dédiée à la filière.",{responsibility:1.75}],
+        ["Les producteurs, par une contribution qui baisse quand les déchets abandonnés diminuent, mesurés par un tiers indépendant.",{responsibility:2,incentive:1.5}],
+        ["Les collectivités, par leurs budgets de propreté publique.",{responsibility:0}],
+        ["Un financement partagé entre producteurs, fumeurs et collectivités.",{responsibility:1}]
+      ]
+    },
+    {
+      title:"Le rôle du buraliste",
+      text:"Si les buralistes deviennent des points de reprise, doivent-ils être rémunérés spécifiquement pour ce service ?",
+      dimension:"Commodité du retour",
+      shuffle:true,
+      info:"L’OFDT dénombre environ 22 800 buralistes. Leur utilisation comme réseau de reprise donnerait une forte proximité, mais le temps de manipulation, le stockage, la sécurité et la rémunération restent à mesurer par un pilote.",
+      options:[
+        ["Oui, selon le service réel de reprise et de stockage.",{convenience:2,responsibility:1.5}],
+        ["Oui, mais seulement au-delà d’un certain volume collecté.",{convenience:1,responsibility:1}],
+        ["Non, cette mission devrait relever de leur activité courante.",{convenience:1,responsibility:.5}],
+        ["Non, il faudrait uniquement des points de collecte spécialisés.",{convenience:0,responsibility:1}]
+      ]
+    },
+    {
+      title:"Traçabilité et vie privée",
+      text:"Quel niveau de traçabilité vous paraît acceptable pour empêcher les doubles remboursements et limiter la fraude ?",
+      dimension:"Traçabilité proportionnée",
+      shuffle:true,
+      info:"Chaque paquet porte un identifiant unique dans le système européen de traçabilité depuis le 20 mai 2019. Le suivi européen s’arrête avant la vente au consommateur : un éventuel registre de consigne devrait donc ajouter son propre contrôle du remboursement.",
+      options:[
+        ["Un jeton anonyme lié au paquet, validé par un registre indépendant.",{traceability:2}],
+        ["Un compte personnel permettant de suivre les achats et les retours.",{traceability:1.5}],
+        ["Un contrôle visuel du paquet, sans registre informatique.",{traceability:.5}],
+        ["Aucune traçabilité ; accepter un certain niveau de fraude.",{traceability:0}]
+      ]
+    },
+    {
+      title:"Quel contenant pour le retour des mégots ?",
+      text:"Quel contenant devrait être testé pour permettre un retour sûr et pratique des mégots ?",
+      dimension:"Sécurité et praticité",
+      shuffle:true,
+      info:"Selon la directrice générale d’Alcome, citée par Maire-info, un mégot pèse environ 0,22 g. Aucun contenant n’est arrêté. Le pilote doit comparer les solutions sur la sécurité, l’hygiène, l’odeur, l’humidité, la simplicité d’usage et le bilan environnemental du contenant lui-même.",
+      options:[
+        ["Le paquet, avec une poche intérieure fermée.",{safety:1.5,convenience:1.5}],
+        ["Un cendrier de poche ignifugé et réutilisable.",{safety:2,convenience:1}],
+        ["Les deux solutions, comparées dans un pilote.",{safety:2,convenience:1.5}],
+        ["Le paquet seul suffit, sans contenant supplémentaire.",{safety:.25,convenience:2}]
+      ]
+    },
+    {
+      title:"Quel traitement pour les mégots récupérés ?",
+      text:"Une fois les mégots récupérés, quelle règle devrait guider leur traitement ?",
+      dimension:"Rigueur environnementale",
+      shuffle:true,
+      info:"Aucune promesse de recyclage systématique n’est retenue. Le choix proposé est de comparer les solutions de traitement ou de valorisation sur leur bilan environnemental complet avant d’en privilégier une.",
+      options:[
+        ["Recycler systématiquement tous les mégots récupérés.",{environment:1}],
+        ["Choisir le traitement au meilleur bilan environnemental démontré.",{environment:2}],
+        ["Les éliminer avec les déchets ordinaires après collecte.",{environment:.25}],
+        ["Laisser chaque producteur choisir librement sa filière de traitement.",{environment:.5}]
+      ]
+    },
+    {
+      title:"Étendre le principe à d’autres déchets ?",
+      text:"Si la consigne sur les mégots démontre son efficacité à un coût raisonnable, faut-il étudier le même principe pour d’autres déchets diffus ?",
+      dimension:"Extension conditionnelle",
+      shuffle:true,
+      info:"L’extension n’est pas automatique. Le Pilier XVII propose de l’étudier uniquement pour des déchets identifiables et récupérables lorsque l’efficacité, le coût, la fraude et le bilan environnemental peuvent être mesurés.",
+      options:[
+        ["Oui, au cas par cas, après preuve d’efficacité et de proportionnalité.",{responsibility:1.5,environment:2}],
+        ["Oui, comme principe général pour la plupart des déchets diffus.",{responsibility:2,environment:1}],
+        ["Non, il faut limiter ce dispositif aux mégots.",{responsibility:1,environment:1}],
+        ["Non, la consigne ne devrait pas servir pour ces déchets.",{responsibility:0,environment:0}]
+      ]
+    }
+  ];
+
+  var state={index:0,answers:new Array(questions.length),order:new Array(questions.length)};
+
+  function shuffledIndexes(n){
+    var a=[]; for(var i=0;i<n;i++){a.push(i);}
+    for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[k];a[k]=t;}
+    return a;
+  }
+
+  function getOrder(i){
+    if(!state.order[i]){
+      state.order[i]=questions[i].shuffle?shuffledIndexes(4):[0,1,2,3];
+    }
+    return state.order[i];
+  }
+
+  function show(id){document.getElementById(id).classList.remove("hidden");}
+  function hide(id){document.getElementById(id).classList.add("hidden");}
+
+  function render(){
+    var i=state.index,q=questions[i],selected=state.answers[i];
+    document.getElementById("counter").textContent="Question "+(i+1)+" / "+questions.length;
+    document.getElementById("dimension").textContent=q.dimension;
+    document.getElementById("progressFill").style.width=((i+1)/questions.length*100)+"%";
+    document.getElementById("qtag").textContent=q.title;
+    document.getElementById("question").textContent=q.text;
+    var box=document.getElementById("answers"); box.innerHTML="";
+    var order=getOrder(i);
+
+    for(var pos=0;pos<order.length;pos++){
+      (function(originalIndex,displayIndex){
+        var b=document.createElement("button");
+        b.type="button"; b.className="answer";
+        var isSelected=!!(selected && selected.type==="option" && selected.index===originalIndex);
+        b.setAttribute("aria-pressed",isSelected?"true":"false");
+        b.setAttribute("data-answer-index",String(originalIndex));
+        if(isSelected){b.classList.add("selected");}
+        b.innerHTML='<span class="letter">'+String.fromCharCode(65+displayIndex)+'.</span>'+q.options[originalIndex][0];
+        b.addEventListener("click",function(){
+          state.answers[i]={type:"option",index:originalIndex};
+          document.getElementById("infoBox").classList.add("hidden");
+          render();
+          requestAnimationFrame(focusSelectedAnswer);
+        });
+        box.appendChild(b);
+      })(order[pos],pos);
+    }
+
+    var neutral=document.createElement("button");
+    neutral.type="button"; neutral.className="answer neutral";
+    var neutralSelected=!!(selected && selected.type==="neutral");
+    neutral.setAttribute("aria-pressed",neutralSelected?"true":"false");
+    neutral.setAttribute("data-answer-neutral","true");
+    if(neutralSelected){neutral.classList.add("selected");}
+    neutral.innerHTML='<span class="letter">E.</span>Sans avis / je souhaite en savoir plus';
+    neutral.addEventListener("click",function(){
+      state.answers[i]={type:"neutral"};
+      var info=document.getElementById("infoBox");
+      info.innerHTML="<strong>En savoir plus :</strong> "+q.info;
+      info.classList.remove("hidden");
+      renderSelectionOnly();
+      requestAnimationFrame(focusSelectedAnswer);
+    });
+    box.appendChild(neutral);
+
+    var infoBox=document.getElementById("infoBox");
+    if(selected && selected.type==="neutral"){
+      infoBox.innerHTML="<strong>En savoir plus :</strong> "+q.info;
+      infoBox.classList.remove("hidden");
+    }else{
+      infoBox.classList.add("hidden");
+    }
+    document.getElementById("prevBtn").disabled=(i===0);
+    document.getElementById("nextBtn").disabled=!selected;
+    document.getElementById("nextBtn").textContent=(i===questions.length-1)?"Voir mon profil →":"Suivant →";
+  }
+
+  function focusSelectedAnswer(){
+    var selected=state.answers[state.index];
+    if(!selected){return;}
+    var selector=selected.type==="neutral"?'[data-answer-neutral="true"]':'[data-answer-index="'+selected.index+'"]';
+    var target=document.querySelector('#answers '+selector);
+    if(target){target.focus();}
+  }
+
+  function renderSelectionOnly(){ render(); }
+
+  function scoreResults(){
+    var totals={},counts={};
+    Object.keys(axesMeta).forEach(function(k){totals[k]=0;counts[k]=0;});
+    for(var i=0;i<questions.length;i++){
+      var a=state.answers[i];
+      if(!a || a.type!=="option"){continue;}
+      var scores=questions[i].options[a.index][1];
+      Object.keys(scores).forEach(function(k){totals[k]+=scores[k];counts[k]+=1;});
+    }
+    return {totals:totals,counts:counts};
+  }
+
+  function renderResults(){
+    hide("quiz"); show("results");
+    var scored=scoreResults(),container=document.getElementById("axes");container.innerHTML="";
+    Object.keys(axesMeta).forEach(function(k){
+      var meta=axesMeta[k],count=scored.counts[k],avg=count?scored.totals[k]/count:1;
+      var pct=Math.max(0,Math.min(100,(avg/2)*100));
+      var label=avg<.67?meta.low:(avg<1.34?meta.mid:meta.high);
+      var div=document.createElement("div");div.className="axis";
+      div.innerHTML='<div class="axis-head"><span class="axis-name">'+meta.name+'</span><span class="axis-label">'+(count?label:"non déterminé")+'</span></div>'+
+        '<div class="axisbar"><span style="width:'+(count?pct:0)+'%"></span></div>'+
+        '<div class="axis-note">'+(count?"Synthèse de vos choix sur cet axe.":"Vous avez choisi « Sans avis » sur les questions qui alimentent cet axe.")+'</div>';
+      container.appendChild(div);
+    });
+    window.scrollTo(0,0);
+  }
+
+  document.getElementById("startBtn").addEventListener("click",function(){hide("intro");show("quiz");render();window.scrollTo(0,0);});
+  document.getElementById("prevBtn").addEventListener("click",function(){if(state.index>0){state.index--;render();window.scrollTo(0,0);}});
+  document.getElementById("nextBtn").addEventListener("click",function(){
+    if(!state.answers[state.index]){return;}
+    if(state.index<questions.length-1){state.index++;render();window.scrollTo(0,0);}else{renderResults();}
+  });
+  document.getElementById("restartBtn").addEventListener("click",function(){
+    state={index:0,answers:new Array(questions.length),order:new Array(questions.length)};
+    hide("results");hide("proposal");show("quiz");render();window.scrollTo(0,0);
+  });
+  document.getElementById("understandBtn").addEventListener("click",function(){
+    var p=document.getElementById("proposal");
+    p.classList.toggle("hidden");
+    if(!p.classList.contains("hidden")){p.scrollIntoView({behavior:"smooth",block:"start"});}
+  });
+
+  document.querySelectorAll("a[data-back]").forEach(function(a){
+    a.addEventListener("click",function(e){
+      try{
+        var r=document.referrer;
+        if(r && new URL(r).origin===location.origin && history.length>1){e.preventDefault();history.back();}
+      }catch(err){}
+    });
+  });
+})();
+</script>
+</body>
+</html>
