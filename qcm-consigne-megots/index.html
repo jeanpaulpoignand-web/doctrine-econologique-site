@@ -38,7 +38,10 @@ h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.08;margin:12px 0}
 .progress{height:7px;background:var(--faint);border-radius:99px;overflow:hidden;margin-bottom:24px}
 .progress>span{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
 .qtag{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:800}
-.qtitle{font-size:1.45rem;line-height:1.3;margin:8px 0 20px}
+.qtitle{font-size:1.45rem;line-height:1.3;margin:8px 0 10px}
+.context{margin:0 0 20px;color:var(--muted);font-size:.94rem;line-height:1.5}
+.landmark-value{margin-top:16px;padding:14px 15px;background:var(--warm);border:1px solid var(--faint);border-radius:10px;font-size:.92rem;color:var(--soft)}
+.landmark-value strong{color:var(--accent2)}
 .answers{display:grid;gap:10px}
 .answer{width:100%;text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:11px;padding:14px 15px;cursor:pointer;color:var(--soft);line-height:1.42}
 .answer:hover{border-color:var(--accent)}
@@ -79,15 +82,30 @@ footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:28px}
   <header class="hero">
     <div class="eyebrow">Doctrine Éconologique · Pilier XVII</div>
     <h1>Propreté publique et responsabilité du déchet</h1>
-    <p class="lede">9 choix de politique publique autour d’une éventuelle consigne sur les mégots. Il n’y a pas de « bonne réponse » affichée : le résultat décrit vos arbitrages.</p>
+    <p class="lede">Deux repères chiffrés, puis 9 choix de politique publique autour d'une éventuelle consigne sur les mégots. Il n'y a pas de « bonne réponse » affichée : le résultat décrit vos arbitrages.</p>
   </header>
 
   <main>
     <section id="intro" class="card">
       <h2>Avant de commencer</h2>
       <p>Le questionnaire porte sur l’organisation du coût du déchet, pas sur le jugement du fait de fumer. Il ne demande pas si vous êtes fumeur ou non.</p>
+      <div class="notice"><strong>Un mot à comprendre : la consigne.</strong> C'est une somme payée à l'achat et rendue quand on rapporte l'objet, comme autrefois pour les bouteilles en verre. Ici, on rapporterait ses mégots, dans un contenant dont la nature (poche du paquet, petit boîtier) est discutée à la question 7.</div>
+      <p>Une seule réponse par question : choisissez celle qui se rapproche le plus de votre avis. Le choix E vous donne des informations sans répondre.</p>
       <div class="notice"><strong>Vie privée :</strong> aucune donnée n’est envoyée, collectée ou stockée. Les réponses restent uniquement en mémoire dans cette page et disparaissent lorsque vous la fermez ou la rechargez.</div>
       <div class="actions"><button class="btn btn-primary" id="startBtn" type="button">Commencer →</button></div>
+    </section>
+
+    <section id="landmark" class="card hidden">
+      <div class="progress-meta"><span id="landmarkCounter">Repère 1 / 2</span><span>Ordre de grandeur</span></div>
+      <div class="progress" aria-hidden="true"><span id="landmarkProgressFill"></span></div>
+      <div class="qtag">Repère chiffré</div>
+      <h2 class="qtitle" id="landmarkQuestion"></h2>
+      <div class="answers" id="landmarkAnswers"></div>
+      <div class="landmark-value hidden" id="landmarkInfo" role="status" aria-live="polite"></div>
+      <div class="actions">
+        <button class="btn btn-secondary" id="landmarkPrevBtn" type="button">← Précédent</button>
+        <button class="btn btn-primary" id="landmarkNextBtn" type="button" disabled>Suivant →</button>
+      </div>
     </section>
 
     <section id="quiz" class="card hidden">
@@ -95,6 +113,7 @@ footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:28px}
       <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
       <div class="qtag" id="qtag"></div>
       <h2 class="qtitle" id="question"></h2>
+      <p class="context" id="questionContext"></p>
       <div class="answers" id="answers"></div>
       <div class="info hidden" id="infoBox" role="status" aria-live="polite"></div>
       <div class="actions">
@@ -147,7 +166,10 @@ footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:28px}
           <a href="https://health.ec.europa.eu/system/files/2018-10/tt_manual_en_0.pdf" target="_blank" rel="noopener">Commission européenne — manuel du système de traçabilité des produits du tabac</a><br>
           <a href="https://www.maire-info.com/dechets/alcome-une-nouvelle-filiere-pour-aider-les-communes-au-nettoiement-des-megots-article-26204" target="_blank" rel="noopener">Maire-info — entretien avec la directrice générale d’Alcome (11 mars 2022), poids indicatif d’un mégot</a><br>
           <a href="https://alcome.eco/ressources-documentaires/" target="_blank" rel="noopener">Alcome — ressources documentaires</a> ·
-          <a href="https://alcome.eco/wp-content/uploads/2026/05/20250930-information-bareme-2026-adherent.pdf" target="_blank" rel="noopener">Alcome — barème 2026 communiqué aux adhérents, sous réserve de retour du ministère</a>.
+          <a href="https://alcome.eco/wp-content/uploads/2026/05/20250930-information-bareme-2026-adherent.pdf" target="_blank" rel="noopener">Alcome — barème 2026 communiqué aux adhérents, sous réserve de retour du ministère</a><br>
+          <a href="https://www.douane.gouv.fr/la-douane/opendata/categories/tabacs-manufactures" target="_blank" rel="noopener">Douane — nomenclature des prix de vente au détail des tabacs, arrêté du 5 août 2026</a> ·
+          <a href="https://www.toutsurmesfinances.com/argent/a/prix-du-tabac-en-france" target="_blank" rel="noopener">ToutSurMesFinances — prix moyen du paquet de 20 : 12,47 € au 1er septembre 2026</a><br>
+          <a href="https://www.tomra.com/reverse-vending/media-center/feature-articles/germany-deposit-return-scheme" target="_blank" rel="noopener">TOMRA — Allemagne : consigne de 0,25 € par contenant à usage unique</a>.
         </div>
       </div>
     </section>
@@ -161,140 +183,184 @@ footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:28px}
   "use strict";
 
   var axesMeta = {
-    responsibility:{name:"Responsabilité économique", low:"coût davantage mutualisé", mid:"responsabilité partagée", high:"responsabilité davantage portée par la filière"},
-    incentive:{name:"Intensité de l’incitation", low:"incitation faible", mid:"incitation expérimentale et graduée", high:"incitation forte"},
-    convenience:{name:"Commodité du retour", low:"réseau spécialisé ou contraintes plus fortes", mid:"retour encadré", high:"retour de proximité et indépendant d’un nouvel achat"},
-    traceability:{name:"Traçabilité proportionnée", low:"contrôle léger", mid:"contrôle technique limité", high:"antifraude renforcé sans suivi nominatif"},
-    safety:{name:"Sécurité et praticité du retour", low:"peu de standardisation", mid:"solutions à comparer", high:"contenant dédié ou sécurisé"},
-    environment:{name:"Rigueur environnementale", low:"priorité à l’élimination simple", mid:"traitement encadré", high:"choix fondé sur un bilan environnemental démontré"}
+    responsibility:{name:"Responsabilité économique", low:"le coût est plutôt supporté par la collectivité (impôts)", mid:"le coût est partagé entre fabricants, fumeurs et collectivités", high:"le coût est plutôt porté par les fabricants"},
+    incentive:{name:"Intensité de l’incitation", low:"peu d'incitation financière à rapporter son mégot", mid:"incitation à tester et à ajuster", high:"forte incitation financière à rapporter son mégot"},
+    convenience:{name:"Commodité du retour", low:"retour plus contraint (lieux spécialisés, achat lié)", mid:"retour encadré", high:"retour facile, près de chez soi, sans nouvel achat"},
+    traceability:{name:"Traçabilité", low:"peu de contrôle", mid:"contrôle technique limité", high:"contrôle antifraude renforcé"},
+    safety:{name:"Sécurité et praticité du retour", low:"pas de contenant particulier", mid:"solutions à comparer", high:"contenant dédié et sécurisé"},
+    environment:{name:"Rigueur environnementale", low:"élimination simple", mid:"traitement encadré", high:"choix fondé sur un bilan environnemental démontré"}
   };
+
+  var landmarks = [
+    {
+      question:"Combien de tonnes de mégots les fumeurs produisent-ils par an en France ?",
+      options:[
+        "Environ 100 tonnes",
+        "Environ 1 000 tonnes",
+        "Entre 5 000 et 6 500 tonnes",
+        "Environ 100 000 tonnes"
+      ],
+      info:"<strong>Valeur retenue :</strong> Environ 5 000 à 6 500 tonnes par an. [CALCUL] 23 326 tonnes de cigarettes vendues en 2025 (OFDT), soit 23 à 29 milliards de cigarettes selon le poids retenu (0,8 à 1 g par cigarette) × environ 0,22 g par mégot, poids indicatif selon la directrice générale d'Alcome citée par Maire-info. C'est la quantité produite, pas la quantité jetée par terre : cette part-là n'est pas connue avec précision."
+    },
+    {
+      question:"Combien la Ville de Paris estime-t-elle que coûte, chaque année, le nettoyage des mégots jetés au sol ?",
+      options:[
+        "Environ 500 000 €",
+        "Environ 2 millions d'euros",
+        "Environ 10 millions d'euros",
+        "Environ 100 millions d'euros"
+      ],
+      info:"<strong>Valeur retenue :</strong> Environ 10 millions d'euros par an, pour 4 à 5 millions de mégots ramassés chaque jour, soit environ 0,6 centime par mégot [CALCUL]. C'est l'estimation de la Ville de Paris (communiqué du 20 mai 2025) : le coût du jet de mégots au sol pour la collectivité, pas un chiffre audité."
+    }
+  ];
 
   var questions = [
     {
       title:"Le principe de la consigne",
-      text:"Lorsqu’un produit génère un déchet diffus fréquemment abandonné dans l’espace public, faut-il créer une consigne remboursable pour donner une valeur économique au retour de ce déchet ?",
+      text:"Que faire pour réduire les déchets diffus (comme les mégots) jetés dans l'espace public ?",
+      context:"Un mégot jeté par terre est un déchet qui n'appartient à personne : c'est la collectivité qui le ramasse. À Paris, la Ville estime ce coût à 10 M€ par an pour environ 4 à 5 millions de mégots ramassés par jour (communiqué du 20 mai 2025).",
       dimension:"Instrument économique",
       shuffle:false,
-      info:"La Q1 compare plusieurs instruments. Une obligation de résultat fixe une cible mesurée indépendamment et assortie d’une sanction, sans imposer d’emblée le moyen utilisé pour l’atteindre. Cette variante est à l’étude au même titre que la consigne et n’est pas une position doctrinale arrêtée.",
+      info:"La consigne est un instrument parmi d'autres. L'objectif de résultat fixe une cible mesurée par un organisme indépendant et laisse le choix du moyen. Ces options sont étudiées à égalité ; aucune n'est une position arrêtée de la Doctrine. Aucun système national de consigne sur les mégots n'existe à ce jour.",
       options:[
-        ["Oui, une consigne remboursable, lorsque le déchet est identifiable, récupérable et que le système est proportionné.",{responsibility:2,incentive:2}],
-        ["Oui, mais uniquement après une expérimentation démontrant son efficacité et son coût.",{responsibility:2,incentive:1.5}],
-        ["Imposer aux producteurs un objectif chiffré de réduction des déchets abandonnés, avec sanction réelle et mesure indépendante, et les laisser choisir le moyen ; une consigne ne s’imposerait que si l’objectif est manqué.",{responsibility:2,incentive:1.5}],
-        ["Non : renforcer les amendes ou conserver les dispositifs actuels.",{responsibility:.5,incentive:.25}]
+        ["Mettre en place dès maintenant une consigne : une somme comprise dans le prix du paquet, rendue à ceux qui rapportent leurs mégots.",{responsibility:2,incentive:2}],
+        ["Tester d'abord la consigne dans quelques villes, puis décider de la généraliser selon les résultats.",{responsibility:2,incentive:1.5}],
+        ["Fixer aux fabricants un objectif de résultat (moins de mégots abandonnés), avec une sanction réelle, et les laisser choisir comment. La consigne ne serait imposée que s'ils n'y arrivent pas.",{responsibility:2,incentive:1.5}],
+        ["Ne rien changer au principe : garder les amendes (135 € à Paris) et les dispositifs actuels.",{responsibility:.5,incentive:.25}]
       ]
     },
     {
-      title:"Comment fixer le montant ?",
-      text:"Comment devrait être déterminé le montant d’une éventuelle consigne sur un paquet de cigarettes ?",
+      title:"Le montant de la consigne",
+      text:"Comment devrait être déterminé le montant de la consigne sur un paquet de cigarettes ?",
+      context:"Un paquet de 20 cigarettes coûte environ 12,5 € en moyenne en France. La consigne serait une somme payée à l'achat et rendue quand on rapporte les mégots.",
       dimension:"Intensité de l’incitation",
       shuffle:false,
-      info:"Aucun système national de consigne sur les mégots n'existe. Les travaux préparatoires envisagent des plages de l'ordre de 1 à 5 € par paquet, à tester par un pilote. [HYPOTHÈSE]",
+      info:"Un montant faible est facile à supporter, mais son effet sur le comportement est incertain. Un montant élevé incite fortement à rapporter, mais il crée aussi un intérêt à frauder (faux retours, mégots ramassés ailleurs, achats de paquets hors de France) et oblige à avancer une somme importante à l'achat. Pour comparaison, la consigne sur les bouteilles en Allemagne est de 0,25 € par bouteille. L'ordre de grandeur envisagé pour un pilote est de quelques euros par paquet : c'est une hypothèse, non un montant arrêté.",
       options:[
-        ["Par une expérimentation comparant plusieurs montants, la fraude et les coûts.",{incentive:1.5}],
-        ["Par un montant élevé dès le départ afin de créer une incitation très forte.",{incentive:2}],
-        ["Par un montant faible afin de limiter la contrainte financière.",{incentive:.5}],
+        ["Par une expérimentation : tester plusieurs montants dans quelques villes (de quelques dizaines de centimes à plusieurs euros par paquet), puis retenir celui qui donne le meilleur retour pour le moindre coût et la moindre fraude.",{incentive:1.5}],
+        ["Par un montant élevé dès le départ, proche du prix du paquet (une dizaine d'euros), pour que presque tout mégot soit rapporté.",{incentive:2}],
+        ["Par un montant faible dès le départ, de quelques dizaines de centimes par paquet, pour limiter la contrainte financière.",{incentive:.5}],
         ["Il ne devrait pas y avoir de consigne.",{incentive:0}]
       ]
     },
     {
-      title:"Remboursement sans nouvel achat",
-      text:"Une personne qui rapporte les mégots et le support prévu doit-elle pouvoir récupérer sa consigne sans acheter un nouveau paquet ?",
+      title:"Le remboursement",
+      text:"Où et comment la consigne serait-elle rendue ?",
+      context:"Pour les bouteilles consignées, on rapporte la bouteille à un commerçant ou à une machine. Pour les mégots, le point de reprise pourrait être le bureau de tabac (environ 22 800 en France, OFDT).",
       dimension:"Commodité du retour",
       shuffle:false,
-      info:"Le remboursement sans nouvel achat n’est pas une règle existante : c’est un choix de conception proposé pour que la restitution du déchet ne soit pas conditionnée à l’achat d’un nouveau paquet.",
+      info:"Rendre la somme sans nouvel achat facilite le retour pour ceux qui arrêtent de fumer ou changent de lieu, mais demande de gérer l'argent rendu. Le lier à l'achat suivant simplifie la gestion mais pénalise ceux qui n'achètent plus. Ce choix de conception n'est pas une règle existante.",
       options:[
-        ["Oui, dans tous les points de reprise prévus par le dispositif.",{convenience:2}],
-        ["Oui, mais seulement dans certains points de reprise.",{convenience:1}],
-        ["Non, le remboursement peut être lié à l’achat du paquet suivant.",{convenience:.5}],
-        ["Non, le remboursement en argent ne devrait pas être prévu.",{convenience:0}]
+        ["Partout où un point de reprise est prévu, sans rien acheter : on rapporte ses mégots et on récupère sa somme.",{convenience:2}],
+        ["Seulement dans certains lieux (par exemple les bureaux de tabac), sans rien acheter.",{convenience:1}],
+        ["Contre l'achat du paquet suivant : la somme est déduite du prochain paquet, pas rendue en argent.",{convenience:.5}],
+        ["Sans remboursement individuel : la somme versée finance la collecte et le nettoyage (ce n'est plus une consigne, mais une taxe).",{convenience:0}]
       ]
     },
     {
-      title:"Qui doit payer la filière ?",
-      text:"Qui devrait financer la reprise, la collecte, le transport, le contrôle et le traitement des mégots ?",
+      title:"Qui finance",
+      text:"Qui devrait payer la reprise, la collecte, le transport, le contrôle et le traitement des mégots ?",
+      context:"Aujourd'hui, une filière financée par les fabricants (Alcome, agréée en 2021) finance surtout le nettoiement et la sensibilisation. Les prix du tabac sont proposés par les fabricants puis validés par l'État : une charge nouvelle peut donc être répercutée dans le prix payé par le fumeur.",
       dimension:"Responsabilité économique",
       shuffle:true,
-      info:"Les prix du tabac sont proposés par les fabricants puis homologués par l'État (OFDT). [ANALYSE] Une contribution fixe peut être répercutée dans le prix de vente ; une contribution liée au résultat mesuré donne au producteur un intérêt à réduire les déchets.",
+      info:"Une contribution fixe peut être répercutée dans le prix de vente. Une contribution qui baisse avec le résultat donne au fabricant un intérêt à réduire les déchets, mais demande une mesure indépendante et fiable. Pour 2026, le barème communiqué par Alcome à ses adhérents indique 2,84 € pour 1 000 unités mises sur le marché, soit environ 5,7 centimes par paquet de 20 ; ce barème a été adressé au ministère sous réserve de retour.",
       options:[
-        ["Les producteurs, par une contribution fixe dédiée à la filière.",{responsibility:1.75}],
-        ["Les producteurs, par une contribution qui baisse quand les déchets abandonnés diminuent, mesurés par un tiers indépendant.",{responsibility:2,incentive:1.5}],
-        ["Les collectivités, par leurs budgets de propreté publique.",{responsibility:0}],
-        ["Un financement partagé entre producteurs, fumeurs et collectivités.",{responsibility:1}]
+        ["Les fabricants, par une contribution fixe par paquet vendu, quel que soit le résultat.",{responsibility:1.75}],
+        ["Les fabricants, par une contribution qui baisse quand il y a moins de mégots abandonnés, mesurés par un organisme indépendant.",{responsibility:2,incentive:1.5}],
+        ["Les communes et l'État, par les impôts (budgets de propreté publique).",{responsibility:0}],
+        ["Un partage entre fabricants, fumeurs et collectivités.",{responsibility:1}]
       ]
     },
     {
-      title:"Le rôle du buraliste",
-      text:"Si les buralistes deviennent des points de reprise, doivent-ils être rémunérés spécifiquement pour ce service ?",
+      title:"Le buraliste",
+      text:"Si les buralistes reprennent les mégots, doivent-ils être payés pour ce service ?",
+      context:"Un bureau de tabac est proche de chez soi, mais reprendre des mégots demande de la place, du temps et de la sécurité (odeur, humidité, risque d'incendie).",
       dimension:"Commodité du retour",
       shuffle:true,
-      info:"L’OFDT dénombre environ 22 800 buralistes. Leur utilisation comme réseau de reprise donnerait une forte proximité, mais le temps de manipulation, le stockage, la sécurité et la rémunération restent à mesurer par un pilote.",
+      info:"L'OFDT dénombre environ 22 800 buralistes. Les utiliser comme réseau de reprise donnerait une forte proximité, mais le temps de manipulation, le stockage, la sécurité et la rémunération restent à mesurer par un pilote.",
       options:[
-        ["Oui, selon le service réel de reprise et de stockage.",{convenience:2,responsibility:1.5}],
-        ["Oui, mais seulement au-delà d’un certain volume collecté.",{convenience:1,responsibility:1}],
-        ["Non, cette mission devrait relever de leur activité courante.",{convenience:1,responsibility:.5}],
-        ["Non, il faudrait uniquement des points de collecte spécialisés.",{convenience:0,responsibility:1}]
+        ["Oui, selon le service rendu (reprise, stockage, manutention).",{convenience:2,responsibility:1.5}],
+        ["Oui, mais seulement au-delà d'un certain volume de mégots repris.",{convenience:1,responsibility:1}],
+        ["Non : cela fait partie de leur métier, sans rémunération en plus.",{convenience:1,responsibility:.5}],
+        ["Non : mieux vaut des points de collecte spécialisés (bornes, lieux dédiés) que les bureaux de tabac.",{convenience:0,responsibility:1}]
       ]
     },
     {
-      title:"Traçabilité et vie privée",
-      text:"Quel niveau de traçabilité vous paraît acceptable pour empêcher les doubles remboursements et limiter la fraude ?",
-      dimension:"Traçabilité proportionnée",
+      title:"Contrôle et vie privée",
+      text:"Quel niveau de contrôle accepteriez-vous pour éviter qu'un même paquet soit remboursé plusieurs fois ?",
+      context:"Chaque paquet porte un identifiant unique européen depuis 2019. Le suivi européen s'arrête avant la vente au consommateur : il faudrait donc un contrôle propre à la consigne.",
+      dimension:"Traçabilité",
       shuffle:true,
-      info:"Chaque paquet porte un identifiant unique dans le système européen de traçabilité depuis le 20 mai 2019. Le suivi européen s’arrête avant la vente au consommateur : un éventuel registre de consigne devrait donc ajouter son propre contrôle du remboursement.",
+      info:"Le code du paquet ne prouve pas que chaque mégot rapporté vient de ce paquet : il sert surtout à authentifier le droit au remboursement et à empêcher les remboursements multiples. Le suivi européen s'arrête avant la vente au consommateur.",
       options:[
-        ["Un jeton anonyme lié au paquet, validé par un registre indépendant.",{traceability:2}],
-        ["Un compte personnel permettant de suivre les achats et les retours.",{traceability:1.5}],
-        ["Un contrôle visuel du paquet, sans registre informatique.",{traceability:.5}],
-        ["Aucune traçabilité ; accepter un certain niveau de fraude.",{traceability:0}]
+        ["Un code anonyme lié au paquet, vérifié par un registre indépendant, sans nom ni compte du fumeur (protège la vie privée, contrôle limité).",{traceability:2}],
+        ["Un compte personnel qui suit les achats et les retours (contrôle plus fin, mais des données personnelles).",{traceability:1.5}],
+        ["Un simple contrôle visuel du paquet vide au comptoir, sans fichier informatique (très simple, facile à contourner).",{traceability:.5}],
+        ["Aucun contrôle : accepter une part de fraude (aucune donnée, coût plus élevé pour la collectivité).",{traceability:0}]
       ]
     },
     {
-      title:"Quel contenant pour le retour des mégots ?",
-      text:"Quel contenant devrait être testé pour permettre un retour sûr et pratique des mégots ?",
+      title:"Le contenant",
+      text:"Dans quoi rapporter ses mégots ?",
+      context:"Un mégot pèse environ 0,22 g (selon la directrice générale d'Alcome, citée par Maire-info) ; un paquet entier de mégots reste léger. Mais ils sont souvent humides, odorants, et parfois encore chauds : il faut un contenant sûr.",
       dimension:"Sécurité et praticité",
       shuffle:true,
-      info:"Selon la directrice générale d’Alcome, citée par Maire-info, un mégot pèse environ 0,22 g. Aucun contenant n’est arrêté. Le pilote doit comparer les solutions sur la sécurité, l’hygiène, l’odeur, l’humidité, la simplicité d’usage et le bilan environnemental du contenant lui-même.",
+      info:"Aucun contenant n'est arrêté. Un pilote comparerait la sécurité, l'hygiène, l'odeur, l'humidité, la simplicité d'usage et le bilan environnemental du contenant lui-même.",
       options:[
-        ["Le paquet, avec une poche intérieure fermée.",{safety:1.5,convenience:1.5}],
-        ["Un cendrier de poche ignifugé et réutilisable.",{safety:2,convenience:1}],
-        ["Les deux solutions, comparées dans un pilote.",{safety:2,convenience:1.5}],
-        ["Le paquet seul suffit, sans contenant supplémentaire.",{safety:.25,convenience:2}]
+        ["La poche intérieure fermée du paquet (à concevoir) : rien à acheter, mais odeur et humidité à gérer.",{safety:1.5,convenience:1.5}],
+        ["Un petit cendrier de poche ignifugé et réutilisable : plus sûr et plus propre, mais un objet en plus à emporter.",{safety:2,convenience:1}],
+        ["Les deux, comparés dans un pilote avant de choisir.",{safety:2,convenience:1.5}],
+        ["Le paquet vide seul, sans contenant supplémentaire : le plus simple, mais avec des risques d'odeur, d'humidité et d'incendie.",{safety:.25,convenience:2}]
       ]
     },
     {
-      title:"Quel traitement pour les mégots récupérés ?",
-      text:"Une fois les mégots récupérés, quelle règle devrait guider leur traitement ?",
+      title:"Le traitement",
+      text:"Une fois les mégots récupérés, que doit-on en faire ?",
+      context:"Plusieurs filières existent (recyclage de la matière, récupération d'énergie, élimination). Elles n'ont pas toutes le même bilan pour l'environnement, et aucune n'est arrêtée à ce stade.",
       dimension:"Rigueur environnementale",
       shuffle:true,
-      info:"Aucune promesse de recyclage systématique n’est retenue. Le choix proposé est de comparer les solutions de traitement ou de valorisation sur leur bilan environnemental complet avant d’en privilégier une.",
+      info:"Aucune promesse de recyclage systématique n'est retenue. Le choix proposé est de comparer les solutions sur leur bilan environnemental complet avant d'en privilégier une. Aucun chiffre fiable n'existe aujourd'hui sur le coût net d'un recyclage des mégots : c'est ce qu'un pilote devrait mesurer.",
       options:[
         ["Recycler systématiquement tous les mégots récupérés.",{environment:1}],
-        ["Choisir le traitement au meilleur bilan environnemental démontré.",{environment:2}],
-        ["Les éliminer avec les déchets ordinaires après collecte.",{environment:.25}],
-        ["Laisser chaque producteur choisir librement sa filière de traitement.",{environment:.5}]
+        ["Choisir le traitement qui a le meilleur bilan environnemental complet, démontré par une étude.",{environment:2}],
+        ["Les traiter comme des déchets ordinaires, sans filière spécifique.",{environment:.25}],
+        ["Laisser chaque fabricant choisir sa filière.",{environment:.5}]
       ]
     },
     {
-      title:"Étendre le principe à d’autres déchets ?",
-      text:"Si la consigne sur les mégots démontre son efficacité à un coût raisonnable, faut-il étudier le même principe pour d’autres déchets diffus ?",
+      title:"Étendre le principe",
+      text:"Si la consigne sur les mégots fonctionne à un coût raisonnable, faut-il étudier la même idée pour d'autres déchets jetés dans l'espace public ?",
+      context:"Exemples de déchets diffus : petits emballages, canettes, gobelets. Chaque déchet a ses propres coûts, ses propres fraudes et son propre bilan.",
       dimension:"Extension conditionnelle",
       shuffle:true,
-      info:"L’extension n’est pas automatique. Le Pilier XVII propose de l’étudier uniquement pour des déchets identifiables et récupérables lorsque l’efficacité, le coût, la fraude et le bilan environnemental peuvent être mesurés.",
+      info:"L'extension n'est pas automatique. Le Pilier XVII propose de l'étudier uniquement pour des déchets identifiables et récupérables, lorsque l'efficacité, le coût, la fraude et le bilan environnemental peuvent être mesurés.",
       options:[
-        ["Oui, au cas par cas, après preuve d’efficacité et de proportionnalité.",{responsibility:1.5,environment:2}],
-        ["Oui, comme principe général pour la plupart des déchets diffus.",{responsibility:2,environment:1}],
-        ["Non, il faut limiter ce dispositif aux mégots.",{responsibility:1,environment:1}],
-        ["Non, la consigne ne devrait pas servir pour ces déchets.",{responsibility:0,environment:0}]
+        ["Oui, au cas par cas : seulement pour un déchet identifiable et récupérable, après preuve d'efficacité et de coût.",{responsibility:1.5,environment:2}],
+        ["Oui, comme règle générale pour la plupart des déchets jetés dans l'espace public.",{responsibility:2,environment:1}],
+        ["Non : limiter ce dispositif aux mégots.",{responsibility:1,environment:1}],
+        ["Non : la consigne ne doit pas servir pour ces déchets.",{responsibility:0,environment:0}]
       ]
     }
   ];
 
-  var state={index:0,answers:new Array(questions.length),order:new Array(questions.length)};
+  var state={
+    landmarkIndex:0,
+    landmarkAnswers:new Array(landmarks.length),
+    landmarkOrder:new Array(landmarks.length),
+    index:0,
+    answers:new Array(questions.length),
+    order:new Array(questions.length)
+  };
 
   function shuffledIndexes(n){
     var a=[]; for(var i=0;i<n;i++){a.push(i);}
     for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[k];a[k]=t;}
     return a;
+  }
+
+  function getLandmarkOrder(i){
+    if(!state.landmarkOrder[i]){state.landmarkOrder[i]=shuffledIndexes(4);}
+    return state.landmarkOrder[i];
   }
 
   function getOrder(i){
@@ -307,6 +373,66 @@ footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:28px}
   function show(id){document.getElementById(id).classList.remove("hidden");}
   function hide(id){document.getElementById(id).classList.add("hidden");}
 
+  function renderLandmark(){
+    var i=state.landmarkIndex,item=landmarks[i],selected=state.landmarkAnswers[i];
+    document.getElementById("landmarkCounter").textContent="Repère "+(i+1)+" / "+landmarks.length;
+    document.getElementById("landmarkProgressFill").style.width=((i+1)/landmarks.length*100)+"%";
+    document.getElementById("landmarkQuestion").textContent=item.question;
+
+    var box=document.getElementById("landmarkAnswers"); box.innerHTML="";
+    var order=getLandmarkOrder(i);
+    for(var pos=0;pos<order.length;pos++){
+      (function(originalIndex,displayIndex){
+        var b=document.createElement("button");
+        b.type="button"; b.className="answer";
+        var isSelected=!!(selected && selected.type==="option" && selected.index===originalIndex);
+        b.setAttribute("aria-pressed",isSelected?"true":"false");
+        b.setAttribute("data-landmark-index",String(originalIndex));
+        if(isSelected){b.classList.add("selected");}
+        b.innerHTML='<span class="letter">'+String.fromCharCode(65+displayIndex)+'.</span>'+item.options[originalIndex];
+        b.addEventListener("click",function(){
+          state.landmarkAnswers[i]={type:"option",index:originalIndex};
+          renderLandmark();
+          requestAnimationFrame(focusSelectedLandmarkAnswer);
+        });
+        box.appendChild(b);
+      })(order[pos],pos);
+    }
+
+    var neutral=document.createElement("button");
+    neutral.type="button"; neutral.className="answer neutral";
+    var neutralSelected=!!(selected && selected.type==="neutral");
+    neutral.setAttribute("aria-pressed",neutralSelected?"true":"false");
+    neutral.setAttribute("data-landmark-neutral","true");
+    if(neutralSelected){neutral.classList.add("selected");}
+    neutral.innerHTML='<span class="letter">E.</span>Je ne sais pas';
+    neutral.addEventListener("click",function(){
+      state.landmarkAnswers[i]={type:"neutral"};
+      renderLandmark();
+      requestAnimationFrame(focusSelectedLandmarkAnswer);
+    });
+    box.appendChild(neutral);
+
+    var info=document.getElementById("landmarkInfo");
+    if(selected){
+      info.innerHTML=item.info;
+      info.classList.remove("hidden");
+    }else{
+      info.classList.add("hidden");
+      info.innerHTML="";
+    }
+    document.getElementById("landmarkNextBtn").disabled=!selected;
+    document.getElementById("landmarkNextBtn").textContent=(i===landmarks.length-1)?"Passer aux questions →":"Suivant →";
+  }
+
+  function focusSelectedLandmarkAnswer(){
+    var selected=state.landmarkAnswers[state.landmarkIndex];
+    if(!selected){return;}
+    var selector=selected.type==="neutral"?'[data-landmark-neutral="true"]':'[data-landmark-index="'+selected.index+'"]';
+    var target=document.querySelector('#landmarkAnswers '+selector);
+    if(target){target.focus();}
+  }
+
   function render(){
     var i=state.index,q=questions[i],selected=state.answers[i];
     document.getElementById("counter").textContent="Question "+(i+1)+" / "+questions.length;
@@ -314,6 +440,7 @@ footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:28px}
     document.getElementById("progressFill").style.width=((i+1)/questions.length*100)+"%";
     document.getElementById("qtag").textContent=q.title;
     document.getElementById("question").textContent=q.text;
+    document.getElementById("questionContext").textContent=q.context;
     var box=document.getElementById("answers"); box.innerHTML="";
     var order=getOrder(i);
 
@@ -360,7 +487,7 @@ footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:28px}
     }else{
       infoBox.classList.add("hidden");
     }
-    document.getElementById("prevBtn").disabled=(i===0);
+    document.getElementById("prevBtn").disabled=false;
     document.getElementById("nextBtn").disabled=!selected;
     document.getElementById("nextBtn").textContent=(i===questions.length-1)?"Voir mon profil →":"Suivant →";
   }
@@ -403,16 +530,52 @@ footer{text-align:center;color:var(--muted);font-size:.78rem;margin-top:28px}
     window.scrollTo(0,0);
   }
 
-  document.getElementById("startBtn").addEventListener("click",function(){hide("intro");show("quiz");render();window.scrollTo(0,0);});
-  document.getElementById("prevBtn").addEventListener("click",function(){if(state.index>0){state.index--;render();window.scrollTo(0,0);}});
+  document.getElementById("startBtn").addEventListener("click",function(){
+    hide("intro");show("landmark");renderLandmark();window.scrollTo(0,0);
+  });
+
+  document.getElementById("landmarkPrevBtn").addEventListener("click",function(){
+    if(state.landmarkIndex>0){
+      state.landmarkIndex--;renderLandmark();window.scrollTo(0,0);
+    }else{
+      hide("landmark");show("intro");window.scrollTo(0,0);
+    }
+  });
+
+  document.getElementById("landmarkNextBtn").addEventListener("click",function(){
+    if(!state.landmarkAnswers[state.landmarkIndex]){return;}
+    if(state.landmarkIndex<landmarks.length-1){
+      state.landmarkIndex++;renderLandmark();window.scrollTo(0,0);
+    }else{
+      hide("landmark");show("quiz");state.index=0;render();window.scrollTo(0,0);
+    }
+  });
+
+  document.getElementById("prevBtn").addEventListener("click",function(){
+    if(state.index>0){
+      state.index--;render();window.scrollTo(0,0);
+    }else{
+      hide("quiz");show("landmark");state.landmarkIndex=landmarks.length-1;renderLandmark();window.scrollTo(0,0);
+    }
+  });
+
   document.getElementById("nextBtn").addEventListener("click",function(){
     if(!state.answers[state.index]){return;}
     if(state.index<questions.length-1){state.index++;render();window.scrollTo(0,0);}else{renderResults();}
   });
+
   document.getElementById("restartBtn").addEventListener("click",function(){
-    state={index:0,answers:new Array(questions.length),order:new Array(questions.length)};
-    hide("results");hide("proposal");show("quiz");render();window.scrollTo(0,0);
+    state={
+      landmarkIndex:0,
+      landmarkAnswers:new Array(landmarks.length),
+      landmarkOrder:new Array(landmarks.length),
+      index:0,
+      answers:new Array(questions.length),
+      order:new Array(questions.length)
+    };
+    hide("results");hide("proposal");hide("quiz");hide("landmark");show("intro");window.scrollTo(0,0);
   });
+
   document.getElementById("understandBtn").addEventListener("click",function(){
     var p=document.getElementById("proposal");
     p.classList.toggle("hidden");
