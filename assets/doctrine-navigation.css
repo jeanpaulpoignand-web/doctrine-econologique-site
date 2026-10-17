@@ -1,0 +1,9 @@
+/* Navigation commune, sans script ni stockage. */
+.doctrine-navigation{box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 18px;margin:0;padding:12px 16px;background:#f5f0e5;border-bottom:1px solid #d4c8b5;font:600 14px/1.4 system-ui,-apple-system,sans-serif;color:#173650;}
+.doctrine-navigation a{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;padding:10px 16px;border:1px solid #173650;border-radius:5px;color:#173650;background:#fff;text-decoration:none;text-align:center;overflow-wrap:anywhere;}
+.doctrine-navigation a.doctrine-navigation-drive{background:#173650;color:#fff;}
+.doctrine-navigation a:hover{text-decoration:underline;}
+.doctrine-navigation a:focus-visible,.doctrine-pillar-drive:focus-visible{outline:3px solid #9b3028;outline-offset:3px;}
+.doctrine-pillar-drive{display:block;margin:8px 0;padding:12px 14px;min-height:44px;border:1px solid currentColor;border-radius:4px;text-align:center;font-size:14px;font-weight:700;line-height:1.4;text-decoration:none;}
+.doctrine-pillar-drive:hover{text-decoration:underline;}
+@media print{.doctrine-navigation{display:none;}}
