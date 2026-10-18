@@ -48,7 +48,27 @@
 .home-forgotten-btn{margin-top:12px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:0;border-radius:16px;padding:12px 16px;background:linear-gradient(135deg,#f59e0b,#22c55e);color:white;font-weight:950;cursor:pointer}
 .home-forgotten-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
 
-/* Bulletin citoyen Version 2.1 */
+/* Bulletin citoyen Version 2.2 */
+.evening-panel{margin:28px 0;padding:24px;border:1px solid #38bdf866;border-radius:24px;background:#0c4a6e1c}
+.evening-panel>h2{margin:0 0 14px;font-size:clamp(1.45rem,3vw,2.1rem);color:#e0f2fe}
+.evening-intro,.evening-average{font-size:1rem!important;line-height:1.65!important}
+.evening-average{padding:16px;border:1px solid var(--border);border-radius:14px;background:#02061757}
+.evening-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
+.evening-question{min-width:0;padding:20px;border:1px solid var(--border);border-radius:18px;background:#02061766}
+.evening-question-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
+.evening-question h3{font-size:1.05rem;line-height:1.4;margin:0;color:#e5eefc}
+.gap-status{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:#cbd5e1;white-space:nowrap}
+.gap-dot{display:inline-block;flex:none;width:12px;height:12px;border-radius:50%;background:#94a3b8}
+.gap-moderate .gap-dot{background:#facc15}.gap-strong .gap-dot{background:#fb923c;animation:citizen-gap-pulse 1.5s ease-in-out 2}
+@keyframes citizen-gap-pulse{0%,100%{box-shadow:0 0 0 0 #fb923c00}50%{box-shadow:0 0 12px 5px #fb923c66}}
+.evening-bars{display:grid;gap:14px}.evening-bars .bar-line{grid-template-columns:minmax(0,1fr) auto;font-size:.9rem;line-height:1.45}
+.evening-bars .progress{grid-column:1/3;width:100%}.evening-bars [data-kind=vote] .progress span{background:#7dd3fc}.evening-bars [data-kind=citizens] .progress span{background:#38bdf8}.evening-bars [data-kind=application] .progress span{background:#cbd5e1}
+.evening-no-opinion{display:flex;justify-content:space-between;gap:12px;color:#cbd5e1;font-size:.9rem;line-height:1.45}
+.evening-gap{margin:18px 0 0!important;font-size:.9rem!important;line-height:1.55!important;color:#cbd5e1!important}
+.gap-strong .evening-gap{color:#fdba74!important}
+@media(max-width:860px){.evening-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.evening-panel{padding:16px}.evening-question{padding:16px}}
+@media(prefers-reduced-motion:reduce){.gap-strong .gap-dot{animation:none}}
 .future-explanation{position:relative;z-index:1;margin:22px 0;padding:20px;border:1px solid var(--border);border-radius:20px;background:#02061757}
 .future-explanation h2{margin:0 0 12px;font-size:1.3rem;color:#e5eefc}
 .future-explanation p,.future-explanation li{color:#cbd5e1;font-size:1rem;line-height:1.65}
@@ -1692,9 +1712,9 @@ function measuredGaps(ranked){
 }
 function toggle(){state.modeFutur=!state.modeFutur;render();}
 function home(){return `<main class="page hero-page"><section class="hero-card">
-  <span class="hero-kicker">Bulletin citoyen · Version 2.1 · 18 octobre 2026</span>
+  <span class="hero-kicker">Bulletin citoyen · Version 2.2 · 18 octobre 2026</span>
   <h1>Bulletin citoyen</h1><p class="hero-lead">Vos idées d'abord. Les partis seulement à la fin.</p>
-  <div class="version-notice" role="note"><p>Version 2 du 18 octobre 2026 : 15 partis, positions sourcées avec un indice de confiance. Ce bulletin est une aide à la réflexion, pas un conseil de vote.</p></div>
+  <div class="version-notice" role="note"><p>Version 2.2 du 18 octobre 2026 : 15 partis, positions sourcées avec un indice de confiance. Ce bulletin est une aide à la réflexion, pas un conseil de vote.</p></div>
   <label class="switch-row"><em>QCM simple</em><input type="checkbox" ${state.modeFutur?'checked':''} onchange="app.toggle()"><span></span><em>Mode futur : 3 barres</em></label>
   <section class="future-explanation" aria-labelledby="future-explanation-title">
     <h2 id="future-explanation-title">Le bulletin de demain</h2>
@@ -1716,10 +1736,26 @@ function answerPresentation(answer){
   const tone=!positioned||(value>=45 && value<=55)?'neutral':value<45?'a':'b';
   return {value,tone,strength:Math.abs(value-50)/50,pending:answer===null};
 }
-function futureBars(index,value){
+function futureValues(index,value){
   const simulated=Math.max(0,Math.min(100,value-8+((index*7)%17)));
   const application=Math.max(0,Math.min(100,35+((index*13)%45)));
-  return `<div class="three-bars"><div class="bar-line"><span>Votre vote</span><b id="future-vote-value">${value}</b><div class="progress personal"><span id="future-vote-bar" style="width:${value}%"></span></div></div><div class="bar-line"><span>Résultat des citoyens (démonstration)</span><b id="future-simulation-value">${simulated}</b><div class="progress blue"><span id="future-simulation-bar" style="width:${simulated}%"></span></div></div><div class="bar-line"><span>Application réelle (démonstration, valeur fictive)</span><b>${application}</b><div class="progress green"><span style="width:${application}%"></span></div></div></div>`;
+  return {vote:value,simulated,application};
+}
+function futureBars(index,value){
+  const values=futureValues(index,value),vote=toDisplay(index,values.vote),simulated=toDisplay(index,values.simulated),application=toDisplay(index,values.application);
+  return `<div class="three-bars"><div class="bar-line"><span>Votre vote</span><b id="future-vote-value">${vote}</b><div class="progress personal"><span id="future-vote-bar" style="width:${vote}%"></span></div></div><div class="bar-line"><span>Résultat des citoyens (démonstration)</span><b id="future-simulation-value">${simulated}</b><div class="progress blue"><span id="future-simulation-bar" style="width:${simulated}%"></span></div></div><div class="bar-line"><span>Application réelle (démonstration, valeur fictive)</span><b id="future-application-value">${application}</b><div class="progress green"><span id="future-application-bar" style="width:${application}%"></span></div></div></div>`;
+}
+function eveningPanel(){
+  const rows=axes.map((axis,index)=>{
+    const answer=state.answers[index],values=futureValues(index,isPosition(answer)?answer:50),gap=Math.abs(values.simulated-values.application);
+    return {axis,index,answer,values,gap};
+  });
+  const average=Math.round(rows.reduce((sum,row)=>sum+row.gap,0)/rows.length);
+  return `<section class="evening-panel" aria-labelledby="evening-title"><h2 id="evening-title">Le soir du vote, 20 heures (démonstration)</h2><p class="evening-intro">Voici ce que chacun verrait demain, le soir du vote : pour chaque question, votre vote, le résultat de l'ensemble des citoyens et ce que les élus en ont fait ensuite. Dans ce tableau, chaque barre va du pôle A (à gauche) au pôle B (à droite). Les barres « Résultat des citoyens » et « Application réelle » sont des valeurs fictives, pour la démonstration.</p><p class="evening-average">Écart moyen entre la volonté des citoyens et l'application réelle : <strong>${average} points sur 100</strong> (démonstration).</p><div class="evening-grid">${rows.map(({axis,index,answer,values,gap})=>{
+    const level=gap<=10?'respected':gap<=20?'moderate':'strong',label=gap<=10?'respecté':gap<=20?'écart modéré':'écart fort';
+    const bar=(key,title,value)=>`<div class="bar-line" data-kind="${key}"><span>${title}</span><b class="evening-value">${value}</b><div class="progress"><span style="width:${value}%"></span></div></div>`;
+    return `<article class="evening-question gap-${level}" data-question="${index}"><header class="evening-question-header"><h3><span aria-hidden="true">${axis.icon}</span> ${esc(axis.title)}</h3><span class="gap-status"><span class="gap-dot" aria-hidden="true"></span><span class="gap-label">${label}</span></span></header><div class="evening-bars">${isPosition(answer)?bar('vote','Votre vote',values.vote):'<div class="evening-no-opinion"><span>Votre vote</span><strong>Sans avis</strong></div>'}${bar('citizens','Résultat des citoyens (démonstration)',values.simulated)}${bar('application','Application réelle (démonstration, valeur fictive)',values.application)}</div><p class="evening-gap">Écart entre les citoyens et l'application : <strong>${gap} points</strong></p></article>`;
+  }).join('')}</div></section>`;
 }
 function responseText(answer,axis){
   if(answer===null)return 'Déplacez le jeton ou choisissez « Sans avis »';
@@ -1753,9 +1789,12 @@ function updateAnswerUI(index){
   document.getElementById('no-opinion').setAttribute('aria-pressed',String(answer==='sans-avis'));
   document.getElementById('next-question').disabled=answer===null;
   if(state.modeFutur){
-    const simulated=Math.max(0,Math.min(100,view.value-8+((index*7)%17)));
-    document.getElementById('future-vote-value').textContent=String(view.value);document.getElementById('future-vote-bar').style.width=view.value+'%';
-    document.getElementById('future-simulation-value').textContent=String(simulated);document.getElementById('future-simulation-bar').style.width=simulated+'%';
+    const values=futureValues(index,view.value);
+    for(const [key,value] of [['vote',values.vote],['simulation',values.simulated],['application',values.application]]){
+      const displayed=toDisplay(index,value);
+      document.getElementById('future-'+key+'-value').textContent=String(displayed);
+      document.getElementById('future-'+key+'-bar').style.width=displayed+'%';
+    }
   }
 }
 function classic(){return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Vote classique</span></nav><section class="panel"><h1>Vote classique par parti</h1><p>Cette entrée reproduit le geste électoral traditionnel : vous choisissez directement une formation politique.</p><div class="vote-grid">${parties.map(p=>`<button class="vote-card" style="--party:${p.color}" onclick="app.selectParty('${p.id}')"><span class="party-dot"></span><strong>${esc(p.name)}</strong></button>`).join('')}</div>${state.selectedParty?`<div class="method-box"><h2>Choix affiché</h2><p>Vous avez choisi : <strong>${esc(parties.find(p=>p.id===state.selectedParty).name)}</strong>. Cette entrée cohabite avec le bulletin par idées, elle ne le remplace pas.</p></div>`:''}</section></main>`;}
@@ -1773,14 +1812,14 @@ function partyCard(party,rank){
   return `<article class="rank-card" style="--party:${party.color}" data-party="${party.id}"><div class="rank-card-header"><span class="rank">${rank}</span><h2>${esc(party.name)}</h2><strong class="rank-score">${party.score}%</strong></div><p class="coverage">sur ${party.compared} questions</p><div class="comparison-points"><div><h3>Les plus proches</h3><ul>${nearest.map(x=>`<li>${esc(x.title)} <span>${Math.round(x.proximity)}%</span></li>`).join('')}</ul></div><div><h3>Les plus éloignées</h3><ul>${furthest.map(x=>`<li>${esc(x.title)} <span>${Math.round(x.proximity)}%</span></li>`).join('')}</ul></div></div>${sourcePanel(party)}</article>`;
 }
 function allPartyRow(party,rank){return `<article class="all-party-card" style="--party:${party.color}"><div class="rank-card-header"><span class="rank">${rank}</span><h3>${esc(party.name)}</h3><strong class="rank-score">${party.score}%</strong></div><p class="coverage">sur ${party.compared} questions</p>${sourcePanel(party)}</article>`;}
-function methodPanel(){return `<section class="method-box"><h2>Méthode et traçabilité</h2><p>Matrice des partis V7.4 (version 2 du bulletin) du 18 octobre 2026 : 15 partis, 12 questions, 180 positions. Chaque position vient d'une source publique (programme, vote à l'Assemblée, déclaration) et porte un indice de confiance. Les positions sans source suffisante sont retirées du calcul. Méthode : pour chaque question, proximité = 100 moins l'écart entre votre réponse et la position du parti ; le pourcentage est la moyenne sur les questions où vous avez une position. Sourcing croisé de Perplexity, Grok et Gemini, arbitré par Claude, validé par Jean Paul Poignand.</p><p>Historique : version 1 (mai 2026), prototype retiré après l'audit du 18 octobre 2026 ; version 2 (18 octobre 2026), 12 questions refondues, 15 partis, positions sourcées avec indice de confiance. Version 2.1 (18 octobre 2026) : six questions affichées dans l'autre sens pour obliger à lire les deux options, zone d'équilibre, explication du mode futur.</p></section><section class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions, puis découvrez les proximités politiques, les convergences, les divergences et les sources.</p><div class="promise-row"><span>12 questions</span><span>15 partis</span><span>Version 2</span><span>Sources consultables</span></div><p class="soft">Le moteur compare ensuite vos réponses à la matrice sourcée V7.4.</p></section>`;}
+function methodPanel(){return `<section class="method-box"><h2>Méthode et traçabilité</h2><p>Matrice des partis V7.4 (version 2 du bulletin) du 18 octobre 2026 : 15 partis, 12 questions, 180 positions. Chaque position vient d'une source publique (programme, vote à l'Assemblée, déclaration) et porte un indice de confiance. Les positions sans source suffisante sont retirées du calcul. Méthode : pour chaque question, proximité = 100 moins l'écart entre votre réponse et la position du parti ; le pourcentage est la moyenne sur les questions où vous avez une position. Sourcing croisé de Perplexity, Grok et Gemini, arbitré par Claude, validé par Jean Paul Poignand.</p><p>Historique : version 1 (mai 2026), prototype retiré après l'audit du 18 octobre 2026 ; version 2 (18 octobre 2026), 12 questions refondues, 15 partis, positions sourcées avec indice de confiance. Version 2.1 (18 octobre 2026) : six questions affichées dans l'autre sens pour obliger à lire les deux options, zone d'équilibre, explication du mode futur. Version 2.2 (18 octobre 2026) : tableau « Le soir du vote, 20 heures » en mode futur.</p></section><section class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions, puis découvrez les proximités politiques, les convergences, les divergences et les sources.</p><div class="promise-row"><span>12 questions</span><span>15 partis</span><span>Version 2</span><span>Sources consultables</span></div><p class="soft">Le moteur compare ensuite vos réponses à la matrice sourcée V7.4.</p></section>`;}
 function result(){
   const ranked=results(),n=positionCount(),gaps=measuredGaps(ranked),eligible=new Set(ranked.map(p=>p.id));
   const unranked=parties.filter(p=>!eligible.has(p.id));
   let content;
   if(n<6){content=`<div class="insufficient-answers"><p>Vous avez donné moins de 6 positions : un classement ne serait pas fiable. Revenez sur quelques questions pour obtenir un résultat.</p><button class="btn primary" onclick="app.resume()">Revenir aux questions</button></div>`;}
   else{content=`<div class="certainty"><strong>${certainty()}</strong><span>${n} positions exprimées sur 12 questions</span></div>${n<=8?'<p class="limited-positions" role="note">Vous avez répondu « Sans avis » à plusieurs questions : ce résultat repose sur peu de positions.</p>':''}<div class="result-grid">${ranked.slice(0,4).map((party,index)=>partyCard(party,index+1)).join('')}</div><button class="all-parties-toggle" aria-expanded="false" aria-controls="all-parties" onclick="app.toggleAll(this)">Voir tous les partis</button><div id="all-parties" hidden>${ranked.map((party,index)=>allPartyRow(party,index+1)).join('')}${unranked.map(party=>`<article class="all-party-card"><h3>${esc(party.name)}</h3><p>Non classé : ${comparedQuestions(party.id).length} questions communes, moins de 6.</p>${sourcePanel(party)}</article>`).join('')}</div>${gaps.length?`<section class="measured-gaps"><h2>Vos attentes et l'offre politique</h2>${gaps.map(message=>`<p>${esc(message)}</p>`).join('')}</section>`:''}`;}
-  return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Résultat</span></nav><section class="panel result-panel"><div class="version-notice" role="note"><p>Ce classement compare vos réponses aux positions publiées des partis (version 2 du 18 octobre 2026). C'est une aide à la réflexion, pas un conseil de vote.</p></div><h1>Vos réponses sont les plus proches de…</h1>${content}${forgottenProofPanel()}${methodPanel()}</section></main>`;
+  return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Résultat</span></nav><section class="panel result-panel"><div class="version-notice" role="note"><p>Ce classement compare vos réponses aux positions publiées des partis (version 2.2 du 18 octobre 2026). C'est une aide à la réflexion, pas un conseil de vote.</p></div><h1>Vos réponses sont les plus proches de…</h1>${content}${state.modeFutur?eveningPanel():''}${forgottenProofPanel()}${methodPanel()}</section></main>`;
 }
 function render(){
   root.innerHTML=state.screen==='home'?home():state.screen==='ideas'?ideas():state.screen==='classic'?classic():state.screen==='forgotten'?forgotten():result();
