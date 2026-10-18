@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Bulletin de vote du futur proche</title>
+    <title>Bulletin citoyen — Version 2</title>
     <style>
 :root{--bg:#050b16;--panel:rgba(15,23,42,.88);--text:#e5eefc;--muted:#9fb0c7;--blue:#38bdf8;--orange:#fb923c;--green:#22c55e;--border:rgba(148,163,184,.22);--shadow:0 24px 70px rgba(0,0,0,.38)}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;background:radial-gradient(circle at 20% 0%,#164e63 0,#07111f 34%,#020617);color:var(--text)}button,a{font:inherit}.page{min-height:100vh;padding:22px;max-width:1180px;margin:0 auto}.top-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px}.back-link,.nav-pill{color:#dbeafe;text-decoration:none;border:1px solid var(--border);padding:10px 14px;border-radius:999px;background:#0f172a94}.hero-page{display:flex;flex-direction:column;justify-content:center}.hero-card,.panel{background:linear-gradient(135deg,#0f172af0,#0f172abd);border:1px solid var(--border);border-radius:30px;box-shadow:var(--shadow);padding:32px}.hero-card{max-width:1040px;margin:0 auto;position:relative;overflow:hidden}.hero-card:after{content:"PILIER XIII";position:absolute;right:22px;top:22px;color:#ffffff0b;font-family:Georgia,serif;font-size:clamp(3rem,9vw,7rem);font-weight:900;letter-spacing:.08em;pointer-events:none}.hero-kicker{display:inline-flex;width:max-content;color:#bae6fd;background:#0ea5e921;border:1px solid rgba(56,189,248,.25);border-radius:999px;padding:7px 12px;font-weight:800;font-size:.82rem;letter-spacing:.03em}.hero-card h1,.panel h1{font-size:clamp(2.25rem,6vw,4.8rem);line-height:.96;margin:18px 0;background:linear-gradient(90deg,#eff6ff,#67e8f9,#bfdbfe);-webkit-background-clip:text;background-clip:text;color:transparent}.hero-lead,.panel p{color:var(--muted);font-size:1.08rem;line-height:1.7;max-width:900px}.hero-lead strong{font-size:1.18em;color:#fff}.hero-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:30px 0}.choice-card,.vote-card{border:1px solid var(--border);border-radius:24px;text-align:left;color:var(--text);background:linear-gradient(135deg,#0ea5e92e,#1e293ba6);padding:24px;cursor:pointer;transition:.2s transform,.2s border-color,.2s box-shadow}.choice-card:hover,.vote-card:hover{transform:translateY(-3px);border-color:#38bdf8a6;box-shadow:0 18px 40px #0ea5e92e}.choice-card.secondary{background:linear-gradient(135deg,#22c55e26,#1e293ba6)}.choice-card.warn{background:linear-gradient(135deg,#f59e0b26,#1e293ba6)}.choice-icon{font-size:2.2rem;display:block;margin-bottom:14px}.choice-card strong,.vote-card strong{display:block;font-size:1.35rem;margin-bottom:8px}.choice-card em,.vote-card em{display:block;color:#cbd5e1;font-style:normal;line-height:1.5}.promise-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.promise-row span{padding:10px 14px;border-radius:999px;background:#ffffff0f;border:1px solid var(--border);color:#dbeafe}.switch-row{display:inline-grid;grid-template-columns:auto auto auto;align-items:center;gap:10px;margin-top:18px;padding:10px 14px;border-radius:999px;background:#ffffff0f;border:1px solid var(--border);cursor:pointer}.switch-row input{display:none}.switch-row span{width:52px;height:30px;border-radius:999px;background:#334155;position:relative;box-shadow:inset 0 0 0 1px #ffffff1f}.switch-row span:before{content:"";position:absolute;width:22px;height:22px;left:4px;top:4px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 5px 18px #0007}.switch-row input:checked+span{background:linear-gradient(135deg,#0284c7,#22c55e)}.switch-row input:checked+span:before{transform:translateX(22px)}.switch-row em{color:var(--muted);font-style:normal}.heading-panel{display:grid;grid-template-columns:1fr minmax(180px,260px);align-items:center;gap:20px;margin-bottom:16px}.progress-wrap strong{display:block;text-align:right;margin-bottom:8px}.progress{height:13px;border-radius:999px;background:#94a3b82e;overflow:hidden;border:1px solid rgba(255,255,255,.05)}.progress span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#38bdf8,#22c55e)}.single-axis{max-width:920px;margin:0 auto}.axis-card,.track-card,.diagnostic-card,.vote-card{background:var(--panel);border:1px solid var(--border);border-radius:28px;padding:26px}.axis-card{transition:border-color .2s,box-shadow .2s}.axis-card.tone-left{border-color:#38bdf86b;box-shadow:0 0 calc(18px + 34px * var(--strength)) rgba(56,189,248,calc(.08 + .14 * var(--strength)))}.axis-card.tone-right{border-color:#fb923c6b;box-shadow:0 0 calc(18px + 34px * var(--strength)) rgba(251,146,60,calc(.08 + .14 * var(--strength)))}.axis-head{display:flex;gap:16px;align-items:flex-start}.axis-emoji{font-size:2.1rem}.axis-head small{color:#7dd3fc;font-weight:900}.axis-head h2{margin:4px 0 8px;font-size:clamp(1.35rem,3vw,2rem);line-height:1.18}.axis-head p,.measure{color:var(--muted);line-height:1.55;margin:0}.scale{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#dbeafe;font-size:.95rem;margin:28px 0 12px}.scale span{max-width:38%;line-height:1.35}.scale b{color:#fff;background:#38bdf826;padding:8px 13px;border-radius:999px;white-space:nowrap}.premium-slider{--p:calc(var(--value) * 1%);-webkit-appearance:none;appearance:none;width:100%;height:20px;border-radius:999px;background:linear-gradient(90deg,#38bdf8,#dbeafe,#fb923c);outline:none;margin:8px 0 20px;box-shadow:inset 0 0 0 1px #ffffff40,0 10px 28px #00000047;cursor:pointer}.premium-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,#e5eefc 50%,#94a3b8);border:3px solid rgba(255,255,255,.92);box-shadow:0 0 0 8px #ffffff1a,0 0 calc(12px + 22px * var(--strength)) #ffffff47,0 12px 28px #00000073;transition:transform .18s,box-shadow .18s}.premium-slider:hover::-webkit-slider-thumb,.premium-slider:active::-webkit-slider-thumb{transform:scale(1.14);box-shadow:0 0 0 12px #ffffff24,0 0 34px #ffffff61,0 14px 34px #00000080}.premium-slider::-moz-range-thumb{width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid rgba(255,255,255,.92);box-shadow:0 0 0 8px #ffffff1a,0 12px 28px #00000073;transition:transform .18s}.premium-slider:hover::-moz-range-thumb,.premium-slider:active::-moz-range-thumb{transform:scale(1.14)}.dynamic-box{padding:18px 20px;border-radius:22px;border:1px solid var(--border);background:#02061757;margin-top:10px}.dynamic-box strong{display:block;margin-bottom:6px}.dynamic-box p{margin:0;line-height:1.55;color:#e5eefc}.dynamic-box.left{border-color:#38bdf86b;background:linear-gradient(135deg,#38bdf829,#02061757)}.dynamic-box.right{border-color:#fb923c73;background:linear-gradient(135deg,#fb923c2b,#02061757)}.keywords{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}.keywords span{padding:8px 10px;border-radius:999px;border:1px solid var(--border);color:#dbeafe;background:#ffffff0a}.three-bars{display:grid;gap:10px;border-top:1px solid var(--border);padding-top:14px;margin-top:18px}.bar-line{display:grid;grid-template-columns:145px 58px 1fr;align-items:center;gap:10px;color:#cbd5e1}.bar-line b{text-align:right;color:#fff}.actions{display:flex;justify-content:flex-end;gap:12px;margin:24px 0}.ghost,.btn{border:1px solid var(--border);border-radius:16px;padding:12px 18px;cursor:pointer;text-decoration:none}.ghost{background:#0f172ab3;color:#cbd5e1}.btn.primary{background:linear-gradient(135deg,#0284c7,#22c55e);color:#fff;border:0;font-weight:900}.btn:disabled,.ghost:disabled{opacity:.38;cursor:not-allowed}.vote-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}.vote-card{position:relative;background:linear-gradient(135deg,color-mix(in srgb,var(--party) 16%,transparent),#0f172ad1)}.party-dot{display:block;width:36px;height:36px;border-radius:12px;background:var(--party);margin-bottom:14px}.forgotten-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}.forgotten-card{padding:20px;border-radius:22px;background:linear-gradient(135deg,#f59e0b1f,#0f172ad6);border:1px solid rgba(245,158,11,.35)}.forgotten-card b{color:#facc15}.forgotten-card strong{display:block;font-size:1.2rem;margin:8px 0}.forgotten-card span{display:inline-block;color:#fde68a;border:1px solid rgba(250,204,21,.25);border-radius:999px;padding:7px 10px;margin-top:6px}.result-hero{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:20px}.winner{min-width:250px;border-radius:24px;border:1px solid color-mix(in srgb,var(--party) 65%,white 0%);background:linear-gradient(135deg,color-mix(in srgb,var(--party) 28%,transparent),#0f172ac7);padding:22px}.winner span{color:#cbd5e1}.winner strong{display:block;font-size:1.45rem;margin:8px 0}.winner b{font-size:2.4rem;color:#fff}.party-list{margin-bottom:20px}.party-row{display:grid;grid-template-columns:44px minmax(220px,1fr) 2fr 70px;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--border)}.party-row small{display:block;color:var(--muted);font-weight:500;margin-top:4px}.rank{width:34px;height:34px;display:grid;place-items:center;border-radius:12px;background:#38bdf824;color:#bae6fd;font-weight:900}.alert-panel{border:1px solid rgba(251,113,133,.55);background:linear-gradient(135deg,#7f1d1d57,#0f172adb);border-radius:24px;padding:22px;margin:20px 0}.alert-panel article{padding:14px 0;border-top:1px solid rgba(255,255,255,.12)}.alert-panel strong{display:block}.alert-panel span{color:#fecdd3}.method-box{margin-top:28px;padding:22px;border-radius:24px;background:#02061757;border:1px solid var(--border)}@media (max-width:860px){.page{padding:14px}.top-nav{align-items:flex-start;flex-direction:column}.hero-card,.panel,.axis-card{padding:22px;border-radius:24px}.hero-grid,.vote-grid,.forgotten-grid{grid-template-columns:1fr}.heading-panel,.result-hero{display:block}.progress-wrap{margin-top:16px}.party-row{grid-template-columns:34px 1fr 52px}.party-row .progress{grid-column:2 / 4}.actions{flex-direction:column}.btn,.ghost{width:100%;text-align:center}.scale{font-size:.84rem}.scale span{max-width:35%}.bar-line{grid-template-columns:1fr 58px}.bar-line .progress{grid-column:1 / 3}.premium-slider{height:22px}.premium-slider::-webkit-slider-thumb{width:42px;height:42px}.premium-slider::-moz-range-thumb{width:42px;height:42px}}
 
@@ -48,7 +48,48 @@
 .home-forgotten-btn{margin-top:12px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:0;border-radius:16px;padding:12px 16px;background:linear-gradient(135deg,#f59e0b,#22c55e);color:white;font-weight:950;cursor:pointer}
 .home-forgotten-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
 
-.site-return-bar{position:sticky;top:0;z-index:100;background:#050b16;border-bottom:1px solid var(--border);padding:4px 22px;min-height:56px}.site-return-bar a{display:inline-flex;align-items:center;min-height:48px;padding:10px 14px;color:#e5eefc;font-weight:700;text-decoration:none;border:1px solid var(--border);border-radius:999px}.site-return-bar a:hover{background:#164e63}.site-return-bar a:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}html{scroll-padding-top:76px}
+/* Bulletin citoyen Version 2 */
+[hidden]{display:none!important}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f8fafc;outline-offset:5px}
+.hero-kicker{max-width:100%;width:auto;line-height:1.5;overflow-wrap:anywhere}
+.version-notice{border:1px solid #38bdf880;background:#0c4a6e38;border-radius:20px;padding:18px 20px;margin:20px 0}
+.version-notice p{margin:0;color:#e5eefc;font-size:1rem;line-height:1.65}
+.btn.primary{background:#0369a1}.choice-card.secondary{background:linear-gradient(135deg,#0ea5e920,#1e293ba6)}
+.progress:not(.green) span{background:#38bdf8}
+.scale{align-items:flex-start}.scale span{flex:1;max-width:40%;overflow-wrap:anywhere}.scale small{display:block;color:#94a3b8;font-size:.78rem;font-weight:800;letter-spacing:.06em;margin-bottom:7px}.scale b{align-self:center}
+.premium-slider{display:block;background:linear-gradient(90deg,#38bdf8,#94a3b8 50%,#fb923c);touch-action:pan-y;--thumb:#94a3b8}
+.premium-slider::-webkit-slider-thumb{background:var(--thumb);transition:box-shadow .15s}
+.premium-slider::-moz-range-thumb{background:var(--thumb)}
+.answer-pending .premium-slider{background:#475569}
+.answer-a{border-color:#38bdf880}.answer-b{border-color:#fb923c80}
+.answer-a .premium-slider{--thumb:color-mix(in srgb,#38bdf8 calc(var(--strength)*100%),#94a3b8)}
+.answer-b .premium-slider{--thumb:color-mix(in srgb,#fb923c calc(var(--strength)*100%),#94a3b8)}
+.answer-status{padding:18px 20px;border-radius:18px;border:1px solid var(--border);color:#e5eefc;background:#02061766;line-height:1.6;margin:16px 0;font-weight:650}
+.answer-a .answer-status{border-color:#38bdf873}.answer-b .answer-status{border-color:#fb923c73}
+.no-opinion,.source-toggle,.all-parties-toggle{padding:12px 16px;min-height:44px;max-width:100%;border-radius:12px;border:1px solid #64748b;background:#0f172a;color:#e5eefc;cursor:pointer;font-weight:700}
+.no-opinion[aria-pressed=true]{background:#475569;border-color:#cbd5e1}
+.source-toggle{width:100%;margin-top:16px}.all-parties-toggle{display:block;margin:24px auto}
+.result-panel>h1{font-size:clamp(2rem,4vw,3.3rem);line-height:1.12;max-width:950px;margin:26px 0}
+.certainty{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0;color:#cbd5e1}.certainty strong{border:1px solid #64748b;border-radius:999px;padding:8px 14px;color:#e5eefc}
+.limited-positions,.measured-gaps,.insufficient-answers{border:1px solid #fb923c80;background:#78350f26;border-radius:18px;padding:18px 20px}
+.result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.rank-card,.all-party-card{min-width:0;border:1px solid var(--border);border-top:4px solid var(--party,#64748b);border-radius:20px;padding:22px;background:#02061755}
+.rank-card-header{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:12px}
+.rank-card-header h2,.rank-card-header h3{font-size:1.15rem;line-height:1.35;margin:0;overflow-wrap:anywhere}
+.rank-score{font-size:1.8rem;color:#f8fafc}.coverage{margin:8px 0 16px!important;font-size:.95rem!important;color:#cbd5e1!important}
+.comparison-points{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.comparison-points h3{font-size:.88rem;color:#cbd5e1;margin:0 0 8px;line-height:1.4}
+.comparison-points ul{padding:0;list-style:none;margin:0}.comparison-points li{font-size:.88rem;line-height:1.45;padding:7px 0;border-top:1px solid var(--border);overflow-wrap:anywhere}.comparison-points li span{white-space:nowrap;color:#94a3b8}
+.source-panel{margin-top:12px;border-top:1px solid var(--border)}
+.source-item{padding:16px 0;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
+.source-item h4{font-size:1rem;margin:0 0 10px}.source-item p{font-size:.92rem!important;line-height:1.55!important;margin:6px 0;color:#cbd5e1}
+.source-comment{color:#94a3b8!important}.excluded-position{font-weight:700;color:#fed7aa!important}
+#all-parties{display:grid;gap:14px}.all-party-card .rank-card-header h3{font-size:1.05rem}
+.measured-gaps{margin:24px 0}.measured-gaps h2{font-size:1.35rem}.measured-gaps p{font-size:1rem;line-height:1.6}
+.method-box p{overflow-wrap:anywhere}.bar-line{grid-template-columns:minmax(145px,1fr) 45px minmax(80px,1fr)}
+@media(max-width:860px){.result-grid{grid-template-columns:1fr}.result-panel{padding:20px}.rank-card,.all-party-card{padding:18px}.comparison-points{gap:12px}.bar-line{grid-template-columns:1fr 45px}.bar-line .progress{grid-column:1/3}}
+@media(max-width:480px){.hero-card,.panel,.axis-card{padding:20px}.page{padding:12px}.axis-head{gap:10px}.axis-emoji{font-size:1.6rem}.scale{gap:8px;font-size:.82rem}.scale span{max-width:39%}.scale b{font-size:.8rem;padding:7px}.rank-card-header{gap:9px}.rank-score{font-size:1.55rem}.version-notice{padding:16px}.switch-row{font-size:.85rem;gap:8px;padding:10px}.source-item p{font-size:.9rem!important}}
+
 </style>
   <link rel="stylesheet" href="../assets/doctrine-navigation.css">
 </head>
@@ -57,73 +98,1474 @@
   <a href="https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/#pilier-13" target="_top">Retour au site de la Doctrine</a>
   <a class="doctrine-navigation-drive" href="https://drive.google.com/drive/folders/1O_RbUmXr7YyqglsldIUPgu7lGo3ZFj-w" target="_blank" rel="noopener">Approfondir ce pilier sur Drive</a>
 </nav>
-
-    <nav class="site-return-bar" aria-label="Retour au site"><a data-back href="../index.html#pilier-13">← Retour au site</a></nav>
     <div id="root"></div>
     <script>
 const parties = [
-  { id:'upr', name:'UPR', color:'#38bdf8', family:'Souveraineté institutionnelle' },
-  { id:'patriotes', name:'Les Patriotes', color:'#22c55e', family:'Souveraineté populaire' },
-  { id:'dlf', name:'Debout la France', color:'#60a5fa', family:'Souveraineté républicaine' },
-  { id:'rs', name:'République Souveraine', color:'#f59e0b', family:'République sociale' },
-  { id:'ne', name:'Nouvelle Énergie', color:'#14b8a6', family:'Droite locale / gestion' },
-  { id:'rn', name:'Rassemblement National', color:'#1d4ed8', family:'Protection nationale' },
-  { id:'rec', name:'Reconquête', color:'#7c3aed', family:'Droite identitaire' },
-  { id:'lr', name:'Les Républicains', color:'#2563eb', family:'Droite parlementaire' },
-  { id:'ren', name:'Renaissance', color:'#facc15', family:'Centre libéral' },
-  { id:'ps', name:'Parti Socialiste', color:'#fb7185', family:'Social-démocratie' },
-  { id:'pcf', name:'Parti Communiste Français', color:'#ef4444', family:'Gauche sociale' },
-  { id:'lfi', name:'La France insoumise', color:'#dc2626', family:'Gauche radicale' },
-  { id:'eelv', name:'Écologistes / EELV', color:'#16a34a', family:'Écologie politique' },
-  { id:'gens', name:'Génération·s', color:'#ec4899', family:'Gauche écologiste' }
+  {
+    "id": "rn",
+    "name": "Rassemblement National",
+    "color": "#1d4ed8"
+  },
+  {
+    "id": "rec",
+    "name": "Reconquête",
+    "color": "#7c3aed"
+  },
+  {
+    "id": "lr",
+    "name": "Les Républicains",
+    "color": "#2563eb"
+  },
+  {
+    "id": "ren",
+    "name": "Renaissance",
+    "color": "#facc15"
+  },
+  {
+    "id": "hor",
+    "name": "Horizons",
+    "color": "#0ea5e9"
+  },
+  {
+    "id": "ps",
+    "name": "Parti socialiste",
+    "color": "#fb7185"
+  },
+  {
+    "id": "lfi",
+    "name": "La France insoumise",
+    "color": "#dc2626"
+  },
+  {
+    "id": "pcf",
+    "name": "Parti communiste français",
+    "color": "#ef4444"
+  },
+  {
+    "id": "eelv",
+    "name": "Écologistes / EELV",
+    "color": "#16a34a"
+  },
+  {
+    "id": "lo",
+    "name": "Lutte ouvrière",
+    "color": "#b91c1c"
+  },
+  {
+    "id": "upr",
+    "name": "UPR",
+    "color": "#38bdf8"
+  },
+  {
+    "id": "patriotes",
+    "name": "Les Patriotes",
+    "color": "#22c55e"
+  },
+  {
+    "id": "dlf",
+    "name": "Debout la France",
+    "color": "#60a5fa"
+  },
+  {
+    "id": "rs",
+    "name": "République souveraine",
+    "color": "#f59e0b"
+  },
+  {
+    "id": "ne",
+    "name": "Nouvelle Énergie",
+    "color": "#14b8a6"
+  }
 ];
 
 const axes = [
-  {id:'energie', icon:'⚡', title:'Énergie', q:'La France doit-elle reprendre le contrôle complet de son électricité pour garantir une énergie abondante, stable et bon marché ?', left:'Marché européen / concurrence', right:'Souveraineté publique / prix national maîtrisé', measure:'Le curseur mesure le degré de reprise en main publique, nationale et productive de l\'électricité.', tags:['EDF','Prix','Industrie','Nucléaire'], inv:false},
-  {id:'sante', icon:'🏥', title:'Santé / déserts médicaux', q:'Face aux déserts médicaux, quel principe doit primer ?', left:'Priorité nationale de santé publique', right:'Libre circulation totale', measure:'Le curseur mesure la priorité donnée au maintien des soignants formés en France et à la couverture médicale du territoire.', tags:['Médecins','Territoires','Formation','Service public'], inv:true},
-  {id:'agri', icon:'🌾', title:'Agriculture locale', q:'Faut-il privilégier une agriculture locale protégée ou rester dans une logique de libre-échange alimentaire ?', left:'Libre-échange alimentaire', right:'Protection productive locale', measure:'Le curseur mesure la priorité donnée à l\'autonomie alimentaire, aux producteurs français et aux circuits courts.', tags:['Agriculture','Prix','Importations','Souveraineté'], inv:false},
-  {id:'industrie', icon:'🏭', title:'Emploi / industrie', q:'La France doit-elle conditionner davantage ses aides et ses achats publics à la production sur le territoire ?', left:'Priorité productive nationale', right:'Ouverture sans contrainte', measure:'Le curseur mesure le niveau d\'exigence industrielle attaché à l\'argent public et aux marchés publics.', tags:['Emploi','Relocalisation','Achats publics','Conditionnalité'], inv:true},
-  {id:'immigration', icon:'🧭', title:'Immigration / intégration', q:'La politique migratoire doit-elle être guidée d\'abord par l\'ouverture ou par la capacité réelle d\'intégration ?', left:'Ouverture prioritaire', right:'Capacité d\'intégration mesurée', measure:'Le curseur mesure le degré de régulation par le logement, l\'emploi, l\'école, la sécurité et les finances publiques.', tags:['Logement','Emploi','Asile','Intégration'], inv:false},
-  {id:'fiscalite', icon:'💶', title:'Fiscalité / multinationales', q:'Faut-il taxer les grandes entreprises selon leur activité réelle en France plutôt que selon leur optimisation juridique ?', left:'Taxation au lieu réel d\'activité', right:'Fiscalité concurrentielle', measure:'Le curseur mesure l\'exigence de justice fiscale envers les acteurs globalisés.', tags:['Multinationales','Fiscalité','Optimisation','Justice'], inv:true},
-  {id:'dette', icon:'📊', title:'Dette / argent public', q:'Comment contrôler l\'usage de l\'argent public et la dette de fonctionnement ?', left:'Gestion budgétaire classique', right:'Contrôle du retour réel pour le peuple', measure:'Le curseur mesure l\'exigence de transparence, d\'évaluation et de retour social mesurable des dépenses publiques.', tags:['Dette','ROI public','Subventions','Contrôle'], inv:false},
-  {id:'ecologie', icon:'🌍', title:'Écologie concrète', q:'L\'écologie doit-elle d\'abord passer par des interdictions générales ou par une écologie productive et mesurable ?', left:'Production durable et mesurable', right:'Normes et interdictions', measure:'Le curseur mesure la priorité donnée à l\'efficacité écologique réelle, industrielle et sociale.', tags:['CO₂','Réparation','Production','Mesure'], inv:true},
-  {id:'education', icon:'📚', title:'Éducation', q:'L\'école doit-elle privilégier l\'autonomie pédagogique ou un socle national exigeant et vérifiable ?', left:'Autonomie locale forte', right:'Socle national contrôlé', measure:'Le curseur mesure l\'importance accordée à la transmission, aux savoirs fondamentaux et à l\'évaluation nationale.', tags:['École','Transmission','Niveau','Mérite'], inv:false},
-  {id:'culture', icon:'🎭', title:'Culture / médias', q:'La culture et les médias doivent-ils rester très subventionnés ou rendre plus visibles leurs coûts réels ?', left:'Vérité des coûts et transparence', right:'Subvention large peu visible', measure:'Le curseur mesure la priorité donnée à la transparence financière sans supprimer l\'accès culturel.', tags:['Médias','Culture','Coûts','Transparence'], inv:true},
-  {id:'controle', icon:'🗳️', title:'Contrôle des élus', q:'Comment les citoyens doivent-ils contrôler les engagements politiques ?', left:'Démocratie représentative classique', right:'Suivi public des engagements', measure:'Le curseur mesure l\'importance accordée au contrôle citoyen direct, au suivi des promesses et à la responsabilité politique.', tags:['Mandat','Bilan','Référendum','Contrôle citoyen'], inv:false, blindSpot:true},
-  {id:'europe', icon:'🇪🇺', title:'Europe / souveraineté', q:'La France doit-elle accepter les contraintes européennes actuelles ou reprendre sa liberté de décision sur les sujets vitaux ?', left:'Souveraineté nationale prioritaire', right:'Cadre européen prioritaire', measure:'Le curseur mesure le niveau de reprise de décision nationale sur énergie, budget, industrie, frontières et droit.', tags:['UE','Traités','Budget','Souveraineté'], inv:true}
+  {
+    "id": "energie",
+    "icon": "⚡",
+    "title": "Énergie",
+    "q": "Pour produire l'électricité de la France, que faut-il privilégier ?",
+    "a": "Le nucléaire et les centrales qui produisent à la demande.",
+    "b": "L'éolien et le solaire, quitte à réduire la part du nucléaire.",
+    "measure": "la place donnée au nucléaire et aux moyens pilotables face aux énergies renouvelables intermittentes.",
+    "tags": [
+      "EDF",
+      "Prix",
+      "Industrie",
+      "Nucléaire"
+    ]
+  },
+  {
+    "id": "sante",
+    "icon": "🏥",
+    "title": "Santé et déserts médicaux",
+    "q": "Pour lutter contre les déserts médicaux, faut-il encadrer le lieu d'installation des nouveaux médecins ?",
+    "a": "Oui, réguler l'installation là où il manque des médecins.",
+    "b": "Non, inciter par des aides et de meilleures conditions, en gardant la liberté d'installation.",
+    "measure": "le degré de contrainte accepté sur l'installation des médecins.",
+    "tags": [
+      "Médecins",
+      "Territoires",
+      "Formation",
+      "Service public"
+    ]
+  },
+  {
+    "id": "agri",
+    "icon": "🌾",
+    "title": "Agriculture",
+    "q": "Faut-il protéger les agriculteurs français de la concurrence des importations ?",
+    "a": "Protéger la production française, en limitant les importations et en refusant certains accords commerciaux.",
+    "b": "Garder les échanges ouverts, pour des prix plus bas et des débouchés à l'exportation.",
+    "measure": "la priorité donnée à la souveraineté alimentaire face au libre-échange.",
+    "tags": [
+      "Agriculture",
+      "Prix",
+      "Importations",
+      "Souveraineté"
+    ]
+  },
+  {
+    "id": "industrie",
+    "icon": "🏭",
+    "title": "Industrie et emploi",
+    "q": "Pour développer l'industrie et l'emploi, quel rôle pour l'État ?",
+    "a": "L'État oriente : aides et achats publics réservés à ce qui est produit en France, secteurs stratégiques sous contrôle public.",
+    "b": "L'État fixe les règles et laisse les entreprises décider, avec moins d'interventions.",
+    "measure": "le degré d'intervention de l'État dans l'économie productive.",
+    "tags": [
+      "Emploi",
+      "Relocalisation",
+      "Achats publics",
+      "Conditionnalité"
+    ]
+  },
+  {
+    "id": "justice",
+    "icon": "⚖️",
+    "title": "Justice",
+    "q": "Face à la délinquance, quelle priorité pour la justice ?",
+    "a": "Faire exécuter systématiquement les peines prononcées, y compris la prison.",
+    "b": "Développer les peines alternatives et la réinsertion pour éviter la récidive.",
+    "measure": "l'équilibre entre fermeté de l'exécution des peines et réinsertion.",
+    "tags": [
+      "Peines",
+      "Prison",
+      "Réinsertion",
+      "Récidive"
+    ]
+  },
+  {
+    "id": "fiscalite",
+    "icon": "💶",
+    "title": "Impôts des grandes entreprises",
+    "q": "Où les grandes entreprises doivent-elles payer leurs impôts ?",
+    "a": "En France, sur l'activité qu'elles y réalisent, même s'il faut changer les règles européennes ou internationales.",
+    "b": "Là où elles s'installent légalement, en gardant une fiscalité attractive pour attirer les entreprises.",
+    "measure": "l'exigence d'imposer en France la richesse créée en France.",
+    "tags": [
+      "Multinationales",
+      "Fiscalité",
+      "Optimisation",
+      "Justice"
+    ]
+  },
+  {
+    "id": "immigration",
+    "icon": "🧭",
+    "title": "Immigration",
+    "q": "Quelle politique d'immigration ?",
+    "a": "Réduire fortement les entrées et rendre les expulsions plus systématiques.",
+    "b": "Accueillir davantage et élargir les droits des étrangers (asile, régularisations).",
+    "measure": "le niveau de maîtrise ou d'ouverture des flux migratoires.",
+    "tags": [
+      "Logement",
+      "Emploi",
+      "Asile",
+      "Intégration"
+    ]
+  },
+  {
+    "id": "europe",
+    "icon": "🇪🇺",
+    "title": "Europe",
+    "q": "Qui doit avoir le dernier mot sur les grandes décisions de la France ?",
+    "a": "La France seule, sur ses lois, son budget et ses frontières, quitte à sortir de certaines règles européennes.",
+    "b": "L'Union européenne, avec davantage de décisions prises en commun.",
+    "measure": "la répartition du pouvoir de décision entre la France et l'Union européenne.",
+    "tags": [
+      "UE",
+      "Traités",
+      "Budget",
+      "Souveraineté"
+    ]
+  },
+  {
+    "id": "education",
+    "icon": "📚",
+    "title": "Éducation",
+    "q": "Après le collège, que faut-il développer en priorité ?",
+    "a": "L'apprentissage et les filières professionnelles, construits avec les entreprises.",
+    "b": "Les études générales et longues pour le plus grand nombre.",
+    "measure": "la priorité donnée aux filières professionnelles face au parcours général.",
+    "tags": [
+      "École",
+      "Transmission",
+      "Niveau",
+      "Mérite"
+    ]
+  },
+  {
+    "id": "ecologie",
+    "icon": "🌍",
+    "title": "Écologie",
+    "q": "Pour protéger l'environnement, quelle méthode ?",
+    "a": "Produire mieux en France (innovation, nucléaire, circuits courts) en limitant les contraintes sur les ménages.",
+    "b": "Changer les modes de vie par des règles et des objectifs contraignants (sobriété, normes, interdictions).",
+    "measure": "le choix entre une écologie par la production et une écologie par la réglementation.",
+    "tags": [
+      "CO₂",
+      "Réparation",
+      "Production",
+      "Mesure"
+    ]
+  },
+  {
+    "id": "controle",
+    "icon": "🗳️",
+    "title": "Pouvoir des citoyens",
+    "q": "Comment les grandes décisions doivent-elles être prises ?",
+    "a": "Par les citoyens eux-mêmes, avec un référendum d'initiative citoyenne (RIC) et un suivi public des engagements des élus.",
+    "b": "Par les élus, contrôlés par les citoyens lors des élections.",
+    "measure": "la place de la démocratie directe face à la démocratie représentative.",
+    "tags": [
+      "Mandat",
+      "Bilan",
+      "Référendum",
+      "Contrôle citoyen"
+    ]
+  },
+  {
+    "id": "dette",
+    "icon": "📊",
+    "title": "Dette et argent public",
+    "q": "Face à la dette publique, que faut-il faire en priorité ?",
+    "a": "Réduire la dette en vérifiant chaque dépense et en supprimant celles qui ne donnent pas de résultat mesurable.",
+    "b": "Maintenir ou renforcer les services publics et les aides, quitte à accepter davantage de dette.",
+    "measure": "la priorité donnée à la réduction de la dette face au maintien des dépenses publiques.",
+    "tags": [
+      "Dette",
+      "ROI public",
+      "Subventions",
+      "Contrôle"
+    ]
+  }
 ];
 
-const strategic = [
-  ['Coût caché de la perte de souveraineté énergétique','Quels coûts réels produit la dépendance aux marchés européens, aux engagements hors bilan et à l\'indisponibilité nucléaire ?'],
-  ['ASPA et asymétrie successorale','Pourquoi les petits patrimoines français sont-ils récupérables alors que les patrimoines hors UE restent souvent hors de portée ?'],
-  ['Capital humain formé en France','Comment justifier que la dette publique finance la formation de professionnels qui exercent ensuite durablement à l\'étranger ?'],
-  ['Friction administrative','Quelle utilité réelle ont les flux administratifs et subventions dont le retour social n\'est pas clairement mesuré ?'],
-  ['Obsolescence programmée','Pourquoi ne pas restaurer du pouvoir d\'achat populaire par une garantie longue transmissible et la réparation locale ?'],
-  ['Frontaliers et compensation interétatique','La France est-elle correctement compensée quand elle forme et loge des travailleurs captés quotidiennement par des pays voisins ?'],
-  ['Agences et associations redondantes','Les opérateurs financés sur l\'asile, l\'intégration et l\'action sociale sont-ils contrôlés avec assez de rigueur ?'],
-  ['Grand âge et EHPAD','Pourquoi le retour économique d\'une vraie politique d\'attractivité des métiers du grand âge reste-t-il peu visible ?'],
-  ['Friction bancaire du commerce local','Quel montant les commerces de proximité perdent-ils dans les commissions, frais monétiques et intermédiations invisibles ?'],
-  ['Responsabilité personnelle des décideurs','Pourquoi les choix publics coûteux n\'entraînent-ils presque jamais de responsabilité patrimoniale ou politique réelle ?'],
-  ['Vérité des prix publics','Pourquoi le citoyen ne voit-il pas clairement la part payée par lui-même, par l\'impôt et par la dette ?'],
-  ['Souveraineté productive mesurable','Quels indicateurs obligatoires devraient prouver qu\'une politique relocalise vraiment emplois, compétences et valeur ajoutée ?']
-];
+const matrix = {
+  "rn": {
+    "scores": [
+      10,
+      15,
+      12,
+      18,
+      8,
+      20,
+      5,
+      20,
+      25,
+      8,
+      35,
+      30
+    ],
+    "ic": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ]
+  },
+  "rec": {
+    "scores": [
+      12,
+      65,
+      20,
+      25,
+      5,
+      75,
+      2,
+      15,
+      30,
+      10,
+      60,
+      25
+    ],
+    "ic": [
+      3,
+      2,
+      3,
+      3,
+      4,
+      2,
+      4,
+      3,
+      3,
+      3,
+      2,
+      3
+    ]
+  },
+  "lr": {
+    "scores": [
+      15,
+      60,
+      30,
+      40,
+      15,
+      35,
+      18,
+      55,
+      30,
+      25,
+      65,
+      20
+    ],
+    "ic": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      3,
+      4
+    ]
+  },
+  "ren": {
+    "scores": [
+      35,
+      65,
+      55,
+      50,
+      50,
+      45,
+      45,
+      82,
+      55,
+      60,
+      72,
+      55
+    ],
+    "ic": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ]
+  },
+  "hor": {
+    "scores": [
+      25,
+      40,
+      45,
+      70,
+      25,
+      70,
+      30,
+      75,
+      30,
+      30,
+      80,
+      15
+    ],
+    "ic": [
+      3,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  "ps": {
+    "scores": [
+      65,
+      25,
+      40,
+      35,
+      65,
+      20,
+      60,
+      75,
+      55,
+      70,
+      50,
+      70
+    ],
+    "ic": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ]
+  },
+  "lfi": {
+    "scores": [
+      90,
+      10,
+      30,
+      15,
+      80,
+      10,
+      85,
+      28,
+      60,
+      88,
+      10,
+      85
+    ],
+    "ic": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ]
+  },
+  "pcf": {
+    "scores": [
+      55,
+      8,
+      20,
+      10,
+      75,
+      5,
+      70,
+      35,
+      40,
+      75,
+      20,
+      90
+    ],
+    "ic": [
+      3,
+      4,
+      3,
+      3,
+      3,
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  "eelv": {
+    "scores": [
+      95,
+      30,
+      45,
+      55,
+      78,
+      15,
+      82,
+      85,
+      65,
+      95,
+      30,
+      75
+    ],
+    "ic": [
+      4,
+      4,
+      4,
+      3,
+      4,
+      4,
+      4,
+      4,
+      3,
+      4,
+      3,
+      3
+    ]
+  },
+  "lo": {
+    "scores": [
+      65,
+      10,
+      20,
+      5,
+      85,
+      5,
+      95,
+      null,
+      80,
+      70,
+      null,
+      90
+    ],
+    "ic": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      3,
+      2,
+      1,
+      2
+    ]
+  },
+  "upr": {
+    "scores": [
+      25,
+      5,
+      8,
+      5,
+      15,
+      5,
+      10,
+      2,
+      30,
+      20,
+      5,
+      30
+    ],
+    "ic": [
+      3,
+      3,
+      4,
+      2,
+      3,
+      3,
+      4,
+      4,
+      3,
+      2,
+      4,
+      3
+    ]
+  },
+  "patriotes": {
+    "scores": [
+      5,
+      20,
+      5,
+      8,
+      12,
+      20,
+      5,
+      3,
+      20,
+      15,
+      5,
+      30
+    ],
+    "ic": [
+      4,
+      3,
+      4,
+      4,
+      4,
+      2,
+      4,
+      4,
+      3,
+      3,
+      4,
+      2
+    ]
+  },
+  "dlf": {
+    "scores": [
+      10,
+      20,
+      10,
+      15,
+      10,
+      25,
+      10,
+      10,
+      28,
+      20,
+      5,
+      20
+    ],
+    "ic": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  "rs": {
+    "scores": [
+      15,
+      10,
+      10,
+      5,
+      20,
+      10,
+      18,
+      5,
+      30,
+      30,
+      5,
+      55
+    ],
+    "ic": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  "ne": {
+    "scores": [
+      20,
+      75,
+      55,
+      70,
+      30,
+      72,
+      15,
+      35,
+      45,
+      42,
+      55,
+      15
+    ],
+    "ic": [
+      3,
+      4,
+      4,
+      4,
+      3,
+      3,
+      4,
+      3,
+      3,
+      3,
+      3,
+      4
+    ]
+  }
+};
 
-const partyScores = Object.fromEntries(parties.map((p,i)=>[p.id, axes.map((_,j)=>Math.max(0,Math.min(100, Math.round([18,25,33,42,55,67,75,84,58,62,47,70,80,65][i] + ((j*11+i*7)%31)-15))))]));
-partyScores.upr=[8,82,78,84,72,90,88,72,76,70,88,94];
-partyScores.patriotes=[6,86,80,82,84,78,76,70,68,62,80,92];
-partyScores.dlf=[18,78,75,77,74,70,72,66,70,60,70,78];
-partyScores.rs=[34,68,65,70,55,74,78,72,76,68,62,70];
-partyScores.ne=[30,62,58,64,48,62,68,60,64,58,48,54];
-partyScores.rn=[12,72,70,72,82,58,60,54,58,44,46,66];
-partyScores.rec=[8,64,62,70,88,45,50,46,52,38,40,62];
-partyScores.lr=[24,55,50,56,58,52,46,42,54,40,38,48];
-partyScores.ren=[72,44,36,38,30,35,30,40,42,32,22,18];
-partyScores.ps=[68,38,42,35,28,65,62,70,64,72,55,26];
-partyScores.pcf=[48,52,58,54,35,72,76,66,70,74,62,42];
-partyScores.lfi=[54,48,55,50,38,80,82,78,72,76,70,36];
-partyScores.eelv=[82,35,60,32,25,68,72,90,66,82,64,18];
-partyScores.gens=[76,34,50,30,22,66,70,84,68,80,60,20];
-
+const sources = {
+  "rn": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ],
+  "rec": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Le Quotidien du médecin (2022) ; synthèse IFRAP (2024)",
+      "commentaire": "Le lien YouTube inventé est supprimé. Perplexity 65, Grok 75, Gemini 55 : pas d'obligation d'installation, mais 1 000 médecins salariés d'État et gardes obligatoires. Score ramené de 70 à 65."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Analyse Oxfam du programme 2022 ; déclarations 2025-2026",
+      "commentaire": "Grok 80, Gemini 75 (IC2, source de 2022) : baisse des impôts de production et de l'IS ; Perplexity sans source."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "pourqui.vote (programme 2027)",
+      "commentaire": "Gemini 70, Grok corrigé 40 : référendums à l'initiative de l'exécutif (immigration), pas de RIC. Score ramené de 70 à 60."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ],
+  "lr": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ],
+  "ren": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ],
+  "hor": [
+    {
+      "titre": "edouardphilippe.fr ; monvote2027.fr (2026)",
+      "commentaire": "Accord des trois IA (25) : relance du nucléaire, renouvelables en complément."
+    },
+    {
+      "titre": "Assemblée nationale, scrutin n°1607 du 7 mai 2025 (vérifié par Claude)",
+      "commentaire": "Gemini (65) et Grok (70) le placent côté liberté d'installation, mais le groupe Horizons a voté à 5 pour et 1 abstention la loi Garot, qui régule l'installation. Score intermédiaire, IC2 ; à confirmer par une déclaration d'Édouard Philippe."
+    },
+    {
+      "titre": "Scrutin n°456 (Mercosur) ; edouardphilippe.fr",
+      "commentaire": "Gemini 50, Grok 40 : refus du Mercosur en l'état, attachement à l'ouverture commerciale."
+    },
+    {
+      "titre": "« Deal fiscal », novembre 2025 (Boursorama) ; edouardphilippe.fr",
+      "commentaire": "Gemini 75, Grok 65, Perplexity 40 : moins d'aides et moins d'impôts de production, l'État fixe les règles."
+    },
+    {
+      "titre": "edouardphilippe.fr, « Pour une France plus sûre » ; pourqui.vote",
+      "commentaire": "Gemini 20, Grok 30 : exécution des peines, fermeté sur la récidive."
+    },
+    {
+      "titre": "« Deal fiscal », novembre 2025",
+      "commentaire": "Gemini 65, Grok 75 : attractivité fiscale prioritaire, cadre OCDE/UE."
+    },
+    {
+      "titre": "edouardphilippe.fr ; monvote2027.fr",
+      "commentaire": "Perplexity 20, Grok 25, Gemini 35 : immigration choisie et réduite, quotas, éloignements."
+    },
+    {
+      "titre": "Manifeste Horizons, point 10 (vérifié par Claude)",
+      "commentaire": "Perplexity 85, Grok 60, Gemini 80 : le projet européen comme voie de souveraineté, avec subsidiarité."
+    },
+    {
+      "titre": "Discours d'Orléans, mai 2026 (elyseescope.com)",
+      "commentaire": "Gemini 25, Grok 45 : priorité à l'apprentissage (aide de 5 000 € par contrat)."
+    },
+    {
+      "titre": "Manifeste Horizons, points 6 et 15 (vérifié par Claude)",
+      "commentaire": "Accord des trois IA (30-35) : progrès et nucléaire, rejet de la décroissance, une part de sobriété."
+    },
+    {
+      "titre": "Manifeste Horizons, point 8 (vérifié par Claude)",
+      "commentaire": "Gemini 85, Grok corrigé 65 : défense de la démocratie représentative ; le RIC n'est pas mentionné."
+    },
+    {
+      "titre": "monvote2027.fr (L'Heure de vérité, 8 octobre 2026)",
+      "commentaire": "Grok 20, Gemini 15 : règle d'or, réduction du déficit prioritaire."
+    }
+  ],
+  "ps": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ],
+  "lfi": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ],
+  "pcf": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ],
+  "eelv": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ],
+  "lo": [
+    {
+      "titre": "Le Quizz du Berger (2026) ; economie-politique.org",
+      "commentaire": "Gemini 75 (sortie progressive du nucléaire), Perplexity 60, Grok sans source. Le Quizz du Berger ne dit pas si les réponses viennent de la candidate ou du site, et se contredit sur l'UE : IC2 au mieux."
+    },
+    {
+      "titre": "Le Quizz du Berger (2026)",
+      "commentaire": "Gemini seul : mesures coercitives d'installation. Le Quizz du Berger ne dit pas si les réponses viennent de la candidate ou du site, et se contredit sur l'UE : IC2 au mieux."
+    },
+    {
+      "titre": "Le Quizz du Berger ; profession de foi européennes 2024",
+      "commentaire": "Accord des trois IA (20-25)."
+    },
+    {
+      "titre": "Le Quizz du Berger ; site LO",
+      "commentaire": "Accord des trois IA (5) : planification, expropriation, interdiction des licenciements."
+    },
+    {
+      "titre": "Le Quizz du Berger ; site LO",
+      "commentaire": "Grok 80, Gemini 90 : prévention et réinsertion, « la prison est inefficace »."
+    },
+    {
+      "titre": "Le Quizz du Berger ; site LO",
+      "commentaire": "Accord des trois IA (5-10)."
+    },
+    {
+      "titre": "Le Quizz du Berger ; profession de foi 2024",
+      "commentaire": "Perplexity 95, Grok 90, Gemini 98 : ouverture des frontières."
+    },
+    {
+      "titre": "—",
+      "commentaire": "Retiré du calcul pour LO : sa position (internationalisme, rejet de l'UE « des riches » comme du nationalisme) ne se place pas sur cet axe, et le Quizz du Berger se contredit (sortir de l'UE / rester et réformer). Perplexity 50, Grok 15, Gemini 15."
+    },
+    {
+      "titre": "Lutte ouvrière, journal n°2910 (mai 2024)",
+      "commentaire": "Gemini 85, Grok 70 : critique de l'apprentissage « main-d'œuvre quasi gratuite au patronat » ; enseignement public sous statut scolaire."
+    },
+    {
+      "titre": "Le Quizz du Berger ; economie-politique.org",
+      "commentaire": "Perplexity 75, Grok 60, Gemini 75 : planification contraignante pour les entreprises, refus de l'écologie punitive pour les ménages modestes."
+    },
+    {
+      "titre": "—",
+      "commentaire": "Retiré du calcul pour LO : Gemini (15) s'appuie sur le seul Quizz du Berger (RIC « sur tous les sujets »), Grok (70-80) et Perplexity n'ont trouvé aucune revendication du RIC. Aucune source propre du parti."
+    },
+    {
+      "titre": "Le Quizz du Berger ; site LO",
+      "commentaire": "Grok 90, Gemini 95 : « la dette est une arnaque », refus de l'austérité."
+    }
+  ],
+  "upr": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Programme UPR 2022 (upr.fr)",
+      "commentaire": "Gemini 5, Grok 20 : renationalisations, contrôle des capitaux. IC2 car programme de 2022."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Programme UPR 2022 (upr.fr)",
+      "commentaire": "Gemini 15, Grok 30 : sortir de la mondialisation plutôt qu'« écologie punitive »."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ],
+  "patriotes": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Charte des Patriotes (texte de 2017 maintenu en ligne)",
+      "commentaire": "Gemini 10, Grok 30, Perplexity sans source précise (baisse des impôts de production)."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "monvote2027.fr (2026) ; France-Vote",
+      "commentaire": "Perplexity 10, Gemini 35, Grok 40 : redressement sans hausse d'impôts, économies ciblées (contribution UE, fraude)."
+    }
+  ],
+  "dlf": [
+    {
+      "titre": "« 100 Décisions », décision 88 (vérifié par Claude) ; presi2027.fr (2026)",
+      "commentaire": "Perplexity 5, Grok 10, Gemini 15 : nucléaire à 70 % minimum. IC3 car le programme date de 2022, confirmé en 2026."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "« 100 Décisions », décisions 90-92 ; projet européen 2024",
+      "commentaire": "Accord des trois IA (10)."
+    },
+    {
+      "titre": "« 100 Décisions », décision 28 (vérifié) ; « 12 travaux d'Hercule » 2024",
+      "commentaire": "Perplexity 10, Grok 15, Gemini 15 : 75 % des marchés publics réservés aux fabrications françaises."
+    },
+    {
+      "titre": "« 100 Décisions », décisions 68 et 72 (vérifié) ; 2024",
+      "commentaire": "Perplexity 10, Grok 15, Gemini 10 : 40 000 places de prison."
+    },
+    {
+      "titre": "« 100 Décisions » (vérifié : aucune décision chiffrée sur les multinationales)",
+      "commentaire": "Gemini 20, Grok 40, Perplexity sans source : dénonciation de l'« optimisation fiscale agressive », sans mesure précise."
+    },
+    {
+      "titre": "« 100 Décisions », décision 67 (vérifié) ; presi2027.fr (2026)",
+      "commentaire": "Perplexity 5, Grok 10, Gemini 10 : fin de Schengen, expulsions."
+    },
+    {
+      "titre": "« 100 Décisions », décision 10 (vérifié) ; projet européen 2024",
+      "commentaire": "Perplexity 0, Grok 5, Gemini 15 : remplacement de l'UE par une alliance de nations. Score ramené de 30 à 10."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "presi2027.fr (2026) ; « 100 Décisions »",
+      "commentaire": "Perplexity 15, Grok 20, Gemini 20."
+    },
+    {
+      "titre": "« 100 Décisions », décision 3 (vérifié) ; « 12 travaux d'Hercule » 2024",
+      "commentaire": "RIC à partir de 500 000 signatures, référendum révocatoire. Grok corrigé 10, Perplexity 10, Gemini 10."
+    },
+    {
+      "titre": "« 12 travaux d'Hercule » 2024 ; « 100 Décisions »",
+      "commentaire": "Perplexity 10, Grok 30, Gemini 25 : économies et chasse aux gaspillages, sans décision chiffrée sur la dette."
+    }
+  ],
+  "rs": [
+    {
+      "titre": "« Nos idées » et Charte, point 17 (vérifié par Claude)",
+      "commentaire": "Nucléaire « atout », sous contrôle de l'État, avec les renouvelables. Perplexity 15, Grok 15, Gemini 10."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "« Nos idées » (2026)",
+      "commentaire": "Perplexity 15, Grok 15, Gemini 10."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "« Nos idées » (vérifié) : « Nul ne doit plus échapper à l'impôt », transparence pays par pays",
+      "commentaire": "Grok 25, Gemini 10, Perplexity sans source."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "« Nos idées », Charte point 8 (vérifié)",
+      "commentaire": "L'UE doit être remplacée par une Europe de la coopération entre États souverains ; référendum sur la sortie. Perplexity 0, Grok 10, Gemini 5."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "« Nos idées » (2026)",
+      "commentaire": "Perplexity 45, Grok 25, Gemini 25."
+    },
+    {
+      "titre": "« Nos idées », Charte point 2 (vérifié)",
+      "commentaire": "RIC « au plus vite ». Accord après correction de Grok."
+    },
+    {
+      "titre": "« Nos idées », Charte point 19 (vérifié)",
+      "commentaire": "Désaccord tranché à la source : audit de la dette et possibilité d'en récuser une partie (côté A), mais politique de la demande et défense des services publics (côté B). Score intermédiaire 55 (ancienne matrice 20 ; Perplexity 15, Gemini 60, Grok 70)."
+    }
+  ],
+  "ne": [
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Nouvelle Énergie, page du 16 octobre 2026 (vérifié par Claude)",
+      "commentaire": "Souveraineté européenne « oxymore », dernier décideur national, opt-out à la danoise, pas de sortie de l'UE. Score ramené de 50 à 35 (Perplexity 35, Grok 45, Gemini 35)."
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    },
+    {
+      "titre": "Matrice V7.3 bis (31 mai 2026)",
+      "commentaire": ""
+    }
+  ]
+};
 
 const forgottenQuestions = [
   {
@@ -131,7 +1573,7 @@ const forgottenQuestions = [
     title:'Énergie',
     question:'Combien coûte réellement la perte de souveraineté électrique ?',
     punch:'Une énergie abondante, pilotable et bon marché conditionne tout le reste : industrie, salaires, prix et indépendance.',
-    figures:['53 Md€ d\'importations d\'énergies fossiles en 2025 (RTE)','Nucléaire historique : 60,3 €/MWh de coût complet (CRE, 2026-2028)','16 Md€ de solde commercial perdu en 2022 avec l\'indisponibilité nucléaire (Banque de France, scénario)'],
+    figures:['53 Md€ d\'importations de combustibles fossiles en 2025 (douanes)','Nucléaire historique : 60,3 €/MWh de coût complet (CRE, 2026-2028)','16 Md€ de solde commercial perdu en 2022 avec l\'indisponibilité nucléaire (Banque de France, scénario)'],
     sourceTitle:'Fiche Pilier I — Énergie',
     sourceUrl:'../fiches/pilier-01-aller-droit-au-but.pdf',
     extraLinks:[]
@@ -163,7 +1605,7 @@ const forgottenQuestions = [
     title:'Frontaliers / capital humain',
     question:'Qui paie quand un travailleur perd son emploi après avoir produit sa valeur chez un voisin plus riche ?',
     punch:'La France indemnise le chômage des frontaliers ; les pays d\'emploi n\'en remboursent qu\'environ un quart.',
-    figures:['450 000 résidents de France travaillant dans un pays voisin (2022)','860 M€ de surcoût net pour l\'assurance chômage française en 2025','Environ 25 % seulement remboursés par les pays d\'emploi — Unédic 2025'],
+    figures:['450 000 résidents de France travaillant dans un pays voisin (2022)','860 M€ de surcoût net pour l\'assurance chômage française en 2025','280 M€ remboursés par les pays d\'emploi sur environ 1,1 Md€ d\'indemnisation, soit environ un quart (Unédic, juillet 2026)'],
     sourceTitle:'Fiche Pilier VIII — Frontaliers',
     sourceUrl:'../fiches/pilier-08-aller-droit-au-but.pdf',
     extraLinks:[]
@@ -181,35 +1623,6 @@ const forgottenQuestions = [
     ]
   }
 ];
-
-let state = { screen:'home', modeFutur:false, answers: axes.map(()=>50), selectedParty:null };
-const root = document.getElementById('root');
-function esc(s){return String(s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}
-function displayVal(i){return axes[i].inv ? 100-state.answers[i] : state.answers[i]}
-function calcVal(i){return state.answers[i]}
-function proximity(user, party){return Math.max(0,100-Math.abs(user-party))}
-function results(){return parties.map(p=>{const per=axes.map((a,i)=>proximity(calcVal(i), partyScores[p.id][i])); return {...p, score: Math.round(per.reduce((a,b)=>a+b,0)/per.length), per};}).sort((a,b)=>b.score-a.score)}
-function blindSpots(){const rows=[]; axes.forEach((a,i)=>{const best=Math.max(...parties.map(p=>proximity(calcVal(i),partyScores[p.id][i]))); if(best<70 || a.blindSpot) rows.push({axis:a.title,best,reason:a.blindSpot?'suivi des engagements et responsabilité politique insuffisamment couverts':'proximité faible avec l\'offre politique'});}); return rows;}
-function toggle(){state.modeFutur=!state.modeFutur; render()}
-function home(){return `<main class="page hero-page"><section class="hero-card"><span class="hero-kicker">Pilier XIII · Prototype V8.3</span><h1>Bulletin de vote du futur proche</h1><p class="hero-lead">Vos idées d'abord. Les partis seulement à la fin.</p>
-<div class="alert-panel" role="note"><p><strong>Prototype en cours de correction. Les positions des partis ne sont pas encore validées : le classement final ne doit pas être pris comme un résultat.</strong></p></div>
-<label class="switch-row">
-  <em>QCM simple</em>
-  <input type="checkbox" ${state.modeFutur?'checked':''} onchange="app.toggle()">
-  <span></span>
-  <em>Mode futur : 3 barres</em>
-</label>
-<div class="hero-grid"><button class="choice-card" onclick="app.go('ideas')"><span class="choice-icon">🗳️</span><strong>Voter pour mes idées</strong><em>12 questions, curseurs dynamiques, puis votre proximité politique calculée.</em></button><button class="choice-card secondary" onclick="app.go('classic')"><span class="choice-icon">🏛️</span><strong>Voter pour un parti</strong><em>Choisissez directement votre formation politique.</em></button></div>
-<div class="home-forgotten-callout">
-  <h2>5 questions complémentaires que les partis ne chiffrent presque jamais</h2>
-  <p>Énergie, grand âge, ASPA, obsolescence, frontaliers : ces sujets ne changent pas votre score, mais ils peuvent changer votre manière de voter. Chaque question renvoie vers la fiche publique du pilier.</p>
-  <div class="home-forgotten-row"><span>⚡ Énergie</span><span>🧓 EHPAD</span><span>🏛️ ASPA</span><span>🔧 Garantie 10 ans</span><span>🌍 Frontaliers</span></div>
-  <button class="home-forgotten-btn" onclick="app.go('forgotten')">Lire les 5 questions oubliées →</button>
-</div>
-</section></main>`}
-function ideas(){let i=state.step||0, a=axes[i], shown=displayVal(i), tone=shown<42?'left':shown>58?'right':'center'; let strength=Math.abs(shown-50)/50; return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">${i+1}/12</span></nav><section class="panel heading-panel"><div><h1>Vos positions</h1><p>Les partis sont masqués pendant le vote. Déplacez le jeton : le texte et la couleur changent pour clarifier votre position.</p></div><div class="progress-wrap"><strong>${i+1}/12</strong><div class="progress"><span style="width:${((i+1)/12)*100}%"></span></div></div></section><section class="single-axis"><article class="axis-card tone-${tone}" style="--strength:${strength}"><div class="axis-head"><span class="axis-emoji">${a.icon}</span><div><small>Question · ${esc(a.title)}</small><h2>${esc(a.q)}</h2><p class="measure">${esc(a.measure)}</p></div></div><div class="scale"><span>${esc(a.left)}</span><b>${shown}/100</b><span>${esc(a.right)}</span></div><input class="premium-slider" type="range" min="0" max="100" value="${shown}" style="--value:${shown};--strength:${strength}" oninput="app.setAnswer(${i}, this.value)"><div class="dynamic-box ${tone}"><strong>${tone==='left'?'Position plutôt gauche du curseur':tone==='right'?'Position plutôt droite du curseur':'Position équilibrée'}</strong><p>${tone==='center'?'Vous recherchez un équilibre entre les deux principes.':tone==='left'?'Vous privilégiez davantage : '+esc(a.left)+'.':'Vous privilégiez davantage : '+esc(a.right)+'.'}</p></div><div class="keywords">${a.tags.map(t=>`<span class="active ${tone}">${esc(t)}</span>`).join('')}</div>${state.modeFutur?`<div class="three-bars"><div class="bar-line"><span>Votre vote</span><b>${shown}</b><div class="progress personal"><span style="width:${shown}%"></span></div></div><div class="bar-line"><span>Résultat simulé (démonstration)</span><b>${Math.max(0,Math.min(100,shown-8+((i*7)%17)))}</b><div class="progress blue"><span style="width:${Math.max(0,Math.min(100,shown-8+((i*7)%17)))}%"></span></div></div><div class="bar-line"><span>Application réelle (démonstration, valeur fictive)</span><b>${Math.max(0,Math.min(100,35+((i*13)%45)))}</b><div class="progress green"><span style="width:${Math.max(0,Math.min(100,35+((i*13)%45)))}%"></span></div></div></div>`:''}</article><div class="actions"><button class="ghost" ${i===0?'disabled':''} onclick="app.prev()">← Précédent</button><button class="btn primary" onclick="app.next()">${i===11?'Voir le résultat':'Question suivante →'}</button></div></section></main>`}
-function classic(){return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Vote classique</span></nav><section class="panel"><h1>Vote classique par parti</h1><p>Cette entrée reproduit le geste électoral traditionnel : vous choisissez directement une formation politique.</p><div class="vote-grid">${parties.map(p=>`<button class="vote-card" style="--party:${p.color}" onclick="app.selectParty('${p.id}')"><span class="party-dot"></span><strong>${esc(p.name)}</strong><em>${esc(p.family)}</em></button>`).join('')}</div>${state.selectedParty?`<div class="method-box"><h2>Choix affiché</h2><p>Vous avez choisi : <strong>${esc(parties.find(p=>p.id===state.selectedParty).name)}</strong>. Cette entrée cohabite avec le bulletin par idées, elle ne le remplace pas.</p></div>`:''}</section></main>`}
-function forgotten(){return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Questions complémentaires</span></nav><section class="panel"><h1>5 questions oubliées</h1><p>Ces questions ne modifient pas le résultat du QCM. Elles servent à mettre sous les yeux du citoyen cinq sujets majeurs rarement chiffrés clairement par les partis politiques.</p>${forgottenProofPanel()}</section></main>`}
 
 function forgottenProofPanel(){
   return `<div class="forgotten-proof-panel">
@@ -237,24 +1650,129 @@ function forgottenProofPanel(){
   </div>`;
 }
 
-function result(){const r=results(), b=blindSpots(); return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Résultat</span></nav><section class="panel"><div class="alert-panel" role="note"><p><strong>Résultat non validé. Les positions des partis sont en cours de vérification (audit du 18 octobre 2026). Ce classement est une démonstration, pas un conseil de vote.</strong></p></div><div class="result-hero"><div><h1>Résultat par idées</h1><p>Le classement indique les proximités. Il ne doit pas masquer les attentes peu représentées.</p></div><div class="winner" style="--party:${r[0].color}"><span>Plus proche</span><strong>${esc(r[0].name)}</strong><b>${r[0].score}%</b></div></div><div class="party-list">${r.map((p,i)=>`<div class="party-row"><span class="rank">${i+1}</span><strong>${esc(p.name)}<small>${esc(p.family)}</small></strong><div class="progress"><span style="width:${p.score}%;background:${p.color}"></span></div><b>${p.score}%</b></div>`).join('')}</div><div class="alert-panel"><h2>Attentes peu représentées</h2><p>Un bulletin citoyen ne doit pas forcer artificiellement un gagnant quand l'offre politique répond mal à une attente.</p>${b.map(x=>`<article><strong>${esc(x.axis)}</strong><span>${x.best}% de meilleure proximité — ${esc(x.reason)}</span></article>`).join('') || '<article><strong>Aucun angle mort détecté</strong><span>Vos réponses trouvent une représentation suffisante dans la matrice actuelle.</span></article>'}</div>${forgottenProofPanel()}<div class="method-box"><h2>Méthode et traçabilité</h2><p>La méthode est en cours de reconstruction. La matrice V7.3 bis (scores, indices de confiance, sources) existe sur le Drive du Pilier XIII, mais le calcul de ce prototype ne l'applique pas encore fidèlement. Les sources seront affichées ici lorsque la correction sera validée.</p></div><div class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions avec des curseurs dynamiques, puis découvrez les proximités politiques, les convergences, les divergences et la robustesse documentaire.</p><div class="promise-row"><span>12 axes V7.3</span><span>14 partis</span><span>Curseur premium</span><span>Textes dynamiques</span></div><p class="soft">Ce n'est pas un comparateur partisan classique. Vous positionnez vos idées. Le moteur comparera ensuite vos réponses à une matrice sourcée, en cours de vérification.</p></div></section></main>`}
-function render(){root.innerHTML = state.screen==='home'?home():state.screen==='ideas'?ideas():state.screen==='classic'?classic():state.screen==='forgotten'?forgotten():result();}
-window.app={go(s){state.screen=s; if(s==='ideas')state.step=0; render()}, toggle, setAnswer(i,v){let val=Number(v); state.answers[i]=axes[i].inv?100-val:val; render()}, next(){ if((state.step||0)>=11){state.screen='result'} else state.step=(state.step||0)+1; render()}, prev(){state.step=Math.max(0,(state.step||0)-1); render()}, selectParty(id){state.selectedParty=id; render()}};
-render();
-
-    </script>
-  <script>
-document.querySelectorAll('a[data-back]').forEach(function (a) {
-  a.addEventListener('click', function (e) {
-    try {
-      var r = document.referrer;
-      if (r && new URL(r).origin === location.origin && history.length > 1) {
-        e.preventDefault();
-        history.back();
-      }
-    } catch (_) {}
+let state = { screen:'home', modeFutur:false, answers:axes.map(()=>null), selectedParty:null, step:0 };
+const root = document.getElementById('root');
+function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function isPosition(value){return typeof value==='number' && Number.isFinite(value) && value>=0 && value<=100;}
+function positionCount(){return state.answers.filter(isPosition).length;}
+function proximity(answer,score){return 100-Math.abs(answer-score);}
+function comparedQuestions(partyId){
+  return axes.flatMap((axis,index)=>isPosition(state.answers[index]) && matrix[partyId].scores[index]!==null
+    ? [{index,title:axis.title,proximity:proximity(state.answers[index],matrix[partyId].scores[index])}] : []);
+}
+function results(){
+  return parties.map((party,order)=>{
+    const per=comparedQuestions(party.id);
+    return {...party,order,per,compared:per.length,score:per.length ? Math.round(per.reduce((sum,item)=>sum+item.proximity,0)/per.length) : null};
+  }).filter(party=>party.compared>=6).sort((a,b)=>b.score-a.score || a.order-b.order);
+}
+function certainty(){const n=positionCount();return n===12?'Certitude élevée':n>=9?'Certitude moyenne':n>=6?'Certitude faible':null;}
+function measuredGaps(ranked){
+  const messages=[];
+  axes.forEach((axis,index)=>{
+    const covered=parties.filter(party=>matrix[party.id].scores[index]!==null).length;
+    if(covered<10) messages.push(`Seuls ${covered} partis sur 15 se prononcent clairement sur : ${axis.title}.`);
+    const answer=state.answers[index];
+    if(ranked.length && isPosition(answer) && (answer<=20 || answer>=80) && !ranked.some(party=>matrix[party.id].scores[index]!==null && Math.abs(answer-matrix[party.id].scores[index])<15)){
+      messages.push(`Votre position sur ${axis.title} n'est portée par aucun parti de près.`);
+    }
   });
-});
-</script>
+  return messages;
+}
+function toggle(){state.modeFutur=!state.modeFutur;render();}
+function home(){return `<main class="page hero-page"><section class="hero-card">
+  <span class="hero-kicker">Bulletin citoyen · Version 2 · 18 octobre 2026</span>
+  <h1>Bulletin citoyen</h1><p class="hero-lead">Vos idées d'abord. Les partis seulement à la fin.</p>
+  <div class="version-notice" role="note"><p>Version 2 du 18 octobre 2026 : 15 partis, positions sourcées avec un indice de confiance. Ce bulletin est une aide à la réflexion, pas un conseil de vote.</p></div>
+  <label class="switch-row"><em>QCM simple</em><input type="checkbox" ${state.modeFutur?'checked':''} onchange="app.toggle()"><span></span><em>Mode futur : 3 barres</em></label>
+  <div class="hero-grid"><button class="choice-card" onclick="app.go('ideas')"><span class="choice-icon">🗳️</span><strong>Voter pour mes idées</strong><em>12 questions, une réponse ou « Sans avis » à chaque étape, puis les proximités politiques.</em></button><button class="choice-card secondary" onclick="app.go('classic')"><span class="choice-icon">🏛️</span><strong>Voter pour un parti</strong><em>Choisissez directement votre formation politique.</em></button></div>
+  <div class="home-forgotten-callout"><h2>5 questions complémentaires que les partis ne chiffrent presque jamais</h2><p>Énergie, grand âge, ASPA, obsolescence, frontaliers : ces sujets ne changent pas votre score, mais ils peuvent changer votre manière de voter. Chaque question renvoie vers la fiche publique du pilier.</p><div class="home-forgotten-row"><span>⚡ Énergie</span><span>🧓 EHPAD</span><span>🏛️ ASPA</span><span>🔧 Garantie 10 ans</span><span>🌍 Frontaliers</span></div><button class="home-forgotten-btn" onclick="app.go('forgotten')">Lire les 5 questions oubliées →</button></div>
+</section></main>`;}
+function answerPresentation(answer){
+  const positioned=isPosition(answer), value=positioned?answer:50;
+  const tone=!positioned||value===50?'neutral':value<50?'a':'b';
+  return {value,tone,strength:Math.abs(value-50)/50,pending:answer===null};
+}
+function futureBars(index,value){
+  const simulated=Math.max(0,Math.min(100,value-8+((index*7)%17)));
+  const application=Math.max(0,Math.min(100,35+((index*13)%45)));
+  return `<div class="three-bars"><div class="bar-line"><span>Votre vote</span><b id="future-vote-value">${value}</b><div class="progress personal"><span id="future-vote-bar" style="width:${value}%"></span></div></div><div class="bar-line"><span>Résultat simulé (démonstration)</span><b id="future-simulation-value">${simulated}</b><div class="progress blue"><span id="future-simulation-bar" style="width:${simulated}%"></span></div></div><div class="bar-line"><span>Application réelle (démonstration, valeur fictive)</span><b>${application}</b><div class="progress green"><span style="width:${application}%"></span></div></div></div>`;
+}
+function responseText(answer,axis){
+  if(answer===null)return 'Déplacez le jeton ou choisissez « Sans avis »';
+  if(answer==='sans-avis')return 'Sans avis';
+  if(answer===50)return 'Position équilibrée entre les deux';
+  return 'Vous penchez vers : '+(answer<50?axis.a:axis.b);
+}
+function ideas(){
+  const index=state.step,axis=axes[index],answer=state.answers[index],view=answerPresentation(answer);
+  return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">${index+1}/12</span></nav>
+  <section class="panel heading-panel"><div><h1>Vos positions</h1><p>Les partis sont masqués pendant le vote. Déplacez le jeton ou choisissez « Sans avis ».</p></div><div class="progress-wrap"><strong>${index+1}/12</strong><div class="progress"><span style="width:${((index+1)/12)*100}%"></span></div></div></section>
+  <section class="single-axis"><article id="axis-card" class="axis-card answer-${view.tone} ${view.pending?'answer-pending':''}" style="--strength:${view.strength}">
+    <div class="axis-head"><span class="axis-emoji">${axis.icon}</span><div><small>Question · ${esc(axis.title)}</small><h2 id="axis-question">${esc(axis.q)}</h2><p class="measure">Le curseur mesure : ${esc(axis.measure)}</p></div></div>
+    <div class="scale"><span><small>Pôle A</small>${esc(axis.a)}</span><b id="answer-value">${isPosition(answer)?answer+'/100':'—'}</b><span><small>Pôle B</small>${esc(axis.b)}</span></div>
+    <input id="answer-slider" class="premium-slider" type="range" min="0" max="100" step="1" value="${view.value}" aria-label="${esc(axis.title)}" aria-describedby="answer-status" style="--value:${view.value};--strength:${view.strength}" onpointerdown="app.setAnswer(${index},this.value)" oninput="app.setAnswer(${index},this.value)">
+    <div id="answer-status" class="answer-status" role="status" aria-live="polite">${esc(responseText(answer,axis))}</div>
+    <button id="no-opinion" class="no-opinion" type="button" aria-pressed="${answer==='sans-avis'}" onclick="app.noOpinion(${index})">Sans avis</button>
+    <div class="keywords">${axis.tags.map(tag=>`<span>${esc(tag)}</span>`).join('')}</div>
+    ${state.modeFutur?futureBars(index,view.value):''}
+  </article><div class="actions"><button class="ghost" ${index===0?'disabled':''} onclick="app.prev()">← Précédent</button><button id="next-question" class="btn primary" ${answer===null?'disabled':''} onclick="app.next()">${index===11?'Voir le résultat':'Question suivante →'}</button></div></section></main>`;
+}
+function updateAnswerUI(index){
+  if(state.screen!=='ideas'||state.step!==index)return;
+  const slider=document.getElementById('answer-slider');if(!slider)return;
+  const answer=state.answers[index],view=answerPresentation(answer),card=document.getElementById('axis-card');
+  slider.value=String(view.value);slider.style.setProperty('--value',view.value);slider.style.setProperty('--strength',view.strength);
+  card.className=`axis-card answer-${view.tone} ${view.pending?'answer-pending':''}`;card.style.setProperty('--strength',view.strength);
+  document.getElementById('answer-value').textContent=isPosition(answer)?answer+'/100':'—';
+  document.getElementById('answer-status').textContent=responseText(answer,axes[index]);
+  document.getElementById('no-opinion').setAttribute('aria-pressed',String(answer==='sans-avis'));
+  document.getElementById('next-question').disabled=answer===null;
+  if(state.modeFutur){
+    const simulated=Math.max(0,Math.min(100,view.value-8+((index*7)%17)));
+    document.getElementById('future-vote-value').textContent=String(view.value);document.getElementById('future-vote-bar').style.width=view.value+'%';
+    document.getElementById('future-simulation-value').textContent=String(simulated);document.getElementById('future-simulation-bar').style.width=simulated+'%';
+  }
+}
+function classic(){return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Vote classique</span></nav><section class="panel"><h1>Vote classique par parti</h1><p>Cette entrée reproduit le geste électoral traditionnel : vous choisissez directement une formation politique.</p><div class="vote-grid">${parties.map(p=>`<button class="vote-card" style="--party:${p.color}" onclick="app.selectParty('${p.id}')"><span class="party-dot"></span><strong>${esc(p.name)}</strong></button>`).join('')}</div>${state.selectedParty?`<div class="method-box"><h2>Choix affiché</h2><p>Vous avez choisi : <strong>${esc(parties.find(p=>p.id===state.selectedParty).name)}</strong>. Cette entrée cohabite avec le bulletin par idées, elle ne le remplace pas.</p></div>`:''}</section></main>`;}
+function forgotten(){return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Questions complémentaires</span></nav><section class="panel"><h1>5 questions oubliées</h1><p>Ces questions ne modifient pas le résultat du QCM. Elles servent à mettre sous les yeux du citoyen cinq sujets majeurs rarement chiffrés clairement par les partis politiques.</p>${forgottenProofPanel()}</section></main>`;}
+function sourcePanel(party){
+  return `<button class="source-toggle" aria-expanded="false" onclick="app.toggleSources(this)">Voir les sources</button><div class="source-panel" hidden>${axes.map((axis,index)=>{
+    const score=matrix[party.id].scores[index],ic=matrix[party.id].ic[index],source=sources[party.id][index];
+    const confidence={1:'sources insuffisantes',2:'moyen',3:'bon',4:'fort'}[ic];
+    return `<article class="source-item"><h4>${index+1}. ${esc(axis.title)}</h4>${score===null?'<p class="excluded-position">Position non retenue : sources insuffisantes</p>':`<p>Position : <strong>${score}/100</strong></p>`}<p>IC${ic} = ${confidence}</p><p><strong>Source :</strong> ${esc(source.titre)}</p>${source.commentaire?`<p class="source-comment">${esc(source.commentaire)}</p>`:''}</article>`;
+  }).join('')}</div>`;
+}
+function partyCard(party,rank){
+  const nearest=[...party.per].sort((a,b)=>b.proximity-a.proximity||a.index-b.index).slice(0,2);
+  const furthest=[...party.per].sort((a,b)=>a.proximity-b.proximity||a.index-b.index).slice(0,2);
+  return `<article class="rank-card" style="--party:${party.color}" data-party="${party.id}"><div class="rank-card-header"><span class="rank">${rank}</span><h2>${esc(party.name)}</h2><strong class="rank-score">${party.score}%</strong></div><p class="coverage">sur ${party.compared} questions</p><div class="comparison-points"><div><h3>Les plus proches</h3><ul>${nearest.map(x=>`<li>${esc(x.title)} <span>${Math.round(x.proximity)}%</span></li>`).join('')}</ul></div><div><h3>Les plus éloignées</h3><ul>${furthest.map(x=>`<li>${esc(x.title)} <span>${Math.round(x.proximity)}%</span></li>`).join('')}</ul></div></div>${sourcePanel(party)}</article>`;
+}
+function allPartyRow(party,rank){return `<article class="all-party-card" style="--party:${party.color}"><div class="rank-card-header"><span class="rank">${rank}</span><h3>${esc(party.name)}</h3><strong class="rank-score">${party.score}%</strong></div><p class="coverage">sur ${party.compared} questions</p>${sourcePanel(party)}</article>`;}
+function methodPanel(){return `<section class="method-box"><h2>Méthode et traçabilité</h2><p>Matrice des partis V7.4 (version 2 du bulletin) du 18 octobre 2026 : 15 partis, 12 questions, 180 positions. Chaque position vient d'une source publique (programme, vote à l'Assemblée, déclaration) et porte un indice de confiance. Les positions sans source suffisante sont retirées du calcul. Méthode : pour chaque question, proximité = 100 moins l'écart entre votre réponse et la position du parti ; le pourcentage est la moyenne sur les questions où vous avez une position. Sourcing croisé de Perplexity, Grok et Gemini, arbitré par Claude, validé par Jean Paul Poignand.</p><p>Historique : version 1 (mai 2026), prototype retiré après l'audit du 18 octobre 2026 ; version 2 (18 octobre 2026), 12 questions refondues, 15 partis, positions sourcées avec indice de confiance.</p></section><section class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions, puis découvrez les proximités politiques, les convergences, les divergences et les sources.</p><div class="promise-row"><span>12 questions</span><span>15 partis</span><span>Version 2</span><span>Sources consultables</span></div><p class="soft">Le moteur compare ensuite vos réponses à la matrice sourcée V7.4.</p></section>`;}
+function result(){
+  const ranked=results(),n=positionCount(),gaps=measuredGaps(ranked),eligible=new Set(ranked.map(p=>p.id));
+  const unranked=parties.filter(p=>!eligible.has(p.id));
+  let content;
+  if(n<6){content=`<div class="insufficient-answers"><p>Vous avez donné moins de 6 positions : un classement ne serait pas fiable. Revenez sur quelques questions pour obtenir un résultat.</p><button class="btn primary" onclick="app.resume()">Revenir aux questions</button></div>`;}
+  else{content=`<div class="certainty"><strong>${certainty()}</strong><span>${n} positions exprimées sur 12 questions</span></div>${n<=8?'<p class="limited-positions" role="note">Vous avez répondu « Sans avis » à plusieurs questions : ce résultat repose sur peu de positions.</p>':''}<div class="result-grid">${ranked.slice(0,4).map((party,index)=>partyCard(party,index+1)).join('')}</div><button class="all-parties-toggle" aria-expanded="false" aria-controls="all-parties" onclick="app.toggleAll(this)">Voir tous les partis</button><div id="all-parties" hidden>${ranked.map((party,index)=>allPartyRow(party,index+1)).join('')}${unranked.map(party=>`<article class="all-party-card"><h3>${esc(party.name)}</h3><p>Non classé : ${comparedQuestions(party.id).length} questions communes, moins de 6.</p>${sourcePanel(party)}</article>`).join('')}</div>${gaps.length?`<section class="measured-gaps"><h2>Vos attentes et l'offre politique</h2>${gaps.map(message=>`<p>${esc(message)}</p>`).join('')}</section>`:''}`;}
+  return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">Résultat</span></nav><section class="panel result-panel"><div class="version-notice" role="note"><p>Ce classement compare vos réponses aux positions publiées des partis (version 2 du 18 octobre 2026). C'est une aide à la réflexion, pas un conseil de vote.</p></div><h1>Vos réponses sont les plus proches de…</h1>${content}${forgottenProofPanel()}${methodPanel()}</section></main>`;
+}
+function render(){
+  root.innerHTML=state.screen==='home'?home():state.screen==='ideas'?ideas():state.screen==='classic'?classic():state.screen==='forgotten'?forgotten():result();
+}
+window.app={
+  go(screen){state.screen=screen;if(screen==='ideas')state.step=0;render();},toggle,
+  setAnswer(index,value){const n=Number(value);if(!Number.isInteger(index)||index<0||index>=axes.length||!Number.isFinite(n))return;state.answers[index]=Math.max(0,Math.min(100,n));updateAnswerUI(index);},
+  noOpinion(index){state.answers[index]='sans-avis';updateAnswerUI(index);},
+  next(){if(state.answers[state.step]===null)return;if(state.step>=11)state.screen='result';else state.step+=1;render();},
+  prev(){state.step=Math.max(0,state.step-1);render();},
+  resume(){state.screen='ideas';const first=state.answers.findIndex(answer=>!isPosition(answer));state.step=first<0?0:first;render();},
+  selectParty(id){if(parties.some(party=>party.id===id)){state.selectedParty=id;render();}},
+  toggleAll(button){const panel=document.getElementById('all-parties');panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));},
+  toggleSources(button){const panel=button.nextElementSibling;panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));}
+};
+render();
+    </script>
   </body>
 </html>
