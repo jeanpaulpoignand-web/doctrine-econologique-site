@@ -1747,7 +1747,7 @@ function toggle(){state.modeFutur=!state.modeFutur;render();}
 function home(){return `<main class="page hero-page"><section class="hero-card">
   <span class="hero-kicker">Bulletin citoyen · Version 2.3 · 18 octobre 2026</span>
   <h1>Bulletin citoyen</h1><p class="hero-lead">Vos idées d'abord. Les partis seulement à la fin.</p>
-  <div class="version-notice" role="note"><p>Version 2.2 du 18 octobre 2026 : 15 partis, positions sourcées avec un indice de confiance. Ce bulletin est une aide à la réflexion, pas un conseil de vote.</p></div>
+  <div class="version-notice" role="note"><p>Version 2.3 du 18 octobre 2026 : 15 partis, positions sourcées avec un indice de confiance. Ce bulletin est une aide à la réflexion, pas un conseil de vote.</p></div>
   <label class="switch-row"><em>QCM simple</em><input type="checkbox" ${state.modeFutur?'checked':''} onchange="app.toggle()"><span></span><em>Mode futur : 3 barres</em></label>
   <section class="future-explanation" aria-labelledby="future-explanation-title">
     <h2 id="future-explanation-title">Le bulletin de demain</h2>
