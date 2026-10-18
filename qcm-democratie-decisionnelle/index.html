@@ -48,7 +48,12 @@
 .home-forgotten-btn{margin-top:12px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:0;border-radius:16px;padding:12px 16px;background:linear-gradient(135deg,#f59e0b,#22c55e);color:white;font-weight:950;cursor:pointer}
 .home-forgotten-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
 
-/* Bulletin citoyen Version 2 */
+/* Bulletin citoyen Version 2.1 */
+.future-explanation{position:relative;z-index:1;margin:22px 0;padding:20px;border:1px solid var(--border);border-radius:20px;background:#02061757}
+.future-explanation h2{margin:0 0 12px;font-size:1.3rem;color:#e5eefc}
+.future-explanation p,.future-explanation li{color:#cbd5e1;font-size:1rem;line-height:1.65}
+.future-explanation p{margin:0}.future-explanation ol{padding-left:24px;margin:14px 0}.future-explanation li+li{margin-top:8px}
+.answer-flipped .premium-slider{background:linear-gradient(90deg,#fb923c,#94a3b8 50%,#38bdf8)}
 [hidden]{display:none!important}
 button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f8fafc;outline-offset:5px}
 .hero-kicker{max-width:100%;width:auto;line-height:1.5;overflow-wrap:anywhere}
@@ -207,7 +212,8 @@ const axes = [
       "Territoires",
       "Formation",
       "Service public"
-    ]
+    ],
+    "flipped": true
   },
   {
     "id": "agri",
@@ -237,7 +243,8 @@ const axes = [
       "Relocalisation",
       "Achats publics",
       "Conditionnalité"
-    ]
+    ],
+    "flipped": true
   },
   {
     "id": "justice",
@@ -252,7 +259,8 @@ const axes = [
       "Prison",
       "Réinsertion",
       "Récidive"
-    ]
+    ],
+    "flipped": true
   },
   {
     "id": "fiscalite",
@@ -297,7 +305,8 @@ const axes = [
       "Traités",
       "Budget",
       "Souveraineté"
-    ]
+    ],
+    "flipped": true
   },
   {
     "id": "education",
@@ -312,7 +321,8 @@ const axes = [
       "Transmission",
       "Niveau",
       "Mérite"
-    ]
+    ],
+    "flipped": true
   },
   {
     "id": "ecologie",
@@ -357,7 +367,8 @@ const axes = [
       "ROI public",
       "Subventions",
       "Contrôle"
-    ]
+    ],
+    "flipped": true
   }
 ];
 
@@ -1681,37 +1692,50 @@ function measuredGaps(ranked){
 }
 function toggle(){state.modeFutur=!state.modeFutur;render();}
 function home(){return `<main class="page hero-page"><section class="hero-card">
-  <span class="hero-kicker">Bulletin citoyen · Version 2 · 18 octobre 2026</span>
+  <span class="hero-kicker">Bulletin citoyen · Version 2.1 · 18 octobre 2026</span>
   <h1>Bulletin citoyen</h1><p class="hero-lead">Vos idées d'abord. Les partis seulement à la fin.</p>
   <div class="version-notice" role="note"><p>Version 2 du 18 octobre 2026 : 15 partis, positions sourcées avec un indice de confiance. Ce bulletin est une aide à la réflexion, pas un conseil de vote.</p></div>
   <label class="switch-row"><em>QCM simple</em><input type="checkbox" ${state.modeFutur?'checked':''} onchange="app.toggle()"><span></span><em>Mode futur : 3 barres</em></label>
+  <section class="future-explanation" aria-labelledby="future-explanation-title">
+    <h2 id="future-explanation-title">Le bulletin de demain</h2>
+    <p>Ce bulletin préfigure une autre façon de participer à la vie politique : voter pour des idées plutôt que pour une étiquette. Demain, chacun pourrait répondre depuis son téléphone, sa tablette ou son ordinateur. Le mode futur montre ce que l'on verrait alors, question par question :</p>
+    <ol>
+      <li>Votre vote : votre position sur le curseur.</li>
+      <li>Résultat des citoyens : la position moyenne de tous les votants, publiée le soir du vote à 20 heures.</li>
+      <li>Application réelle : ce que les élus ont effectivement décidé ensuite, suivi au fil du mandat.</li>
+    </ol>
+    <p>L'écart entre la barre 2 et la barre 3 montre si la volonté des citoyens a été respectée. Aujourd'hui, les barres 2 et 3 sont des valeurs fictives, pour la démonstration.</p>
+  </section>
   <div class="hero-grid"><button class="choice-card" onclick="app.go('ideas')"><span class="choice-icon">🗳️</span><strong>Voter pour mes idées</strong><em>12 questions, une réponse ou « Sans avis » à chaque étape, puis les proximités politiques.</em></button><button class="choice-card secondary" onclick="app.go('classic')"><span class="choice-icon">🏛️</span><strong>Voter pour un parti</strong><em>Choisissez directement votre formation politique.</em></button></div>
   <div class="home-forgotten-callout"><h2>5 questions complémentaires que les partis ne chiffrent presque jamais</h2><p>Énergie, grand âge, ASPA, obsolescence, frontaliers : ces sujets ne changent pas votre score, mais ils peuvent changer votre manière de voter. Chaque question renvoie vers la fiche publique du pilier.</p><div class="home-forgotten-row"><span>⚡ Énergie</span><span>🧓 EHPAD</span><span>🏛️ ASPA</span><span>🔧 Garantie 10 ans</span><span>🌍 Frontaliers</span></div><button class="home-forgotten-btn" onclick="app.go('forgotten')">Lire les 5 questions oubliées →</button></div>
 </section></main>`;}
+function toDisplay(index, stored){ return axes[index].flipped ? 100 - stored : stored; }
+function toStored(index, displayed){ return axes[index].flipped ? 100 - displayed : displayed; }
 function answerPresentation(answer){
   const positioned=isPosition(answer), value=positioned?answer:50;
-  const tone=!positioned||value===50?'neutral':value<50?'a':'b';
+  const tone=!positioned||(value>=45 && value<=55)?'neutral':value<45?'a':'b';
   return {value,tone,strength:Math.abs(value-50)/50,pending:answer===null};
 }
 function futureBars(index,value){
   const simulated=Math.max(0,Math.min(100,value-8+((index*7)%17)));
   const application=Math.max(0,Math.min(100,35+((index*13)%45)));
-  return `<div class="three-bars"><div class="bar-line"><span>Votre vote</span><b id="future-vote-value">${value}</b><div class="progress personal"><span id="future-vote-bar" style="width:${value}%"></span></div></div><div class="bar-line"><span>Résultat simulé (démonstration)</span><b id="future-simulation-value">${simulated}</b><div class="progress blue"><span id="future-simulation-bar" style="width:${simulated}%"></span></div></div><div class="bar-line"><span>Application réelle (démonstration, valeur fictive)</span><b>${application}</b><div class="progress green"><span style="width:${application}%"></span></div></div></div>`;
+  return `<div class="three-bars"><div class="bar-line"><span>Votre vote</span><b id="future-vote-value">${value}</b><div class="progress personal"><span id="future-vote-bar" style="width:${value}%"></span></div></div><div class="bar-line"><span>Résultat des citoyens (démonstration)</span><b id="future-simulation-value">${simulated}</b><div class="progress blue"><span id="future-simulation-bar" style="width:${simulated}%"></span></div></div><div class="bar-line"><span>Application réelle (démonstration, valeur fictive)</span><b>${application}</b><div class="progress green"><span style="width:${application}%"></span></div></div></div>`;
 }
 function responseText(answer,axis){
   if(answer===null)return 'Déplacez le jeton ou choisissez « Sans avis »';
   if(answer==='sans-avis')return 'Sans avis';
-  if(answer===50)return 'Position équilibrée entre les deux';
-  return 'Vous penchez vers : '+(answer<50?axis.a:axis.b);
+  if(answer>=45 && answer<=55)return 'Position équilibrée entre les deux';
+  return 'Vous penchez vers : '+(answer<45?axis.a:axis.b);
 }
 function ideas(){
-  const index=state.step,axis=axes[index],answer=state.answers[index],view=answerPresentation(answer);
+  const index=state.step,axis=axes[index],answer=state.answers[index],view=answerPresentation(answer),shown=toDisplay(index,view.value);
+  const poles=axis.flipped?[['B',axis.b],['A',axis.a]]:[['A',axis.a],['B',axis.b]];
   return `<main class="page"><nav class="top-nav"><button class="back-link" onclick="app.go('home')">← Accueil</button><span class="nav-pill">${index+1}/12</span></nav>
   <section class="panel heading-panel"><div><h1>Vos positions</h1><p>Les partis sont masqués pendant le vote. Déplacez le jeton ou choisissez « Sans avis ».</p></div><div class="progress-wrap"><strong>${index+1}/12</strong><div class="progress"><span style="width:${((index+1)/12)*100}%"></span></div></div></section>
-  <section class="single-axis"><article id="axis-card" class="axis-card answer-${view.tone} ${view.pending?'answer-pending':''}" style="--strength:${view.strength}">
+  <section class="single-axis"><article id="axis-card" class="axis-card answer-${view.tone} ${axis.flipped?'answer-flipped':''} ${view.pending?'answer-pending':''}" style="--strength:${view.strength}">
     <div class="axis-head"><span class="axis-emoji">${axis.icon}</span><div><small>Question · ${esc(axis.title)}</small><h2 id="axis-question">${esc(axis.q)}</h2><p class="measure">Le curseur mesure : ${esc(axis.measure)}</p></div></div>
-    <div class="scale"><span><small>Pôle A</small>${esc(axis.a)}</span><b id="answer-value">${isPosition(answer)?answer+'/100':'—'}</b><span><small>Pôle B</small>${esc(axis.b)}</span></div>
-    <input id="answer-slider" class="premium-slider" type="range" min="0" max="100" step="1" value="${view.value}" aria-label="${esc(axis.title)}" aria-describedby="answer-status" style="--value:${view.value};--strength:${view.strength}" onpointerdown="app.setAnswer(${index},this.value)" oninput="app.setAnswer(${index},this.value)">
+    <div class="scale">${poles.map(([label,text])=>`<span><small>Pôle ${label}</small>${esc(text)}</span>`).join('')}</div>
+    <input id="answer-slider" class="premium-slider" type="range" min="0" max="100" step="1" value="${shown}" aria-label="${esc(axis.title)}" aria-describedby="answer-status" style="--value:${shown};--strength:${view.strength}" onpointerdown="app.setAnswer(${index},this.value)" oninput="app.setAnswer(${index},this.value)">
     <div id="answer-status" class="answer-status" role="status" aria-live="polite">${esc(responseText(answer,axis))}</div>
     <button id="no-opinion" class="no-opinion" type="button" aria-pressed="${answer==='sans-avis'}" onclick="app.noOpinion(${index})">Sans avis</button>
     <div class="keywords">${axis.tags.map(tag=>`<span>${esc(tag)}</span>`).join('')}</div>
@@ -1722,9 +1746,9 @@ function updateAnswerUI(index){
   if(state.screen!=='ideas'||state.step!==index)return;
   const slider=document.getElementById('answer-slider');if(!slider)return;
   const answer=state.answers[index],view=answerPresentation(answer),card=document.getElementById('axis-card');
-  slider.value=String(view.value);slider.style.setProperty('--value',view.value);slider.style.setProperty('--strength',view.strength);
-  card.className=`axis-card answer-${view.tone} ${view.pending?'answer-pending':''}`;card.style.setProperty('--strength',view.strength);
-  document.getElementById('answer-value').textContent=isPosition(answer)?answer+'/100':'—';
+  const shown=toDisplay(index,view.value);
+  slider.value=String(shown);slider.style.setProperty('--value',shown);slider.style.setProperty('--strength',view.strength);
+  card.className=`axis-card answer-${view.tone} ${axes[index].flipped?'answer-flipped':''} ${view.pending?'answer-pending':''}`;card.style.setProperty('--strength',view.strength);
   document.getElementById('answer-status').textContent=responseText(answer,axes[index]);
   document.getElementById('no-opinion').setAttribute('aria-pressed',String(answer==='sans-avis'));
   document.getElementById('next-question').disabled=answer===null;
@@ -1749,7 +1773,7 @@ function partyCard(party,rank){
   return `<article class="rank-card" style="--party:${party.color}" data-party="${party.id}"><div class="rank-card-header"><span class="rank">${rank}</span><h2>${esc(party.name)}</h2><strong class="rank-score">${party.score}%</strong></div><p class="coverage">sur ${party.compared} questions</p><div class="comparison-points"><div><h3>Les plus proches</h3><ul>${nearest.map(x=>`<li>${esc(x.title)} <span>${Math.round(x.proximity)}%</span></li>`).join('')}</ul></div><div><h3>Les plus éloignées</h3><ul>${furthest.map(x=>`<li>${esc(x.title)} <span>${Math.round(x.proximity)}%</span></li>`).join('')}</ul></div></div>${sourcePanel(party)}</article>`;
 }
 function allPartyRow(party,rank){return `<article class="all-party-card" style="--party:${party.color}"><div class="rank-card-header"><span class="rank">${rank}</span><h3>${esc(party.name)}</h3><strong class="rank-score">${party.score}%</strong></div><p class="coverage">sur ${party.compared} questions</p>${sourcePanel(party)}</article>`;}
-function methodPanel(){return `<section class="method-box"><h2>Méthode et traçabilité</h2><p>Matrice des partis V7.4 (version 2 du bulletin) du 18 octobre 2026 : 15 partis, 12 questions, 180 positions. Chaque position vient d'une source publique (programme, vote à l'Assemblée, déclaration) et porte un indice de confiance. Les positions sans source suffisante sont retirées du calcul. Méthode : pour chaque question, proximité = 100 moins l'écart entre votre réponse et la position du parti ; le pourcentage est la moyenne sur les questions où vous avez une position. Sourcing croisé de Perplexity, Grok et Gemini, arbitré par Claude, validé par Jean Paul Poignand.</p><p>Historique : version 1 (mai 2026), prototype retiré après l'audit du 18 octobre 2026 ; version 2 (18 octobre 2026), 12 questions refondues, 15 partis, positions sourcées avec indice de confiance.</p></section><section class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions, puis découvrez les proximités politiques, les convergences, les divergences et les sources.</p><div class="promise-row"><span>12 questions</span><span>15 partis</span><span>Version 2</span><span>Sources consultables</span></div><p class="soft">Le moteur compare ensuite vos réponses à la matrice sourcée V7.4.</p></section>`;}
+function methodPanel(){return `<section class="method-box"><h2>Méthode et traçabilité</h2><p>Matrice des partis V7.4 (version 2 du bulletin) du 18 octobre 2026 : 15 partis, 12 questions, 180 positions. Chaque position vient d'une source publique (programme, vote à l'Assemblée, déclaration) et porte un indice de confiance. Les positions sans source suffisante sont retirées du calcul. Méthode : pour chaque question, proximité = 100 moins l'écart entre votre réponse et la position du parti ; le pourcentage est la moyenne sur les questions où vous avez une position. Sourcing croisé de Perplexity, Grok et Gemini, arbitré par Claude, validé par Jean Paul Poignand.</p><p>Historique : version 1 (mai 2026), prototype retiré après l'audit du 18 octobre 2026 ; version 2 (18 octobre 2026), 12 questions refondues, 15 partis, positions sourcées avec indice de confiance. Version 2.1 (18 octobre 2026) : six questions affichées dans l'autre sens pour obliger à lire les deux options, zone d'équilibre, explication du mode futur.</p></section><section class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions, puis découvrez les proximités politiques, les convergences, les divergences et les sources.</p><div class="promise-row"><span>12 questions</span><span>15 partis</span><span>Version 2</span><span>Sources consultables</span></div><p class="soft">Le moteur compare ensuite vos réponses à la matrice sourcée V7.4.</p></section>`;}
 function result(){
   const ranked=results(),n=positionCount(),gaps=measuredGaps(ranked),eligible=new Set(ranked.map(p=>p.id));
   const unranked=parties.filter(p=>!eligible.has(p.id));
@@ -1763,7 +1787,7 @@ function render(){
 }
 window.app={
   go(screen){state.screen=screen;if(screen==='ideas')state.step=0;render();},toggle,
-  setAnswer(index,value){const n=Number(value);if(!Number.isInteger(index)||index<0||index>=axes.length||!Number.isFinite(n))return;state.answers[index]=Math.max(0,Math.min(100,n));updateAnswerUI(index);},
+  setAnswer(index,value){const n=Number(value);if(!Number.isInteger(index)||index<0||index>=axes.length||!Number.isFinite(n))return;state.answers[index]=toStored(index,Math.max(0,Math.min(100,n)));updateAnswerUI(index);},
   noOpinion(index){state.answers[index]='sans-avis';updateAnswerUI(index);},
   next(){if(state.answers[state.step]===null)return;if(state.step>=11)state.screen='result';else state.step+=1;render();},
   prev(){state.step=Math.max(0,state.step-1);render();},
