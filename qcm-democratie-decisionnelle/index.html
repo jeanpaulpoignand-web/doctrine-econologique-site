@@ -169,6 +169,20 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f8fa
 </style>
   <link rel="stylesheet" href="../assets/doctrine-navigation.css">
 <script src="../assets/doctrine-share.js" defer></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctrine Éconologique">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Bulletin citoyen — Et si on votait différemment ?">
+<meta property="og:description" content="12 questions, une réponse ou « Sans avis » à chaque étape, puis les partis les plus proches de vos idées. Positions sourcées, aucune donnée enregistrée.">
+<meta property="og:url" content="https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-democratie-decisionnelle/">
+<meta property="og:image" content="https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/assets/partage-bulletin.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bulletin citoyen — Et si on votait différemment ?">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icone-bulletin-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icone-bulletin-180.png">
+<meta name="apple-mobile-web-app-title" content="Bulletin citoyen">
 </head>
   <body>
 <nav class="doctrine-navigation" aria-label="Navigation de la Doctrine">
@@ -1900,7 +1914,7 @@ function requestReset(opener){
   dialog.setAttribute('role','dialog');
   dialog.setAttribute('aria-modal','true');
   dialog.setAttribute('aria-labelledby','reset-dialog-title');
-  dialog.innerHTML=`<div class="reset-dialog-card"><h2 id="reset-dialog-title">Effacer vos 12 réponses ?</h2><p>Le bulletin repartira de zéro, comme pour une nouvelle personne. Cette action ne peut pas être annulée.</p><div class="vote-action-row"><button class="btn reset-secondary" data-reset-confirm>Oui, tout effacer</button><button class="btn primary" data-reset-cancel>Non, garder mes réponses</button></div></div>`;
+  dialog.innerHTML=`<div class="reset-dialog-card"><h2 id="reset-dialog-title">Effacer vos 12 réponses&nbsp;?</h2><p>Le bulletin repartira de zéro, comme pour une nouvelle personne. Cette action ne peut pas être annulée.</p><div class="vote-action-row"><button class="btn reset-secondary" data-reset-confirm>Oui, tout effacer</button><button class="btn primary" data-reset-cancel>Non, garder mes réponses</button></div></div>`;
   const cancel=dialog.querySelector('[data-reset-cancel]'),confirm=dialog.querySelector('[data-reset-confirm]');
   function close(){dialog.close();dialog.remove();if(opener.isConnected)opener.focus();}
   cancel.addEventListener('click',close);
