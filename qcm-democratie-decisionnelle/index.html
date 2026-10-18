@@ -115,6 +115,39 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f8fa
 @media(max-width:860px){.result-grid{grid-template-columns:1fr}.result-panel{padding:20px}.rank-card,.all-party-card{padding:18px}.comparison-points{gap:12px}.bar-line{grid-template-columns:1fr 45px}.bar-line .progress{grid-column:1/3}}
 @media(max-width:480px){.hero-card,.panel,.axis-card{padding:20px}.page{padding:12px}.axis-head{gap:10px}.axis-emoji{font-size:1.6rem}.scale{gap:8px;font-size:.82rem}.scale span{max-width:39%}.scale b{font-size:.8rem;padding:7px}.rank-card-header{gap:9px}.rank-score{font-size:1.55rem}.version-notice{padding:16px}.switch-row{font-size:.85rem;gap:8px;padding:10px}.source-item p{font-size:.9rem!important}}
 
+
+/* Version 2.3 — boutons en volume */
+.choose-hint{font-size:1.15rem;font-weight:800;color:#e0f2fe;margin:26px 0 14px;position:relative;z-index:1}
+.hero-grid{gap:24px;margin-bottom:30px;padding-bottom:12px}
+.choice-card{--key-shadow:#0c3b5c;position:relative;isolation:isolate;overflow:hidden;padding:28px 76px 32px 28px;border:2px solid #7dd3fc;border-radius:28px;background:linear-gradient(180deg,#0ea5e9,#0369a1);color:#fff;box-shadow:0 12px 0 var(--key-shadow),0 22px 34px #000a,inset 0 2px 0 #fff6,inset 0 -6px 14px #0005;transition:transform .12s,box-shadow .12s;animation:choice-auto-press 5s ease-in-out 1.5s infinite}
+.choice-card.secondary{--key-shadow:#0b1220;background:linear-gradient(180deg,#475569,#1e293b);border-color:#94a3b8;animation-delay:4s}
+.choice-card::before{content:"";position:absolute;inset:0;z-index:1;background:#0006;pointer-events:none}
+.choice-card.secondary::before{background:transparent}
+.choice-card>*{position:relative;z-index:2}
+.choice-card strong{font-size:1.6rem;color:#fff}.choice-card em{color:#e0f2fe}
+.choice-action{display:block;margin-top:24px;font-weight:900;font-size:1rem;color:#fff;text-transform:uppercase}
+.choice-card .choice-finger{position:absolute;right:18px;bottom:20px;font-size:2.3rem;line-height:1;pointer-events:none;filter:drop-shadow(0 0 7px #fff9);animation:choice-finger-tap 1.6s ease-in-out infinite}
+.choice-card.secondary .choice-finger{animation-delay:.8s}
+.choice-card:not(.secondary)::after{content:"";position:absolute;z-index:0;top:-50%;left:-65%;width:34%;height:200%;background:linear-gradient(90deg,transparent,#ffffff40,transparent);pointer-events:none;transform:translateX(-200%) rotate(25deg);animation:choice-shine 5s ease-in-out 1.5s infinite}
+@keyframes choice-auto-press{0%,8%,100%{transform:translateY(0);box-shadow:0 12px 0 var(--key-shadow),0 22px 34px #000a,inset 0 2px 0 #fff6,inset 0 -6px 14px #0005}3%{transform:translateY(7px);box-shadow:0 5px 0 var(--key-shadow),0 12px 20px #000a,inset 0 2px 0 #fff6,inset 0 -6px 14px #0005}}
+@keyframes choice-finger-tap{0%,65%,100%{transform:translateY(0) scale(1)}25%{transform:translateY(-7px) scale(1.08)}45%{transform:translateY(2px) scale(.94,.9)}}
+@keyframes choice-shine{0%{transform:translateX(-200%) rotate(25deg)}8%,100%{transform:translateX(650%) rotate(25deg)}}
+@media(hover:hover){.choice-card:hover{animation:none;transform:translateY(-2px);box-shadow:0 12px 0 var(--key-shadow),0 22px 34px #000a,inset 0 2px 0 #fff6,inset 0 -6px 14px #0005}}
+.choice-card:active{animation:none;transform:translateY(10px);box-shadow:0 2px 0 var(--key-shadow),0 10px 18px #000a,inset 0 2px 0 #fff6,inset 0 -6px 14px #0005}
+.btn.primary{color:#fff;background:linear-gradient(#0000004d,#0000004d),linear-gradient(180deg,#0ea5e9,#0369a1);transition:transform .12s,box-shadow .12s}
+.btn.primary:not(:disabled){box-shadow:0 6px 0 #0c3b5c,0 12px 20px #0006,inset 0 2px 0 #fff6}
+.btn.primary:disabled{box-shadow:inset 0 2px 5px #0005;transform:none;animation:none;opacity:.38}
+.btn.primary:not(:disabled):active{animation:none;transform:translateY(6px);box-shadow:0 1px 0 #0c3b5c,inset 0 2px 0 #fff6}
+#next-question.next-invitation{animation:next-button-invite .6s ease-in-out 1}
+#next-question:active{animation:none}
+@keyframes next-button-invite{0%,100%{transform:translateY(0);box-shadow:0 6px 0 #0c3b5c,0 12px 20px #0006,inset 0 2px 0 #fff6}45%{transform:translateY(4px);box-shadow:0 2px 0 #0c3b5c,inset 0 2px 0 #fff6}}
+.no-opinion{background:linear-gradient(180deg,#475569,#1e293b);border:1px solid #94a3b8;box-shadow:0 4px 0 #0b1220,0 8px 12px #0005,inset 0 1px 0 #fff5;transition:transform .12s,box-shadow .12s}
+.no-opinion:active,.no-opinion[aria-pressed=true]{background:linear-gradient(180deg,#475569,#1e293b);transform:translateY(4px);box-shadow:inset 0 1px 4px #0006}
+.vote-card,.vote-card:hover{box-shadow:0 8px 0 color-mix(in srgb,var(--party) 55%,black),0 16px 24px #0006,inset 0 2px 0 #fff4;transition:transform .12s,box-shadow .12s}
+.vote-card:active{transform:translateY(8px);box-shadow:0 1px 0 color-mix(in srgb,var(--party) 55%,black),inset 0 2px 0 #fff4}
+.vote-grid{row-gap:24px}
+@media(prefers-reduced-motion:reduce){.choice-card,.choice-card::after,.choice-card .choice-finger,#next-question.next-invitation{animation:none!important}.choice-card,.btn.primary,.no-opinion,.vote-card{transition:none}}
+
 </style>
   <link rel="stylesheet" href="../assets/doctrine-navigation.css">
 </head>
@@ -1681,7 +1714,7 @@ function forgottenProofPanel(){
   </div>`;
 }
 
-let state = { screen:'home', modeFutur:false, answers:axes.map(()=>null), selectedParty:null, step:0 };
+let state = { screen:'home', modeFutur:false, answers:axes.map(()=>null), selectedParty:null, step:0, nextInvited:axes.map(()=>false) };
 const root = document.getElementById('root');
 function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function isPosition(value){return typeof value==='number' && Number.isFinite(value) && value>=0 && value<=100;}
@@ -1712,7 +1745,7 @@ function measuredGaps(ranked){
 }
 function toggle(){state.modeFutur=!state.modeFutur;render();}
 function home(){return `<main class="page hero-page"><section class="hero-card">
-  <span class="hero-kicker">Bulletin citoyen · Version 2.2 · 18 octobre 2026</span>
+  <span class="hero-kicker">Bulletin citoyen · Version 2.3 · 18 octobre 2026</span>
   <h1>Bulletin citoyen</h1><p class="hero-lead">Vos idées d'abord. Les partis seulement à la fin.</p>
   <div class="version-notice" role="note"><p>Version 2.2 du 18 octobre 2026 : 15 partis, positions sourcées avec un indice de confiance. Ce bulletin est une aide à la réflexion, pas un conseil de vote.</p></div>
   <label class="switch-row"><em>QCM simple</em><input type="checkbox" ${state.modeFutur?'checked':''} onchange="app.toggle()"><span></span><em>Mode futur : 3 barres</em></label>
@@ -1726,7 +1759,8 @@ function home(){return `<main class="page hero-page"><section class="hero-card">
     </ol>
     <p>L'écart entre la barre 2 et la barre 3 montre si la volonté des citoyens a été respectée. Aujourd'hui, les barres 2 et 3 sont des valeurs fictives, pour la démonstration.</p>
   </section>
-  <div class="hero-grid"><button class="choice-card" onclick="app.go('ideas')"><span class="choice-icon">🗳️</span><strong>Voter pour mes idées</strong><em>12 questions, une réponse ou « Sans avis » à chaque étape, puis les proximités politiques.</em></button><button class="choice-card secondary" onclick="app.go('classic')"><span class="choice-icon">🏛️</span><strong>Voter pour un parti</strong><em>Choisissez directement votre formation politique.</em></button></div>
+  <p class="choose-hint">👇 Appuyez sur votre façon de voter :</p>
+  <div class="hero-grid"><button class="choice-card" onclick="app.go('ideas')"><span class="choice-icon">🗳️</span><strong>Voter pour mes idées</strong><em>12 questions, une réponse ou « Sans avis » à chaque étape, puis les proximités politiques.</em><span class="choice-action">COMMENCER →</span><span class="choice-finger" aria-hidden="true">👆</span></button><button class="choice-card secondary" onclick="app.go('classic')"><span class="choice-icon">🏛️</span><strong>Voter pour un parti</strong><em>Choisissez directement votre formation politique.</em><span class="choice-action">CHOISIR →</span><span class="choice-finger" aria-hidden="true">👆</span></button></div>
   <div class="home-forgotten-callout"><h2>5 questions complémentaires que les partis ne chiffrent presque jamais</h2><p>Énergie, grand âge, ASPA, obsolescence, frontaliers : ces sujets ne changent pas votre score, mais ils peuvent changer votre manière de voter. Chaque question renvoie vers la fiche publique du pilier.</p><div class="home-forgotten-row"><span>⚡ Énergie</span><span>🧓 EHPAD</span><span>🏛️ ASPA</span><span>🔧 Garantie 10 ans</span><span>🌍 Frontaliers</span></div><button class="home-forgotten-btn" onclick="app.go('forgotten')">Lire les 5 questions oubliées →</button></div>
 </section></main>`;}
 function toDisplay(index, stored){ return axes[index].flipped ? 100 - stored : stored; }
@@ -1787,7 +1821,15 @@ function updateAnswerUI(index){
   card.className=`axis-card answer-${view.tone} ${axes[index].flipped?'answer-flipped':''} ${view.pending?'answer-pending':''}`;card.style.setProperty('--strength',view.strength);
   document.getElementById('answer-status').textContent=responseText(answer,axes[index]);
   document.getElementById('no-opinion').setAttribute('aria-pressed',String(answer==='sans-avis'));
-  document.getElementById('next-question').disabled=answer===null;
+  const next=document.getElementById('next-question'),wasDisabled=next.disabled;
+  next.disabled=answer===null;
+  if(wasDisabled && !next.disabled && !state.nextInvited[index]){
+    state.nextInvited[index]=true;
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      next.classList.add('next-invitation');
+      next.addEventListener('animationend',()=>next.classList.remove('next-invitation'),{once:true});
+    }
+  }
   if(state.modeFutur){
     const values=futureValues(index,view.value);
     for(const [key,value] of [['vote',values.vote],['simulation',values.simulated],['application',values.application]]){
@@ -1812,7 +1854,7 @@ function partyCard(party,rank){
   return `<article class="rank-card" style="--party:${party.color}" data-party="${party.id}"><div class="rank-card-header"><span class="rank">${rank}</span><h2>${esc(party.name)}</h2><strong class="rank-score">${party.score}%</strong></div><p class="coverage">sur ${party.compared} questions</p><div class="comparison-points"><div><h3>Les plus proches</h3><ul>${nearest.map(x=>`<li>${esc(x.title)} <span>${Math.round(x.proximity)}%</span></li>`).join('')}</ul></div><div><h3>Les plus éloignées</h3><ul>${furthest.map(x=>`<li>${esc(x.title)} <span>${Math.round(x.proximity)}%</span></li>`).join('')}</ul></div></div>${sourcePanel(party)}</article>`;
 }
 function allPartyRow(party,rank){return `<article class="all-party-card" style="--party:${party.color}"><div class="rank-card-header"><span class="rank">${rank}</span><h3>${esc(party.name)}</h3><strong class="rank-score">${party.score}%</strong></div><p class="coverage">sur ${party.compared} questions</p>${sourcePanel(party)}</article>`;}
-function methodPanel(){return `<section class="method-box"><h2>Méthode et traçabilité</h2><p>Matrice des partis V7.4 (version 2 du bulletin) du 18 octobre 2026 : 15 partis, 12 questions, 180 positions. Chaque position vient d'une source publique (programme, vote à l'Assemblée, déclaration) et porte un indice de confiance. Les positions sans source suffisante sont retirées du calcul. Méthode : pour chaque question, proximité = 100 moins l'écart entre votre réponse et la position du parti ; le pourcentage est la moyenne sur les questions où vous avez une position. Sourcing croisé de Perplexity, Grok et Gemini, arbitré par Claude, validé par Jean Paul Poignand.</p><p>Historique : version 1 (mai 2026), prototype retiré après l'audit du 18 octobre 2026 ; version 2 (18 octobre 2026), 12 questions refondues, 15 partis, positions sourcées avec indice de confiance. Version 2.1 (18 octobre 2026) : six questions affichées dans l'autre sens pour obliger à lire les deux options, zone d'équilibre, explication du mode futur. Version 2.2 (18 octobre 2026) : tableau « Le soir du vote, 20 heures » en mode futur.</p></section><section class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions, puis découvrez les proximités politiques, les convergences, les divergences et les sources.</p><div class="promise-row"><span>12 questions</span><span>15 partis</span><span>Version 2</span><span>Sources consultables</span></div><p class="soft">Le moteur compare ensuite vos réponses à la matrice sourcée V7.4.</p></section>`;}
+function methodPanel(){return `<section class="method-box"><h2>Méthode et traçabilité</h2><p>Matrice des partis V7.4 (version 2 du bulletin) du 18 octobre 2026 : 15 partis, 12 questions, 180 positions. Chaque position vient d'une source publique (programme, vote à l'Assemblée, déclaration) et porte un indice de confiance. Les positions sans source suffisante sont retirées du calcul. Méthode : pour chaque question, proximité = 100 moins l'écart entre votre réponse et la position du parti ; le pourcentage est la moyenne sur les questions où vous avez une position. Sourcing croisé de Perplexity, Grok et Gemini, arbitré par Claude, validé par Jean Paul Poignand.</p><p>Historique : version 1 (mai 2026), prototype retiré après l'audit du 18 octobre 2026 ; version 2 (18 octobre 2026), 12 questions refondues, 15 partis, positions sourcées avec indice de confiance. Version 2.1 (18 octobre 2026) : six questions affichées dans l'autre sens pour obliger à lire les deux options, zone d'équilibre, explication du mode futur. Version 2.2 (18 octobre 2026) : tableau « Le soir du vote, 20 heures » en mode futur. Version 2.3 (18 octobre 2026) : boutons en volume pour indiquer clairement où appuyer.</p></section><section class="method-box doctrine-info"><h2>À propos de cet outil</h2><p><strong>Vos idées d'abord. Les partis seulement à la fin.</strong> Répondez à 12 questions, puis découvrez les proximités politiques, les convergences, les divergences et les sources.</p><div class="promise-row"><span>12 questions</span><span>15 partis</span><span>Version 2</span><span>Sources consultables</span></div><p class="soft">Le moteur compare ensuite vos réponses à la matrice sourcée V7.4.</p></section>`;}
 function result(){
   const ranked=results(),n=positionCount(),gaps=measuredGaps(ranked),eligible=new Set(ranked.map(p=>p.id));
   const unranked=parties.filter(p=>!eligible.has(p.id));
