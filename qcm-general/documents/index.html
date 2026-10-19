@@ -29,6 +29,9 @@ a{color:var(--text)}
 .source strong{display:block}
 .source span{display:block;color:var(--muted);font-size:.9rem;line-height:1.45;margin-top:4px}
 @media(max-width:700px){body{padding:12px}.hero,.content{padding:22px}.button{width:100%;text-align:center}}
+    /* Navigation commune au-dessus du contenu (correctif mobile) */
+    body{flex-direction:column;align-items:center;justify-content:flex-start;gap:16px}
+    body > .doctrine-navigation{width:min(920px,100%);flex-shrink:0}
 </style>
 <style>
 table{width:100%;border-collapse:collapse;margin-top:16px}
