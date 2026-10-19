@@ -105,7 +105,8 @@ nav.doctrine-navigation .doctrine-share-menu>*:hover{background:var(--warm)}
 .nav-links a.nav-cta:hover{color:var(--on-rouge);filter:brightness(1.08)}
 @media(max-width:640px){.nav{padding:8px 12px}.brand{font-size:20px}.nav-links .hide-mobile{display:none}}
 .affichage{position:relative}
-.affichage-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);cursor:pointer}
+.affichage-btn{height:44px;padding:0 12px;display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);font:600 14px/1 'IBM Plex Sans',system-ui,sans-serif;cursor:pointer}
+@media(max-width:420px){.affichage-btn svg{display:none}.brand{font-size:18px}.nav-links a{padding:0 10px}}
 .affichage-btn[aria-expanded="true"]{background:var(--warm)}
 .affichage-panel{position:absolute;right:0;top:calc(100% + 8px);width:min(300px,calc(100vw - 24px));padding:16px;background:var(--paper2);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px;z-index:60}
 .affichage-panel[hidden]{display:none}
@@ -277,8 +278,8 @@ nav.doctrine-navigation .doctrine-share-menu>*:hover{background:var(--warm)}
       <li><a href="#decider" class="nav-cta">Bulletin</a></li>
     </ul>
     <div class="affichage">
-      <button type="button" class="affichage-btn" id="affichage-btn" aria-expanded="false" aria-controls="affichage-panel" aria-label="Réglages d'affichage">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+      <button type="button" class="affichage-btn" id="affichage-btn" aria-expanded="false" aria-controls="affichage-panel">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Affichage
       </button>
       <div class="affichage-panel" id="affichage-panel" hidden>
         <fieldset>
