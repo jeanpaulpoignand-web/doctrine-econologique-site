@@ -3,283 +3,247 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="color-scheme" content="light only">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FDFBF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#181512" media="(prefers-color-scheme: dark)">
 <meta name="google-site-verification" content="LMzf7-uWAuAehcu64csRugPDF9o78WXtWJSUxVmWf7Y" />
 <meta name="description" content="Doctrine Éconologique : Un cadre pour une France souveraine, productive et durable. Site officiel." />
 <link rel="canonical" href="https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/" />
 <title>Doctrine Éconologique — Souveraineté Française</title>
 <!--
-Doctrine Éconologique — page d'accueil.
+Doctrine Éconologique — page d'accueil (architecture A, octobre 2026).
+Un seul contenu, deux présentations (Vue rapide / Vue complète) et deux thèmes (clair / sombre).
+Le choix du visiteur est gardé dans son navigateur (localStorage), rien n'est transmis.
 Documents publics : ./fiches/ (charte « Aller droit au but »).
-Les documents de travail restent sur le Drive et ne sont jamais liés depuis le site.
 -->
-
+<script>
+/* Applique le thème et la présentation choisis avant l'affichage, pour éviter un flash. */
+(function(){
+  var r=document.documentElement;
+  try{
+    var t=localStorage.getItem('doctrine-theme');
+    if(t==='light'||t==='dark'){r.setAttribute('data-theme',t);}
+    if(localStorage.getItem('doctrine-vue')==='complete'){r.setAttribute('data-vue','complete');}
+  }catch(e){}
+})();
+</script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+/* ---------- Thèmes ---------- */
 :root{
+  color-scheme:light;
   --paper:#FDFBF7;--paper2:#FFFFFC;--warm:#F5F0E3;
   --ink:#0A0A0A;--soft:#1F1F1F;--muted:#564A36;
   --line:#C5BDA8;--faint:#DCD4BE;
-  --rouge:#8B2C1E;--or:#6B5520;--dark:#0E0E0E;
-  --p1:#1F3864;--p2:#1A6B3A;--p3:#4A5159;--p4:#8B2C1E;--p5:#0E1B2E;
+  --rouge:#8B2C1E;--on-rouge:#FFFFFF;--or:#6B5520;
+  --nav-bg:rgba(253,251,247,.97);
+  --bar-bg:#F5F0E5;--bar-line:#D4C8B5;--bar-ink:#173650;--bar-btn:#FFFFFF;--bar-strong:#173650;--bar-on-strong:#FFFFFF;
+  --share:#9B3028;--share-shadow:#6B1F1A;
+  --shadow:0 8px 24px rgba(0,0,0,.08);
 }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#181512;--paper2:#221E1A;--warm:#1E1A16;
+    --ink:#ECE5D8;--soft:#D9D1C3;--muted:#B0A695;
+    --line:#4A4238;--faint:#3A332B;
+    --rouge:#E3876F;--on-rouge:#181512;--or:#D4B36A;
+    --nav-bg:rgba(24,21,18,.97);
+    --bar-bg:#1E1A16;--bar-line:#4A4238;--bar-ink:#ECE5D8;--bar-btn:#221E1A;--bar-strong:#E3876F;--bar-on-strong:#181512;
+    --share:#E3876F;--share-shadow:#9B4A37;
+    --shadow:0 8px 24px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#181512;--paper2:#221E1A;--warm:#1E1A16;
+  --ink:#ECE5D8;--soft:#D9D1C3;--muted:#B0A695;
+  --line:#4A4238;--faint:#3A332B;
+  --rouge:#E3876F;--on-rouge:#181512;--or:#D4B36A;
+  --nav-bg:rgba(24,21,18,.97);
+  --bar-bg:#1E1A16;--bar-line:#4A4238;--bar-ink:#ECE5D8;--bar-btn:#221E1A;--bar-strong:#E3876F;--bar-on-strong:#181512;
+  --share:#E3876F;--share-shadow:#9B4A37;
+  --shadow:0 8px 24px rgba(0,0,0,.4);
+}
+
+/* ---------- Base ---------- */
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;color-scheme:light}
-body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.65;overflow-x:hidden}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
 h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.15}
 a{color:inherit}
-.nav{
-  position:sticky;top:0;z-index:50;background:rgba(253,251,247,.97);
-  border-bottom:1px solid var(--line);padding:18px 32px;
-  display:flex;justify-content:space-between;align-items:center;gap:12px
-}
-.brand{text-decoration:none;display:flex;gap:10px;align-items:baseline}
-.brand-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600}
-.brand-version{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--rouge);letter-spacing:2px}
-.nav-links{display:flex;gap:26px;list-style:none;font-size:14px;font-weight:700}
-.nav-links a{text-decoration:none}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible+span{outline:3px solid var(--rouge);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--rouge)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px}
+.btn-primary{background:var(--rouge);color:var(--on-rouge)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{border:1.5px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--warm)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ---------- Barre commune (Drive + Partager), couleurs adaptées au thème ---------- */
+nav.doctrine-navigation{background:var(--bar-bg);border-bottom-color:var(--bar-line);color:var(--bar-ink)}
+nav.doctrine-navigation a{background:var(--bar-btn);color:var(--bar-ink);border-color:var(--bar-ink)}
+nav.doctrine-navigation a.doctrine-navigation-drive{background:var(--bar-strong);color:var(--bar-on-strong);border-color:var(--bar-strong)}
+nav.doctrine-navigation .doctrine-navigation-share{background:var(--share);border-color:var(--share);color:var(--on-rouge);box-shadow:0 3px 0 var(--share-shadow)}
+nav.doctrine-navigation .doctrine-share-menu{background:var(--paper2);border-color:var(--line)}
+nav.doctrine-navigation .doctrine-share-menu>*{background:var(--paper2);color:var(--ink)}
+nav.doctrine-navigation .doctrine-share-menu>*:hover{background:var(--warm)}
+
+/* ---------- En-tête ---------- */
+.nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;line-height:1.1}
+.brand span{color:var(--rouge)}
+.nav-right{display:flex;align-items:center;gap:6px}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600}
 .nav-links a:hover{color:var(--rouge)}
-@media(max-width:600px){.nav{padding:10px 16px 6px;flex-wrap:wrap;row-gap:4px}.brand-name{font-size:21px}.nav-links{width:100%;gap:20px;font-size:13px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}.nav-links::-webkit-scrollbar{display:none}.nav-links a{display:inline-block;padding:8px 0}}
-.hero{padding:80px 28px 46px;text-align:center;max-width:880px;margin:auto}
-.hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--rouge);margin-bottom:28px}
-.hero h1{font-size:clamp(38px,7vw,76px);font-weight:500;margin-bottom:28px}
+.nav-links a.nav-cta{background:var(--rouge);color:var(--on-rouge)}
+.nav-links a.nav-cta:hover{color:var(--on-rouge);filter:brightness(1.08)}
+@media(max-width:640px){.nav{padding:8px 12px}.brand{font-size:20px}.nav-links .hide-mobile{display:none}}
+.affichage{position:relative}
+.affichage-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);cursor:pointer}
+.affichage-btn[aria-expanded="true"]{background:var(--warm)}
+.affichage-panel{position:absolute;right:0;top:calc(100% + 8px);width:min(300px,calc(100vw - 24px));padding:16px;background:var(--paper2);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px;z-index:60}
+.affichage-panel[hidden]{display:none}
+.affichage-panel fieldset{border:0}
+.affichage-panel legend{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.choix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.choix label{position:relative;cursor:pointer}
+.choix input{position:absolute;opacity:0;width:1px;height:1px}
+.choix span{display:flex;align-items:center;justify-content:center;min-height:44px;border:1px solid var(--line);border-radius:6px;font-size:15px}
+.choix input:checked+span{background:var(--rouge);border-color:var(--rouge);color:var(--on-rouge);font-weight:700}
+.affichage-note{font-size:13px;color:var(--muted)}
+
+/* ---------- Accueil ---------- */
+.hero{padding:56px 20px 32px;text-align:center;max-width:860px;margin:auto}
+.hero h1{font-size:clamp(40px,7vw,76px);font-weight:500;margin:18px 0 20px}
 .hero h1 em{color:var(--rouge)}
-.hero-lede{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.4vw,22px);max-width:650px;margin:0 auto 36px}
-.hero-byline{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:24px;max-width:360px;margin:auto}
-.finalite-wrap{max-width:1080px;margin:0 auto 36px;padding:0 28px}
-.finalite-card{background:var(--paper2);border:1px solid var(--line);border-left:4px solid var(--rouge);border-radius:6px;padding:22px 26px}
-.finalite-card h2{font-size:clamp(26px,3.5vw,36px);font-weight:600;margin-bottom:12px}
-.finalite-card p{font-size:15px;line-height:1.5;margin-bottom:12px}
-.finalite-card blockquote{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;line-height:1.35;color:var(--soft);margin:14px 0}
-.finalite-card cite{font-size:14px;font-style:normal}
-.finalite-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 18px;background:var(--rouge);color:#fff;border-radius:4px;text-decoration:none;font-size:14px;font-weight:700}
-.finalite-button:hover{filter:brightness(1.1)}
-.finalite-button:focus-visible{outline:3px solid var(--or);outline-offset:4px}
-@media(max-width:600px){.finalite-wrap{padding:0 16px}.finalite-card{padding:20px}.finalite-card p{font-size:16px}.finalite-button{width:100%}}
-.ps-wrap{max-width:1080px;margin:auto;padding:0 28px 54px}
-.ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.ps-card{background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--rouge);padding:28px;border-radius:4px}
-.ps-card.solution{border-left-color:var(--or)}
-.ps-card-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);margin-bottom:14px}
-.ps-card.solution .ps-card-label{color:var(--or)}
-.ps-card h3{font-size:24px;margin-bottom:14px}
-@media(max-width:720px){.ps-grid{grid-template-columns:1fr}}
+.hero-byline{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.resume{max-width:760px;margin:0 auto 48px;padding:24px;background:var(--paper2);border:1px solid var(--line);border-radius:8px}
+.resume h2{font-size:clamp(26px,3.4vw,32px);font-weight:600;margin-bottom:14px}
+.resume ol{padding-left:22px;display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.resume .btn{width:100%}
 
-.section{padding:70px 28px;max-width:1080px;margin:auto}
-.section-head{text-align:center;max-width:720px;margin:0 auto 48px}
-.section-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rouge);margin-bottom:12px}
-.section-title{font-size:clamp(30px,4.5vw,46px);font-weight:500;margin-bottom:16px}
-.section-title em{color:var(--rouge)}
-.section-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--soft)}
+/* ---------- Piliers ---------- */
+.piliers-intro{max-width:760px;margin:0 auto 20px;text-align:center}
+.piliers-intro h2{font-size:clamp(32px,4.5vw,46px);font-weight:500;margin:10px 0 12px}
+.piliers-intro h2 em{color:var(--rouge)}
+.piliers-intro p{color:var(--muted);font-size:15px}
+.familles-nav{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px;margin:0 auto 8px;max-width:760px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.familles-nav::-webkit-scrollbar{display:none}
+.familles-nav a{flex:0 0 auto;display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:14px;white-space:nowrap}
+.familles-nav a:hover{border-color:var(--rouge);color:var(--rouge)}
+.familles-nav a.chip-decider{border-color:var(--rouge);color:var(--rouge);font-weight:700}
+@media(min-width:800px){.familles-nav{justify-content:center;flex-wrap:wrap}}
+.famille{max-width:760px;margin:0 auto;padding:28px 0 8px}
+.famille-titre{font-size:clamp(28px,3.6vw,34px);font-weight:600}
+.famille-sous{color:var(--muted);font-size:14px;margin:2px 0 8px}
+.pilier{border-bottom:1px solid var(--line)}
+.pilier>summary{list-style:none;display:grid;grid-template-columns:44px minmax(0,1fr) 22px;gap:10px;align-items:start;padding:14px 0;cursor:pointer}
+.pilier>summary::-webkit-details-marker{display:none}
+.p-num{font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.1;color:var(--rouge)}
+.p-tete{display:flex;flex-direction:column;gap:2px;min-width:0}
+.p-titre{font-weight:600;font-size:17px}
+.p-chantier{display:inline-block;margin-left:8px;padding:1px 6px;border:1px solid var(--muted);border-radius:4px;font-size:11px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);vertical-align:2px}
+.p-chiffre{font-weight:700;font-size:21px;color:var(--rouge);line-height:1.25}
+.p-legende{font-size:14px;line-height:1.45;color:var(--muted)}
+.p-fleche{margin-top:4px;color:var(--muted);transition:transform .2s}
+.pilier[open]>summary .p-fleche{transform:rotate(90deg)}
+@media (prefers-reduced-motion: reduce){.p-fleche{transition:none}}
+.p-corps{padding:0 0 22px 54px}
+.p-idee{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.3;margin-bottom:6px}
+.p-mots{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:14px}
+.p-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.p-actions a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:6px;text-decoration:none;font-size:14px}
+.a-fiche{background:var(--rouge);color:var(--on-rouge);font-weight:700}
+.a-qcm{border:1.5px solid var(--ink);font-weight:600}
+.a-drive{border:1px solid var(--line)}
+.p-actions a:hover{filter:brightness(1.08);text-decoration:underline}
+.p-plus{list-style:none;display:flex;flex-direction:column;gap:2px;margin-bottom:12px}
+.p-plus a{display:inline-flex;align-items:center;min-height:40px;font-size:14px;text-underline-offset:4px}
+.p-note{font-size:13px;line-height:1.5;color:var(--muted);margin-bottom:8px}
+.p-note a{text-underline-offset:3px}
+.nt{font-size:12px;opacity:.8;margin-left:4px}
+@media(max-width:480px){.p-corps{padding-left:0}}
 
-.entry-wrap{max-width:1080px;margin:auto;padding:0 28px 72px}
-.entry-card{
-  position:relative;overflow:hidden;
-  background:
-    radial-gradient(circle at 82% 18%, rgba(14,27,46,.08), transparent 34%),
-    linear-gradient(180deg,#FFFFFC 0%,#F8F6EF 100%);
-  border:1px solid var(--line);
-  border-left:5px solid var(--p5);
-  border-radius:8px;
-  padding:34px;
-  box-shadow:0 16px 40px rgba(14,27,46,.07);
-}
-.entry-card::before{
-  content:'';
-  position:absolute;
-  right:18px;
-  top:24px;
-  width:210px;
-  height:420px;
-  background:url('./assets/pilier-antique-filigrane.svg') center/contain no-repeat;
-  opacity:.42;
-  pointer-events:none;
-}
-.entry-card > *{position:relative;z-index:1}
-.entry-kicker{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
-  color:var(--p5);
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-weight:700;
-  margin-bottom:16px;
-}
-.entry-card h2{
-  font-size:clamp(36px,5.6vw,64px);
-  font-weight:600;
-  margin-bottom:18px;
-}
-.entry-card h2 em{color:var(--rouge);font-style:italic}
-.entry-lede{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:clamp(20px,2.6vw,28px);
-  color:var(--soft);
-  max-width:680px;
-  margin-bottom:28px;
-}
-.entry-tools{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
-.entry-tool{
-  display:flex;
-  flex-direction:column;
-  min-height:230px;
-  text-decoration:none;
-  color:var(--ink);
-  border:1px solid rgba(14,27,46,.24);
-  border-radius:8px;
-  padding:24px;
-  background:
-    linear-gradient(135deg,rgba(14,27,46,.055),rgba(255,255,252,.94)),
-    repeating-linear-gradient(90deg,rgba(14,27,46,.032) 0 1px,transparent 1px 12px);
-  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
-}
-.entry-tool:hover{
-  transform:translateY(-3px);
-  border-color:var(--p5);
-  box-shadow:0 14px 30px rgba(14,27,46,.15);
-}
-.entry-tool-label{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--p5);
-  font-weight:700;
-  margin-bottom:12px;
-}
-.entry-tool h3{font-size:32px;margin-bottom:14px}
-.entry-tool p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--soft);margin-bottom:auto}
-.entry-tool-cta{
-  margin-top:22px;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  font-weight:700;
-  color:var(--rouge);
-}
-@media(max-width:760px){
-  .entry-tools{grid-template-columns:1fr}
-  .entry-card{padding:26px}
-  .entry-card::before{right:-26px;top:70px;width:180px;height:360px}
-}
+/* Vue complète : tous les piliers ouverts, en cartes */
+:root[data-vue="complete"] .famille{max-width:1080px}
+:root[data-vue="complete"] .famille-liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;align-items:start}
+:root[data-vue="complete"] .pilier{border:1px solid var(--line);border-top:4px solid var(--rouge);border-radius:8px;background:var(--paper2);padding:4px 16px}
+:root[data-vue="complete"] .p-corps{padding-left:0}
 
-.study-card{background:var(--paper2);border:1px solid var(--line);border-top:4px solid var(--rouge);border-radius:6px;padding:36px 32px;max-width:820px;margin:auto}
-.study-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);margin-bottom:16px}
-.study-card h3{font-size:clamp(28px,4vw,38px);margin-bottom:20px}
-.study-card p{font-size:17px;color:var(--soft);margin-bottom:24px}
-.study-stats{display:grid;grid-template-columns:1fr;gap:14px;padding:22px;background:var(--paper);border:1px solid var(--faint);border-radius:5px;margin-bottom:28px}
-.study-stat-box{background:var(--paper2);border:1px solid var(--faint);border-left:4px solid var(--rouge);border-radius:4px;padding:16px 18px}
-.study-stat-box.allouee{border-left-color:var(--or)}
-.study-stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,48px);font-weight:700;color:var(--rouge);line-height:1;margin-bottom:8px}
-.study-stat-box.allouee .study-stat-num{color:var(--or)}
-.study-stat-label{font-size:14px;color:var(--muted);font-weight:700}
-.read-link{display:inline-flex;gap:8px;text-decoration:none;color:var(--rouge);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--rouge);padding-bottom:5px}
-.read-link:hover{color:var(--ink);border-bottom-color:var(--ink)}
-
-.pillars-wrap{max-width:1080px;margin:auto;padding:0 28px 70px}
-.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:880px){.pillars-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.pillars-grid{grid-template-columns:1fr}}
-.pillar-card{background:var(--paper2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:24px;min-height:340px;display:flex;flex-direction:column}
-.pillar-card.energie{--accent:var(--p1)}
-.pillar-card.garantie{--accent:var(--p2)}
-.pillar-card.finance{--accent:var(--p3)}
-.pillar-card.aspa{--accent:var(--p4)}
-.pillar-card.culture{--accent:var(--p4)}
-.pillar-card.fraude{--accent:var(--or)}
-.pillar-card{scroll-margin-top:96px}
-#pilier-14{scroll-margin-top:180px}
-section[id]{scroll-margin-top:84px}
-@media(max-width:600px){.pillar-card{scroll-margin-top:112px}#pilier-14{scroll-margin-top:190px}section[id]{scroll-margin-top:100px}}
-.pillar-card.grandage{--accent:#5B3A6E}
-.pillar-card.batiment{--accent:#7A4E1D}
-.pillar-card.frontaliers{--accent:#2E5A3C}
-.pillar-card.agriculture{--accent:#5C6B26}
-.pillar-card.textile{--accent:#6B3A4E}
-.pillar-card.monetique{--accent:#1F5A57}
-.pillar-card.mobilite{--accent:#3B4A6B}
-.pillar-card.democratie{--accent:var(--p5)}
-.pillar-card.dette{--accent:var(--p3)}
-.pillar-card.autoroutes{--accent:var(--p3)}
-.pillar-card.proprete{--accent:var(--p2)}
-.pillar-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;font-weight:700}
-.pillar-card h3{font-size:23px;margin:8px 0 10px}
-.pillar-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--soft);margin-bottom:14px}
-.pillar-stat{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);border-bottom:1px solid var(--faint);padding-bottom:14px;margin-bottom:18px}
-.pillar-actions{margin-top:auto;display:flex;flex-direction:column;gap:10px}
-.pillar-link{display:block;align-self:stretch;background:var(--accent);color:#fff;text-decoration:none;text-align:center;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:14px 12px 12px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-.pillar-link small{display:block;margin-top:4px;font-size:10.5px;font-weight:500;letter-spacing:.3px;text-transform:none;opacity:.9}
-.new-tab-note{display:block;margin-top:3px;font-size:10px;font-weight:500;letter-spacing:.2px;text-transform:none;opacity:.82}
-.pillar-link:hover{filter:brightness(1.1)}
-.pillar-link~.pillar-link{background:none;box-shadow:none;color:var(--accent);padding:12px 0;text-align:left;font-size:12px;letter-spacing:.5px;border-bottom:none;text-decoration:underline;text-underline-offset:4px;align-self:flex-start}
-.pillar-qcm-button{background:transparent;color:var(--accent);border:1.5px solid var(--accent);text-decoration:none;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:11px;border-radius:4px}
-.pillar-highlight{background:rgba(0,0,0,.03);border-left:2px solid var(--accent);padding:12px;border-radius:0 4px 4px 0}
-.pillar-highlight-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
-.pillar-highlight-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700}
-.pillar-highlight-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--soft)}
-.pillar-image{width:100%;margin-top:16px;border-radius:8px;border:1px solid var(--line);display:block;box-shadow:0 4px 18px rgba(0,0,0,.08)}
-
-.position-dark{background:var(--dark);color:#F0EBDC;padding:80px 28px;text-align:center}
-.position-dark .inner{max-width:840px;margin:auto}
-.position-dark h2{color:#F0EBDC;font-size:clamp(30px,4.5vw,48px);font-weight:500}
-.position-dark h2 em{color:#D4593F}
-.position-dark .section-sub{color:#B8AE94;margin-bottom:40px}
-.manifesto-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,4vw,38px);border-top:1px solid #C9A95B;border-bottom:1px solid #C9A95B;padding:44px 20px;margin-bottom:36px}
-.manifesto-text .line{display:block}
-.manifesto-text .verb{color:#D4593F;font-style:normal}
-.position-actions{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
-.position-cta{display:flex;justify-content:center;align-items:center;gap:12px;background:#D4593F;color:white;text-decoration:none;padding:20px 26px;border-radius:4px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
-.position-cta.secondary{background:#0E1B2E;border:1px solid rgba(240,235,220,.25)}
-@media(max-width:720px){.position-actions{grid-template-columns:1fr}}
-.label-beta{font-family:'IBM Plex Mono',monospace;font-size:9px;background:rgba(0,0,0,.25);padding:3px 7px;border-radius:2px}
-.position-note{font-family:'Cormorant Garamond',serif;font-style:italic;color:#B8AE94;margin-top:22px}
-
-.committee-intro{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;max-width:720px;text-align:center;margin:0 auto 48px}
-.committee-intro em{color:var(--rouge);font-style:normal;font-weight:700}
-.ia-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:900px;margin:auto}
-@media(max-width:720px){.ia-grid{grid-template-columns:repeat(2,1fr)}}
-.ia-card{background:var(--paper2);border:1px solid var(--line);padding:22px 14px;text-align:center;border-radius:6px}
-.ia-mark{width:46px;height:46px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-.claude{background:#C95E3B}.gpt{background:#0F8F6E}.gemini{background:#2868D8}.grok{background:#111}.perplexity{background:#1A8A8A}
-.ia-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700}
-.ia-pub{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase}
-.ia-role{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--soft)}
-.committee-note{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-align:center;margin:40px auto 0;max-width:760px}
-
-.colophon{background:var(--warm);padding:64px 28px 28px;border-top:1px solid var(--line)}
-.colophon-inner{max-width:1080px;margin:auto}
-.colophon-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;text-align:center;max-width:680px;margin:0 auto 48px}
-.colophon-quote:before{content:'« ';color:var(--rouge)}
-.colophon-quote:after{content:' »';color:var(--rouge)}
-.colophon-cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;border-top:1px solid var(--line);padding-top:40px}
-@media(max-width:700px){.colophon-cols{grid-template-columns:1fr}}
-.colophon-brand p,.colophon-col a{font-size:13px;color:var(--soft);text-decoration:none}
-.colophon-col h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);margin-bottom:14px}
-.colophon-col ul{list-style:none}
-.colophon-col li{margin-bottom:8px}
-.colophon-bottom{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.colophon-bottom em{color:var(--rouge);font-style:normal}
-.fade-in{opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-/* Pilier VII — deux billets (cinéma / Opéra de Paris) */
-.p7-billets{margin-top:16px;display:flex;flex-direction:column;gap:12px}
-.p7-kicker{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
+/* Pilier VII — deux billets */
+.p7-billets{margin:6px 0 14px;display:flex;flex-direction:column;gap:12px;max-width:420px}
+.p7-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--rouge);font-weight:700}
 .p7-billet{position:relative;background:var(--warm);border:1px solid var(--line);border-radius:6px;padding:12px 16px}
-.p7-billet::before,.p7-billet::after{content:"";position:absolute;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--paper2);border:1px solid var(--line)}
-.p7-billet::before{left:-8px;border-left-color:transparent;border-bottom-color:transparent;transform:rotate(45deg)}
-.p7-billet::after{right:-8px;border-right-color:transparent;border-top-color:transparent;transform:rotate(45deg)}
 .p7-entete{display:flex;flex-direction:column;border-bottom:1px dashed var(--line);padding-bottom:8px;margin-bottom:8px}
-.p7-lieu{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.p7-lieu{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600}
 .p7-oeuvre{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;line-height:1.2}
-.p7-ligne{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px;color:var(--soft)}
+.p7-ligne{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px;color:var(--soft)}
 .p7-ligne strong{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--ink);white-space:nowrap}
 .p7-public strong{color:var(--rouge)}
-.p7-opera .p7-public strong{font-size:30px}
-.p7-chute{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;line-height:1.3;margin-top:2px}
-.p7-slogan{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--rouge)}
-.p7-sources{font-family:'IBM Plex Mono',monospace;font-size:9px;line-height:1.5;color:var(--muted)}
+.p7-chute{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;line-height:1.3}
+.p7-slogan{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--rouge)}
+.p7-sources{font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.5;color:var(--muted)}
+
+/* ---------- Décider ---------- */
+.decider{max-width:860px;margin:56px auto 0;padding:32px 24px;background:var(--paper2);border:1px solid var(--rouge);border-radius:10px}
+.decider h2{font-size:clamp(32px,4.6vw,46px);font-weight:600;margin:10px 0 14px}
+.decider>p{margin-bottom:12px}
+.decider blockquote{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;line-height:1.35;color:var(--soft);margin:18px 0;padding-left:16px;border-left:3px solid var(--rouge)}
+.decider cite{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-style:normal;color:var(--muted)}
+.decider .btn-primary{width:100%;margin-top:6px}
+.decider-note{font-size:13px;color:var(--muted);margin-top:10px}
+.outils{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:28px}
+.outil{display:flex;flex-direction:column;gap:6px;padding:20px;border:1px solid var(--line);border-radius:8px;text-decoration:none;background:var(--paper)}
+.outil:hover{border-color:var(--rouge)}
+.outil h3{font-size:24px}
+.outil p{font-size:14px;color:var(--muted)}
+.outil .cta{margin-top:auto;padding-top:8px;font-weight:700;color:var(--rouge);font-size:14px}
+.beta{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 6px;border:1px solid var(--rouge);border-radius:3px;color:var(--rouge);vertical-align:3px;margin-left:6px}
+.manifeste{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,3vw,26px);line-height:1.35;text-align:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+.manifeste .verb{color:var(--rouge);font-style:normal}
+
+/* ---------- Méthode ---------- */
+.methode{max-width:900px;margin:0 auto;padding:64px 20px 24px;text-align:center}
+.methode h2{font-size:clamp(30px,4.5vw,44px);font-weight:500;margin:10px 0 14px}
+.methode h2 em{color:var(--rouge)}
+.methode-intro{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;max-width:720px;margin:0 auto 32px}
+.methode-intro em{color:var(--rouge);font-style:normal;font-weight:700}
+.ia-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media(max-width:720px){.ia-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ia-card{background:var(--paper2);border:1px solid var(--line);padding:18px 10px;border-radius:8px}
+.ia-mark{width:46px;height:46px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px}
+.claude{background:#B4532F}.gpt{background:#0C7A5E}.gemini{background:#2358B8}.grok{background:#111}.perplexity{background:#167575}
+:root[data-theme="dark"] .grok{background:#3A3A3A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .grok{background:#3A3A3A}}
+.ia-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700}
+.ia-pub{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase}
+.ia-role{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--soft)}
+.methode-note{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:28px}
+
+/* ---------- Pied de page ---------- */
+.colophon{background:var(--warm);margin-top:56px;padding:56px 20px 28px;border-top:1px solid var(--line)}
+.colophon-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;text-align:center;max-width:680px;margin:0 auto 40px}
+.colophon-quote:before{content:'« ';color:var(--rouge)}
+.colophon-quote:after{content:' »';color:var(--rouge)}
+.colophon-cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;border-top:1px solid var(--line);padding-top:36px}
+@media(max-width:760px){.colophon-cols{grid-template-columns:1fr}}
+.colophon h3{font-size:22px;margin-bottom:8px}
+.colophon-brand p,.colophon-col a{font-size:14px;color:var(--soft)}
+.colophon-col a{text-decoration:none;display:inline-block;padding:4px 0}
+.colophon-col a:hover{text-decoration:underline}
+.colophon-col h4{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);margin-bottom:10px}
+.colophon-col ul{list-style:none}
+.colophon-bottom{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.colophon-bottom em{color:var(--rouge);font-style:normal}
+
+[id]{scroll-margin-top:84px}
+@media print{.nav,.affichage,nav.doctrine-navigation{display:none}}
 </style>
 <link rel="stylesheet" href="assets/doctrine-navigation.css">
 <script src="assets/doctrine-share.js" defer></script>
@@ -304,223 +268,298 @@ section[id]{scroll-margin-top:84px}
   <a class="doctrine-navigation-drive" href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank" rel="noopener">Documents de la Doctrine sur Drive</a>
 </nav>
 
-<nav class="nav">
-  <a href="#accueil" class="brand">
-    <span class="brand-name">Doctrine Éconologique</span>
-    <span class="brand-version">v5.1</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#accueil">Accueil</a></li>
-    <li><a href="#piliers">Piliers</a></li>
-    <li><a href="#positionner">Se positionner</a></li>
-    <li><a href="#methode">Méthode</a></li>
-    <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank" rel="noopener">Drive</a></li>
-  </ul>
-</nav>
-
-<section class="hero" id="accueil">
-  <div class="hero-kicker">Manifeste</div>
-  <h1>Une France qui produit,<br><em>répare</em>, transmet.</h1>
-  <p class="hero-lede">Un cadre institutionnel français pour la souveraineté énergétique, la durabilité obligatoire, le capital humain reclassé, la justice contributive et la démocratie décisionnelle. Dix-sept numéros, quatorze piliers publiés, trois chantiers : le XIV, Amortissement de la dette (non audité), le XVI, Autoroutes, et le XVII, Propreté publique et responsabilité du déchet (non encore publiés).</p>
-  <div class="hero-byline">Jean Paul Poignand · Côte d'Azur & Besançon</div>
-</section>
-
-<section class="finalite-wrap" aria-labelledby="finalite-titre">
-  <div class="finalite-card">
-    <h2 id="finalite-titre">La finalité de ce site : le vote responsable</h2>
-    <p>Chaque pilier de la doctrine apporte des leviers chiffrés et sourcés. Le bulletin d'arbitrage les réunit : vous cochez, vous déplacez les curseurs, et vous voyez ce que chaque choix coûte ou fait perdre.</p>
-    <p>Notre objectif : qu'en France, chaque citoyen puisse un jour, au moment de sa déclaration de revenus, répartir l'effort budgétaire en connaissance de cause, puis découvrir les choix de ses compatriotes.</p>
-    <p><strong>Dès 2026, c'est techniquement possible.</strong> Il commencerait par une consultation budgétaire citoyenne, facultative et anonyme. Ensuite viendrait une part réelle de l'impôt sur le revenu, de 1 à 5 %, affectée selon les choix exprimés, comme le fait déjà l'Italie.</p>
-    <blockquote>« Tous les Citoyens ont le droit de constater, par eux-mêmes ou par leurs représentants, la nécessité de la contribution publique […] d'en suivre l'emploi. » <cite>— Déclaration des droits de l'homme et du citoyen, article 14</cite></blockquote>
-    <a class="finalite-button" href="bulletin-arbitrage/">Essayer le bulletin d'arbitrage →</a>
-  </div>
-</section>
-
-<div class="entry-wrap">
-  <section class="entry-card fade-in" aria-label="Outils citoyens principaux">
-    <div class="entry-kicker">Bulletin citoyen dynamique</div>
-    <h2>Et si on votait <em>différemment</em> ?</h2>
-    <p class="entry-lede">Deux portes d'entrée : voter sur les idées avant les étiquettes, ou explorer ce qui aurait pu changer si la France avait fait d'autres choix politiques.</p>
-    <div class="entry-tools">
-      <a class="entry-tool" href="./qcm-democratie-decisionnelle/">
-        <div class="entry-tool-label">Bulletin citoyen</div>
-        <h3>Votez vos idées</h3>
-        <p>Répondez à 12 axes concrets, puis découvrez les partis politiques les plus proches, les écarts et les angles morts démocratiques. Version 2 du 18 octobre 2026 : 15 partis, positions sourcées.</p>
-        <div class="entry-tool-cta">Lancer le bulletin →</div>
-      </a>
-      <a class="entry-tool" href="./qcm-general/">
-        <div class="entry-tool-label">Histoire alternative</div>
-        <h3>Et si on avait voté différemment ?</h3>
-        <p>Explorer les conséquences possibles de choix électoraux passés et comparer leurs effets économiques, sociaux et productifs.</p>
-        <div class="entry-tool-cta">Explorer les scénarios →</div>
-      </a>
+<header class="nav">
+  <a href="#accueil" class="brand">Doctrine <span>Éconologique</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li class="hide-mobile"><a href="#piliers">Piliers</a></li>
+      <li class="hide-mobile"><a href="#methode">Méthode</a></li>
+      <li><a href="#decider" class="nav-cta">Bulletin</a></li>
+    </ul>
+    <div class="affichage">
+      <button type="button" class="affichage-btn" id="affichage-btn" aria-expanded="false" aria-controls="affichage-panel" aria-label="Réglages d'affichage">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+      </button>
+      <div class="affichage-panel" id="affichage-panel" hidden>
+        <fieldset>
+          <legend>Thème</legend>
+          <div class="choix">
+            <label><input type="radio" name="theme" value="light"><span>☀ Clair</span></label>
+            <label><input type="radio" name="theme" value="dark"><span>☾ Sombre</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Présentation</legend>
+          <div class="choix">
+            <label><input type="radio" name="vue" value="rapide"><span>Vue rapide</span></label>
+            <label><input type="radio" name="vue" value="complete"><span>Vue complète</span></label>
+          </div>
+        </fieldset>
+        <p class="affichage-note">Votre choix est gardé sur cet appareil. Rien n'est transmis.</p>
+      </div>
     </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="accueil">
+  <div class="kicker">Manifeste</div>
+  <h1>Une France qui produit, <em>répare</em>, transmet.</h1>
+  <div class="hero-byline">Jean Paul Poignand · Côte d'Azur &amp; Besançon</div>
+</section>
+
+<div class="wrap">
+  <section class="resume" aria-labelledby="resume-titre">
+    <h2 id="resume-titre">La Doctrine en 30 secondes</h2>
+    <ol>
+      <li>La France paie cher ce qu'elle ne produit plus, et le contribuable paie sans voir où va l'argent.</li>
+      <li>La Doctrine propose, pilier par pilier, des mesures chiffrées et sourcées pour produire ici, faire durer et dépenser juste.</li>
+      <li>Le but : qu'un jour chaque citoyen puisse répartir une part de son impôt en connaissance de cause.</li>
+    </ol>
+    <a class="btn btn-primary" href="bulletin-arbitrage/">Essayer le bulletin d'arbitrage →</a>
   </section>
 </div>
 
-<div class="ps-wrap">
-  <div class="ps-grid">
-    <div class="ps-card fade-in">
-      <div class="ps-card-label">◉ Le constat</div>
-      <h3>Une économie qui fuit, une démocratie d'étiquettes</h3>
-      <p>Dépendance énergétique, désindustrialisation, obsolescence programmée, perte de compétences, captation de valeur par les pays voisins. Le contribuable paie sans voir, sans décider, sans contrôler.</p>
-    </div>
-    <div class="ps-card solution fade-in">
-      <div class="ps-card-label">◆ La doctrine</div>
-      <h3>Dix-sept numéros, quatorze piliers publiés, trois chantiers : le XIV, Amortissement de la dette (non audité), le XVI, Autoroutes, et le XVII, Propreté publique et responsabilité du déchet (non encore publiés).</h3>
-      <p>Énergie souveraine, garantie décennale, financement public, retraites et ASPA, grand âge, bâtiment et métiers utiles, éconologie culturelle, frontaliers, agriculture, textile, mobilité, friction monétique, démocratie décisionnelle et fraude fiscale. Chaque pilier publié est documenté, chiffré et soumis au crible de cinq intelligences artificielles.</p>
-    </div>
+<section id="piliers" class="wrap" aria-labelledby="piliers-titre">
+  <div class="piliers-intro">
+    <div class="kicker">Les piliers documentés</div>
+    <h2 id="piliers-titre">Sommaire des <em>piliers</em>.</h2>
+    <p>Dix-sept numéros, quatorze piliers publiés, trois chantiers : le XIV, Amortissement de la dette (non audité), le XVI, Autoroutes, et le XVII, Propreté publique et responsabilité du déchet (non encore publiés). Les numéros sont conservés pour la traçabilité. Touchez un pilier pour l'ouvrir.</p>
   </div>
-</div>
+  <nav class="familles-nav" aria-label="Familles de piliers">
+    <a href="#produire">Produire en France</a>
+    <a href="#durer">Faire durer</a>
+    <a href="#argent">L'argent public</a>
+    <a href="#generations">Les générations</a>
+    <a href="#decider" class="chip-decider">Décider</a>
+  </nav>
 
-<section class="section" id="decouvrir">
-  <div class="section-head fade-in">
-    <div class="section-kicker">Étude courte · 2 minutes</div>
-    <h2 class="section-title">Commencer par <em>un chiffre</em>.</h2>
-    <p class="section-sub">Avant la doctrine, l'observation. Cinq questions pour ouvrir les yeux sur ce que la France assume seule.</p>
-  </div>
-  <div class="study-card fade-in">
-    <div class="study-label">Pilier VIII — Frontaliers</div>
-    <h3>Ce que la France assume seule.</h3>
-    <p>En 2022, 450 000 résidents de France travaillaient en Suisse, au Luxembourg, en Allemagne ou en Belgique. Quand l'un d'eux perd son emploi, c'est l'assurance chômage française qui l'indemnise, alors qu'il a cotisé dans son pays d'emploi. Monaco, lui, cotise au régime français. Combien les pays d'emploi remboursent-ils ?</p>
-    <div class="study-stats">
-      <div class="study-stat-box">
-        <div class="study-stat-num">450 000</div>
-        <div class="study-stat-label">Frontaliers résidant en France (2022)</div>
-      </div>
-      <div class="study-stat-box">
-        <div class="study-stat-num">860 M€</div>
-        <div class="study-stat-label">Surcoût net pour l'assurance chômage française en 2025</div>
-      </div>
-      <div class="study-stat-box allouee">
-        <div class="study-stat-num">≈ 25 %</div>
-        <div class="study-stat-label">Seule part remboursée par les pays d'emploi — source Unédic, 2025</div>
-      </div>
-    </div>
-    <a href="./fiches/pilier-08-aller-droit-au-but.pdf" target="_blank" class="read-link" rel="noopener">Je veux en savoir plus <span>→</span> <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-  </div>
-</section>
+  <!-- ===== Famille 1 ===== -->
+  <section class="famille" id="produire" aria-labelledby="f1">
+    <h2 class="famille-titre" id="f1">Produire en France</h2>
+    <p class="famille-sous">Énergie, bâtiment, agriculture, textile.</p>
+    <div class="famille-liste">
 
-<section id="piliers">
-  <div class="section-head fade-in" style="padding:0 28px">
-    <div class="section-kicker">Les piliers documentés</div>
-    <h2 class="section-title">Sommaire des <em>piliers</em>.</h2>
-    <p class="section-sub">Les piliers conservent leur numérotation pour assurer la traçabilité de la doctrine et permettre l'approfondissement via les documents sources. Dix-sept numéros, quatorze piliers publiés, trois chantiers : le XIV, Amortissement de la dette (non audité), le XVI, Autoroutes, et le XVII, Propreté publique et responsabilité du déchet (non encore publiés).</p>
-  </div>
-  <div class="pillars-wrap">
-    <div class="pillars-grid">
-      <article class="pillar-card energie fade-in" id="pilier-1">
-        <div class="pillar-num">Pilier I</div>
-        <h3>Énergie souveraine</h3>
-        <div class="pillar-tagline">L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité.</div>
-        <div class="pillar-stat">Nucléaire · biométhane local · rendement national</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-01-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-energie/" class="pillar-qcm-button">Répondre au questionnaire →</a>
+      <details class="pilier" id="pilier-1">
+        <summary>
+          <span class="p-num" aria-hidden="true">I</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier I : </span>Énergie souveraine</span>
+            <span class="p-chiffre">45,8 Md€</span>
+            <span class="p-legende">payés net à l'étranger pour l'énergie en 2025 : c'est la facture énergétique de la France (SDES)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité.</p>
+          <p class="p-mots">Nucléaire · biométhane local · rendement national</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-01-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-qcm" href="./qcm-energie/">Questionnaire</a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1OdYykoz0h6pcVSLiwoPgjtRCt4Xf2kAw" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <p class="p-note">Source : SDES, Bilan énergétique de la France en 2025 (données provisoires) : facture de 45,8 Md€, en baisse de 21 % sur un an ; 62,7 % de l'énergie consommée est produite sur le territoire.</p>
         </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1OdYykoz0h6pcVSLiwoPgjtRCt4Xf2kAw" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card garantie fade-in" id="pilier-2">
-        <div class="pillar-num">Pilier II</div>
-        <h3>Garantie décennale</h3>
-        <div class="pillar-tagline">Comment rendre aux ménages de l'ordre de 2 milliards d'euros par an ?</div>
-        <div class="pillar-stat">Dix ans de garantie transmissible à la revente · pièces et logiciels garantis 10 ans · réparation de proximité</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-02-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./fiches/pilier-02-dossier-complet.pdf" target="_blank" class="pillar-link" rel="noopener">Dossier complet → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Économie ménages en France</div>
-            <div class="pillar-highlight-num">≈ 2 Md€</div>
-            <div class="pillar-highlight-text">par an à maturité (estimation, de 1 à 3,5 Md€)</div>
+      </details>
+
+      <details class="pilier" id="pilier-6">
+        <summary>
+          <span class="p-num" aria-hidden="true">VI</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier VI : </span>Bâtiment et métiers utiles</span>
+            <span class="p-chiffre">79,6 %</span>
+            <span class="p-legende">des embauches de couvreurs s'annoncent difficiles pour les employeurs, contre 43,8 % tous métiers confondus (France Travail, 2026)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Le climat se sauve avec une truelle, pas avec un clavier.</p>
+          <p class="p-mots">Rendre les métiers du bâtiment attractifs : sortie de chantier garantie, pause de récupération, lycées d'excellence</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-06-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-qcm" href="./qcm-pilier-vi/">Questionnaire</a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1Yvv5-jfYPTZu0CMaLeCJ8xfdxHipY7py" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <ul class="p-plus">
+            <li><a href="./fiches/pilier-06-jeunes-france-allemagne.pdf" target="_blank" rel="noopener">Jeunes sans emploi : France-Allemagne →<span class="nt">(PDF)</span></a></li>
+          </ul>
+          <p class="p-note">Source : France Travail, enquête Besoins en main-d'œuvre 2026, relevé du 16 octobre 2026.</p>
+        </div>
+      </details>
+
+      <details class="pilier" id="pilier-9">
+        <summary>
+          <span class="p-num" aria-hidden="true">IX</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier IX : </span>Agriculture et alimentation souveraine</span>
+            <span class="p-chiffre">× 3</span>
+            <span class="p-legende">d'agents du ministère de l'Agriculture par exploitation : 1 pour 40 fermes en 1982, 1 pour 13 en 2023</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Ne pas importer ce qu'on interdit de produire.</p>
+          <p class="p-mots">Clauses miroirs · contingents plafonnés · transition payée avant d'être imposée</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-09-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1r77kIiQk4FtEXrkrVPAEakowyf5YPUet" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <ul class="p-plus">
+            <li><a href="./fiches/pilier-09-annexe-chiffres.pdf" target="_blank" rel="noopener">Annexe chiffrée →<span class="nt">(PDF)</span></a></li>
+            <li><a href="./fiches/pilier-09-note-loue.pdf" target="_blank" rel="noopener">La Loue, le karst, le Comté →<span class="nt">(PDF)</span></a></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="pilier" id="pilier-10">
+        <summary>
+          <span class="p-num" aria-hidden="true">X</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier X : </span>Textile, habillement, chaussure</span>
+            <span class="p-chiffre">580 000</span>
+            <span class="p-legende">emplois directs si l'on s'habillait en France, au nécessaire : 15 vêtements et 2 paires par an au lieu de 43 et 4, à budget presque égal (estimation)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Fabriquer ici, garder ce qui sert.</p>
+          <p class="p-mots">Aides liées à l'emploi · lin filé en France · achat durable accessible</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-10-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-qcm" href="./qcm-textile/">Questionnaire</a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1cLXuZELeKz8G0vlnDDU_IoXFX2b2NdoS" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <ul class="p-plus">
+            <li><a href="./fiches/pilier-10-note-autonomie.pdf" target="_blank" rel="noopener">Et si la France fabriquait tout ce qu'elle porte ? →<span class="nt">(PDF)</span></a></li>
+            <li><a href="./fiches/pilier-10-annexe-lin-eau.pdf" target="_blank" rel="noopener">Le lin, l'eau et la matière française →<span class="nt">(PDF)</span></a></li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ===== Famille 2 ===== -->
+  <section class="famille" id="durer" aria-labelledby="f2">
+    <h2 class="famille-titre" id="f2">Faire durer, payer le vrai prix</h2>
+    <p class="famille-sous">Garantie des objets, paiements, déchets.</p>
+    <div class="famille-liste">
+
+      <details class="pilier" id="pilier-2">
+        <summary>
+          <span class="p-num" aria-hidden="true">II</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier II : </span>Garantie décennale</span>
+            <span class="p-chiffre">≈ 2 Md€</span>
+            <span class="p-legende">par an rendus aux ménages, à maturité (estimation, de 1 à 3,5 Md€)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Comment rendre aux ménages de l'ordre de 2 milliards d'euros par an ?</p>
+          <p class="p-mots">Dix ans de garantie transmissible à la revente · pièces et logiciels garantis 10 ans · réparation de proximité</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-02-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/12VRVnUjQ2EwRp7LhG7JpKdmikooh8E-t" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <ul class="p-plus">
+            <li><a href="./fiches/pilier-02-dossier-complet.pdf" target="_blank" rel="noopener">Dossier complet →<span class="nt">(PDF)</span></a></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="pilier" id="pilier-12">
+        <summary>
+          <span class="p-num" aria-hidden="true">XII</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier XII : </span>Friction monétique</span>
+            <span class="p-chiffre">− 26 points</span>
+            <span class="p-legende">de part des paiements pour le réseau national CB en quatre ans, au profit de Visa et Mastercard (estimation)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Être payé ne doit pas coûter plus cher aux petits.</p>
+          <p class="p-mots">Coût tout compris affiché · plafond des micro-paiements · réseau national</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-12-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1lPE-79hM-fZV0kPh3mpC4khGkLVNPjHY" target="_blank" rel="noopener">Approfondir sur Drive</a>
           </div>
         </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/12VRVnUjQ2EwRp7LhG7JpKdmikooh8E-t" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card finance fade-in" id="pilier-3">
-        <div class="pillar-num">Pilier III</div>
-        <h3>Financement public</h3>
-        <div class="pillar-tagline">Transparence et contrôle des flux. Réallouer avant de taxer.</div>
-        <div class="pillar-stat">Auditer · plafonner · sanctuariser</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-03-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Associations · immigration et intégration</div>
-            <div class="pillar-highlight-num">+ 52 %</div>
-            <div class="pillar-highlight-text">de financements publics entre 2019 et 2023, quand les demandes d'asile progressaient de 7,4 % (Cour des comptes)</div>
+      </details>
+
+      <details class="pilier" id="pilier-17">
+        <summary>
+          <span class="p-num" aria-hidden="true">XVII</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier XVII : </span>Propreté publique et responsabilité du déchet<span class="p-chantier">Chantier</span></span>
+            <span class="p-chiffre">10 M€</span>
+            <span class="p-legende">par an : coût des mégots jetés au sol pour la Ville de Paris (2025)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Libre de fumer, pas d'en laisser le déchet à tous.</p>
+          <p class="p-mots">Consigne mégots · paquet tracé · responsabilité du producteur</p>
+          <p class="p-note"><strong>Chantier</strong> · synthèse arbitrée en cours · montant de la consigne non arrêté.</p>
+          <div class="p-actions">
+            <a class="a-qcm" href="./qcm-consigne-megots/">Questionnaire</a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1cHODecRzbfVtuyPZMT2IamG_hD9TuEfK" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <p class="p-note">Ville de Paris (2025) · 4 à 5 millions de mégots ramassés par jour. Les 10 M€ correspondent au coût du jet de mégots au sol pour la collectivité. Source : Ville de Paris, communiqué du 20 mai 2025.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ===== Famille 3 ===== -->
+  <section class="famille" id="argent" aria-labelledby="f3">
+    <h2 class="famille-titre" id="f3">L'argent public, ligne par ligne</h2>
+    <p class="famille-sous">Où va l'argent, ce qu'il rapporte, ce qu'il coûte.</p>
+    <div class="famille-liste">
+
+      <details class="pilier" id="pilier-3">
+        <summary>
+          <span class="p-num" aria-hidden="true">III</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier III : </span>Financement public</span>
+            <span class="p-chiffre">+ 52 %</span>
+            <span class="p-legende">de financements publics aux associations (immigration et intégration) entre 2019 et 2023, quand les demandes d'asile progressaient de 7,4 % (Cour des comptes)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Transparence et contrôle des flux. Réallouer avant de taxer.</p>
+          <p class="p-mots">Auditer · plafonner · sanctuariser</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-03-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1Rb9XlrJ1D1XT2ePsBv1w2BeatuRViEr5" target="_blank" rel="noopener">Approfondir sur Drive</a>
           </div>
         </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1Rb9XlrJ1D1XT2ePsBv1w2BeatuRViEr5" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card aspa fade-in" id="pilier-4">
-        <div class="pillar-num">Pilier IV</div>
-        <h3>Réparation des retraites</h3>
-        <div class="pillar-tagline">Minimum vieillesse, ASPA et justice contributive.</div>
-        <div class="pillar-stat">Solidarité nationale · cotisations · dignité des anciens</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-04-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-aspa/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Idée force</div>
-            <div class="pillar-highlight-num">Justice contributive</div>
-            <div class="pillar-highlight-text">protéger les anciens pauvres sans effacer l'effort de ceux qui ont cotisé</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/18C07IvzhOqNGJPjmouuA2jEq9Y7dH-Ru" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card grandage fade-in" id="pilier-5">
-        <div class="pillar-num">Pilier V</div>
-        <h3>Grand âge et EHPAD</h3>
-        <div class="pillar-tagline">Prévenir coûte moins cher que réparer.</div>
-        <div class="pillar-stat">Ratios de soignants · domicile d’abord · retour des soignants</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-05-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./fiches/pilier-05-annexe-chiffres.pdf" target="_blank" class="pillar-link" rel="noopener">Annexe chiffrée → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">En 2050 (DREES)</div>
-            <div class="pillar-highlight-num">2,8 millions</div>
-            <div class="pillar-highlight-text">de seniors en perte d’autonomie, contre 2,0 millions en 2021</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1PZI6_h6qPxwElrGvsxzPyUD1JkqiK7xb" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card batiment fade-in" id="pilier-6">
-        <div class="pillar-num">Pilier VI</div>
-        <h3>Bâtiment et métiers utiles</h3>
-        <div class="pillar-tagline">Le climat se sauve avec une truelle, pas avec un clavier.</div>
-        <div class="pillar-stat">Rendre les métiers du bâtiment attractifs : sortie de chantier garantie, pause de récupération, lycées d’excellence</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-06-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-pilier-vi/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-          <a href="./fiches/pilier-06-jeunes-france-allemagne.pdf" target="_blank" class="pillar-link" rel="noopener">Jeunes sans emploi : France-Allemagne → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Couvreurs (France Travail, 2026)</div>
-            <div class="pillar-highlight-num">79,6 %</div>
-            <div class="pillar-highlight-text">des recrutements annoncés difficiles par l'employeur, contre un peu plus de 4 sur 10 en moyenne, 43,8 % (France Travail, BMO 2026, relevé du 16 octobre 2026)</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1Yvv5-jfYPTZu0CMaLeCJ8xfdxHipY7py" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card culture fade-in" id="pilier-7">
-        <div class="pillar-num">Pilier VII</div>
-        <h3>Éconologie culturelle</h3>
-        <div class="pillar-tagline">La culture comme bien commun. Vérité des coûts, justice territoriale.</div>
-        <div class="pillar-stat">Reçu fiscal culturel · création de proximité</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-07-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./fiches/pilier-07-annexe-chiffrage.pdf" target="_blank" class="pillar-link" rel="noopener">Annexe de chiffrage → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Idée force</div>
-            <div class="pillar-highlight-num">Reçu fiscal culturel</div>
-            <div class="pillar-highlight-text">chaque contribuable voit ce qu'il finance</div>
-          </div>
+      </details>
+
+      <details class="pilier" id="pilier-7">
+        <summary>
+          <span class="p-num" aria-hidden="true">VII</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier VII : </span>Éconologie culturelle</span>
+            <span class="p-chiffre">× 60</span>
+            <span class="p-legende">à l'Opéra de Paris, le contribuable paie environ 60 fois plus par place qu'au cinéma</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">La culture comme bien commun. Vérité des coûts, justice territoriale.</p>
+          <p class="p-mots">Reçu fiscal culturel : chaque contribuable voit ce qu'il finance · création de proximité</p>
           <figure class="p7-billets" aria-label="Deux billets : ce que paie le spectateur et ce que paie l'argent public, au cinéma et à l'Opéra de Paris">
             <div class="p7-kicker">Ce que vous payez · ce que paie le contribuable</div>
-            <div class="p7-billet p7-cinema">
+            <div class="p7-billet">
               <div class="p7-entete"><span class="p7-lieu">Cinéma de quartier</span><span class="p7-oeuvre">Séance du soir</span></div>
               <div class="p7-ligne"><span>Vous payez</span><strong>12,50 €</strong></div>
               <div class="p7-ligne p7-public"><span>Financement public moyen</span><strong>≈ 2 €</strong></div>
             </div>
-            <div class="p7-billet p7-opera">
+            <div class="p7-billet">
               <div class="p7-entete"><span class="p7-lieu">Opéra national de Paris</span><span class="p7-oeuvre">La Traviata</span></div>
               <div class="p7-ligne"><span>Vous payez</span><strong>95 €</strong></div>
               <div class="p7-ligne p7-public"><span>Financement public moyen</span><strong>≈ 120 €</strong></div>
@@ -529,212 +568,239 @@ section[id]{scroll-margin-top:84px}
             <p class="p7-slogan">Le peuple paie, l'élite assiste.</p>
             <figcaption class="p7-sources">Calcul : soutien du CNC au cinéma 315,5&nbsp;M€ ÷ 156,2&nbsp;M d'entrées (CNC, 2025), financé surtout par des taxes sur le secteur · subvention de l'État 100,7&nbsp;M€ ÷ 829&nbsp;274 spectateurs (Opéra de Paris, 2024). Prix des places : exemples.</figcaption>
           </figure>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-07-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1-NNbZHu74KTL4DamRaNJ6YJ-8PU6PtqL" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <ul class="p-plus">
+            <li><a href="./fiches/pilier-07-annexe-chiffrage.pdf" target="_blank" rel="noopener">Annexe de chiffrage →<span class="nt">(PDF)</span></a></li>
+          </ul>
         </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1-NNbZHu74KTL4DamRaNJ6YJ-8PU6PtqL" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card frontaliers fade-in" id="pilier-8">
-        <div class="pillar-num">Pilier VIII</div>
-        <h3>Frontaliers et capital humain</h3>
-        <div class="pillar-tagline">Cotisé là-bas, indemnisé ici.</div>
-        <div class="pillar-stat">Assurance chômage · compensation genevoise · modèle monégasque</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-08-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Assurance chômage (Unédic, 2025)</div>
-            <div class="pillar-highlight-num">860 M€</div>
-            <div class="pillar-highlight-text">de surcoût net : environ un quart seulement remboursé par les pays d’emploi</div>
+      </details>
+
+      <details class="pilier" id="pilier-11">
+        <summary>
+          <span class="p-num" aria-hidden="true">XI</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier XI : </span>Mobilité et sécurité routière</span>
+            <span class="p-chiffre">38 %</span>
+            <span class="p-legende">des dépenses financées par les amendes routières vont au désendettement de l'État, sans lien avec la sécurité routière (Cour des comptes, 2024)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Compter les morts, pas les amendes.</p>
+          <p class="p-mots">Bilan des radars · dépistage rééquilibré · prévention embarquée sans transmission</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-11-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1G8u7BKfc968MCLbKRdhBsPqUE32AOwvr" target="_blank" rel="noopener">Approfondir sur Drive</a>
           </div>
         </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1eGxc6AfZ5yB_lNPMnEv0E91LpdL-Iq2O" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card agriculture fade-in" id="pilier-9">
-        <div class="pillar-num">Pilier IX</div>
-        <h3>Agriculture et alimentation souveraine</h3>
-        <div class="pillar-tagline">Ne pas importer ce qu’on interdit de produire.</div>
-        <div class="pillar-stat">Clauses miroirs · contingents plafonnés · transition payée avant d’être imposée</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-09-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./fiches/pilier-09-annexe-chiffres.pdf" target="_blank" class="pillar-link" rel="noopener">Annexe chiffrée → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <a href="./fiches/pilier-09-note-loue.pdf" target="_blank" class="pillar-link" rel="noopener">La Loue, le karst, le Comté → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Ministère de l’Agriculture (1982 → 2023)</div>
-            <div class="pillar-highlight-num">× 3</div>
-            <div class="pillar-highlight-text">d’agents par exploitation : 1 pour 40 fermes, puis 1 pour 13</div>
+      </details>
+
+      <details class="pilier" id="pilier-14">
+        <summary>
+          <span class="p-num" aria-hidden="true">XIV</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier XIV : </span>Amortissement de la dette<span class="p-chantier">Chantier</span></span>
+            <span class="p-chiffre">3 595,5 Md€</span>
+            <span class="p-legende">de dette publique, soit 119 % du PIB (Insee, fin juin 2026)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">On ne solde pas une année de production en la reclassant.</p>
+          <p class="p-mots">Excédent primaire · pensions futures plafonnées · énergie et logement</p>
+          <p class="p-note"><strong>Chantier non audité</strong> · hors des quatorze piliers publiés du guide.</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-14-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-qcm" href="./bulletin-arbitrage/">Bulletin d'arbitrage</a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1PM4H7OwRFBzJRRbaAdz8PwTFlDr0Z7-8" target="_blank" rel="noopener">Approfondir sur Drive</a>
           </div>
+          <ul class="p-plus">
+            <li><a href="https://docs.google.com/document/d/14euMeYqkHyOXcSRchiKzVZF1ueERZYiBpU3lMgizYa0/edit" target="_blank" rel="noopener">Document maître →</a></li>
+          </ul>
+          <p class="p-note">[FAIT] Stock de départ ; les trajectoires d'amortissement restent des hypothèses.</p>
+          <p class="p-note">Le XIV traite l'amortissement du stock de dette ; voir le <a href="#pilier-3">III pour les agences et flux de financement public</a>, le <a href="#pilier-4">IV pour la réparation des petites retraites</a> et le <a href="#pilier-11">XI pour le budget de mobilité et de sécurité routière</a>.</p>
         </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1r77kIiQk4FtEXrkrVPAEakowyf5YPUet" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card textile fade-in" id="pilier-10">
-        <div class="pillar-num">Pilier X</div>
-        <h3>Textile, habillement, chaussure</h3>
-        <div class="pillar-tagline">Fabriquer ici, garder ce qui sert.</div>
-        <div class="pillar-stat">Aides liées à l’emploi · lin filé en France · achat durable accessible</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-10-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-textile/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-          <a href="./fiches/pilier-10-note-autonomie.pdf" target="_blank" class="pillar-link" rel="noopener">Et si la France fabriquait tout ce qu’elle porte ? → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <a href="./fiches/pilier-10-annexe-lin-eau.pdf" target="_blank" class="pillar-link" rel="noopener">Le lin, l’eau et la matière française → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">S’habiller en France, au nécessaire</div>
-            <div class="pillar-highlight-num">580 000</div>
-            <div class="pillar-highlight-text">emplois directs, pour 15 vêtements et 2 paires par an au lieu de 43 et 4, à budget presque égal (estimation)</div>
+      </details>
+
+      <details class="pilier" id="pilier-15">
+        <summary>
+          <span class="p-num" aria-hidden="true">XV</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier XV : </span>Fraude fiscale</span>
+            <span class="p-chiffre">11,4 Md€</span>
+            <span class="p-legende">réellement encaissés en 2025, sur 17,1 Md€ réclamés après contrôle fiscal (DGFiP)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Vérité des chiffres, justice contributive et souveraineté fiscale effective.</p>
+          <p class="p-mots">Écart fiscal · TVA · contrôle fiscal · facilitateurs</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-15-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-qcm" href="./qcm-fraude-fiscale/">Questionnaire</a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1cBKx29h6s8-ScCNyh79Epydrtgnco8h9" target="_blank" rel="noopener">Approfondir sur Drive</a>
           </div>
+          <p class="p-note">Ce chiffre mesure le résultat du contrôle fiscal, pas le montant de la fraude : il n'existe aucun chiffre central unique. Il faut distinguer faits DGFiP, estimations sectorielles et ordres de grandeur non officiels. Source : DGFiP, bilan du contrôle fiscal 2025 (avril 2026).</p>
         </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1cLXuZELeKz8G0vlnDDU_IoXFX2b2NdoS" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card mobilite fade-in" id="pilier-11">
-        <div class="pillar-num">Pilier XI</div>
-        <h3>Mobilité et sécurité routière</h3>
-        <div class="pillar-tagline">Compter les morts, pas les amendes.</div>
-        <div class="pillar-stat">Bilan des radars · dépistage rééquilibré · prévention embarquée sans transmission</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-11-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Amendes routières (Cour des comptes, 2024)</div>
-            <div class="pillar-highlight-num">38 %</div>
-            <div class="pillar-highlight-text">des dépenses vont au désendettement de l’État, sans lien avec la sécurité routière</div>
+      </details>
+
+      <details class="pilier" id="pilier-16">
+        <summary>
+          <span class="p-num" aria-hidden="true">XVI</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier XVI : </span>Autoroutes et fin des concessions<span class="p-chantier">Chantier</span></span>
+            <span class="p-chiffre">2031</span>
+            <span class="p-legende">premières grandes concessions à échéance (2031-2036) : les biens de retour reviennent gratuitement à l'autorité concédante</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Ne pas payer pour récupérer.</p>
+          <p class="p-mots">Concessions · biens de retour · souveraineté des infrastructures</p>
+          <p class="p-note"><strong>Chantier</strong> · non encore publié.</p>
+          <div class="p-actions">
+            <a class="a-drive" href="https://drive.google.com/drive/folders/12xDU2b_lUGEj3ADsyY1n-f5-4FTfu_0u" target="_blank" rel="noopener">Approfondir sur Drive</a>
           </div>
+          <p class="p-note">Les biens de retour reviennent de plein droit et gratuitement à l'autorité concédante. Source : Sénat, rapport n° 709 (2020) · ART.</p>
         </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1G8u7BKfc968MCLbKRdhBsPqUE32AOwvr" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card monetique fade-in" id="pilier-12">
-        <div class="pillar-num">Pilier XII</div>
-        <h3>Friction monétique</h3>
-        <div class="pillar-tagline">Être payé ne doit pas coûter plus cher aux petits.</div>
-        <div class="pillar-stat">Coût tout compris affiché · plafond des micro-paiements · réseau national</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-12-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Réseau national CB</div>
-            <div class="pillar-highlight-num">− 26 points</div>
-            <div class="pillar-highlight-text">de part des paiements en quatre ans, au profit de Visa et Mastercard (estimation)</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1lPE-79hM-fZV0kPh3mpC4khGkLVNPjHY" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card democratie fade-in" id="pilier-13">
-        <div class="pillar-num">Pilier XIII</div>
-        <h3>Démocratie décisionnelle</h3>
-        <div class="pillar-tagline">Décider sur les sujets, pas seulement sur les visages.</div>
-        <div class="pillar-stat">Bulletin décisionnel · double vote · matrice des partis</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-13-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-democratie-decisionnelle/" class="pillar-qcm-button">Remplir mon bulletin de vote →</a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Confiance (Cevipof, 2025)</div>
-            <div class="pillar-highlight-num">61 % / 24 %</div>
-            <div class="pillar-highlight-text">maire contre Assemblée nationale</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1O_RbUmXr7YyqglsldIUPgu7lGo3ZFj-w" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card dette fade-in" id="pilier-14">
-        <div class="pillar-num">Pilier XIV</div>
-        <h3>Amortissement de la dette</h3>
-        <div class="pillar-tagline">On ne solde pas une année de production en la reclassant.</div>
-        <div class="pillar-stat">Excédent primaire · pensions futures plafonnées · énergie et logement</div>
-        <div class="pillar-actions">
-          <p class="pillar-highlight-label">Chantier non audité · hors des quatorze piliers publiés du guide</p>
-          <a href="./fiches/pilier-14-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="https://docs.google.com/document/d/14euMeYqkHyOXcSRchiKzVZF1ueERZYiBpU3lMgizYa0/edit" target="_blank" class="pillar-link" rel="noopener">Document maître →</a>
-          <a href="./bulletin-arbitrage/index.html" class="pillar-link">Bulletin d'arbitrage →</a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Dette publique (Insee, fin juin 2026)</div>
-            <div class="pillar-highlight-num">3 595,5 Md€ · 119 % du PIB</div>
-            <div class="pillar-highlight-text">[FAIT] Stock de départ ; les trajectoires d’amortissement restent des hypothèses.</div>
-          </div>
-          <p class="pillar-highlight-text">Le XIV traite l’amortissement du stock de dette ; voir le <a href="#pilier-3">III pour les agences et flux de financement public</a>, le <a href="#pilier-4">IV pour la réparation des petites retraites</a> et le <a href="#pilier-11">XI pour le budget de mobilité et de sécurité routière</a>.</p>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1PM4H7OwRFBzJRRbaAdz8PwTFlDr0Z7-8" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card fraude fade-in" id="pilier-15">
-        <div class="pillar-num">Pilier XV</div>
-        <h3>Fraude fiscale</h3>
-        <div class="pillar-tagline">Vérité des chiffres, justice contributive et souveraineté fiscale effective.</div>
-        <div class="pillar-stat">Écart fiscal · TVA · contrôle fiscal · facilitateurs</div>
-        <div class="pillar-actions">
-          <a href="./fiches/pilier-15-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Lire la fiche →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-fraude-fiscale/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Idée force</div>
-            <div class="pillar-highlight-num">Aucun chiffre central unique</div>
-            <div class="pillar-highlight-text">distinguer faits DGFiP, estimations sectorielles et ordres de grandeur non officiels</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1cBKx29h6s8-ScCNyh79Epydrtgnco8h9" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card autoroutes fade-in" id="pilier-16">
-        <div class="pillar-num">Pilier XVI</div>
-        <h3>Autoroutes et fin des concessions</h3>
-        <div class="pillar-tagline">Ne pas payer pour récupérer.</div>
-        <div class="pillar-stat">Concessions · biens de retour · souveraineté des infrastructures</div>
-        <div class="pillar-actions">
-          <p class="pillar-highlight-label">Chantier · non encore publié</p>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-text">2031–2036 · premières grandes concessions à échéance ; les biens de retour reviennent de plein droit et gratuitement à l’autorité concédante.</div>
-          </div>
-          <p class="pillar-highlight-text">Source : Sénat, rapport n° 709 (2020) · ART.</p>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/12xDU2b_lUGEj3ADsyY1n-f5-4FTfu_0u" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card proprete fade-in" id="pilier-17">
-        <div class="pillar-num">Pilier XVII</div>
-        <h3>Propreté publique et responsabilité du déchet</h3>
-        <div class="pillar-tagline">Libre de fumer, pas d’en laisser le déchet à tous.</div>
-        <div class="pillar-stat">Consigne mégots · paquet tracé · responsabilité du producteur</div>
-        <div class="pillar-actions">
-          <p class="pillar-highlight-label">Chantier · synthèse arbitrée en cours · montant de la consigne non arrêté</p>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-text">Ville de Paris (2025) · coût estimé : 10 M€ par an · 4 à 5 millions de mégots ramassés par jour.</div>
-          </div>
-          <p class="pillar-highlight-text">Précision : les 10 M€ correspondent au coût du jet de mégots au sol pour la collectivité. Source : Ville de Paris, communiqué du 20 mai 2025.</p>
-          <a href="./qcm-consigne-megots/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1cHODecRzbfVtuyPZMT2IamG_hD9TuEfK" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
+      </details>
+
     </div>
-  </div>
+  </section>
+
+  <!-- ===== Famille 4 ===== -->
+  <section class="famille" id="generations" aria-labelledby="f4">
+    <h2 class="famille-titre" id="f4">Protéger les générations</h2>
+    <p class="famille-sous">Retraites, grand âge, frontaliers.</p>
+    <div class="famille-liste">
+
+      <details class="pilier" id="pilier-4">
+        <summary>
+          <span class="p-num" aria-hidden="true">IV</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier IV : </span>Réparation des retraites</span>
+            <span class="p-chiffre">754 460</span>
+            <span class="p-legende">personnes au minimum vieillesse fin 2024, en hausse de 4,3 % en un an (DREES)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Justice contributive : protéger les anciens pauvres sans effacer l'effort de ceux qui ont cotisé.</p>
+          <p class="p-mots">Minimum vieillesse, ASPA · solidarité nationale · cotisations · dignité des anciens</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-04-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-qcm" href="./qcm-aspa/">Questionnaire</a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/18C07IvzhOqNGJPjmouuA2jEq9Y7dH-Ru" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <p class="p-note">Source : DREES, minimum vieillesse, données 2024 (décembre 2025). Les allocataires de l'Aspa reçoivent en moyenne 530 € par mois.</p>
+        </div>
+      </details>
+
+      <details class="pilier" id="pilier-5">
+        <summary>
+          <span class="p-num" aria-hidden="true">V</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier V : </span>Grand âge et EHPAD</span>
+            <span class="p-chiffre">2,8 millions</span>
+            <span class="p-legende">de seniors en perte d'autonomie en 2050, contre 2,0 millions en 2021 (DREES)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Prévenir coûte moins cher que réparer.</p>
+          <p class="p-mots">Ratios de soignants · domicile d'abord · retour des soignants</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-05-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1PZI6_h6qPxwElrGvsxzPyUD1JkqiK7xb" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <ul class="p-plus">
+            <li><a href="./fiches/pilier-05-annexe-chiffres.pdf" target="_blank" rel="noopener">Annexe chiffrée →<span class="nt">(PDF)</span></a></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="pilier" id="pilier-8">
+        <summary>
+          <span class="p-num" aria-hidden="true">VIII</span>
+          <span class="p-tete">
+            <span class="p-titre"><span class="sr-only">Pilier VIII : </span>Frontaliers et capital humain</span>
+            <span class="p-chiffre">860 M€</span>
+            <span class="p-legende">de surcoût net pour l'assurance chômage en 2025 : environ un quart seulement remboursé par les pays d'emploi (Unédic)</span>
+          </span>
+          <svg class="p-fleche" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </summary>
+        <div class="p-corps">
+          <p class="p-idee">Cotisé là-bas, indemnisé ici.</p>
+          <p class="p-mots">Assurance chômage · compensation genevoise · modèle monégasque</p>
+          <div class="p-actions">
+            <a class="a-fiche" href="./fiches/pilier-08-aller-droit-au-but.pdf" target="_blank" rel="noopener">Lire la fiche<span class="nt">(PDF, nouvel onglet)</span></a>
+            <a class="a-drive" href="https://drive.google.com/drive/folders/1eGxc6AfZ5yB_lNPMnEv0E91LpdL-Iq2O" target="_blank" rel="noopener">Approfondir sur Drive</a>
+          </div>
+          <p class="p-note">En 2022, 450 000 résidents de France travaillaient en Suisse, au Luxembourg, en Allemagne ou en Belgique. Quand l'un d'eux perd son emploi, c'est l'assurance chômage française qui l'indemnise, alors qu'il a cotisé dans son pays d'emploi. Monaco, lui, cotise au régime français. Source : Unédic, 2025.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
 </section>
 
-<div class="position-dark" id="positionner">
-  <div class="inner">
-    <div class="section-head fade-in">
-      <div class="section-kicker">Bulletin citoyen dynamique</div>
-      <h2>Quel <em>parti politique</em> porte vos idées ?</h2>
-      <p class="section-sub">Deux entrées complémentaires : voter sur les sujets aujourd'hui, ou explorer ce que d'autres choix politiques passés auraient pu produire.</p>
+<!-- ===== Décider ===== -->
+<div class="wrap">
+  <section class="decider" id="decider" aria-labelledby="decider-titre">
+    <span id="positionner"></span>
+    <div class="kicker">Décider · Pilier XIII</div>
+    <h2 id="decider-titre">À vous d'arbitrer : le vote responsable.</h2>
+    <p>Chaque pilier de la doctrine apporte des leviers chiffrés et sourcés. Le bulletin d'arbitrage les réunit : vous cochez, vous déplacez les curseurs, et vous voyez ce que chaque choix coûte ou fait perdre.</p>
+    <p>Notre objectif : qu'en France, chaque citoyen puisse un jour, au moment de sa déclaration de revenus, répartir l'effort budgétaire en connaissance de cause, puis découvrir les choix de ses compatriotes.</p>
+    <p><strong>Dès 2026, c'est techniquement possible.</strong> Il commencerait par une consultation budgétaire citoyenne, facultative et anonyme. Ensuite viendrait une part réelle de l'impôt sur le revenu, de 1 à 5 %, affectée selon les choix exprimés, comme le fait déjà l'Italie.</p>
+    <blockquote>« Tous les Citoyens ont le droit de constater, par eux-mêmes ou par leurs représentants, la nécessité de la contribution publique […] d'en suivre l'emploi. » <cite>— Déclaration des droits de l'homme et du citoyen, article 14</cite></blockquote>
+    <a class="btn btn-primary" href="bulletin-arbitrage/">Essayer le bulletin d'arbitrage →</a>
+    <p class="decider-note">Le bulletin s'appuie sur le Pilier XIV, encore en chantier et non audité.</p>
+
+    <div class="outils">
+      <a class="outil" href="./qcm-democratie-decisionnelle/" id="pilier-13">
+        <span class="kicker">Pilier XIII · Bulletin citoyen</span>
+        <h3>Et si on votait différemment ?<span class="beta">BÊTA</span></h3>
+        <p>Répondez à 12 axes concrets, puis découvrez les partis politiques les plus proches, les écarts et les angles morts démocratiques. Version 2 du 18 octobre 2026 : 15 partis. Version de travail en audit : la matrice des partis est consolidée au fur et à mesure que les sources officielles sont vérifiées.</p>
+        <span class="cta">Remplir mon bulletin →</span>
+      </a>
+      <a class="outil" href="./qcm-general/">
+        <span class="kicker">Histoire alternative</span>
+        <h3>Et si on avait voté différemment ?</h3>
+        <p>Explorer les conséquences possibles de choix électoraux passés et comparer leurs effets économiques, sociaux et productifs.</p>
+        <span class="cta">Explorer les scénarios →</span>
+      </a>
     </div>
-    <div class="manifesto-text fade-in">
-      <span class="line">Le peuple informé <span class="verb">vote</span>.</span>
-      <span class="line">Les élus <span class="verb">exécutent</span>.</span>
-      <span class="line">Les partis politiques <span class="verb">se positionnent</span>.</span>
-      <span class="line">La matrice <span class="verb">vérifie</span>.</span>
-    </div>
-    <div class="position-actions">
-      <a href="./qcm-democratie-decisionnelle/" class="position-cta fade-in">Et si on votait différemment ? <span>→</span><span class="label-beta">BÊTA</span></a>
-      <a href="./qcm-general/" class="position-cta secondary fade-in">Et si on avait voté différemment ? <span>→</span></a>
-    </div>
-    <p class="position-note fade-in">Version de travail en audit. La matrice des partis politiques est consolidée au fur et à mesure que les sources officielles sont vérifiées et archivées.</p>
-  </div>
+    <ul class="p-plus" style="margin-top:16px">
+      <li><a href="./fiches/pilier-13-aller-droit-au-but.pdf" target="_blank" rel="noopener">Pilier XIII, Démocratie décisionnelle : lire la fiche →<span class="nt">(PDF)</span></a></li>
+      <li><a href="https://drive.google.com/drive/folders/1O_RbUmXr7YyqglsldIUPgu7lGo3ZFj-w" target="_blank" rel="noopener">Approfondir le Pilier XIII sur Drive →</a></li>
+    </ul>
+    <p class="p-note">Décider sur les sujets, pas seulement sur les visages. Confiance (Cevipof, 2025) : 61 % pour le maire, 24 % pour l'Assemblée nationale.</p>
+    <p class="manifeste">Le peuple informé <span class="verb">vote</span>. Les élus <span class="verb">exécutent</span>. Les partis politiques <span class="verb">se positionnent</span>. La matrice <span class="verb">vérifie</span>.</p>
+  </section>
 </div>
 
-<section class="section" id="methode">
-  <div class="section-head fade-in">
-    <div class="section-kicker">Méthode</div>
-    <h2 class="section-title">Le <em>comité de rédaction</em>.</h2>
-  </div>
-  <p class="committee-intro fade-in">La doctrine est construite par <em>triangulation contradictoire</em>. Chaque thèse est soumise à cinq intelligences artificielles aux biais et architectures distincts. Leurs désaccords révèlent les angles morts. Les arbitrages restent humains.</p>
+<!-- ===== Méthode ===== -->
+<section class="methode" id="methode" aria-labelledby="methode-titre">
+  <div class="kicker">Méthode</div>
+  <h2 id="methode-titre">Le <em>comité de rédaction</em>.</h2>
+  <p class="methode-intro">La doctrine est construite par <em>triangulation contradictoire</em>. Chaque thèse est soumise à cinq intelligences artificielles aux biais et architectures distincts. Leurs désaccords révèlent les angles morts. Les arbitrages restent humains.</p>
   <div class="ia-grid">
-    <div class="ia-card fade-in"><div class="ia-mark claude">C</div><div class="ia-name">Claude</div><div class="ia-pub">Anthropic</div><div class="ia-role">Architecte, intégrateur</div></div>
-    <div class="ia-card fade-in"><div class="ia-mark gpt">G</div><div class="ia-name">ChatGPT</div><div class="ia-pub">OpenAI</div><div class="ia-role">Rigueur institutionnelle</div></div>
-    <div class="ia-card fade-in"><div class="ia-mark gemini">G</div><div class="ia-name">Gemini</div><div class="ia-pub">Google</div><div class="ia-role">Corrélations macro</div></div>
-    <div class="ia-card fade-in"><div class="ia-mark grok">X</div><div class="ia-name">Grok</div><div class="ia-pub">xAI</div><div class="ia-role">Données de terrain</div></div>
-    <div class="ia-card fade-in"><div class="ia-mark perplexity">P</div><div class="ia-name">Perplexity</div><div class="ia-pub">Perplexity AI</div><div class="ia-role">Sourcing systématique</div></div>
+    <div class="ia-card"><div class="ia-mark claude" aria-hidden="true">C</div><div class="ia-name">Claude</div><div class="ia-pub">Anthropic</div><div class="ia-role">Architecte, intégrateur</div></div>
+    <div class="ia-card"><div class="ia-mark gpt" aria-hidden="true">GPT</div><div class="ia-name">ChatGPT</div><div class="ia-pub">OpenAI</div><div class="ia-role">Rigueur institutionnelle</div></div>
+    <div class="ia-card"><div class="ia-mark gemini" aria-hidden="true">Ge</div><div class="ia-name">Gemini</div><div class="ia-pub">Google</div><div class="ia-role">Corrélations macro</div></div>
+    <div class="ia-card"><div class="ia-mark grok" aria-hidden="true">X</div><div class="ia-name">Grok</div><div class="ia-pub">xAI</div><div class="ia-role">Données de terrain</div></div>
+    <div class="ia-card"><div class="ia-mark perplexity" aria-hidden="true">P</div><div class="ia-name">Perplexity</div><div class="ia-pub">Perplexity AI</div><div class="ia-role">Sourcing systématique</div></div>
   </div>
-  <p class="committee-note">Anthropic, OpenAI, Google, xAI et Perplexity AI sont des marques de leurs propriétaires respectifs. Leur mention ne suggère aucun partenariat ni endossement.</p>
+  <p class="methode-note">Anthropic, OpenAI, Google, xAI et Perplexity AI sont des marques de leurs propriétaires respectifs. Leur mention ne suggère aucun partenariat ni endossement.</p>
 </section>
+</main>
 
 <footer class="colophon">
-  <div class="colophon-inner">
+  <div class="wrap">
     <p class="colophon-quote">Une société prospère ne peut pas durablement dissimuler ce qu'elle produit, ce qu'elle consomme, et qui paie réellement.</p>
     <div class="colophon-cols">
       <div class="colophon-brand">
@@ -744,28 +810,29 @@ section[id]{scroll-margin-top:84px}
       <div class="colophon-col">
         <h4>Piliers</h4>
         <ul>
-          <li><a href="./fiches/pilier-01-aller-droit-au-but.pdf" target="_blank" rel="noopener">Énergie <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-02-aller-droit-au-but.pdf" target="_blank" rel="noopener">Garantie décennale <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-03-aller-droit-au-but.pdf" target="_blank" rel="noopener">Financement <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-04-aller-droit-au-but.pdf" target="_blank" rel="noopener">Retraites & minimum vieillesse <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-05-aller-droit-au-but.pdf" target="_blank" rel="noopener">Grand âge et EHPAD <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-06-aller-droit-au-but.pdf" target="_blank" rel="noopener">Bâtiment et métiers utiles <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-07-aller-droit-au-but.pdf" target="_blank" rel="noopener">Culture <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-08-aller-droit-au-but.pdf" target="_blank" rel="noopener">Frontaliers et capital humain <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-09-aller-droit-au-but.pdf" target="_blank" rel="noopener">Agriculture et alimentation <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-10-aller-droit-au-but.pdf" target="_blank" rel="noopener">Textile, habillement, chaussure <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-11-aller-droit-au-but.pdf" target="_blank" rel="noopener">Mobilité et sécurité routière <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-12-aller-droit-au-but.pdf" target="_blank" rel="noopener">Friction monétique <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-13-aller-droit-au-but.pdf" target="_blank" rel="noopener">Démocratie décisionnelle <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-14-aller-droit-au-but.pdf" target="_blank" rel="noopener">Amortissement de la dette · chantier non audité <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-15-aller-droit-au-but.pdf" target="_blank" rel="noopener">Fraude fiscale <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="#pilier-16">Autoroutes et fin des concessions · chantier non encore publié</a></li>
-          <li><a href="#pilier-17">Propreté publique et responsabilité du déchet · chantier non encore publié</a></li>
+          <li><a href="./fiches/pilier-01-aller-droit-au-but.pdf" target="_blank" rel="noopener">I · Énergie <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-02-aller-droit-au-but.pdf" target="_blank" rel="noopener">II · Garantie décennale <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-03-aller-droit-au-but.pdf" target="_blank" rel="noopener">III · Financement <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-04-aller-droit-au-but.pdf" target="_blank" rel="noopener">IV · Retraites &amp; minimum vieillesse <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-05-aller-droit-au-but.pdf" target="_blank" rel="noopener">V · Grand âge et EHPAD <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-06-aller-droit-au-but.pdf" target="_blank" rel="noopener">VI · Bâtiment et métiers utiles <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-07-aller-droit-au-but.pdf" target="_blank" rel="noopener">VII · Culture <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-08-aller-droit-au-but.pdf" target="_blank" rel="noopener">VIII · Frontaliers et capital humain <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-09-aller-droit-au-but.pdf" target="_blank" rel="noopener">IX · Agriculture et alimentation <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-10-aller-droit-au-but.pdf" target="_blank" rel="noopener">X · Textile, habillement, chaussure <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-11-aller-droit-au-but.pdf" target="_blank" rel="noopener">XI · Mobilité et sécurité routière <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-12-aller-droit-au-but.pdf" target="_blank" rel="noopener">XII · Friction monétique <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-13-aller-droit-au-but.pdf" target="_blank" rel="noopener">XIII · Démocratie décisionnelle <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-14-aller-droit-au-but.pdf" target="_blank" rel="noopener">XIV · Amortissement de la dette · chantier non audité <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-15-aller-droit-au-but.pdf" target="_blank" rel="noopener">XV · Fraude fiscale <span class="nt">(PDF)</span></a></li>
+          <li><a href="#pilier-16">XVI · Autoroutes et fin des concessions · chantier non encore publié</a></li>
+          <li><a href="#pilier-17">XVII · Propreté publique et responsabilité du déchet · chantier non encore publié</a></li>
         </ul>
       </div>
       <div class="colophon-col">
         <h4>Outils citoyens</h4>
         <ul>
+          <li><a href="bulletin-arbitrage/">Bulletin d'arbitrage</a></li>
           <li><a href="./qcm-democratie-decisionnelle/">Et si on votait différemment ?</a></li>
           <li><a href="./qcm-general/">Et si on avait voté différemment ?</a></li>
           <li><a href="./qcm-energie/">Énergie — en savoir plus</a></li>
@@ -774,33 +841,87 @@ section[id]{scroll-margin-top:84px}
           <li><a href="./qcm-textile/">Textile — en savoir plus</a></li>
           <li><a href="./qcm-pilier-vi/">Bâtiment et métiers utiles — questionnaire</a></li>
           <li><a href="./qcm-consigne-megots/">Consigne mégots — questionnaire</a></li>
-          <li><a href="./fiches/pilier-02-dossier-complet.pdf" target="_blank" rel="noopener">Garantie décennale — dossier complet <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-05-annexe-chiffres.pdf" target="_blank" rel="noopener">Grand âge — annexe chiffrée <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-06-jeunes-france-allemagne.pdf" target="_blank" rel="noopener">Bâtiment — jeunes sans emploi, France-Allemagne <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-07-annexe-chiffrage.pdf" target="_blank" rel="noopener">Culture — annexe de chiffrage <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-09-annexe-chiffres.pdf" target="_blank" rel="noopener">Agriculture — annexe chiffrée <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-10-note-autonomie.pdf" target="_blank" rel="noopener">Textile — et si la France fabriquait tout ? <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-10-annexe-lin-eau.pdf" target="_blank" rel="noopener">Textile — le lin, l’eau et la matière française <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./doctrine-guide-de-lecture-v6.pdf" target="_blank" rel="noopener">Guide de lecture V6 · révision du 7 octobre 2026 <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
+          <li><a href="./fiches/pilier-02-dossier-complet.pdf" target="_blank" rel="noopener">Garantie décennale — dossier complet <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-05-annexe-chiffres.pdf" target="_blank" rel="noopener">Grand âge — annexe chiffrée <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-06-jeunes-france-allemagne.pdf" target="_blank" rel="noopener">Bâtiment — jeunes sans emploi, France-Allemagne <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-07-annexe-chiffrage.pdf" target="_blank" rel="noopener">Culture — annexe de chiffrage <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-09-annexe-chiffres.pdf" target="_blank" rel="noopener">Agriculture — annexe chiffrée <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-10-note-autonomie.pdf" target="_blank" rel="noopener">Textile — et si la France fabriquait tout ? <span class="nt">(PDF)</span></a></li>
+          <li><a href="./fiches/pilier-10-annexe-lin-eau.pdf" target="_blank" rel="noopener">Textile — le lin, l'eau et la matière française <span class="nt">(PDF)</span></a></li>
+          <li><a href="./doctrine-guide-de-lecture-v6.pdf" target="_blank" rel="noopener">Guide de lecture V6 · révision du 7 octobre 2026 <span class="nt">(PDF)</span></a></li>
           <li><a href="https://drive.google.com/drive/folders/1QN-Evu8Bo1g1A5DcjGR7NaL8bLfm6Bbx" target="_blank" rel="noopener">Drive complet</a></li>
         </ul>
       </div>
     </div>
-    <p class="section-sub">Dix-sept numéros, quatorze piliers publiés, trois chantiers : le XIV, Amortissement de la dette (non audité), le XVI, Autoroutes, et le XVII, Propreté publique et responsabilité du déchet (non encore publiés).</p>
     <div class="colophon-bottom">
-      <div>© 2026 — Jean Paul Poignand · Côte d'Azur & Besançon</div>
+      <div>© 2026 — Jean Paul Poignand · Côte d'Azur &amp; Besançon</div>
       <div>Architecture web : JP Poignand <em>avec assistance Claude (Anthropic)</em></div>
     </div>
   </div>
 </footer>
 
 <script>
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add('visible')}
-  })
-},{threshold:.08});
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+/* Affichage : thème clair/sombre et Vue rapide/complète. Choix gardés dans ce navigateur uniquement. */
+(function(){
+  'use strict';
+  var root=document.documentElement;
+  var btn=document.getElementById('affichage-btn');
+  var panel=document.getElementById('affichage-panel');
+  var piliers=[].slice.call(document.querySelectorAll('details.pilier'));
+  var sombreSysteme=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+
+  function lire(cle){try{return localStorage.getItem(cle);}catch(e){return null;}}
+  function ecrire(cle,val){try{localStorage.setItem(cle,val);}catch(e){}}
+  function themeActuel(){
+    var t=root.getAttribute('data-theme');
+    if(t==='light'||t==='dark'){return t;}
+    return sombreSysteme&&sombreSysteme.matches?'dark':'light';
+  }
+  function vueActuelle(){return root.getAttribute('data-vue')==='complete'?'complete':'rapide';}
+
+  function cocher(){
+    var t=themeActuel(),v=vueActuelle();
+    [].forEach.call(panel.querySelectorAll('input[name="theme"]'),function(i){i.checked=(i.value===t);});
+    [].forEach.call(panel.querySelectorAll('input[name="vue"]'),function(i){i.checked=(i.value===v);});
+  }
+
+  function appliquerVue(v){
+    if(v==='complete'){
+      root.setAttribute('data-vue','complete');
+      piliers.forEach(function(d){d.open=true;});
+    }else{
+      root.removeAttribute('data-vue');
+      var cible=location.hash?document.getElementById(location.hash.slice(1)):null;
+      piliers.forEach(function(d){d.open=(d===cible);});
+    }
+  }
+
+  function ouvrirCible(){
+    if(!location.hash){return;}
+    var el=document.getElementById(location.hash.slice(1));
+    if(el&&el.tagName==='DETAILS'&&!el.open){el.open=true;el.scrollIntoView();}
+  }
+
+  /* Panneau */
+  function fermer(){if(panel.hidden){return;}panel.hidden=true;btn.setAttribute('aria-expanded','false');}
+  btn.addEventListener('click',function(){
+    if(panel.hidden){cocher();panel.hidden=false;btn.setAttribute('aria-expanded','true');}
+    else{fermer();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&!btn.contains(e.target)){fermer();}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden){fermer();btn.focus();}});
+
+  panel.addEventListener('change',function(e){
+    var i=e.target;
+    if(i.name==='theme'){root.setAttribute('data-theme',i.value);ecrire('doctrine-theme',i.value);}
+    if(i.name==='vue'){appliquerVue(i.value);ecrire('doctrine-vue',i.value);}
+  });
+
+  /* Au chargement */
+  if(vueActuelle()==='complete'){appliquerVue('complete');}
+  ouvrirCible();
+  window.addEventListener('hashchange',ouvrirCible);
+})();
 </script>
 </body>
 </html>
