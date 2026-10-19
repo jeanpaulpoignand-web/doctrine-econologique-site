@@ -166,6 +166,29 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f8fa
 .reset-dialog-card h2{margin-top:0}
 .reset-dialog-card .vote-action-row{flex-direction:column}
 @media(max-width:859px){.vote-action-row{flex-direction:column}.vote-action-row .btn{width:100%}}
+/* Fiches de lecture facultatives — aucune réponse enregistrée à l'ouverture. */
+.question-actions{display:flex;align-items:stretch;gap:12px;flex-wrap:wrap}
+.question-actions .no-opinion{flex:0 0 auto}
+.question-help{flex:1 1 190px;min-width:0;min-height:48px;padding:12px 16px;border:1px solid #7dd3fc;border-radius:12px;background:#0c4a6e;color:#e0f2fe;font-weight:700;line-height:1.4;text-align:left;cursor:pointer}
+.question-help:hover{background:#075985}
+.reading-dialog{position:fixed;inset:0;width:calc(100% - 24px);max-width:760px;max-height:calc(100% - 24px);max-height:calc(100dvh - 24px);margin:auto;padding:0;overflow:auto;overscroll-behavior:contain;border:1px solid #94a3b8;border-radius:22px;background:#0f172a;color:var(--text);box-shadow:var(--shadow)}
+.reading-dialog::backdrop{background:#020617d9}
+.reading-header{position:sticky;top:0;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);background:#0f172a}
+.reading-header span{color:#7dd3fc;font-weight:700;font-size:.9rem}
+.reading-close,.reading-return{min-height:44px;padding:10px 16px;border:1px solid #94a3b8;border-radius:12px;background:#1e293b;color:#e5eefc;cursor:pointer;font-weight:700}
+.reading-content{padding:20px 24px 24px;overflow-wrap:anywhere}
+.reading-content h2{margin:0 0 14px;font-size:1.5rem;line-height:1.3}
+.reading-content h3{font-size:1.12rem;margin:24px 0 10px}
+.reading-content p{line-height:1.6;margin:0 0 14px}
+.reading-keyboard{font-size:.9rem;color:#cbd5e1}
+.reading-sources{margin:24px 0;border-top:1px solid var(--border);padding-top:18px}
+.reading-sources summary{padding:10px 0;min-height:44px;cursor:pointer;font-weight:700;color:#7dd3fc}
+.reading-sources ul{padding-left:22px;margin:12px 0 0}
+.reading-sources li+li{margin-top:14px}
+.reading-sources a{display:inline-block;color:#bae6fd;line-height:1.5;padding:5px 0}
+.reading-return{display:block;width:100%;background:#0369a1;border-color:#7dd3fc}
+summary:focus-visible,.reading-content h2:focus-visible{outline:3px solid #f8fafc;outline-offset:4px}
+@media(max-width:480px){.question-actions{gap:10px}.question-help{flex-basis:160px;padding:10px 12px;font-size:.9rem}.reading-header{padding:12px 16px}.reading-content{padding:18px}.reading-content h2{font-size:1.3rem}}
 </style>
   <link rel="stylesheet" href="../assets/doctrine-navigation.css">
 <script src="../assets/doctrine-share.js" defer></script>
@@ -1747,6 +1770,283 @@ function forgottenProofPanel(){
   </div>`;
 }
 
+// Textes V2 relus, avec la correction Énergie du second audit ; notes de travail exclues.
+const readingReminder = "Plus tu vas vers un bord, plus ta préférence est forte. Entre un bord et la zone du milieu, elle est nuancée. Dans la zone du milieu, tu es partagé. Au départ, rien n’est enregistré : déplace le jeton ou touche-le pour répondre, même au milieu. « Sans avis » signifie que tu ne te prononces pas.";
+const readingGuides = [
+  {
+    "id": "energie",
+    "paragraphs": [
+      "Il faut produire à chaque instant autant d’électricité qu’on en consomme.",
+      "Privilégier le nucléaire, c’est s’appuyer sur des centrales « pilotables » : on règle leur production selon les besoins, lorsqu’elles sont disponibles. Le nucléaire émet peu de gaz à effet de serre. En contrepartie, les réacteurs demandent de gros investissements et de longues années de construction ; il faut assurer leur sûreté et gérer les déchets radioactifs.",
+      "Privilégier l’éolien et le solaire, c’est développer des sources renouvelables qui émettent aussi peu de gaz à effet de serre. En contrepartie, leur production dépend du vent et du soleil : il faut des moyens complémentaires et du stockage, qui ont aussi un coût.",
+      "Les centrales au gaz ou au charbon sont également pilotables, mais réchauffent davantage le climat. On peut combiner plusieurs sources. Dans tous les cas, il faut adapter le réseau électrique."
+    ],
+    "direction": "Va vers la gauche si tu préfères le nucléaire et les centrales pilotables ; vers la droite si tu préfères davantage d’éolien et de solaire, avec moins de nucléaire.",
+    "sources": [
+      {
+        "title": "RTE — Futurs énergétiques 2050 (2021–2022)",
+        "url": "https://www.rte-france.com/actualites/futurs-energetiques-neutralite-carbone-2050-principaux-enseignements"
+      },
+      {
+        "title": "ASNR — La gestion des déchets radioactifs (9 janvier 2025)",
+        "url": "https://reglementation-controle.asnr.fr/information/dossiers-pedagogiques/la-gestion-des-dechets-radioactifs"
+      }
+    ]
+  },
+  {
+    "id": "sante",
+    "paragraphs": [
+      "Un désert médical est un endroit où il est difficile de trouver un médecin disponible ou assez proche.",
+      "Encadrer les nouvelles installations, c’est fixer des règles pour favoriser l’arrivée de médecins là où ils manquent. Le but est de mieux répartir les soins. En contrepartie, les médecins choisissent moins librement où travailler, et cela ne crée pas davantage de médecins.",
+      "Garder la liberté d’installation, c’est attirer les médecins par des aides et de meilleures conditions de travail. Le but est de leur donner envie de venir et de rester. En contrepartie, ces aides coûtent de l’argent public, sans garantir qu’un médecin viendra.",
+      "Les deux approches peuvent se combiner. La question porte sur le degré de contrainte que tu souhaites pour les nouvelles installations."
+    ],
+    "direction": "Va vers la droite si tu préfères encadrer les installations pour mieux répartir les médecins ; vers la gauche si tu préfères les attirer par des aides, en leur laissant choisir où travailler.",
+    "sources": [
+      {
+        "title": "DREES — Accessibilité aux soins de premier recours en 2024 (juillet 2026)",
+        "url": "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260722-accessibilite-aux-soins-de-premier-recours-en-2024"
+      },
+      {
+        "title": "Assurance Maladie — Aides à l’exercice en zone sous-dense (17 mars 2026)",
+        "url": "https://www.ameli.fr/medecin/exercice-liberal/vie-cabinet/aides-financieres/aides-exercice-zone-sous-dense-renovees"
+      },
+      {
+        "title": "Assemblée nationale — Texte adopté n° 110, article 1 (7 mai 2025) — proposition adoptée en première lecture",
+        "url": "https://questions.assemblee-nationale.fr/dyn/opendata/PIONANR5L17BTA0110.html"
+      },
+      {
+        "title": "Sénat — Rapport n° 668, section II.A (27 mai 2026)",
+        "url": "https://www.senat.fr/rap/l25-668/l25-6682.html"
+      },
+      {
+        "title": "Réponse ministérielle — Question n° 07688 (12 mars 2026)",
+        "url": "https://www.senat.fr/questions/base/2026/qSEQ260207688.html"
+      }
+    ]
+  },
+  {
+    "id": "agri",
+    "paragraphs": [
+      "Importer, c’est acheter des produits venus de l’étranger. Exporter, c’est vendre les nôtres à d’autres pays. Les accords commerciaux relèvent de négociations européennes.",
+      "Limiter certaines importations vise à protéger les producteurs français face à des concurrents moins chers, parfois soumis à d’autres règles. Le but est de préserver des fermes et notre capacité à nous nourrir. En contrepartie, certains prix pourraient augmenter et d’autres pays pourraient acheter moins de produits français.",
+      "Garder les échanges ouverts vise des prix plus bas, davantage de choix et des clients pour les agriculteurs qui exportent. En contrepartie, certaines productions françaises peuvent souffrir d’une concurrence difficile à supporter.",
+      "Des protections ciblées sont possibles. Les produits importés doivent respecter les exigences sanitaires européennes ; certaines règles sur la façon de produire, notamment le bien-être animal, peuvent différer."
+    ],
+    "direction": "Va vers la gauche si tu préfères protéger davantage la production française ; vers la droite si tu préfères garder les échanges plus ouverts.",
+    "sources": [
+      {
+        "title": "Ministère de l’Agriculture / CGAAER — Les clauses-miroirs",
+        "url": "https://agriculture.gouv.fr/les-clauses-miroirs-quels-moyens-dimposer-certaines-normes-europeennes-de-bien-etre-animal-aux"
+      },
+      {
+        "title": "Conseil de l’Union européenne — Accords commerciaux de l’UE",
+        "url": "https://www.consilium.europa.eu/fr/policies/trade-agreements/"
+      }
+    ]
+  },
+  {
+    "id": "industrie",
+    "paragraphs": [
+      "L’industrie fabrique des produits : médicaments, machines, vêtements… La question demande quel rôle donner à l’État.",
+      "Intervenir davantage, c’est aider des usines, orienter les achats publics vers la production française et contrôler certains secteurs essentiels. Le but est de préserver des emplois et les capacités de production du pays. En contrepartie, cela engage de l’argent public et risque de financer des projets peu utiles ou mal gérés.",
+      "Laisser davantage les entreprises décider vise à faciliter leurs investissements et leurs innovations pour répondre aux clients. En contrepartie, elles peuvent choisir de produire ailleurs, même si cela fait perdre des emplois en France.",
+      "L’État intervient déjà : le débat porte sur l’ampleur de son rôle. Les achats publics respectent aussi des règles françaises et européennes d’égalité de traitement ; privilégier une origine française ne se décide donc pas librement."
+    ],
+    "direction": "Va vers la droite si tu préfères un État qui oriente davantage l’industrie ; vers la gauche si tu préfères laisser davantage les entreprises décider.",
+    "sources": [
+      {
+        "title": "Ministère de l’Économie — Soutien à la relocalisation industrielle (9 novembre 2022)",
+        "url": "https://www.economie.gouv.fr/actualites/fabrique-en-france-de-nouveau-dispositifs-de-soutien-la-relocalisation-industrielle"
+      },
+      {
+        "title": "DGCCRF — Commande publique et loyauté de la concurrence (23 octobre 2025)",
+        "url": "https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/la-commande-publique-une-veille-pour-favoriser-la-loyaute-de-la-concurrence-entre-les-entreprises"
+      },
+      {
+        "title": "Direction des affaires juridiques — Commande publique et industrie verte (9 novembre 2023)",
+        "url": "https://www.economie.gouv.fr/daj/lettre-de-la-daj-la-commande-publique-et-la-loi-ndeg-2023-973-du-23-octobre-2023-relative"
+      },
+      {
+        "title": "DAJ — Dispositifs « pays tiers » et origine des produits, fiche mise à jour au 28 juillet 2025 et annoncée le 30 juillet 2025",
+        "url": "https://www.economie.gouv.fr/files/files/directions_services/daj/media-document/FT29-Dispositif-tiers28072025.pdf"
+      }
+    ]
+  },
+  {
+    "id": "justice",
+    "paragraphs": [
+      "Une peine est une sanction décidée par un juge : prison, travail d’intérêt général ou sursis avec des obligations à respecter, par exemple.",
+      "Donner la priorité à l’exécution des peines vise à rendre les décisions de justice effectives et à protéger les victimes. La prison peut empêcher de commettre des infractions à l’extérieur pendant la détention. En contrepartie, elle coûte cher et ne suffit pas à empêcher de recommencer après la sortie.",
+      "Développer les peines alternatives et la réinsertion vise à sanctionner tout en préparant une vie sans délinquance : travail, logement, soins ou formation. En contrepartie, ces mesures demandent des moyens de suivi et de contrôle et ne conviennent pas à toutes les situations.",
+      "Les deux orientations sanctionnent et peuvent se combiner. Le juge tient compte de la gravité des faits et de la sécurité des victimes."
+    ],
+    "direction": "Va vers la droite pour donner la priorité à l’exécution des peines, y compris la prison ; vers la gauche pour développer davantage les alternatives et la réinsertion.",
+    "sources": [
+      {
+        "title": "Ministère de la Justice — Les peines",
+        "url": "https://www.justice.gouv.fr/justice-france/justice-penale/peines"
+      },
+      {
+        "title": "Ministère de la Justice — Le suivi en milieu ouvert",
+        "url": "https://www.justice.gouv.fr/justice-france/prise-charge-personnes-condamnees-ou-prevenues/suivi-milieu-ouvert"
+      },
+      {
+        "title": "Service Public — Contrôle judiciaire, fiche vérifiée le 15 avril 2025",
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2902"
+      }
+    ]
+  },
+  {
+    "id": "fiscalite",
+    "paragraphs": [
+      "Une multinationale est une entreprise présente dans plusieurs pays. Ses bénéfices sont ce qui reste de ses revenus après ses dépenses.",
+      "L’adresse du siège ne détermine pas seule où elle paie ses impôts : des règles répartissent les bénéfices imposables entre pays. Depuis 2024, certains très grands groupes sont aussi soumis à un impôt minimum de 15 %.",
+      "Renforcer l’imposition de l’activité réalisée en France vise à empêcher le déplacement artificiel de bénéfices vers des pays moins taxés. Le but est une contribution plus juste aux finances publiques. En contrepartie, changer les règles peut créer des désaccords entre pays et certaines entreprises pourraient investir ailleurs.",
+      "Privilégier des règles stables et des impôts attractifs vise à encourager l’investissement et l’emploi. En contrepartie, la concurrence pour baisser les impôts peut réduire les recettes publiques. Les deux approches peuvent combattre la fraude."
+    ],
+    "direction": "Va vers la gauche pour renforcer l’imposition de l’activité réalisée en France ; vers la droite pour privilégier l’attractivité et les règles internationales actuelles.",
+    "sources": [
+      {
+        "title": "OCDE — Principes en matière de prix de transfert (20 janvier 2022)",
+        "url": "https://www.oecd.org/fr/publications/principes-de-l-ocde-applicables-en-matiere-de-prix-de-transfert-a-l-intention-des-entreprises-multinationales-et-des-administrations-fiscales-2022_5357f003-fr.html"
+      },
+      {
+        "title": "OCDE — Prix de transfert",
+        "url": "https://www.oecd.org/fr/topics/sub-issues/transfer-pricing.html"
+      },
+      {
+        "title": "DGFiP — Je découvre l’imposition minimale mondiale, 16 février 2026",
+        "url": "https://www.impots.gouv.fr/professionnel/je-decouvre-limposition-minimale-mondiale"
+      }
+    ]
+  },
+  {
+    "id": "immigration",
+    "paragraphs": [
+      "L’immigration concerne des personnes qui viennent vivre dans un autre pays : travail, études, famille ou protection face à des persécutions. L’asile est une demande de protection.",
+      "Réduire les entrées et faire davantage appliquer les décisions obligeant certaines personnes à partir vise à maîtriser les arrivées et à les adapter aux capacités d’accueil. En contrepartie, cela peut freiner certains recrutements ou projets familiaux et demande des moyens administratifs.",
+      "Accueillir davantage et élargir les droits au séjour vise à protéger plus de personnes et à faciliter leur participation à la société, notamment par le travail. En contrepartie, il faut organiser et financer le logement, l’apprentissage du français et l’accès aux services.",
+      "On peut distinguer les motifs d’entrée et les situations. Dans les deux approches, les droits des personnes doivent être respectés ; une décision de départ peut être contestée devant un juge."
+    ],
+    "direction": "Va vers la gauche si tu préfères réduire davantage les entrées et faire appliquer les décisions de départ ; vers la droite si tu préfères accueillir davantage et élargir les droits au séjour.",
+    "sources": [
+      {
+        "title": "Direction générale des étrangers en France — Le séjour des étrangers",
+        "url": "https://www.immigration.interieur.gouv.fr/limmigration-en-france/sejour-des-etrangers-en-france"
+      },
+      {
+        "title": "Direction générale des étrangers en France — Demande de protection internationale (12 juin 2026)",
+        "url": "https://www.immigration.interieur.gouv.fr/documentation/guides-textes-et-brochures/demande-de-protection-internationale.html"
+      },
+      {
+        "title": "Service Public — Obligation de quitter le territoire français",
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F18362?src_originSiteKey=qdp"
+      },
+      {
+        "title": "Service Public — Expulsion d’un étranger hors de France, fiche vérifiée le 20 octobre 2025",
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F11891"
+      }
+    ]
+  },
+  {
+    "id": "europe",
+    "paragraphs": [
+      "La France décide seule de certaines choses et partage d’autres décisions avec les pays de l’Union européenne, selon des traités : des accords entre États. Ses lois doivent respecter ses engagements européens.",
+      "Donner davantage le dernier mot à la France vise des décisions adaptées aux choix des citoyens français, même en cas de désaccord avec d’autres pays. En contrepartie, revenir sur des règles communes peut demander des négociations et créer des conflits juridiques ou économiques.",
+      "Décider davantage ensemble vise à peser plus lourd et à coordonner des sujets qui dépassent les frontières, comme le commerce ou le climat. En contrepartie, il faut accepter des compromis : la France n’obtient pas toujours ce qu’elle veut.",
+      "La Commission propose généralement les textes ; dans de nombreux domaines, les gouvernements, réunis au Conseil, et le Parlement européen élu par les citoyens les adoptent ensemble."
+    ],
+    "direction": "Va vers la droite si tu préfères davantage de décisions nationales ; vers la gauche si tu préfères davantage de décisions communes dans l’Union européenne.",
+    "sources": [
+      {
+        "title": "Conseil de l’Union européenne — Le rôle du Conseil dans le processus décisionnel",
+        "url": "https://www.consilium.europa.eu/fr/council-eu/decision-making/"
+      },
+      {
+        "title": "Constitution française — Articles 53 à 55 et 88-1, texte diffusé par l’Assemblée nationale",
+        "url": "https://www.assemblee-nationale.fr/dyn/17/divers/texte_reference/01_constitution.html"
+      }
+    ]
+  },
+  {
+    "id": "education",
+    "paragraphs": [
+      "Après le collège, la voie professionnelle prépare à un secteur de métiers ; les voies générale et technologique préparent principalement à poursuivre des études.",
+      "Développer l’apprentissage et les filières professionnelles vise à apprendre un métier avec une expérience concrète. L’apprenti partage son temps entre formation et entreprise et reçoit un salaire. En contrepartie, il doit trouver une entreprise et suivre le rythme du travail tout en étudiant.",
+      "Développer les études générales et longues vise une formation large et l’accès aux métiers qui exigent des études supérieures. En contrepartie, le parcours prend plus de temps avant l’emploi et ne garantit pas un débouché.",
+      "Des passages entre parcours existent. On peut poursuivre ses études après un diplôme professionnel, et l’apprentissage existe aussi dans le supérieur. La question porte sur les moyens à développer pour les jeunes, pas sur la valeur des élèves."
+    ],
+    "direction": "Va vers la droite pour développer en priorité les parcours professionnels et l’apprentissage ; vers la gauche pour développer davantage les parcours généraux et longs.",
+    "sources": [
+      {
+        "title": "Onisep — Que faire après la 3e ? (1er avril 2026)",
+        "url": "https://www.onisep.fr/orientation/le-college/que-faire-apres-la-3"
+      },
+      {
+        "title": "Onisep — Alternance et apprentissage : questions et réponses",
+        "url": "https://www.onisep.fr/vers-l-emploi/alternance/alternance-apprentissage-vos-questions-nos-reponses"
+      },
+      {
+        "title": "Onisep — Poursuites d’études après un CAP ou un bac professionnel (10 avril 2025)",
+        "url": "https://www.onisep.fr/formation/apres-la-3-la-voie-professionnelle/les-poursuites-d-etudes-apres-un-cap-ou-un-bac-professionnel"
+      }
+    ]
+  },
+  {
+    "id": "ecologie",
+    "paragraphs": [
+      "Protéger l’environnement demande de réduire les pollutions, les gaz qui réchauffent le climat et le gaspillage des ressources.",
+      "Agir d’abord sur la production vise à produire mieux, notamment en France : innovation, électricité qui réchauffe peu le climat, comme le nucléaire, circuits courts, objets durables. Le but est de réduire les dégâts en limitant les contraintes quotidiennes. En contrepartie, cela demande des investissements. Même si on produit mieux, consommer beaucoup plus peut limiter les gains.",
+      "Agir davantage sur les modes de vie vise à réduire certaines consommations avec des règles et des objectifs. La sobriété consiste à répondre à nos besoins avec moins de ressources. En contrepartie, certains changements demandent des efforts ou un nouvel équipement, que tous ne peuvent pas financer.",
+      "Les deux approches peuvent se compléter. Il faut mesurer leurs effets : fabriquer près de chez nous ou imposer une règle ne garantit pas, à lui seul, moins de pollution."
+    ],
+    "direction": "Va vers la gauche si tu préfères agir d’abord par la production et l’innovation ; vers la droite si tu préfères changer les modes de vie par des règles et des objectifs.",
+    "sources": [
+      {
+        "title": "ADEME — Les scénarios de transition vers 2050",
+        "url": "https://www.ademe.fr/les-futurs-en-transition/les-scenarios"
+      },
+      {
+        "title": "ADEME — Évaluation environnementale des produits",
+        "url": "https://agirpourlatransition.ademe.fr/entreprises/conseils/industrie/ecoconception/evaluer"
+      }
+    ]
+  },
+  {
+    "id": "controle",
+    "paragraphs": [
+      "En démocratie, les citoyens élisent des représentants et peuvent aussi décider directement par référendum : un vote sur une question précise.",
+      "Développer un référendum d’initiative citoyenne, ou RIC, vise à permettre aux citoyens de déclencher eux-mêmes un vote, selon des conditions à définir. Le suivi public des engagements vise à mieux contrôler les élus entre deux élections. En contrepartie, ces dispositifs demandent une information équilibrée, des règles claires et des garanties pour les droits de chacun.",
+      "Confier davantage les décisions aux élus leur laisse le temps d’examiner les dossiers et de rechercher des compromis. En contrepartie, les citoyens peuvent avoir peu de prise directe lorsqu’un engagement n’est pas tenu entre deux élections.",
+      "Les deux méthodes peuvent coexister. Le RIC évoqué ici diffère du référendum d’initiative partagée : celui-ci commence par une initiative de parlementaires, soutenue par des électeurs."
+    ],
+    "direction": "Va vers la gauche si tu préfères davantage de décisions directes et de contrôle citoyen ; vers la droite si tu préfères confier davantage les décisions aux élus.",
+    "sources": [
+      {
+        "title": "Constitution française — Articles 3, 11 et 24, texte diffusé par l’Assemblée nationale",
+        "url": "https://www.assemblee-nationale.fr/dyn/17/divers/texte_reference/01_constitution.html"
+      }
+    ]
+  },
+  {
+    "id": "dette",
+    "paragraphs": [
+      "Quand les administrations publiques dépensent plus qu’elles ne reçoivent sur une année, elles ont un déficit. Elles empruntent pour le financer. La dette est l’argent emprunté qui reste à rembourser, avec des intérêts à payer.",
+      "Réduire la dette vise à limiter le poids des intérêts et à garder des moyens pour l’avenir. Vérifier l’utilité des dépenses peut supprimer des gaspillages. En contrepartie, des réductions trop rapides ou mal choisies peuvent dégrader des services et freiner l’activité.",
+      "Maintenir ou renforcer les services publics et les aides vise à répondre aux besoins présents et futurs, avec l’éducation ou les soins, par exemple. En contrepartie, sans recettes suffisantes, cela peut augmenter la dette et son coût.",
+      "Une dépense se juge aussi à ses effets, parfois lointains. Un investissement utile et une dépense durablement inefficace n’ont pas les mêmes conséquences."
+    ],
+    "direction": "Va vers la droite si tu donnes la priorité à la réduction de la dette ; vers la gauche si tu préfères maintenir ou renforcer les services et les aides, quitte à emprunter davantage.",
+    "sources": [
+      {
+        "title": "Banque de France — La dette publique (2025)",
+        "url": "https://www.banque-france.fr/fr/publications-et-statistiques/publications/la-dette-publique"
+      }
+    ]
+  }
+];
+
 let state = { screen:'home', modeFutur:false, answers:axes.map(()=>null), selectedParty:null, step:0, nextInvited:axes.map(()=>false) };
 const root = document.getElementById('root');
 function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
@@ -1843,10 +2143,52 @@ function ideas(){
     <div class="scale">${poles.map(([label,text])=>`<span><small>Pôle ${label}</small>${esc(text)}</span>`).join('')}</div>
     <input id="answer-slider" class="premium-slider" type="range" min="0" max="100" step="1" value="${shown}" aria-label="${esc(axis.title)}" aria-describedby="answer-status" style="--value:${shown};--strength:${view.strength}" onpointerdown="app.setAnswer(${index},this.value)" oninput="app.setAnswer(${index},this.value)">
     <div id="answer-status" class="answer-status" role="status" aria-live="polite">${esc(responseText(answer,axis))}</div>
-    <button id="no-opinion" class="no-opinion" type="button" aria-pressed="${answer==='sans-avis'}" onclick="app.noOpinion(${index})">Sans avis</button>
+    <div class="question-actions"><button id="no-opinion" class="no-opinion" type="button" aria-pressed="${answer==='sans-avis'}" onclick="app.noOpinion(${index})">Sans avis</button><button id="question-help" class="question-help" type="button" aria-haspopup="dialog" aria-expanded="false" onclick="app.openReading(${index},this)">Avant de voter, je veux en savoir plus</button></div>
     <div class="keywords">${axis.tags.map(tag=>`<span>${esc(tag)}</span>`).join('')}</div>
     ${state.modeFutur?futureBars(index,view.value):''}
   </article><div class="actions"><button class="ghost" ${index===0?'disabled':''} onclick="app.prev()">← Précédent</button><button id="next-question" class="btn primary" ${answer===null?'disabled':''} onclick="app.next()">${index===11?'Voir le résultat':'Question suivante →'}</button></div></section></main>`;
+}
+function openReading(index,opener){
+  if(state.screen!=='ideas'||state.step!==index||!readingGuides[index]||document.getElementById('reading-dialog'))return;
+  const guide=readingGuides[index],dialog=document.createElement('dialog');
+  dialog.id='reading-dialog';
+  dialog.className='reading-dialog';
+  dialog.setAttribute('aria-modal','true');
+  dialog.setAttribute('aria-labelledby','reading-title');
+  dialog.innerHTML=`<div class="reading-header"><span>Comprendre avant de choisir</span><button class="reading-close" type="button">Fermer</button></div>
+    <article class="reading-content">
+      <h2 id="reading-title" tabindex="-1">${esc(axes[index].q)}</h2>
+      ${guide.paragraphs.map(text=>`<p>${esc(text)}</p>`).join('')}
+      <h3>Comment utiliser le curseur ?</h3>
+      <p>${esc(guide.direction)}</p><p>${esc(readingReminder)}</p>
+      <p class="reading-keyboard">Au clavier, utilise les flèches pour déplacer le jeton et répondre.</p>
+      <details class="reading-sources"><summary>Sources pour vérifier ou approfondir</summary>
+        <ul>${guide.sources.map(source=>`<li><a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.title)} <span aria-hidden="true">↗</span><span class="reading-keyboard"> (nouvel onglet)</span></a></li>`).join('')}</ul>
+      </details>
+      <button class="reading-return" type="button">Revenir à la question</button>
+    </article>`;
+  const previousOverflow=document.body.style.overflow;
+  function close(){dialog.close();}
+  dialog.querySelector('.reading-close').addEventListener('click',close);
+  dialog.querySelector('.reading-return').addEventListener('click',close);
+  dialog.addEventListener('cancel',event=>{event.preventDefault();close();});
+  dialog.addEventListener('close',()=>{
+    dialog.remove();
+    document.body.style.overflow=previousOverflow;
+    if(opener.isConnected){opener.setAttribute('aria-expanded','false');opener.focus({preventScroll:true});}
+  },{once:true});
+  dialog.addEventListener('keydown',event=>{
+    if(event.key!=='Tab')return;
+    const focusable=[...dialog.querySelectorAll('button,summary,a[href]')].filter(element=>element.getClientRects().length);
+    const first=focusable[0],last=focusable[focusable.length-1];
+    if(event.shiftKey&&(document.activeElement===first||document.activeElement===dialog.querySelector('#reading-title'))){event.preventDefault();last.focus();}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  });
+  document.body.append(dialog);
+  document.body.style.overflow='hidden';
+  opener.setAttribute('aria-expanded','true');
+  dialog.showModal();
+  dialog.querySelector('#reading-title').focus();
 }
 function updateAnswerUI(index){
   if(state.screen!=='ideas'||state.step!==index)return;
@@ -1943,7 +2285,7 @@ window.app={
   prev(){state.step=Math.max(0,state.step-1);render();},
   resume(){state.screen='ideas';const first=state.answers.findIndex(answer=>!isPosition(answer));state.step=first<0?0:first;render();},
   modify(){state.screen='ideas';state.step=0;render();},
-  requestReset,
+  requestReset,openReading,
   selectParty(id){if(parties.some(party=>party.id===id)){state.selectedParty=id;render();}},
   toggleAll(button){const panel=document.getElementById('all-parties');panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));},
   toggleSources(button){const panel=button.nextElementSibling;panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));}
