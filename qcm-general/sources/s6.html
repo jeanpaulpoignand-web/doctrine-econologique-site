@@ -165,6 +165,10 @@ tr:last-child td{border-bottom:0}
     /* Navigation commune au-dessus du contenu (correctif mobile) */
     body{flex-direction:column;align-items:center;justify-content:flex-start;gap:16px}
     body > .doctrine-navigation{width:min(920px,100%);flex-shrink:0}
+
+.version-notice{border:1px solid #38bdf880;background:#0c4a6e38;border-radius:20px;padding:18px 20px;margin:20px 0}
+.version-notice p{margin:0;color:#e5eefc;font-size:1rem;line-height:1.65}
+@media(max-width:480px){.version-notice{padding:16px}}
 </style>
 <link rel="stylesheet" href="../../assets/doctrine-navigation.css">
 <script src="../../assets/doctrine-share.js" defer></script>
@@ -190,6 +194,13 @@ tr:last-child td{border-bottom:0}
 </nav>
 
 <main class="card">
+  <div class="version-notice" role="note"><p>Version en cours de révision — résultats non validés.</p></div>
+  <div class="notice" role="note">
+    <p><strong>Repères et contreparties des scénarios :</strong> « Programme FN de Jean-Marie Le Pen (présidentielle 2007) + Doctrine Éconologique » est abrégé « FN 2007 + Doctrine » ; « LFI 2017 » désigne le programme présidentiel de 2017 ; « Trajectoire réelle » désigne les politiques menées de 2007 à 2026.</p>
+    <p>[HYPOTHÈSE] Pour FN 2007 + Doctrine, la synthèse retient de l’inflation, des importations plus chères, une sortie ou renégociation des traités, les restrictions liées à la préférence nationale et une réaction possible des marchés.</p>
+    <p>[HYPOTHÈSE] Pour LFI 2017, les contreparties sont un financement public accru, de l’inflation et un conflit possible avec les partenaires européens.</p>
+    <p>Pour la trajectoire réelle, les contreparties sont la dette et le chômage persistant.</p>
+  </div>
   <div class="sticky-return">
     <a class="button" href="../index.html">← Retour au QCM</a>
     <a class="button" href="../documents/index.html">Matrice documentaire</a>
@@ -225,7 +236,7 @@ tr:last-child td{border-bottom:0}
     <div class="grid">
       <div class="kpi">
         <strong>Verdict macroéconomique</strong>
-        <span>Gemini classe le scénario Rupture 2007 + Doctrine Éconologique devant la trajectoire réelle et devant le scénario LFI, à long terme.</span>
+        <span>[HYPOTHÈSE] Le dossier de mai 2026 présente des estimations pour FN 2007 + Doctrine, LFI 2017 et la trajectoire réelle ; elles dépendent des hypothèses retenues et ne constituent pas un classement validé.</span>
       </div>
       <div class="kpi">
         <strong>Point décisif</strong>
@@ -233,7 +244,7 @@ tr:last-child td{border-bottom:0}
       </div>
       <div class="kpi">
         <strong>Limite importante</strong>
-        <span>Le scénario gagnant n’est pas gratuit : inflation domestique, épargne dirigée, contraintes sectorielles et pénuries possibles.</span>
+        <span>[HYPOTHÈSE] FN 2007 + Doctrine comporte, dans le dossier, une inflation domestique, une épargne dirigée, des contraintes sectorielles et des pénuries possibles.</span>
       </div>
     </div>
 
@@ -249,7 +260,7 @@ tr:last-child td{border-bottom:0}
 
     <h2 id="comparatif">1. Comparatif 2026 des trois trajectoires</h2>
     <p>
-      Gemini met en miroir la France réelle, une projection LFI et le modèle Rupture 2007 + Doctrine Éconologique.
+      Gemini met en miroir la France réelle, une projection LFI 2017 et le modèle FN 2007 + Doctrine.
       Le tableau ci-dessous reformate les indicateurs du document source.
     </p>
 
@@ -259,8 +270,8 @@ tr:last-child td{border-bottom:0}
           <tr>
             <th>Indicateur</th>
             <th>France réelle 2026</th>
-            <th>Modèle LFI</th>
-            <th>Modèle Rupture 2007 + Doctrine</th>
+            <th>Modèle LFI 2017</th>
+            <th>Modèle FN 2007 + Doctrine</th>
           </tr>
         </thead>
         <tbody>
@@ -306,18 +317,14 @@ tr:last-child td{border-bottom:0}
 
     <div class="callout red">
       <strong>Passage décisif :</strong>
-      Gemini conclut que, si l’on suit les chiffres du dossier et l’orthodoxie macroéconomique,
-      le modèle Rupture 2007 + Doctrine Éconologique produit les résultats macroéconomiques objectivement supérieurs en 2026.
+      [HYPOTHÈSE] Le dossier de mai 2026 estime le PIB nominal à ~3 700 Md€ pour FN 2007 + Doctrine et à ~3 650 Md€ pour LFI 2017, contre ~2 950 Md€ pour la trajectoire réelle ; ces niveaux nominaux ne mesurent pas seuls le niveau de vie réel.
     </div>
 
     <h2 id="moteurs">2. Moteurs économiques comparés</h2>
 
-    <h3>A. Création de valeur contre illusion monétaire</h3>
+    <h3>A. PIB nominal et pouvoir d’achat réel</h3>
     <p>
-      Dans le scénario Rupture 2007 + Doctrine, le gain de PIB nominal est attribué à une combinaison de gains réels
-      et d’inflation domestique. Le pouvoir d’achat réel progresse selon Gemini.
-      Dans le scénario LFI, le PIB nominal progresse aussi, mais Gemini qualifie cette progression d’illusion monétaire
-      si la croissance réelle devient négative et si l’énergie renchérit le coût productif.
+      [HYPOTHÈSE] Le dossier de mai 2026 attribue le PIB nominal de FN 2007 + Doctrine et de LFI 2017 à la production réelle et au niveau des prix. Pour les deux scénarios, il faut distinguer ces effets avant de comparer le pouvoir d’achat, en tenant compte du coût de l’énergie et des prélèvements.
     </p>
 
     <div class="callout">
@@ -328,8 +335,8 @@ tr:last-child td{border-bottom:0}
 
     <h3>B. Financement et dette</h3>
     <p>
-      Gemini oppose deux vulnérabilités : dette maîtrisée mais épargne dirigée dans le scénario Rupture 2007 + Doctrine ;
-      dette très élevée et dépendance monétaire dans le scénario LFI.
+      Gemini oppose deux vulnérabilités : dette maîtrisée mais épargne dirigée dans le scénario FN 2007 + Doctrine ;
+      dette très élevée et dépendance monétaire dans le scénario LFI 2017.
     </p>
 
     <div class="callout red">
@@ -341,8 +348,8 @@ tr:last-child td{border-bottom:0}
     <h3>C. Marché du travail</h3>
     <p>
       Les deux scénarios réduisent le chômage, mais par des mécanismes différents.
-      Rupture 2007 + Doctrine réduit le chômage par préférence productive, réindustrialisation et circuit national.
-      LFI réduit le chômage par garantie d’emploi publique, mais Gemini signale un risque de productivité plus faible et de sur-administration.
+      FN 2007 + Doctrine réduit le chômage par préférence productive, réindustrialisation et circuit national.
+      LFI 2017 réduit le chômage par garantie d’emploi publique, mais Gemini signale un risque de productivité plus faible et de sur-administration.
     </p>
 
     <h2 id="dette">3. Dette, taux, intérêts et souveraineté</h2>
@@ -368,8 +375,8 @@ tr:last-child td{border-bottom:0}
         <thead>
           <tr>
             <th>Dimension</th>
-            <th>Modèle LFI</th>
-            <th>Modèle Rupture 2007 + Doctrine</th>
+            <th>Modèle LFI 2017</th>
+            <th>Modèle FN 2007 + Doctrine</th>
           </tr>
         </thead>
         <tbody>
@@ -394,14 +401,13 @@ tr:last-child td{border-bottom:0}
 
     <div class="callout green">
       <strong>Conclusion retraites de Gemini :</strong>
-      le modèle Rupture 2007 + Doctrine protège mieux les retraites à long terme,
-      car il conserve davantage d’emplois productifs, d’énergie pilotable, de base cotisante et de souveraineté budgétaire.
+      [HYPOTHÈSE] Le dossier de mai 2026 associe FN 2007 + Doctrine au renforcement de la base cotisante et LFI 2017 à des droits de retraite élargis ; le financement des pensions dépend, dans les deux cas, de l’emploi, de la productivité, des recettes et de l’inflation.
     </div>
 
-    <h2 id="prorata">5. Scénario Rupture 2007 + Doctrine appliqué seulement sur 2017–2026</h2>
+    <h2 id="prorata">5. Programme FN de Jean-Marie Le Pen (présidentielle 2007) + Doctrine Éconologique appliqué seulement sur 2017–2026</h2>
     <p>
       Le document Gemini intègre aussi une comparaison plus prudente :
-      que se passerait-il si le scénario Rupture 2007 + Doctrine ne commençait pas en 2007 mais en 2017 ?
+      que se passerait-il si le scénario FN 2007 + Doctrine ne commençait pas en 2007 mais en 2017 ?
       Dans ce cas, il hérite déjà de la dette, de la désindustrialisation, de la loi NOME, de l’ARENH,
       de l’euro, du marché européen de l’électricité et des choix passés.
     </p>
@@ -412,7 +418,7 @@ tr:last-child td{border-bottom:0}
           <tr>
             <th>Indicateur 2026</th>
             <th>France réelle 2017–2026</th>
-            <th>Rupture 2007 + Doctrine prorata 9 ans</th>
+            <th>FN 2007 + Doctrine prorata 9 ans</th>
           </tr>
         </thead>
         <tbody>
@@ -452,23 +458,17 @@ tr:last-child td{border-bottom:0}
 
     <div class="callout">
       <strong>Lecture méthodologique :</strong>
-      le scénario 9 ans est moins spectaculaire que le scénario 19 ans,
-      mais il reste présenté comme supérieur à la trajectoire réelle sur l’énergie, l’emploi, la dette et le pouvoir d’achat réel.
+      [HYPOTHÈSE] Les estimations sur 9 ans et sur 19 ans reposent sur des durées et des situations initiales différentes ; elles ne permettent pas d’attribuer un classement validé à FN 2007 + Doctrine face à la trajectoire réelle.
     </div>
 
     <h2 id="verdict">6. Verdict final reformatté</h2>
     <p>
-      Gemini désigne le scénario Rupture 2007 + Doctrine Éconologique comme la trajectoire économiquement la plus favorable
-      au peuple français à long terme, sous réserve d’accepter ses coûts cachés :
-      inflation domestique plus élevée, épargne encadrée, marchés publics plus chers, rigidités sectorielles et pénuries possibles.
+      [HYPOTHÈSE] Le dossier de mai 2026 estime des effets différents pour FN 2007 + Doctrine et LFI 2017 selon l’indicateur étudié. FN 2007 + Doctrine comporte une inflation domestique plus élevée, une épargne encadrée, des marchés publics plus chers, des rigidités sectorielles et des pénuries possibles ; LFI 2017 implique un financement public accru, de l’inflation et un conflit possible avec les partenaires européens.
     </p>
 
     <div class="callout red">
       <strong>Verdict retraites :</strong>
-      une retraite est un droit de tirage sur la production réelle du pays.
-      Le scénario Macron maintient le système en reculant l’âge légal.
-      Le scénario LFI promet un droit social fort mais fragilise la base productive selon Gemini.
-      Le scénario Doctrine maximise la base cotisante par réindustrialisation, énergie pilotable et moindre fuite des intérêts.
+      [HYPOTHÈSE] Le dossier de mai 2026 relie le financement des pensions à la production et aux cotisants : FN 2007 + Doctrine mise sur la réindustrialisation, LFI 2017 sur des droits sociaux élargis et leur financement public, et la trajectoire réelle sur des départs retardés. Ces leviers ont des coûts économiques et sociaux et ne garantissent pas seuls l’équilibre du système.
     </div>
 
     <h2>Utilisation dans le QCM</h2>

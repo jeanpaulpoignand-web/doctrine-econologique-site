@@ -29,6 +29,10 @@ a{color:var(--text)}
     /* Navigation commune au-dessus du contenu (correctif mobile) */
     body{flex-direction:column;align-items:center;justify-content:flex-start;gap:16px}
     body > .doctrine-navigation{width:min(920px,100%);flex-shrink:0}
+
+.version-notice{border:1px solid #38bdf880;background:#0c4a6e38;border-radius:20px;padding:18px 20px;margin:20px 0}
+.version-notice p{margin:0;color:#e5eefc;font-size:1rem;line-height:1.65}
+@media(max-width:480px){.version-notice{padding:16px}}
 </style>
 <link rel="stylesheet" href="../../assets/doctrine-navigation.css">
 <script src="../../assets/doctrine-share.js" defer></script>
@@ -54,6 +58,13 @@ a{color:var(--text)}
 </nav>
 
 <main class="card">
+  <div class="version-notice" role="note"><p>Version en cours de révision — résultats non validés.</p></div>
+  <div class="notice" role="note">
+    <p><strong>Repères et contreparties des scénarios :</strong> « Programme FN de Jean-Marie Le Pen (présidentielle 2007) + Doctrine Éconologique » est abrégé « FN 2007 + Doctrine » ; « LFI 2017 » désigne le programme présidentiel de 2017 ; « Trajectoire réelle » désigne les politiques menées de 2007 à 2026.</p>
+    <p>[HYPOTHÈSE] Pour FN 2007 + Doctrine, la synthèse retient de l’inflation, des importations plus chères, une sortie ou renégociation des traités, les restrictions liées à la préférence nationale et une réaction possible des marchés.</p>
+    <p>[HYPOTHÈSE] Pour LFI 2017, les contreparties sont un financement public accru, de l’inflation et un conflit possible avec les partenaires européens.</p>
+    <p>Pour la trajectoire réelle, les contreparties sont la dette et le chômage persistant.</p>
+  </div>
   <div class="sticky-return">
     <a class="button" href="../index.html">← Retour au QCM</a>
     <a class="button" href="../documents/index.html">Matrice documentaire</a>
@@ -76,8 +87,8 @@ a{color:var(--text)}
       <a href="s1.html">Ouvrir la page source avec retour QCM</a>
     </div>
     <div class="source">
-      <strong>S2 — Synthèse du scénario Rupture 2007 + Doctrine Éconologique — document de travail multi-IA</strong>
-      <span><em>Document de travail multi-IA, pas une source officielle.</em> Document maître du scénario Rupture 2007 + Doctrine Éconologique.</span>
+      <strong>S2 — Synthèse du scénario Rupture 2007 + Doctrine Éconologique — document de travail multi-IA (ancien nom du scénario FN 2007 + Doctrine)</strong>
+      <span><em>Document de travail multi-IA, pas une source officielle.</em> Document maître du scénario FN 2007 + Doctrine.</span>
       <a href="s2.html">Ouvrir la page source avec retour QCM</a>
     </div>
     <div class="source">
@@ -102,12 +113,12 @@ a{color:var(--text)}
     </div>
     <div class="source">
       <strong>S7 — Programme LFI Mélenchon 2017.pdf</strong>
-      <span>Source primaire LFI : SMIC, retraite à 60 ans, garantie d’emploi, planification écologique, Europe.</span>
+      <span>Source primaire LFI 2017 : SMIC, retraite à 60 ans, garantie d’emploi, planification écologique, Europe.</span>
       <a href="s7.html">Ouvrir la page source avec retour QCM</a>
     </div>
     <div class="source">
       <strong>S8 — Programme de 2007 de JML / FN</strong>
-      <span>Source primaire : programme présidentiel de Jean-Marie Le Pen (Front national) en 2007, base du scénario Rupture 2007.</span>
+      <span>Source primaire : programme présidentiel de Jean-Marie Le Pen (Front national) en 2007, base du scénario FN 2007 + Doctrine.</span>
       <a href="s8.html">Ouvrir la page source avec retour QCM</a>
     </div></div>
   </section>

@@ -77,7 +77,7 @@
         <h2 id="readingGuideTitle">Comment lire ce test</h2>
         <p>Le scénario FN reprend le programme présenté par Jean-Marie Le Pen à la présidentielle de 2007 (éliminé au premier tour), appliqué pendant 19 ans. La Doctrine Éconologique, créée en 2026, y ajoute ses propositions : elle ne figurait pas sur le bulletin de 2007.</p>
         <p>Le scénario LFI reprend le programme présidentiel de 2017, appliqué pendant 9 ans seulement : la comparaison porte sur des durées différentes.</p>
-        <p>Ces trajectoires sont des simulations [HYPOTHÈSE] établies par plusieurs intelligences artificielles à partir des programmes officiels ; <a href="https://drive.google.com/drive/folders/1RKe2C1w7jMrBfnr80xr8IyPgHAVlbqq-" target="_blank" rel="noopener">la méthode et les sources sont sur le Drive</a>.</p>
+        <p>Ces trajectoires sont des simulations [HYPOTHÈSE] établies par plusieurs intelligences artificielles à partir des programmes officiels ; <a href="https://drive.google.com/file/d/1MhABvtsnMrIZ1BhAb09ETbMKgJs33ZKo/view" target="_blank" rel="noopener">la synthèse et ses sources sont sur le Drive</a>.</p>
       </section>
       <div id="modeScreen" class="mode-screen"><h2 class="mode-title">Choisissez votre mode de lecture</h2><div class="mode-grid"><button class="mode-card" id="fastModeBtn" type="button"><strong>Mode rapide</strong><span>Vous répondez sans explication pendant le test. C’est le mode le plus neutre pour mesurer votre intuition.</span></button><button class="mode-card" id="learnModeBtn" type="button"><strong>Mode pédagogique</strong><span>Après chaque réponse, une explication courte apparaît, avec un accès à une fiche complète par question.</span></button></div></div>
       <div id="quiz" class="hidden"><div class="progress-wrap"><div class="progress-row"><span id="stepLabel">Question 1 / 10</span><span id="modeLabel">Mode rapide</span></div><div class="progress"><div id="progressBar"></div></div></div><article class="question"><h2 class="qtitle" id="questionTitle"></h2><p class="qtext" id="questionText"></p><div class="answers" id="answers"></div><div class="explanation" id="explanationBox"></div></article><div class="nav"><div class="nav-left"><button class="secondary hidden" id="prevBtn" type="button">← Question précédente</button></div><div class="nav-right"><button class="secondary" id="changeModeBtn" type="button">Changer de mode</button><button class="secondary" id="resetBtn" type="button">Recommencer</button><button class="primary" id="nextBtn" type="button" disabled>Question suivante →</button></div></div></div>
@@ -207,7 +207,7 @@ const questions=[
       },
       {
         "profile": "A",
-        "text": "Des pensions financées par davantage d’emplois productifs, avec une épargne orientée vers la dette et des tensions possibles sur les recrutements."
+        "text": "Un âge légal porté à 65 ans et des pensions financées par davantage d’emplois productifs, avec une vie au travail plus longue et une épargne orientée vers la dette."
       },
       {
         "profile": "C",
@@ -215,7 +215,7 @@ const questions=[
       }
     ],
     "explain": {
-      "A": "[HYPOTHÈSE] Le scénario FN 2007 + Doctrine vise à financer les pensions par davantage d’emplois et de cotisations. La synthèse retient en contrepartie une épargne dirigée, de l’inflation et des tensions de recrutement ; une pension plus sûre ne découle pas automatiquement du scénario.",
+      "A": "Le programme FN 2007 prévoit un âge légal de 65 ans après 40 annuités de cotisation ; la synthèse ne précise aucun autre âge au titre de la Doctrine. [HYPOTHÈSE] Le scénario vise à financer les pensions par davantage d’emplois et de cotisations, avec une vie au travail plus longue, une épargne dirigée, de l’inflation et des tensions de recrutement ; une pension plus sûre ne découle pas automatiquement du scénario.",
       "B": "[HYPOTHÈSE] Le scénario LFI 2017 propose la retraite à 60 ans pour réduire le temps passé au travail. Des pensions versées plus tôt nécessitent davantage de cotisations, de recettes ou de financement public ; leur maintien dépend de l’emploi, de la productivité et de la dette.",
       "C": "La trajectoire réelle a reculé les départs pour accroître les cotisations et contenir les dépenses de pension. Cette contribution au financement demande de travailler plus longtemps ; son coût est plus lourd pour les carrières pénibles et les personnes qui peinent à rester en emploi."
     }

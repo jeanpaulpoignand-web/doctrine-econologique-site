@@ -32,6 +32,10 @@ a{color:var(--text)}
     /* Navigation commune au-dessus du contenu (correctif mobile) */
     body{flex-direction:column;align-items:center;justify-content:flex-start;gap:16px}
     body > .doctrine-navigation{width:min(920px,100%);flex-shrink:0}
+
+.version-notice{border:1px solid #38bdf880;background:#0c4a6e38;border-radius:20px;padding:18px 20px;margin:20px 0}
+.version-notice p{margin:0;color:#e5eefc;font-size:1rem;line-height:1.65}
+@media(max-width:480px){.version-notice{padding:16px}}
 </style>
 <link rel="stylesheet" href="../../assets/doctrine-navigation.css">
 <script src="../../assets/doctrine-share.js" defer></script>
@@ -57,6 +61,13 @@ a{color:var(--text)}
 </nav>
 
 <main class="card">
+  <div class="version-notice" role="note"><p>Version en cours de révision — résultats non validés.</p></div>
+  <div class="notice" role="note">
+    <p><strong>Repères et contreparties des scénarios :</strong> « Programme FN de Jean-Marie Le Pen (présidentielle 2007) + Doctrine Éconologique » est abrégé « FN 2007 + Doctrine » ; « LFI 2017 » désigne le programme présidentiel de 2017 ; « Trajectoire réelle » désigne les politiques menées de 2007 à 2026.</p>
+    <p>[HYPOTHÈSE] Pour FN 2007 + Doctrine, la synthèse retient de l’inflation, des importations plus chères, une sortie ou renégociation des traités, les restrictions liées à la préférence nationale et une réaction possible des marchés.</p>
+    <p>[HYPOTHÈSE] Pour LFI 2017, les contreparties sont un financement public accru, de l’inflation et un conflit possible avec les partenaires européens.</p>
+    <p>Pour la trajectoire réelle, les contreparties sont la dette et le chômage persistant.</p>
+  </div>
   <section class="hero">
     <h1>Q5 — Retraites, cotisants et soutenabilité</h1>
     <p>Document V10 : extraits ciblés + liens vers les documents Drive. Les extraits ne remplacent pas les documents sources.</p>
@@ -90,8 +101,8 @@ a{color:var(--text)}
           <blockquote>Une politique qui détruit l’industrie, affaiblit les salaires, augmente le chômage et alourdit les intérêts de dette menace mécaniquement les retraites.</blockquote>
         </section>
         <section class="excerpt yellow">
-          <div class="badge">Passage utile — source S4</div>
-          <blockquote>LFI protège les retraites par la décision politique. Rupture 2007 + Doctrine les protège par la souveraineté économique.</blockquote>
+          <div class="badge">Reformulation neutre — source S4</div>
+          <blockquote>[HYPOTHÈSE] Le dossier de mai 2026 associe LFI 2017 à des droits de retraite élargis et FN 2007 + Doctrine à une base cotisante renforcée ; aucun de ces mécanismes ne garantit seul le financement des pensions.</blockquote>
         </section>
         <section class="excerpt red">
           <div class="badge">Passage décisif — source S4</div>
@@ -128,7 +139,7 @@ a{color:var(--text)}
         </div>
         <div class="source">
           <strong>S7 — Programme LFI Mélenchon 2017.pdf</strong>
-          <span>Source primaire LFI : SMIC, retraite à 60 ans, garantie d’emploi, planification écologique, Europe.</span>
+          <span>Source primaire LFI 2017 : SMIC, retraite à 60 ans, garantie d’emploi, planification écologique, Europe.</span>
           <a href="../sources/s7.html" target="_blank" rel="noopener">Ouvrir la page source</a>
         </div>
     </div>
