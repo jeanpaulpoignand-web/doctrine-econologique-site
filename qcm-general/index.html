@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="fr">
-<!-- VERSION QCM-GENERAL V8 — en cours de révision, résultats non validés -->
+<!-- VERSION QCM-GENERAL V8 — version en développement ; introduction revue le 20 octobre 2026 -->
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,7 +8,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <meta name="description" content="Trois trajectoires simulées pour la France de 2026 : ce que vous auriez vécu selon le programme appliqué." />
+  <meta name="description" content="Emploi, salaires, énergie, retraites : comparez la trajectoire réelle de la France à deux scénarios politiques alternatifs pour 2026." />
   <style>
     :root {--bg:#0f172a;--card:#111827;--text:#f8fafc;--muted:#cbd5e1;--line:rgba(255,255,255,.14);--accent:#f8fafc;--shadow:0 22px 70px rgba(0,0,0,.38);--radius:22px;}
     *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top left,rgba(59,130,246,.22),transparent 34rem),radial-gradient(circle at bottom right,rgba(248,113,113,.18),transparent 34rem),var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:16px;padding:22px} main{width:min(920px,100%)}
@@ -31,7 +31,7 @@
     .version-notice{border:1px solid #38bdf880;background:#0c4a6e38;border-radius:20px;padding:18px 20px;margin:20px 0}
     .version-notice p{margin:0;color:#e5eefc;font-size:1rem;line-height:1.65}
     .results > .version-notice{margin:0}
-    .reading-guide{margin:0 0 22px}.reading-guide h2{font-size:1.2rem;margin:0 0 12px}.reading-guide p{margin:10px 0}.reading-guide a{color:var(--text)}
+    .reading-guide{margin:0 0 22px}.reading-guide h2{font-size:1.2rem;margin:0 0 12px}.reading-guide h3{font-size:1rem;line-height:1.45;margin:20px 0 8px;color:var(--text)}.reading-guide p{margin:10px 0}.reading-guide a{color:var(--text)}
     .scenario-snapshot{border:1px solid var(--line);border-radius:16px;padding:16px;margin:16px 0;background:rgba(255,255,255,.055)}
     .scenario-snapshot h3{font-size:1.1rem;margin:0 0 12px}.scenario-snapshot h4{font-size:1rem;margin:16px 0 8px;overflow-wrap:anywhere}
     .scenario-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 12px}.scenario-metrics div{min-width:0}.scenario-metrics dt{font-size:.88rem;color:var(--muted)}.scenario-metrics dd{margin:3px 0 0;font-weight:700;overflow-wrap:anywhere}
@@ -59,7 +59,7 @@
 <meta property="og:site_name" content="Doctrine Éconologique">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Et si on avait voté différemment ?">
-<meta property="og:description" content="Trois trajectoires simulées pour la France de 2026 : ce que vous auriez vécu selon le programme appliqué.">
+<meta property="og:description" content="Emploi, salaires, énergie, retraites : comparez la trajectoire réelle de la France à deux scénarios politiques alternatifs pour 2026.">
 <meta property="og:url" content="https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-general/">
 <meta property="og:image" content="https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/assets/partage-doctrine.jpg">
 <meta property="og:image:width" content="1200">
@@ -79,24 +79,31 @@
   <main class="card">
     <a href="../index.html#positionner" class="back-home" data-back>← Retour au site</a>
     <section class="hero">
-      <div class="version-notice" role="note"><p>Version en cours de révision — résultats non validés.</p></div>
-      <h1>Et si on avait voté différemment ?</h1>
-      <p class="subtitle">Trois trajectoires simulées pour la France de 2026 : ce que vous auriez vécu selon le programme appliqué.</p>
-      <p class="small">Un vote n’est pas seulement une opinion du moment : c’est une trajectoire qui peut produire des effets plusieurs années plus tard. Ce site sert à réfléchir aux conséquences possibles d’un choix politique dans le temps.</p>
-      <p class="small">Le dossier de travail rapproche des réponses de plusieurs intelligences artificielles et une synthèse. Leurs chiffres sont conservés pour l’audit : leur rapprochement ne valide ni les résultats ni un lien certain entre un vote passé et votre situation personnelle.</p>
-      <p class="small">Les modalités de la méthode figurent en annexe pour les personnes qui souhaitent approfondir.</p>
-      <p class="small"><strong>Version V8</strong> — présentation en cours de révision ; chiffres de fond conservés et écarts signalés pour audit.</p>
+      <div class="version-notice" role="note"><p><strong>Version en développement</strong> — travail engagé en mai 2026 et réexaminé en octobre 2026.</p></div>
+      <h1>Et si on avait voté différemment&nbsp;?</h1>
+      <p class="subtitle">Emploi, salaires, énergie, retraites : que peuvent changer nos choix politiques au fil des années ?</p>
+      <p class="small">Ce questionnaire vous invite à comparer vos intuitions à trois trajectoires pour la France de 2026 : le parcours réellement suivi et deux scénarios alternatifs construits à partir de programmes présidentiels.</p>
+      <p class="small">Ce questionnaire s’inscrit dans un travail continu de recherche et d’amélioration. Il s’appuie sur les analyses de plusieurs intelligences artificielles — ChatGPT, Claude, Gemini, Grok et Perplexity — confrontées dans le cadre d’audits croisés.</p>
+      <p class="small">Les sources, les hypothèses et les résultats sont examinés pour repérer les erreurs, documenter les désaccords et améliorer les simulations. L’accord entre plusieurs IA ne constitue pas, à lui seul, une preuve : les résultats restent à apprécier au regard des sources et des hypothèses retenues.</p>
+      <p class="small"><a href="https://drive.google.com/drive/folders/1RKe2C1w7jMrBfnr80xr8IyPgHAVlbqq-" target="_blank" rel="noopener" style="color:var(--text)">Consulter le dossier de travail et les sources →</a><br><a href="https://drive.google.com/drive/folders/1AF68XGSebbIGoYi40Z7wSWT4mbn59mHl" target="_blank" rel="noopener" style="color:var(--text)">Consulter les audits croisés d’octobre 2026 →</a></p>
     </section>
     <section class="content">
       <section class="method-note reading-guide" aria-labelledby="readingGuideTitle">
-        <h2 id="readingGuideTitle">Comment lire ce test</h2>
-        <p>Le scénario FN reprend le programme présenté par Jean-Marie Le Pen à la présidentielle de 2007 (éliminé au premier tour), appliqué pendant 19 ans. La Doctrine Éconologique, créée en 2026, y ajoute ses propositions : elle ne figurait pas sur le bulletin de 2007.</p>
-        <p>Le scénario LFI reprend le programme présidentiel de 2017, appliqué pendant 9 ans seulement : la comparaison porte sur des durées différentes.</p>
-        <p>Ces trajectoires sont des simulations [HYPOTHÈSE] établies par plusieurs intelligences artificielles à partir des programmes officiels ; <a href="https://drive.google.com/file/d/1MhABvtsnMrIZ1BhAb09ETbMKgJs33ZKo/view" target="_blank" rel="noopener">la synthèse et ses sources sont sur le Drive</a>.</p>
+        <h2 id="readingGuideTitle">Comment lire ce questionnaire ?</h2>
+        <p><strong>Trois trajectoires sont mises en regard pour réfléchir à leurs conséquences sur la France et notre vie quotidienne en 2026.</strong></p>
+        <h3>1. Si le programme de Jean-Marie Le Pen avait été appliqué dès 2007</h3>
+        <p>Ce scénario part du programme présidentiel du Front National de 2007. La version présentée y ajoute des propositions de la Doctrine Éconologique, identifiées comme telles et distinctes du programme d’origine.</p>
+        <h3>2. Si le programme de Jean-Luc Mélenchon avait été appliqué dès 2017</h3>
+        <p>Ce scénario part du programme présidentiel de La France insoumise de 2017, « L’Avenir en commun ».</p>
+        <h3>3. La trajectoire réellement suivie par la France</h3>
+        <p>Elle correspond aux politiques menées par les gouvernements successifs sous les présidences de Nicolas Sarkozy, François Hollande et Emmanuel Macron, ainsi qu’aux résultats observés sur cette période.</p>
+        <p>Les deux scénarios alternatifs commencent à des dates différentes : 2007 et 2017. Ils sont comparés à la trajectoire réelle sur leurs périodes respectives.</p>
+        <p><strong>Les résultats observés sont distingués des simulations.</strong> Ces dernières explorent ce qui aurait pu se produire, selon des hypothèses documentées ; elles ne constituent pas des certitudes historiques.</p>
+        <p><a href="https://docs.google.com/document/d/14Zz443kQg5Pk5VrwhBmaTtWjFjdH0vyzjZNzIKeEZvM/edit" target="_blank" rel="noopener">Consulter la méthode, les sources et les analyses comparées →</a></p>
       </section>
       <div id="modeScreen" class="mode-screen"><h2 class="mode-title">Choisissez votre mode de lecture</h2><div class="mode-grid"><button class="mode-card" id="fastModeBtn" type="button"><strong>Mode rapide</strong><span>Vous répondez sans explication pendant le test. C’est le mode le plus neutre pour mesurer votre intuition.</span></button><button class="mode-card" id="learnModeBtn" type="button"><strong>Mode pédagogique</strong><span>Après chaque réponse, une explication courte apparaît, avec un accès à une fiche complète par question.</span></button></div></div>
       <div id="quiz" class="hidden"><div class="progress-wrap"><div class="progress-row"><span id="stepLabel">Question 1 / 10</span><span id="modeLabel">Mode rapide</span></div><div class="progress"><div id="progressBar"></div></div></div><article class="question"><h2 class="qtitle" id="questionTitle"></h2><p class="qtext" id="questionText"></p><div class="answers" id="answers"></div><div class="explanation" id="explanationBox"></div></article><div class="nav"><div class="nav-left"><button class="secondary hidden" id="prevBtn" type="button">← Question précédente</button></div><div class="nav-right"><button class="secondary" id="changeModeBtn" type="button">Changer de mode</button><button class="secondary" id="resetBtn" type="button">Recommencer</button><button class="primary" id="nextBtn" type="button" disabled>Question suivante →</button></div></div></div>
-      <div id="results" class="results"><div class="version-notice" role="note"><p>Version en cours de révision — résultats non validés.</p></div><div class="result-main"><h2 id="resultTitle"></h2><div id="scenarioSnapshot" class="scenario-snapshot" role="note"></div><p id="resultText"></p></div><div class="bars" id="bars"></div>
+      <div id="results" class="results"><div class="version-notice" role="note"><p>Version en développement — les simulations et leur présentation sont en cours d’amélioration.</p></div><div class="result-main"><h2 id="resultTitle"></h2><div id="scenarioSnapshot" class="scenario-snapshot" role="note"></div><p id="resultText"></p></div><div class="bars" id="bars"></div>
         <div class="summary-table"><table id="scenarioTable">
           <caption>Repères pour 2026 — montants en euros de 2026</caption>
           <thead><tr><th scope="col">Indicateur</th><th data-profile="C" scope="col">Politiques réellement menées 2007–2026</th><th data-profile="B" scope="col">Programme LFI de Jean-Luc Mélenchon (présidentielle 2017) [HYPOTHÈSE]</th><th data-profile="A" scope="col">Programme FN de Jean-Marie Le Pen (présidentielle 2007), seul [HYPOTHÈSE — audit multi-IA]</th><th data-profile="A-doctrine" scope="col">Apport proposé par la Doctrine Éconologique [estimation de la Doctrine, non auditée]</th><th scope="col">Lecture prudente</th></tr></thead>
