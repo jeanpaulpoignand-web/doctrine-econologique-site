@@ -55,6 +55,12 @@
     .question-benchmarks{border:1px solid var(--line);border-radius:16px;padding:16px;background:rgba(255,255,255,.055);color:var(--muted);overflow-wrap:anywhere}
     .question-benchmarks h3{font-size:1rem;margin:0 0 10px;color:var(--text)}.question-benchmarks ul{padding-left:20px;margin:0}.question-benchmarks li{margin:8px 0;line-height:1.5}
     .covid-note{min-width:0;border-top:1px solid var(--line);margin-top:16px;padding-top:12px}.covid-note summary{cursor:pointer;min-height:44px;line-height:1.5;font-weight:700;color:var(--text)}.covid-note summary:focus-visible{outline:3px solid var(--text);outline-offset:4px}
+    @media(max-width:640px){
+      #covidTable tr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px 8px}
+      #covidTable td{padding:0}
+      #covidTable td:first-child,#covidTable td:last-child{grid-column:1/-1}
+      #covidTable td:not(:first-child)::before{font-weight:600;font-size:.8rem;margin-bottom:2px}
+    }
   </style>
 <link rel="stylesheet" href="../assets/doctrine-navigation.css">
 <script src="../assets/doctrine-share.js" defer></script>
@@ -173,7 +179,7 @@ const questions=[
       "B": "[HYPOTHÈSE] Relever nettement le SMIC par la loi vise à augmenter les bas salaires. L'audit de cinq IA situe le SMIC net de LFI 2017 à 1 600 à 1 800 € en euros de 2026. Cette hausse accroîtrait le coût pour les employeurs, avec un risque pour l'emploi et les prix et un financement public possible.",
       "C": "Revaloriser régulièrement le SMIC et verser des aides comme la prime d'activité vise à soutenir les bas revenus, avec un coût public et un gain modéré. Le repère observé est un SMIC net de 1 477,93 € depuis juin 2026 ; les dépenses contraintes peuvent absorber une partie du soutien."
     },
-    "benchmarks": "<section class=\"question-benchmarks\" aria-labelledby=\"benchmarkTitle\"><h3 id=\"benchmarkTitle\">Repères pour 2026 — SMIC net mensuel</h3><ul><li><strong>Réalité :</strong> 1 477,93 € (depuis juin 2026)</li><li><strong>Programme LFI 2017 :</strong> 1 600 à 1 800 € [estimation de l&#x27;audit de cinq IA, en euros de 2026]</li><li><strong>Programme FN 2007 seul :</strong> 1 250 à 1 900 € selon la monnaie [estimation de l&#x27;audit de cinq IA, en euros de 2026]</li><li><strong>FN 2007 + Doctrine Éconologique :</strong> ≈ 2 050 € dans les prix du scénario, plus élevés qu&#x27;en réalité — pouvoir d&#x27;achat comparable à recalculer [estimation de la Doctrine, non auditée]</li></ul></section>"
+    "benchmarks": "<section class=\"question-benchmarks\" aria-labelledby=\"benchmarkTitle\"><h3 id=\"benchmarkTitle\">Repères pour 2026 — SMIC net mensuel</h3><ul><li><strong>Réalité :</strong> 1 477,93 € (depuis juin 2026)</li><li><strong>Programme LFI 2017 :</strong> 1 600 à 1 800 € [estimation de l&#x27;audit de cinq IA, en euros de 2026]</li><li><strong>Programme FN 2007 seul :</strong> 1 250 à 1 900 € selon la monnaie [estimation de l&#x27;audit de cinq IA, en euros de 2026]</li><li><strong>FN 2007 + Doctrine Éconologique :</strong> ≈ 2 050 € dans les prix du scénario, plus élevés qu&#x27;en réalité — pouvoir d&#x27;achat comparable à recalculer [estimation de la Doctrine, non auditée]</li></ul></section>"
   },
   {
     "title": "Question 2 – Chômage",
@@ -200,7 +206,7 @@ const questions=[
       "B": "[HYPOTHÈSE] Garantir un emploi et augmenter l'investissement public vise à réduire le chômage. L'audit de cinq IA situe LFI 2017 à 7 à 11 %. Cette politique mobiliserait davantage de financement public, avec un coût salarial plus lourd pour les employeurs.",
       "C": "Aider l'embauche et les entreprises vise à soutenir l'emploi, avec un coût public élevé et des effets qui peuvent rester limités quand l'activité ralentit. Le repère observé est un chômage de 8,3 % au 2e trimestre 2026 ; ce bilan ne garantit pas l'effet futur d'une politique."
     },
-    "benchmarks": "<section class=\"question-benchmarks\" aria-labelledby=\"benchmarkTitle\"><h3 id=\"benchmarkTitle\">Repères pour 2026 — taux de chômage</h3><ul><li><strong>Réalité :</strong> 8,3 % (2e trimestre 2026)</li><li><strong>Programme LFI 2017 :</strong> 7 à 11 % [estimation de l&#x27;audit de cinq IA]</li><li><strong>Programme FN 2007 seul :</strong> 6 à 10 % [estimation de l&#x27;audit de cinq IA]</li><li><strong>FN 2007 + Doctrine Éconologique :</strong> ≈ 4,3 % [estimation de la Doctrine, non auditée ; elle suppose aussi 1,8 à 2,3 millions d&#x27;actifs en moins]</li></ul></section>"
+    "benchmarks": "<section class=\"question-benchmarks\" aria-labelledby=\"benchmarkTitle\"><h3 id=\"benchmarkTitle\">Repères pour 2026 — taux de chômage</h3><ul><li><strong>Réalité :</strong> 8,3 % (2e trimestre 2026)</li><li><strong>Programme LFI 2017 :</strong> 7 à 11 % [estimation de l&#x27;audit de cinq IA]</li><li><strong>Programme FN 2007 seul :</strong> 6 à 10 % [estimation de l&#x27;audit de cinq IA]</li><li><strong>FN 2007 + Doctrine Éconologique :</strong> ≈ 4,3 % [estimation de la Doctrine, non auditée ; elle suppose aussi 1,8 à 2,3 millions d&#x27;actifs en moins]</li></ul></section>"
   },
   {
     "title": "Question 3 – Pouvoir d’achat",
