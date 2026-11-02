@@ -204,6 +204,9 @@ ul{padding-left:22px;margin:0 0 16px}li{margin:0 0 6px}
 .pager a{color:var(--nuit)}
 @media print{.doctrine-navigation,.pager{display:none}}"""
 
+AUTEUR = "Jean Paul Poignand"
+CONTACT = "contactdoctrineeconologique@gmail.com"
+
 def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
     url = f"{SITE}piliers/{p['slug']}/"
     titre = f"{p['titre_page']} | Doctrine Éconologique"
@@ -211,6 +214,7 @@ def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
     jsonld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Article", "headline": p["titre_page"], "description": desc, "datePublished": d_pub, "dateModified": d_maj,
          "inLanguage": "fr-FR", "mainEntityOfPage": url,
+         "author": {"@type": "Person", "name": AUTEUR, "url": SITE + "a-propos/"},
          "publisher": {"@type": "Organization", "name": "Doctrine Éconologique", "url": SITE}},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Accueil", "item": SITE},
@@ -244,7 +248,7 @@ def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
 <main>
 <p class="crumbs"><a href="../../">Accueil</a> › <a href="../../#piliers">Piliers</a> › {esc(p['nom'])}</p>
 <h1>{esc(p['nom'])}</h1>
-<p class="meta">Pilier {p['romain']} · Publié le {fr_date(d_pub)} · Mis à jour le {fr_date(d_maj)}</p>
+<p class="meta">Pilier {p['romain']} · Publié le {fr_date(d_pub)} · Mis à jour le {fr_date(d_maj)} · Par <a href="../../a-propos/">{AUTEUR}</a></p>
 <p class="resume">{esc(p['resume'])}</p>
 {body}
 <aside class="more" aria-labelledby="plus">
@@ -259,6 +263,62 @@ def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
 {pager}
 </main>
 <script src="../../assets/doctrine-share.js" defer></script>
+</body>
+</html>
+"""
+
+def apropos():
+    url = SITE + "a-propos/"
+    titre = "À propos : qui porte la Doctrine Éconologique | Doctrine Éconologique"
+    desc = "La Doctrine Éconologique est portée par Jean Paul Poignand. Qui il est, pourquoi cette doctrine, comment elle est construite avec cinq intelligences artificielles et arbitrée par un humain."
+    jsonld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "AboutPage", "name": "À propos de la Doctrine Éconologique", "description": desc, "url": url, "inLanguage": "fr-FR",
+         "mainEntity": {"@type": "Person", "name": AUTEUR, "url": url, "email": CONTACT}},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": SITE},
+            {"@type": "ListItem", "position": 2, "name": "À propos", "item": url}]}]}
+    ias = [("Claude","Anthropic","architecte, intégrateur"),("ChatGPT","OpenAI","rigueur institutionnelle"),("Gemini","Google","corrélations macro"),("Grok","xAI","données de terrain"),("Perplexity","Perplexity AI","sourcing systématique")]
+    li = "".join(f"<li><b>{n}</b> ({e}) : {r}.</li>" for n,e,r in ias)
+    return f"""<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(titre)}</title>
+<meta name="description" content="{html.escape(desc)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{html.escape(titre)}">
+<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{SITE}assets/partage-doctrine.jpg">
+<link rel="stylesheet" href="../assets/doctrine-navigation.css">
+<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>
+<style>{CSS}</style>
+</head>
+<body>
+<nav class="doctrine-navigation" aria-label="Navigation de la Doctrine">
+  <a href="../">Retour au site de la Doctrine</a>
+</nav>
+<main>
+<p class="crumbs"><a href="../">Accueil</a> › À propos</p>
+<h1>À propos de la Doctrine Éconologique</h1>
+<h2>Qui porte la doctrine</h2>
+<p>La Doctrine Éconologique est portée par {AUTEUR}. Ingénieur des techniques et industries agroalimentaires, il a commencé ce travail en janvier 2026. Il tranche les arbitrages et en assume le contenu sous son nom.</p>
+<h2>Pourquoi cette doctrine</h2>
+<p>Le mot « éconologie » réunit économie et écologie. L’écologie dit surtout ce qu’il ne faut pas faire ; l’éconologie propose des solutions, dans le sens de la souveraineté et de la production locale.</p>
+<p>Une société prospère ne peut pas durablement dissimuler ce qu’elle produit, ce qu’elle consomme, et qui paie réellement.</p>
+<h2>Comment elle est construite</h2>
+<p>La doctrine est construite par <em>triangulation contradictoire</em>. Chaque thèse est soumise à cinq intelligences artificielles aux biais et architectures distincts. Leurs désaccords révèlent les angles morts. Les arbitrages restent humains : {AUTEUR} tranche.</p>
+<p>Les intelligences artificielles sont des outils de travail, avec chacune un rôle :</p>
+<ul>{li}</ul>
+<p>Anthropic, OpenAI, Google, xAI et Perplexity AI sont des marques de leurs propriétaires respectifs. Leur mention ne suggère aucun partenariat ni endossement.</p>
+<h2>Comment lire les chiffres</h2>
+<p>Chaque affirmation importante porte une étiquette : [FAIT] pour une donnée sourcée, [CALCUL] pour un calcul reproductible, [HYPOTHÈSE] pour ce qui reste à démontrer, [ANALYSE] pour une lecture de la doctrine, [PROPOSITION] pour une mesure proposée. Les faits sont ainsi distingués des propositions.</p>
+<h2>Contact</h2>
+<p>Pour une question, une correction ou une source à signaler : <a href="mailto:{CONTACT}">{CONTACT}</a>.</p>
+<p><a class="btn-touch btn-touch--soft btn-touch--fluid" href="../#piliers">Voir les piliers</a></p>
+</main>
 </body>
 </html>
 """
@@ -286,3 +346,6 @@ def main(slugs):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
+    if not sys.argv[1:]:
+        os.makedirs(os.path.join(ROOT, "a-propos"), exist_ok=True)
+        open(os.path.join(ROOT, "a-propos", "index.html"), "w", encoding="utf-8").write(apropos())
