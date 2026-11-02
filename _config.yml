@@ -1,0 +1,13 @@
+# Fichiers présents dans le dépôt mais à ne pas publier sur le site.
+# (Les workflows d'installation des QCM et les .zip restent dans le dépôt.)
+exclude:
+  - README.md
+  - archives/
+  - tools/
+  - qcm-general/README.md
+  - qcm-general/qcm_2007_2026_github_v10.zip
+  - qcm-general/qcm_2007_2026_github_v12.zip
+  - qcm-general/qcm_2007_2026_github_v13.zip
+  - qcm-general/qcm-general-v7-1-index.html
+  - qcm-general/qcm-general-v7-2-index.html
+  - qcm-fraude-fiscale/README.md
