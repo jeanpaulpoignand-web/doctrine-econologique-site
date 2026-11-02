@@ -207,6 +207,9 @@ ul{padding-left:22px;margin:0 0 16px}li{margin:0 0 6px}
 AUTEUR = "Jean Paul Poignand"
 CONTACT = "contactdoctrineeconologique@gmail.com"
 
+def sans_doublon(body):
+    return body.replace('<h3 class="label">POUR ALLER PLUS LOIN</h3>', '<h3 class="label">SOURCES ET LECTURES</h3>')
+
 def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
     url = f"{SITE}piliers/{p['slug']}/"
     titre = f"{p['titre_seo']} | Doctrine Éconologique"
@@ -250,9 +253,9 @@ def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
 <h1>{esc(p['nom'])}</h1>
 <p class="meta">Pilier {p['romain']} · Publié le {fr_date(d_pub)} · Mis à jour le {fr_date(d_maj)} · Par <a href="../../a-propos/">{AUTEUR}</a></p>
 <p class="resume">{esc(p['resume'])}</p>
-{body}
+{sans_doublon(body)}
 <aside class="more" aria-labelledby="plus">
-<h2 id="plus">Ressources liées</h2>
+<h2 id="plus">Pour aller plus loin</h2>
 <div class="actions">
 {qcm}
 <a class="btn-touch btn-touch--soft btn-touch--fluid" href="../../{p['pdf']}">Version PDF ({pdf_kb} Ko)</a>
