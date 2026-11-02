@@ -221,12 +221,22 @@ section[id]{scroll-margin-top:84px}
 .pillar-highlight-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
 .pillar-highlight-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700}
 .pillar-highlight-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--soft)}
+/* Ergonomie tactile (lot 1) : relief + enfoncement, mêmes valeurs que .btn-touch (assets/doctrine-navigation.css) */
+.pillar-link:not(.pillar-link~.pillar-link),.pillar-qcm-button,.position-cta,.finalite-button{--edge:rgba(0,0,0,.38);box-sizing:border-box;min-height:44px;transition:transform .1s ease-out,box-shadow .1s ease-out;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.pillar-link:not(.pillar-link~.pillar-link),.position-cta,.finalite-button{box-shadow:0 4px 0 var(--edge),0 6px 10px rgba(0,0,0,.15)}
+.pillar-qcm-button{display:block;box-shadow:0 2px 0 var(--accent)}
+.pillar-link:not(.pillar-link~.pillar-link):active,.position-cta:active,.finalite-button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--edge),0 1px 2px rgba(0,0,0,.15)}
+.pillar-qcm-button:active{transform:translateY(2px);box-shadow:0 0 0 var(--accent);background:rgba(127,127,127,.12)}
+.pillar-link:focus-visible,.pillar-qcm-button:focus-visible,.position-cta:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.pillar-link,.pillar-qcm-button,.position-cta,.finalite-button{transition:none}}
 .pillar-integrity{border-top:1px solid var(--line);padding-top:12px}
 .pillar-integrity h4{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 6px}
 .pillar-integrity p{font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.45;color:var(--soft);margin:0 0 8px}
 .pillar-integrity-links{display:flex;flex-wrap:wrap;gap:4px 16px}
-.pillar-integrity-links a{font-size:12px;color:var(--accent);text-decoration:underline;text-underline-offset:4px;padding:6px 0}
-.pillar-integrity-links a:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+.pillar-integrity-links a:not(.btn-touch){font-size:12px;color:var(--accent);text-decoration:underline;text-underline-offset:4px;padding:6px 0}
+.pillar-integrity-links a:not(.btn-touch):focus-visible{outline:3px solid var(--or);outline-offset:3px}
+.pillar-integrity-links .pillar-casier-btn{--touch-bg:var(--accent);--touch-focus:var(--accent);flex:1 1 100%;font-size:13px;margin:2px 0 6px;padding:12px 14px}
+.pillar-integrity-links .pillar-casier-btn .new-tab-note{margin-top:0;font-size:10.5px;opacity:.9}
 .pillar-integrity .integrity-note{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;line-height:1.4;color:var(--muted);margin:6px 0 0}
 .pillar-image{width:100%;margin-top:16px;border-radius:8px;border:1px solid var(--line);display:block;box-shadow:0 4px 18px rgba(0,0,0,.08)}
 
@@ -272,6 +282,9 @@ section[id]{scroll-margin-top:84px}
 .colophon-bottom em{color:var(--rouge);font-style:normal}
 .fade-in{opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}
 .fade-in.visible{opacity:1;transform:translateY(0)}
+.position-cta.fade-in{transition:opacity .7s,transform .1s ease-out,box-shadow .1s ease-out}
+.position-cta.fade-in.visible:active{transform:translateY(3px)}
+@media(prefers-reduced-motion:reduce){.position-cta.fade-in{transition:opacity .7s}}
 /* Pilier VII — deux billets (cinéma / Opéra de Paris) */
 .p7-billets{margin-top:16px;display:flex;flex-direction:column;gap:12px}
 .p7-kicker{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
@@ -655,7 +668,7 @@ section[id]{scroll-margin-top:84px}
             <h4 id="integrite-elus-titre">Transparence et intégrité des élus</h4>
             <p>« Les programmes politiques disent ce que les candidats promettent. Leurs décisions, leurs votes et les informations judiciaires publiquement documentées permettent aussi d’éclairer le jugement citoyen. »</p>
             <div class="pillar-integrity-links">
-              <a href="https://casier-politique.fr/" target="_blank" rel="noopener noreferrer">Consulter Casier Politique — ressource externe <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
+              <a class="btn-touch btn-touch--fluid pillar-casier-btn" href="https://casier-politique.fr/" target="_blank" rel="noopener noreferrer"><span><span aria-hidden="true">👉 </span>Consulter Casier Politique</span><span class="new-tab-note">Ressource externe (s'ouvre dans un nouvel onglet)</span></a>
               <a href="https://casier-politique.fr/about" target="_blank" rel="noopener noreferrer">Présentation du site <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
             </div>
             <p class="integrity-note">Ressource externe — La Doctrine Éconologique ne garantit pas l’exhaustivité ni l’actualisation des informations publiées par ce tiers. Site tiers, non registre judiciaire officiel ; présomption d’innocence.</p>

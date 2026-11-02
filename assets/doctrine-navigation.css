@@ -16,3 +16,18 @@
 .doctrine-navigation .doctrine-share-menu>*:hover{background:#f5f0e5}
 .doctrine-navigation .doctrine-navigation-share:focus-visible,.doctrine-navigation .doctrine-share-menu>*:focus-visible{outline:3px solid #9b3028;outline-offset:3px}
 .doctrine-share-live{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* === Ergonomie tactile : boutons en relief (opt-in) ===
+   Convention commune : principal = relief net (.btn-touch), secondaire = relief discret (.btn-touch--soft).
+   Enfoncement ~3 px au toucher/clic, retour immédiat au relâchement, focus clavier visible,
+   cible >= 44 px, animation 100 ms désactivée si prefers-reduced-motion. Aucune dépendance. */
+.btn-touch{--touch-bg:#9b3028;--touch-fg:#fff;--touch-edge:rgba(0,0,0,.38);--touch-focus:#9b3028;box-sizing:border-box;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:44px;max-width:100%;padding:12px 20px;border:1px solid var(--touch-edge);border-radius:10px;background:var(--touch-bg);color:var(--touch-fg);font-weight:700;line-height:1.35;text-align:center;text-decoration:none;overflow-wrap:anywhere;cursor:pointer;box-shadow:0 4px 0 var(--touch-edge),0 6px 10px rgba(0,0,0,.18);transform:translateY(0);transition:transform .1s ease-out,box-shadow .1s ease-out;touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+.btn-touch:active{transform:translateY(3px);box-shadow:0 1px 0 var(--touch-edge),0 1px 2px rgba(0,0,0,.18)}
+.btn-touch:focus-visible{outline:3px solid var(--touch-focus);outline-offset:3px}
+.btn-touch--fluid{display:flex;width:100%}
+.btn-touch--soft{--touch-bg:transparent;--touch-fg:var(--touch-focus);--touch-edge:currentColor;border:1.5px solid currentColor;box-shadow:0 2px 0 currentColor;color:var(--touch-fg)}
+.btn-touch--soft:active{transform:translateY(2px);box-shadow:0 0 0 currentColor;background:rgba(127,127,127,.12)}
+@media (hover:hover){.btn-touch:hover{filter:brightness(1.08)}}
+@media (min-width:601px){.btn-touch--fluid{display:inline-flex;width:auto;min-width:260px}}
+@media (prefers-reduced-motion:reduce){.btn-touch{transition:none}}
+@media print{.btn-touch{box-shadow:none}}
