@@ -209,7 +209,7 @@ CONTACT = "contactdoctrineeconologique@gmail.com"
 
 def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
     url = f"{SITE}piliers/{p['slug']}/"
-    titre = f"{p['titre_page']} | Doctrine Éconologique"
+    titre = f"{p['titre_seo']} | Doctrine Éconologique"
     desc = f"{p['resume']} {p['accroche']}."
     jsonld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Article", "headline": p["titre_page"], "description": desc, "datePublished": d_pub, "dateModified": d_maj,
@@ -269,7 +269,7 @@ def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
 
 def apropos():
     url = SITE + "a-propos/"
-    titre = "À propos : qui porte la Doctrine Éconologique | Doctrine Éconologique"
+    titre = "À propos : qui porte la doctrine | Doctrine Éconologique"
     desc = "La Doctrine Éconologique est portée par Jean Paul Poignand. Qui il est, pourquoi cette doctrine, comment elle est construite avec cinq intelligences artificielles et arbitrée par un humain."
     jsonld = {"@context": "https://schema.org", "@graph": [
         {"@type": "AboutPage", "name": "À propos de la Doctrine Éconologique", "description": desc, "url": url, "inLanguage": "fr-FR",

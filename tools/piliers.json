@@ -16,7 +16,8 @@
     "nom": "QCM Énergie"
    }
   ],
-  "drive": "https://drive.google.com/drive/folders/1OdYykoz0h6pcVSLiwoPgjtRCt4Xf2kAw"
+  "drive": "https://drive.google.com/drive/folders/1OdYykoz0h6pcVSLiwoPgjtRCt4Xf2kAw",
+  "titre_seo": "Énergie : nucléaire et biométhane locaux"
  },
  {
   "numero": 2,
@@ -35,7 +36,8 @@
    }
   ],
   "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/12VRVnUjQ2EwRp7LhG7JpKdmikooh8E-t"
+  "drive": "https://drive.google.com/drive/folders/12VRVnUjQ2EwRp7LhG7JpKdmikooh8E-t",
+  "titre_seo": "Garantie 10 ans : acheter durable"
  },
  {
   "numero": 3,
@@ -49,7 +51,8 @@
   "pdf": "fiches/pilier-03-aller-droit-au-but.pdf",
   "annexes": [],
   "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1Rb9XlrJ1D1XT2ePsBv1w2BeatuRViEr5"
+  "drive": "https://drive.google.com/drive/folders/1Rb9XlrJ1D1XT2ePsBv1w2BeatuRViEr5",
+  "titre_seo": "Argent public : auditer et plafonner"
  },
  {
   "numero": 4,
@@ -68,7 +71,8 @@
     "nom": "Questionnaire — Réparation des retraites"
    }
   ],
-  "drive": "https://drive.google.com/drive/folders/18C07IvzhOqNGJPjmouuA2jEq9Y7dH-Ru"
+  "drive": "https://drive.google.com/drive/folders/18C07IvzhOqNGJPjmouuA2jEq9Y7dH-Ru",
+  "titre_seo": "Retraites et ASPA : le minimum vieillesse"
  },
  {
   "numero": 5,
@@ -87,7 +91,8 @@
    }
   ],
   "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1PZI6_h6qPxwElrGvsxzPyUD1JkqiK7xb"
+  "drive": "https://drive.google.com/drive/folders/1PZI6_h6qPxwElrGvsxzPyUD1JkqiK7xb",
+  "titre_seo": "EHPAD : prévenir plutôt que réparer"
  },
  {
   "numero": 6,
@@ -111,7 +116,8 @@
     "nom": "Questionnaire — Bâtiment et métiers utiles"
    }
   ],
-  "drive": "https://drive.google.com/drive/folders/1Yvv5-jfYPTZu0CMaLeCJ8xfdxHipY7py"
+  "drive": "https://drive.google.com/drive/folders/1Yvv5-jfYPTZu0CMaLeCJ8xfdxHipY7py",
+  "titre_seo": "Bâtiment : des métiers plus attractifs"
  },
  {
   "numero": 7,
@@ -132,7 +138,8 @@
   "questionnaires": [],
   "drive": "https://drive.google.com/drive/folders/1-NNbZHu74KTL4DamRaNJ6YJ-8PU6PtqL",
   "colonnes_fines": true,
-  "corps_manuel": true
+  "corps_manuel": true,
+  "titre_seo": "Culture : le reçu fiscal culturel"
  },
  {
   "numero": 8,
@@ -147,7 +154,8 @@
   "annexes": [],
   "questionnaires": [],
   "drive": "https://drive.google.com/drive/folders/1eGxc6AfZ5yB_lNPMnEv0E91LpdL-Iq2O",
-  "corps_manuel": true
+  "corps_manuel": true,
+  "titre_seo": "Frontaliers : chômage cotisé ici, payé là"
  },
  {
   "numero": 9,
@@ -171,7 +179,8 @@
   ],
   "questionnaires": [],
   "drive": "https://drive.google.com/drive/folders/1r77kIiQk4FtEXrkrVPAEakowyf5YPUet",
-  "corps_manuel": true
+  "corps_manuel": true,
+  "titre_seo": "Agriculture : ne pas importer l’interdit"
  },
  {
   "numero": 10,
@@ -200,7 +209,8 @@
    }
   ],
   "drive": "https://drive.google.com/drive/folders/1cLXuZELeKz8G0vlnDDU_IoXFX2b2NdoS",
-  "corps_manuel": true
+  "corps_manuel": true,
+  "titre_seo": "Textile et chaussure : fabriquer ici"
  },
  {
   "numero": 11,
@@ -215,7 +225,8 @@
   "annexes": [],
   "questionnaires": [],
   "drive": "https://drive.google.com/drive/folders/1G8u7BKfc968MCLbKRdhBsPqUE32AOwvr",
-  "corps_manuel": true
+  "corps_manuel": true,
+  "titre_seo": "Sécurité routière : radars et amendes"
  },
  {
   "numero": 12,
@@ -230,7 +241,8 @@
   "annexes": [],
   "questionnaires": [],
   "drive": "https://drive.google.com/drive/folders/1lPE-79hM-fZV0kPh3mpC4khGkLVNPjHY",
-  "corps_manuel": true
+  "corps_manuel": true,
+  "titre_seo": "Frais de carte : ce que paient les petits"
  },
  {
   "numero": 13,
@@ -250,7 +262,8 @@
    }
   ],
   "drive": "https://drive.google.com/drive/folders/1O_RbUmXr7YyqglsldIUPgu7lGo3ZFj-w",
-  "corps_manuel": true
+  "corps_manuel": true,
+  "titre_seo": "Démocratie : voter sur des décisions"
  },
  {
   "numero": 14,
@@ -265,7 +278,8 @@
   "annexes": [],
   "questionnaires": [],
   "drive": "https://drive.google.com/drive/folders/1PM4H7OwRFBzJRRbaAdz8PwTFlDr0Z7-8",
-  "corps_manuel": true
+  "corps_manuel": true,
+  "titre_seo": "Dette publique : l’amortir, pas l’effacer"
  },
  {
   "numero": 15,
@@ -285,6 +299,7 @@
    }
   ],
   "drive": "https://drive.google.com/drive/folders/1cBKx29h6s8-ScCNyh79Epydrtgnco8h9",
-  "corps_manuel": true
+  "corps_manuel": true,
+  "titre_seo": "Fraude fiscale : mesurer, puis récupérer"
  }
 ]
