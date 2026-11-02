@@ -323,6 +323,62 @@ def apropos():
 </html>
 """
 
+CHANTIERS = [
+    ("XVI", "Autoroutes et fin des concessions", "Ne pas payer pour récupérer."),
+    ("XVII", "Propreté publique et responsabilité du déchet", "Libre de fumer, pas d’en laisser le déchet à tous."),
+]
+
+def hub(piliers):
+    url = SITE + "piliers/"
+    titre = "Les 17 piliers de la doctrine | Doctrine Éconologique"
+    desc = "Les 17 piliers de la Doctrine Éconologique : énergie, garantie décennale, retraites, grand âge, agriculture, dette publique, fraude fiscale. Quinze pages publiées, deux chantiers."
+    items = []
+    for p in piliers:
+        etat = "non audité" if p["numero"] == 14 else "publié"
+        items.append(f'<li class="pil"><div class="pil-num">Pilier {p["romain"]} · {etat}</div><h2><a href="{p["slug"]}/">{esc(p["nom"])}</a></h2><p>{esc(p["resume"])}</p></li>')
+    for rom, nom, res in CHANTIERS:
+        items.append(f'<li class="pil"><div class="pil-num">Pilier {rom} · en chantier</div><h2>{esc(nom)}</h2><p>{esc(res)} Page à venir, quand le pilier sera publié.</p></li>')
+    jsonld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "CollectionPage", "name": "Les piliers de la Doctrine Éconologique", "description": desc, "url": url, "inLanguage": "fr-FR",
+         "isPartOf": {"@type": "WebSite", "name": "Doctrine Éconologique", "url": SITE}},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": SITE},
+            {"@type": "ListItem", "position": 2, "name": "Piliers", "item": url}]}]}
+    return f"""<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(titre)}</title>
+<meta name="description" content="{html.escape(desc)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{html.escape(titre)}">
+<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{SITE}assets/partage-doctrine.jpg">
+<link rel="stylesheet" href="../assets/doctrine-navigation.css">
+<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>
+<style>{CSS}
+.pils{{list-style:none;padding:0;margin:24px 0}}.pil{{padding:18px 0;border-top:1px solid var(--trait,#d9cfbd)}}.pil h2{{margin:4px 0 6px;font-size:22px}}.pil p{{margin:0}}.pil-num{{font:600 13px/1.4 system-ui,-apple-system,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--doux,#6b5d46)}}</style>
+</head>
+<body>
+<nav class="doctrine-navigation" aria-label="Navigation de la Doctrine">
+  <a href="../">Retour au site de la Doctrine</a>
+</nav>
+<main>
+<p class="crumbs"><a href="../">Accueil</a> › Piliers</p>
+<h1>Les piliers de la Doctrine Éconologique</h1>
+<p class="resume">Dix-sept numéros : quinze pages publiées, dont le Pilier XIV (non audité), et deux chantiers, le XVI et le XVII, qui n'ont pas encore de page.</p>
+<ul class="pils">
+{chr(10).join(items)}
+</ul>
+<p><a class="btn-touch btn-touch--soft btn-touch--fluid" href="../a-propos/">À propos de la doctrine et de son auteur</a></p>
+</main>
+</body>
+</html>
+"""
+
 def main(slugs):
     piliers = json.load(open(os.path.join(ROOT, "tools/piliers.json"), encoding="utf-8"))
     pub = [x for x in piliers if x["statut"] != "chantier"]
@@ -349,3 +405,5 @@ if __name__ == "__main__":
     if not sys.argv[1:]:
         os.makedirs(os.path.join(ROOT, "a-propos"), exist_ok=True)
         open(os.path.join(ROOT, "a-propos", "index.html"), "w", encoding="utf-8").write(apropos())
+        pubs = [x for x in json.load(open(os.path.join(ROOT, "tools/piliers.json"), encoding="utf-8")) if x["statut"] != "chantier"]
+        open(os.path.join(ROOT, "piliers", "index.html"), "w", encoding="utf-8").write(hub(pubs))
