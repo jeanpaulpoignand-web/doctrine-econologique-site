@@ -1,305 +1,353 @@
 [
- {
-  "numero": 1,
-  "romain": "I",
-  "nom": "Énergie souveraine",
-  "slug": "energie-souveraine",
-  "statut": "publie",
-  "titre_page": "Énergie : produire et payer son électricité en France",
-  "resume": "L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité.",
-  "accroche": "Nucléaire · biométhane local · rendement national",
-  "pdf": "fiches/pilier-01-aller-droit-au-but.pdf",
-  "annexes": [],
-  "questionnaires": [
-   {
-    "url": "qcm-energie/",
-    "nom": "QCM Énergie"
-   }
-  ],
-  "drive": "https://drive.google.com/drive/folders/1OdYykoz0h6pcVSLiwoPgjtRCt4Xf2kAw",
-  "titre_seo": "Énergie : nucléaire et biométhane locaux"
- },
- {
-  "numero": 2,
-  "romain": "II",
-  "nom": "Garantie décennale",
-  "slug": "garantie-decennale",
-  "statut": "publie",
-  "titre_page": "Garantie décennale",
-  "resume": "Comment rendre aux ménages de l'ordre de 2 milliards d'euros par an ?",
-  "accroche": "Dix ans de garantie transmissible à la revente · pièces et logiciels garantis 10 ans · réparation de proximité",
-  "pdf": "fiches/pilier-02-aller-droit-au-but.pdf",
-  "annexes": [
-   {
-    "url": "fiches/pilier-02-dossier-complet.pdf",
-    "nom": "Dossier complet"
-   }
-  ],
-  "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/12VRVnUjQ2EwRp7LhG7JpKdmikooh8E-t",
-  "titre_seo": "Garantie 10 ans : acheter durable"
- },
- {
-  "numero": 3,
-  "romain": "III",
-  "nom": "Financement public",
-  "slug": "financement-public",
-  "statut": "publie",
-  "titre_page": "Financement public",
-  "resume": "Transparence et contrôle des flux. Réallouer avant de taxer.",
-  "accroche": "Auditer · plafonner · sanctuariser",
-  "pdf": "fiches/pilier-03-aller-droit-au-but.pdf",
-  "annexes": [],
-  "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1Rb9XlrJ1D1XT2ePsBv1w2BeatuRViEr5",
-  "titre_seo": "Argent public : auditer et plafonner"
- },
- {
-  "numero": 4,
-  "romain": "IV",
-  "nom": "Réparation des retraites",
-  "slug": "reparation-des-retraites",
-  "statut": "publie",
-  "titre_page": "Réparation des retraites",
-  "resume": "Minimum vieillesse, ASPA et justice contributive.",
-  "accroche": "Solidarité nationale · cotisations · dignité des anciens",
-  "pdf": "fiches/pilier-04-aller-droit-au-but.pdf",
-  "annexes": [],
-  "questionnaires": [
-   {
-    "url": "qcm-aspa/",
-    "nom": "Questionnaire — Réparation des retraites"
-   }
-  ],
-  "drive": "https://drive.google.com/drive/folders/18C07IvzhOqNGJPjmouuA2jEq9Y7dH-Ru",
-  "titre_seo": "Retraites et ASPA : le minimum vieillesse"
- },
- {
-  "numero": 5,
-  "romain": "V",
-  "nom": "Grand âge et EHPAD",
-  "slug": "grand-age-ehpad",
-  "statut": "publie",
-  "titre_page": "Grand âge et EHPAD",
-  "resume": "Prévenir coûte moins cher que réparer.",
-  "accroche": "Ratios de soignants · domicile d’abord · retour des soignants",
-  "pdf": "fiches/pilier-05-aller-droit-au-but.pdf",
-  "annexes": [
-   {
-    "url": "fiches/pilier-05-annexe-chiffres.pdf",
-    "nom": "Annexe chiffrée"
-   }
-  ],
-  "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1PZI6_h6qPxwElrGvsxzPyUD1JkqiK7xb",
-  "titre_seo": "EHPAD : prévenir plutôt que réparer"
- },
- {
-  "numero": 6,
-  "romain": "VI",
-  "nom": "Bâtiment et métiers utiles",
-  "slug": "batiment-metiers-utiles",
-  "statut": "publie",
-  "titre_page": "Bâtiment et métiers utiles",
-  "resume": "Le climat se sauve avec une truelle, pas avec un clavier.",
-  "accroche": "Rendre les métiers du bâtiment attractifs : sortie de chantier garantie, pause de récupération, lycées d’excellence",
-  "pdf": "fiches/pilier-06-aller-droit-au-but.pdf",
-  "annexes": [
-   {
-    "url": "fiches/pilier-06-jeunes-france-allemagne.pdf",
-    "nom": "Jeunes sans emploi : France-Allemagne"
-   }
-  ],
-  "questionnaires": [
-   {
-    "url": "qcm-pilier-vi/",
-    "nom": "Questionnaire — Bâtiment et métiers utiles"
-   }
-  ],
-  "drive": "https://drive.google.com/drive/folders/1Yvv5-jfYPTZu0CMaLeCJ8xfdxHipY7py",
-  "titre_seo": "Bâtiment : des métiers plus attractifs"
- },
- {
-  "numero": 7,
-  "romain": "VII",
-  "nom": "Éconologie culturelle",
-  "slug": "econologie-culturelle",
-  "statut": "publie",
-  "titre_page": "Éconologie culturelle",
-  "resume": "La culture comme bien commun. Vérité des coûts, justice territoriale.",
-  "accroche": "Reçu fiscal culturel · création de proximité",
-  "pdf": "fiches/pilier-07-aller-droit-au-but.pdf",
-  "annexes": [
-   {
-    "url": "fiches/pilier-07-annexe-chiffrage.pdf",
-    "nom": "Annexe de chiffrage"
-   }
-  ],
-  "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1-NNbZHu74KTL4DamRaNJ6YJ-8PU6PtqL",
-  "colonnes_fines": true,
-  "corps_manuel": true,
-  "titre_seo": "Culture : le reçu fiscal culturel"
- },
- {
-  "numero": 8,
-  "romain": "VIII",
-  "nom": "Frontaliers et capital humain",
-  "slug": "frontaliers-capital-humain",
-  "statut": "publie",
-  "titre_page": "Frontaliers et capital humain",
-  "resume": "Cotisé là-bas, indemnisé ici.",
-  "accroche": "Assurance chômage · compensation genevoise · modèle monégasque",
-  "pdf": "fiches/pilier-08-aller-droit-au-but.pdf",
-  "annexes": [],
-  "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1eGxc6AfZ5yB_lNPMnEv0E91LpdL-Iq2O",
-  "corps_manuel": true,
-  "titre_seo": "Frontaliers : chômage cotisé ici, payé là"
- },
- {
-  "numero": 9,
-  "romain": "IX",
-  "nom": "Agriculture et alimentation souveraine",
-  "slug": "agriculture-alimentation",
-  "statut": "publie",
-  "titre_page": "Agriculture et alimentation souveraine",
-  "resume": "Ne pas importer ce qu’on interdit de produire.",
-  "accroche": "Clauses miroirs · contingents plafonnés · transition payée avant d’être imposée",
-  "pdf": "fiches/pilier-09-aller-droit-au-but.pdf",
-  "annexes": [
-   {
-    "url": "fiches/pilier-09-annexe-chiffres.pdf",
-    "nom": "Annexe chiffrée"
-   },
-   {
-    "url": "fiches/pilier-09-note-loue.pdf",
-    "nom": "La Loue, le karst, le Comté"
-   }
-  ],
-  "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1r77kIiQk4FtEXrkrVPAEakowyf5YPUet",
-  "corps_manuel": true,
-  "titre_seo": "Agriculture : ne pas importer l’interdit"
- },
- {
-  "numero": 10,
-  "romain": "X",
-  "nom": "Textile, habillement, chaussure",
-  "slug": "textile-habillement-chaussure",
-  "statut": "publie",
-  "titre_page": "Textile, habillement, chaussure",
-  "resume": "Fabriquer ici, garder ce qui sert.",
-  "accroche": "Aides liées à l’emploi · lin filé en France · achat durable accessible",
-  "pdf": "fiches/pilier-10-aller-droit-au-but.pdf",
-  "annexes": [
-   {
-    "url": "fiches/pilier-10-note-autonomie.pdf",
-    "nom": "Et si la France fabriquait tout ce qu’elle porte ?"
-   },
-   {
-    "url": "fiches/pilier-10-annexe-lin-eau.pdf",
-    "nom": "Le lin, l’eau et la matière française"
-   }
-  ],
-  "questionnaires": [
-   {
-    "url": "qcm-textile/",
-    "nom": "Questionnaire — Textile, habillement, chaussure"
-   }
-  ],
-  "drive": "https://drive.google.com/drive/folders/1cLXuZELeKz8G0vlnDDU_IoXFX2b2NdoS",
-  "corps_manuel": true,
-  "titre_seo": "Textile et chaussure : fabriquer ici"
- },
- {
-  "numero": 11,
-  "romain": "XI",
-  "nom": "Mobilité et sécurité routière",
-  "slug": "mobilite-securite-routiere",
-  "statut": "publie",
-  "titre_page": "Mobilité et sécurité routière",
-  "resume": "Compter les morts, pas les amendes.",
-  "accroche": "Bilan des radars · dépistage rééquilibré · prévention embarquée sans transmission",
-  "pdf": "fiches/pilier-11-aller-droit-au-but.pdf",
-  "annexes": [],
-  "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1G8u7BKfc968MCLbKRdhBsPqUE32AOwvr",
-  "corps_manuel": true,
-  "titre_seo": "Sécurité routière : radars et amendes"
- },
- {
-  "numero": 12,
-  "romain": "XII",
-  "nom": "Friction monétique",
-  "slug": "friction-monetique",
-  "statut": "publie",
-  "titre_page": "Friction monétique",
-  "resume": "Être payé ne doit pas coûter plus cher aux petits.",
-  "accroche": "Coût tout compris affiché · plafond des micro-paiements · réseau national",
-  "pdf": "fiches/pilier-12-aller-droit-au-but.pdf",
-  "annexes": [],
-  "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1lPE-79hM-fZV0kPh3mpC4khGkLVNPjHY",
-  "corps_manuel": true,
-  "titre_seo": "Frais de carte : ce que paient les petits"
- },
- {
-  "numero": 13,
-  "romain": "XIII",
-  "nom": "Démocratie décisionnelle",
-  "slug": "democratie-decisionnelle",
-  "statut": "publie",
-  "titre_page": "Démocratie décisionnelle",
-  "resume": "Décider sur les sujets, pas seulement sur les visages.",
-  "accroche": "Bulletin décisionnel · double vote · matrice des partis",
-  "pdf": "fiches/pilier-13-aller-droit-au-but.pdf",
-  "annexes": [],
-  "questionnaires": [
-   {
-    "url": "qcm-democratie-decisionnelle/",
-    "nom": "Remplir mon bulletin de vote"
-   }
-  ],
-  "drive": "https://drive.google.com/drive/folders/1O_RbUmXr7YyqglsldIUPgu7lGo3ZFj-w",
-  "corps_manuel": true,
-  "titre_seo": "Démocratie : voter sur des décisions"
- },
- {
-  "numero": 14,
-  "romain": "XIV",
-  "nom": "Amortissement de la dette",
-  "slug": "amortissement-dette",
-  "statut": "publie",
-  "titre_page": "Amortissement de la dette",
-  "resume": "On ne solde pas une année de production en la reclassant.",
-  "accroche": "Excédent primaire · pensions futures plafonnées · énergie et logement",
-  "pdf": "fiches/pilier-14-aller-droit-au-but.pdf",
-  "annexes": [],
-  "questionnaires": [],
-  "drive": "https://drive.google.com/drive/folders/1PM4H7OwRFBzJRRbaAdz8PwTFlDr0Z7-8",
-  "corps_manuel": true,
-  "titre_seo": "Dette publique : l’amortir, pas l’effacer"
- },
- {
-  "numero": 15,
-  "romain": "XV",
-  "nom": "Fraude fiscale",
-  "slug": "fraude-fiscale",
-  "statut": "publie",
-  "titre_page": "Fraude fiscale",
-  "resume": "Vérité des chiffres, justice contributive et souveraineté fiscale effective.",
-  "accroche": "Écart fiscal · TVA · contrôle fiscal · facilitateurs",
-  "pdf": "fiches/pilier-15-aller-droit-au-but.pdf",
-  "annexes": [],
-  "questionnaires": [
-   {
-    "url": "qcm-fraude-fiscale/",
-    "nom": "Questionnaire — Fraude fiscale"
-   }
-  ],
-  "drive": "https://drive.google.com/drive/folders/1cBKx29h6s8-ScCNyh79Epydrtgnco8h9",
-  "corps_manuel": true,
-  "titre_seo": "Fraude fiscale : mesurer, puis récupérer"
- }
+  {
+    "numero": 1,
+    "romain": "I",
+    "nom": "Énergie souveraine",
+    "slug": "energie-souveraine",
+    "statut": "publie",
+    "titre_page": "Énergie : produire et payer son électricité en France",
+    "resume": "L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité.",
+    "accroche": "Nucléaire · biométhane local · rendement national",
+    "pdf": "fiches/pilier-01-aller-droit-au-but.pdf",
+    "annexes": [],
+    "questionnaires": [
+      {
+        "url": "qcm-energie/",
+        "nom": "QCM Énergie"
+      }
+    ],
+    "drive": "https://drive.google.com/drive/folders/1OdYykoz0h6pcVSLiwoPgjtRCt4Xf2kAw",
+    "titre_seo": "Énergie : nucléaire et biométhane locaux"
+  },
+  {
+    "numero": 2,
+    "romain": "II",
+    "nom": "Garantie décennale",
+    "slug": "garantie-decennale",
+    "statut": "publie",
+    "titre_page": "Garantie décennale",
+    "resume": "Comment rendre aux ménages de l'ordre de 2 milliards d'euros par an ?",
+    "accroche": "Dix ans de garantie transmissible à la revente · pièces et logiciels garantis 10 ans · réparation de proximité",
+    "pdf": "fiches/pilier-02-aller-droit-au-but.pdf",
+    "annexes": [
+      {
+        "pdf": "fiches/pilier-02-dossier-complet.pdf",
+        "slug": "dossier-complet",
+        "h1": "Garantie légale de durabilité décennale transmissible",
+        "titre_seo": "Garantie 10 ans : le dossier complet",
+        "desc": "Sortir de l’économie du jetable, sécuriser le marché de l’occasion : le dossier complet de la garantie légale décennale transmissible.",
+        "nom": "Dossier complet"
+      }
+    ],
+    "questionnaires": [],
+    "drive": "https://drive.google.com/drive/folders/12VRVnUjQ2EwRp7LhG7JpKdmikooh8E-t",
+    "titre_seo": "Garantie 10 ans : acheter durable"
+  },
+  {
+    "numero": 3,
+    "romain": "III",
+    "nom": "Financement public",
+    "slug": "financement-public",
+    "statut": "publie",
+    "titre_page": "Financement public",
+    "resume": "Transparence et contrôle des flux. Réallouer avant de taxer.",
+    "accroche": "Auditer · plafonner · sanctuariser",
+    "pdf": "fiches/pilier-03-aller-droit-au-but.pdf",
+    "annexes": [],
+    "questionnaires": [],
+    "drive": "https://drive.google.com/drive/folders/1Rb9XlrJ1D1XT2ePsBv1w2BeatuRViEr5",
+    "titre_seo": "Argent public : auditer et plafonner"
+  },
+  {
+    "numero": 4,
+    "romain": "IV",
+    "nom": "Réparation des retraites",
+    "slug": "reparation-des-retraites",
+    "statut": "publie",
+    "titre_page": "Réparation des retraites",
+    "resume": "Minimum vieillesse, ASPA et justice contributive.",
+    "accroche": "Solidarité nationale · cotisations · dignité des anciens",
+    "pdf": "fiches/pilier-04-aller-droit-au-but.pdf",
+    "annexes": [],
+    "questionnaires": [
+      {
+        "url": "qcm-aspa/",
+        "nom": "Questionnaire — Réparation des retraites"
+      }
+    ],
+    "drive": "https://drive.google.com/drive/folders/18C07IvzhOqNGJPjmouuA2jEq9Y7dH-Ru",
+    "titre_seo": "Retraites et ASPA : le minimum vieillesse"
+  },
+  {
+    "numero": 5,
+    "romain": "V",
+    "nom": "Grand âge et EHPAD",
+    "slug": "grand-age-ehpad",
+    "statut": "publie",
+    "titre_page": "Grand âge et EHPAD",
+    "resume": "Prévenir coûte moins cher que réparer.",
+    "accroche": "Ratios de soignants · domicile d’abord · retour des soignants",
+    "pdf": "fiches/pilier-05-aller-droit-au-but.pdf",
+    "annexes": [
+      {
+        "pdf": "fiches/pilier-05-annexe-chiffres.pdf",
+        "slug": "annexe-chiffres",
+        "h1": "Grand âge : ce que disent vraiment les chiffres",
+        "titre_seo": "Grand âge : les chiffres et leurs sources",
+        "desc": "Grand âge : chaque chiffre du Pilier V avec sa source, son année, et la manière juste de le citer.",
+        "nom": "Annexe chiffrée"
+      }
+    ],
+    "questionnaires": [],
+    "drive": "https://drive.google.com/drive/folders/1PZI6_h6qPxwElrGvsxzPyUD1JkqiK7xb",
+    "titre_seo": "EHPAD : prévenir plutôt que réparer"
+  },
+  {
+    "numero": 6,
+    "romain": "VI",
+    "nom": "Bâtiment et métiers utiles",
+    "slug": "batiment-metiers-utiles",
+    "statut": "publie",
+    "titre_page": "Bâtiment et métiers utiles",
+    "resume": "Le climat se sauve avec une truelle, pas avec un clavier.",
+    "accroche": "Rendre les métiers du bâtiment attractifs : sortie de chantier garantie, pause de récupération, lycées d’excellence",
+    "pdf": "fiches/pilier-06-aller-droit-au-but.pdf",
+    "annexes": [
+      {
+        "pdf": "fiches/pilier-06-jeunes-france-allemagne.pdf",
+        "slug": "jeunes-france-allemagne",
+        "h1": "Trois lois en vingt ans. Le même écart avec l’Allemagne.",
+        "titre_seo": "Jeunes sans emploi : France et Allemagne",
+        "desc": "Trois lois sur l’apprentissage en vingt ans, le même écart avec l’Allemagne : 20,6 % de jeunes actifs au chômage en France, 7,4 % en Allemagne (Eurostat, août 2026).",
+        "nom": "Jeunes sans emploi : France-Allemagne"
+      }
+    ],
+    "questionnaires": [
+      {
+        "url": "qcm-pilier-vi/",
+        "nom": "Questionnaire — Bâtiment et métiers utiles"
+      }
+    ],
+    "drive": "https://drive.google.com/drive/folders/1Yvv5-jfYPTZu0CMaLeCJ8xfdxHipY7py",
+    "titre_seo": "Bâtiment : des métiers plus attractifs"
+  },
+  {
+    "numero": 7,
+    "romain": "VII",
+    "nom": "Éconologie culturelle",
+    "slug": "econologie-culturelle",
+    "statut": "publie",
+    "titre_page": "Éconologie culturelle",
+    "resume": "La culture comme bien commun. Vérité des coûts, justice territoriale.",
+    "accroche": "Reçu fiscal culturel · création de proximité",
+    "pdf": "fiches/pilier-07-aller-droit-au-but.pdf",
+    "annexes": [
+      {
+        "pdf": "fiches/pilier-07-annexe-chiffrage.pdf",
+        "slug": "annexe-chiffrage",
+        "h1": "Intermittence, plateformes et financement public : comment chiffrer honnêtement",
+        "titre_seo": "Culture : le chiffrage honnête",
+        "desc": "Les définitions, les formules et les garde-fous communs aux deux notes du Pilier VII : intermittence, plateformes et financement public.",
+        "nom": "Annexe de chiffrage"
+      },
+      {
+        "pdf": "fiches/pilier-07-note-salles.pdf",
+        "slug": "note-salles",
+        "h1": "Production, sorties en salles et saturation de l’exposition",
+        "titre_seo": "Cinéma : sorties et saturation des salles",
+        "desc": "Ce que disent vraiment les 744 films de 2024 et les 812 films de 2025, qui porte le risque, et quand parler de gaspillage.",
+        "nom": "Note : salles"
+      },
+      {
+        "pdf": "fiches/pilier-07-note-streaming.pdf",
+        "slug": "note-streaming",
+        "h1": "Streaming et coût complet : que signifie l’hypothèse de 40 à 55 € ?",
+        "titre_seo": "Streaming : l’hypothèse de 40 à 55 €",
+        "desc": "Qui paie aujourd’hui, ce que financent déjà les plateformes, et comment traiter les œuvres françaises et étrangères.",
+        "nom": "Note : streaming"
+      }
+    ],
+    "questionnaires": [],
+    "drive": "https://drive.google.com/drive/folders/1-NNbZHu74KTL4DamRaNJ6YJ-8PU6PtqL",
+    "colonnes_fines": true,
+    "corps_manuel": true,
+    "titre_seo": "Culture : le reçu fiscal culturel"
+  },
+  {
+    "numero": 8,
+    "romain": "VIII",
+    "nom": "Frontaliers et capital humain",
+    "slug": "frontaliers-capital-humain",
+    "statut": "publie",
+    "titre_page": "Frontaliers et capital humain",
+    "resume": "Cotisé là-bas, indemnisé ici.",
+    "accroche": "Assurance chômage · compensation genevoise · modèle monégasque",
+    "pdf": "fiches/pilier-08-aller-droit-au-but.pdf",
+    "annexes": [],
+    "questionnaires": [],
+    "drive": "https://drive.google.com/drive/folders/1eGxc6AfZ5yB_lNPMnEv0E91LpdL-Iq2O",
+    "corps_manuel": true,
+    "titre_seo": "Frontaliers : chômage cotisé ici, payé là"
+  },
+  {
+    "numero": 9,
+    "romain": "IX",
+    "nom": "Agriculture et alimentation souveraine",
+    "slug": "agriculture-alimentation",
+    "statut": "publie",
+    "titre_page": "Agriculture et alimentation souveraine",
+    "resume": "Ne pas importer ce qu’on interdit de produire.",
+    "accroche": "Clauses miroirs · contingents plafonnés · transition payée avant d’être imposée",
+    "pdf": "fiches/pilier-09-aller-droit-au-but.pdf",
+    "annexes": [
+      {
+        "pdf": "fiches/pilier-09-annexe-chiffres.pdf",
+        "slug": "annexe-chiffres",
+        "h1": "Agriculture : ce que disent vraiment les chiffres",
+        "titre_seo": "Agriculture : chiffres et sources",
+        "desc": "Agriculture : chaque chiffre du Pilier IX avec sa source, son année, et la manière juste de le citer.",
+        "nom": "Annexe chiffrée"
+      },
+      {
+        "pdf": "fiches/pilier-09-note-loue.pdf",
+        "slug": "note-loue",
+        "h1": "La Loue, le karst, le Comté",
+        "titre_seo": "La Loue, le karst, le Comté",
+        "desc": "Fermer le robinet sans appauvrir l’éleveur : une écologie qui paie la fosse avant d’interdire le geste.",
+        "nom": "La Loue, le karst, le Comté"
+      }
+    ],
+    "questionnaires": [],
+    "drive": "https://drive.google.com/drive/folders/1r77kIiQk4FtEXrkrVPAEakowyf5YPUet",
+    "corps_manuel": true,
+    "titre_seo": "Agriculture : ne pas importer l’interdit"
+  },
+  {
+    "numero": 10,
+    "romain": "X",
+    "nom": "Textile, habillement, chaussure",
+    "slug": "textile-habillement-chaussure",
+    "statut": "publie",
+    "titre_page": "Textile, habillement, chaussure",
+    "resume": "Fabriquer ici, garder ce qui sert.",
+    "accroche": "Aides liées à l’emploi · lin filé en France · achat durable accessible",
+    "pdf": "fiches/pilier-10-aller-droit-au-but.pdf",
+    "annexes": [
+      {
+        "pdf": "fiches/pilier-10-annexe-lin-eau.pdf",
+        "slug": "annexe-lin-eau",
+        "h1": "Le lin, l’eau et le carbone : et si les Français s’habillaient en lin, fabriqué ici ?",
+        "titre_seo": "Lin et eau : s’habiller en lin français",
+        "desc": "La France cultive le lin sans l’arroser. Combien d’eau économiserait-on en remplaçant le coton, combien de champs faudrait-il ?",
+        "nom": "Le lin, l’eau et la matière française"
+      },
+      {
+        "pdf": "fiches/pilier-10-note-autonomie.pdf",
+        "slug": "note-autonomie",
+        "h1": "Et si la France fabriquait tout ce qu’elle porte ?",
+        "titre_seo": "Textile : tout fabriquer en France ?",
+        "desc": "Formation, usines, investissement, emplois et prix : un raisonnement par l’absurde, mené par cinq intelligences artificielles et arbitré.",
+        "nom": "Et si la France fabriquait tout ce qu’elle porte ?"
+      }
+    ],
+    "questionnaires": [
+      {
+        "url": "qcm-textile/",
+        "nom": "Questionnaire — Textile, habillement, chaussure"
+      }
+    ],
+    "drive": "https://drive.google.com/drive/folders/1cLXuZELeKz8G0vlnDDU_IoXFX2b2NdoS",
+    "corps_manuel": true,
+    "titre_seo": "Textile et chaussure : fabriquer ici"
+  },
+  {
+    "numero": 11,
+    "romain": "XI",
+    "nom": "Mobilité et sécurité routière",
+    "slug": "mobilite-securite-routiere",
+    "statut": "publie",
+    "titre_page": "Mobilité et sécurité routière",
+    "resume": "Compter les morts, pas les amendes.",
+    "accroche": "Bilan des radars · dépistage rééquilibré · prévention embarquée sans transmission",
+    "pdf": "fiches/pilier-11-aller-droit-au-but.pdf",
+    "annexes": [],
+    "questionnaires": [],
+    "drive": "https://drive.google.com/drive/folders/1G8u7BKfc968MCLbKRdhBsPqUE32AOwvr",
+    "corps_manuel": true,
+    "titre_seo": "Sécurité routière : radars et amendes"
+  },
+  {
+    "numero": 12,
+    "romain": "XII",
+    "nom": "Friction monétique",
+    "slug": "friction-monetique",
+    "statut": "publie",
+    "titre_page": "Friction monétique",
+    "resume": "Être payé ne doit pas coûter plus cher aux petits.",
+    "accroche": "Coût tout compris affiché · plafond des micro-paiements · réseau national",
+    "pdf": "fiches/pilier-12-aller-droit-au-but.pdf",
+    "annexes": [],
+    "questionnaires": [],
+    "drive": "https://drive.google.com/drive/folders/1lPE-79hM-fZV0kPh3mpC4khGkLVNPjHY",
+    "corps_manuel": true,
+    "titre_seo": "Frais de carte : ce que paient les petits"
+  },
+  {
+    "numero": 13,
+    "romain": "XIII",
+    "nom": "Démocratie décisionnelle",
+    "slug": "democratie-decisionnelle",
+    "statut": "publie",
+    "titre_page": "Démocratie décisionnelle",
+    "resume": "Décider sur les sujets, pas seulement sur les visages.",
+    "accroche": "Bulletin décisionnel · double vote · matrice des partis",
+    "pdf": "fiches/pilier-13-aller-droit-au-but.pdf",
+    "annexes": [],
+    "questionnaires": [
+      {
+        "url": "qcm-democratie-decisionnelle/",
+        "nom": "Remplir mon bulletin de vote"
+      }
+    ],
+    "drive": "https://drive.google.com/drive/folders/1O_RbUmXr7YyqglsldIUPgu7lGo3ZFj-w",
+    "corps_manuel": true,
+    "titre_seo": "Démocratie : voter sur des décisions"
+  },
+  {
+    "numero": 14,
+    "romain": "XIV",
+    "nom": "Amortissement de la dette",
+    "slug": "amortissement-dette",
+    "statut": "publie",
+    "titre_page": "Amortissement de la dette",
+    "resume": "On ne solde pas une année de production en la reclassant.",
+    "accroche": "Excédent primaire · pensions futures plafonnées · énergie et logement",
+    "pdf": "fiches/pilier-14-aller-droit-au-but.pdf",
+    "annexes": [],
+    "questionnaires": [],
+    "drive": "https://drive.google.com/drive/folders/1PM4H7OwRFBzJRRbaAdz8PwTFlDr0Z7-8",
+    "corps_manuel": true,
+    "titre_seo": "Dette publique : l’amortir, pas l’effacer"
+  },
+  {
+    "numero": 15,
+    "romain": "XV",
+    "nom": "Fraude fiscale",
+    "slug": "fraude-fiscale",
+    "statut": "publie",
+    "titre_page": "Fraude fiscale",
+    "resume": "Vérité des chiffres, justice contributive et souveraineté fiscale effective.",
+    "accroche": "Écart fiscal · TVA · contrôle fiscal · facilitateurs",
+    "pdf": "fiches/pilier-15-aller-droit-au-but.pdf",
+    "annexes": [],
+    "questionnaires": [
+      {
+        "url": "qcm-fraude-fiscale/",
+        "nom": "Questionnaire — Fraude fiscale"
+      }
+    ],
+    "drive": "https://drive.google.com/drive/folders/1cBKx29h6s8-ScCNyh79Epydrtgnco8h9",
+    "corps_manuel": true,
+    "titre_seo": "Fraude fiscale : mesurer, puis récupérer"
+  }
 ]

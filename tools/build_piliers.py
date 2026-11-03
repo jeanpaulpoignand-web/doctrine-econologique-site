@@ -75,6 +75,8 @@ def classify(line):
     if len(line["segs"]) > 1: return "row"
     if t.lstrip().startswith(("•", "–")): return "li"
     if re.match(r"^\d+\.\s", t) and "Bold" in f: return "step"
+    if "Geo" in f and 14 <= size <= 20: return "h2"                        # PDF « document d'appel » (Pilier VI, France-Allemagne)
+    if f.startswith("Arial-Bold") and t.startswith("→"): return "quote"
     if "Serif" in f and "Bold" in f and size >= 19: return "h2"
     if "Serif" in f and "Bold" in f and size >= 12 and len(t) < 90: return "h3"
     if "Serif" in f and "Bold" in f and size >= 12: return "lead"
@@ -152,6 +154,7 @@ def render_blocks(blocks, nom):
             for it in items: out.append(f"<li>{esc(it)}</li>")
             continue
         close()
+        if k == "table": out.append(b["html"]); continue
         if k == "cards":
             cards = []
             for c in b["cols"]:
@@ -224,7 +227,7 @@ def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
             {"@type": "ListItem", "position": 2, "name": "Piliers", "item": SITE + "#piliers"},
             {"@type": "ListItem", "position": 3, "name": p["nom"], "item": url}]}]}
     qcm = "".join(f'<a class="btn-touch btn-touch--fluid" href="../../{q["url"]}">{esc(q["nom"])}</a>' for q in p["questionnaires"])
-    annexes = "".join(f'<a class="btn-touch btn-touch--soft btn-touch--fluid" href="../../{a["url"]}">{esc(a["nom"])} (PDF)</a>\n' for a in p["annexes"])
+    annexes = "".join(f'<a class="btn-touch btn-touch--soft btn-touch--fluid" href="{a["slug"]}/">{esc(a["nom"])}</a>\n' for a in p["annexes"])
     pager = '<nav class="pager" aria-label="Autres piliers">' + (f'<a href="../{prev["slug"]}/">← Pilier {prev["romain"]} · {esc(prev["nom"])}</a>' if prev else "<span></span>") + (f'<a href="../{nxt["slug"]}/">Pilier {nxt["romain"]} · {esc(nxt["nom"])} →</a>' if nxt else "<span></span>") + "</nav>"
     return f"""<!doctype html>
 <html lang="fr">
@@ -376,6 +379,7 @@ def hub(piliers):
 <ul class="pils">
 {chr(10).join(items)}
 </ul>
+<p><a class="btn-touch btn-touch--soft btn-touch--fluid" href="../guide-de-lecture/">Guide de lecture : par où commencer</a></p>
 <p><a class="btn-touch btn-touch--soft btn-touch--fluid" href="../a-propos/">À propos de la doctrine et de son auteur</a></p>
 </main>
 </body>
@@ -443,6 +447,249 @@ def questionnaires():
 </html>
 """
 
+CSS_TABLES = (".tw{margin:14px 0 20px}"
+              "table.def th{width:30%;background:#ebe3d2;color:var(--nuit)}@media(max-width:640px){table,tbody,tr,td,table.def th{display:block;width:100%}thead{position:absolute;left:-9999px}tr{margin:0 0 12px;border:1px solid var(--ligne);background:#fff}"
+              "td{border:0;border-bottom:1px solid var(--ligne)}td:last-child{border-bottom:0}td::before{content:attr(data-label);display:block;font:700 12px/1.4 system-ui,sans-serif;color:var(--or);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}}")
+
+EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u2B50\u2B06\u2194-\u21AA]")
+
+def lignes_et_tableaux(pdf_path):
+    """Par page : lignes de texte hors tableaux, et tableaux détectés (pdfplumber) avec leur position verticale."""
+    out = []
+    with pdfplumber.open(pdf_path) as pdf:
+        for p in pdf.pages:
+            tabs = [t for t in p.find_tables() if len(t.rows) >= 2 or len(t.rows[0].cells) >= 2]
+            boxes = [t.bbox for t in tabs]
+            def hors(o): return not any(o.get("x0", 0) >= b[0] - 1 and o.get("x1", 0) <= b[2] + 1 and o.get("top", 0) >= b[1] - 1 and o.get("bottom", 0) <= b[3] + 1 for b in boxes)
+            lignes = read_lines_page(p.filter(hors))
+            out.append({"lignes": lignes, "tableaux": [(t.bbox[1], t.extract()) for t in tabs]})
+    return out
+
+def read_lines_page(p):
+    words = p.extract_words(extra_attrs=["size", "fontname"], keep_blank_chars=False, use_text_flow=False)
+    rows = []
+    for w in sorted(words, key=lambda w: (round(w["top"]), w["x0"])):
+        if rows and abs(rows[-1]["y"] - w["top"]) <= 3: rows[-1]["w"].append(w)
+        else: rows.append({"y": w["top"], "w": [w]})
+    lines = []
+    for r in rows:
+        segs = []
+        for w in sorted(r["w"], key=lambda w: w["x0"]):
+            gap_limit = max(14, w["size"] * 1.6)
+            if segs and w["x0"] - segs[-1]["x1"] <= gap_limit:
+                sg = segs[-1]; sg["text"] += " " + w["text"]; sg["x1"] = w["x1"]; sg["size"] = max(sg["size"], w["size"])
+            else:
+                segs.append({"x0": w["x0"], "x1": w["x1"], "text": w["text"], "size": w["size"], "font": w["fontname"].split("+")[-1]})
+        lines.append({"y": r["y"], "segs": segs, "page_h": p.height})
+    return lines
+
+def html_tableau(rows):
+    brut = rows
+    rows = [[re.sub(r"\s+", " ", (c or "").replace("\n", " ")).strip() for c in r] for r in rows]
+    tag = re.compile(r"\[(?:FAIT|CALCUL|ANALYSE|PROPOSITION|HYPOTH[ÈE]SE)\]")
+    premier_court = all(len([x for x in (c or "").split("\n") if x.strip()]) >= 2 and len((c or "").split("\n")[0].strip()) <= 10 for r in brut for c in r if c)
+    if premier_court or len(rows) == 1 or (len(rows) <= 2 and max(len(r) for r in rows) <= 2 and not all(c for c in rows[0])) or all(tag.search(c) for r in rows for c in r if c):
+        # encadrés de chiffres : une carte par cellule (première ligne = étiquette ou chiffre, le reste = explication)
+        cartes = []
+        for r in brut:
+            for c in r:
+                lignes = [x.strip() for x in (c or "").split("\n") if x.strip() and not re.fullmatch(r"[·\s]+", x.strip())]
+                lignes = [EMOJI.sub("", x).strip() for x in lignes]
+                if not lignes: continue
+                if lignes[0].startswith("←") or lignes[0].upper().startswith("DOCTRINE ÉCONOLOGIQUE ·"): continue
+                if lignes[0].upper() == lignes[0] and len(lignes) > 2 and len(lignes[0]) > 12:      # billet chiffré : étiquette, sous-titre, puis chiffres et légendes
+                    stats = []; notes = []
+                    for x in lignes[2:]:
+                        if re.match(r"^[≈−\-+×]?\s*\d[\d\s,.]*\s*(M|Md|k|%|€|c)?$", x) and len(x) < 14: stats.append([x, ""])
+                        elif stats and not stats[-1][1] and len(x) < 40: stats[-1][1] = x
+                        else: notes.append(x)
+                    corps = "".join(f'<div class="row"><b>{esc(a)}</b><span>{esc(b)}</span></div>' for a, b in stats)
+                    cartes.append(f'<div class="card"><div class="note">{esc(lignes[0])}</div><div class="gros">{esc(lignes[1])}</div>{corps}' + "".join(f'<div class="note">{esc(n)}</div>' for n in notes) + "</div>")
+                    continue
+                if len(brut) == 1 and len(r) == 2 and len(r[0] or "") <= 12 and len(r[1] or "") > 40:   # un chiffre et son explication
+                    cartes.append('<div class="card"><strong>' + esc(lignes[0]) + "</strong><span>" + esc(re.sub(r"\s+", " ", r[1].replace("\n", " ")).strip()) + "</span></div>")
+                    break
+                tete, reste = lignes[0], " ".join(lignes[1:])
+                mt = re.match(r"^(\[[^\]]+\])\s*(.*)$", reste)
+                if len(lignes) == 1 and tag.search(tete):
+                    m = re.match(r"^(.*?)\s+(\[(?:FAIT|CALCUL|ANALYSE|PROPOSITION|HYPOTH[ÈE]SE)\].*)$", tete)
+                    tete, reste = (m.group(1), m.group(2)) if m else ("", tete)
+                    mt = re.match(r"^(\[[^\]]+\])\s*(.*)$", reste)
+                reste_html = (f'<span class="tag">{esc(mt.group(1))}</span> {esc(mt.group(2))}' if mt else esc(reste))
+                cartes.append('<div class="card">' + (f"<strong>{esc(tete)}</strong>" if tete else "") + (f"<span>{reste_html}</span>" if reste else "") + "</div>")
+        return ('<div class="cards">' + "".join(cartes) + "</div>") if cartes else ""
+    if not all(rows[0]):          # tableau « terme / définition » : pas d'en-tête de colonnes
+        b = "<tbody>" + "".join("<tr>" + f'<th scope="row">{esc(r[0])}</th>' + "".join(f"<td>{tagged_cell(c)}</td>" for c in r[1:]) + "</tr>" for r in rows) + "</tbody>"
+        return f'<div class="tw"><table class="def">{b}</table></div>'
+    ent = rows[0]; corps = rows[1:]
+    h = "<thead><tr>" + "".join(f'<th scope="col">{esc(c)}</th>' for c in ent) + "</tr></thead>"
+    b = "<tbody>" + "".join("<tr>" + "".join(f'<td data-label="{html.escape(ent[i] if i < len(ent) else "")}">{tagged_cell(c)}</td>' for i, c in enumerate(r)) + "</tr>" for r in corps) + "</tbody>"
+    return f'<div class="tw"><table>{h}{b}</table></div>'
+
+def tagged_cell(t):
+    m = re.match(r"^(\[(?:FAIT|CALCUL|ANALYSE|PROPOSITION|HYPOTH[ÈE]SE)\])\s*(.*)$", t)
+    return (f'<span class="tag">{esc(m.group(1))}</span> {esc(m.group(2))}') if m else esc(t)
+
+def blocs_document(pdf):
+    """Blocs du document dans l'ordre de lecture : texte (build_blocks) et tableaux (pdfplumber)."""
+    pages = lignes_et_tableaux(os.path.join(ROOT, pdf))
+    blocs = []; n = len(pages)
+    for pi, pg in enumerate(pages):
+        morceaux = []; cur = []; tabs = sorted(pg["tableaux"], key=lambda t: t[0])
+        lignes = sorted(pg["lignes"], key=lambda l: l["y"])
+        ti = 0
+        for ln in lignes:
+            while ti < len(tabs) and tabs[ti][0] <= ln["y"]:
+                if cur: morceaux.append(("t", cur)); cur = []
+                morceaux.append(("T", tabs[ti][1])); ti += 1
+            cur.append(ln)
+        if cur: morceaux.append(("t", cur))
+        while ti < len(tabs): morceaux.append(("T", tabs[ti][1])); ti += 1
+        for kind, val in morceaux:
+            if kind == "T": blocs.append({"k": "table", "html": html_tableau(val)})
+            else:
+                bl = build_blocks([val if pi != n - 1 else val] if False else [val])
+                blocs.extend(bl)
+    return blocs
+
+def corps_document(pdf, h1, force_manual=None):
+    """Corps d'une annexe ou du guide : texte du PDF sans emoji, sans lignes de navigation ni titre répété."""
+    blocks = [b for b in blocs_document(pdf) if not (b["k"] == "table" and not b["html"])]
+    out = []
+    for b in blocks:
+        if b["k"] == "table": out.append(b); continue
+        t = EMOJI.sub("", b.get("text", "")).strip() if "text" in b else None
+        if t: t = re.sub(r"\s*(NOTE EXPLICATIVE|ANNEXE CHIFFRÉE|ANNEXE DE CHIFFRAGE|DOSSIER COMPLET)\s*·\s*PILIER [IVX]+\s*$", "", t)
+        if t is not None:
+            if not t or t.startswith("←"): continue
+            b = dict(b, text=t)
+        out.append(b)
+    # le titre du document est déjà le <h1> de la page ; l'étiquette de type (« DOSSIER COMPLET »…) est supprimée
+    def norm(x): return re.sub(r"[^a-z0-9]", "", x.lower().replace("’", "'"))
+    def entete(b):
+        t = b.get("text") or ""
+        return bool(t) and (b["k"] in ("p", "label", "h2", "quote") and (
+            (t.upper() == t and len(t) < 45) or norm(t) == norm(h1) or b["k"] == "quote"
+            or t.startswith(("Guide de lecture général", "Doctrine Éconologique, Pilier"))))
+    fusion = []
+    for b in out:
+        if (fusion and b["k"] == "p" and fusion[-1]["k"] == "p" and fusion[-1].get("text") and not re.search(r"[.!?:;»)\]]\s*$", fusion[-1]["text"])):
+            fusion[-1] = dict(fusion[-1], text=fusion[-1]["text"] + " " + b["text"])
+        else: fusion.append(b)
+    out = []
+    for b in fusion:                                                          # puces « ● » restées dans le texte : vraie liste
+        if b["k"] == "p" and "●" in b.get("text", ""):
+            tete, *items = [x.strip() for x in b["text"].split("●")]
+            if tete: out.append(dict(b, text=tete))
+            out.append({"k": "li", "text": " ".join("• " + x for x in items if x)})
+        else: out.append(b)
+    if pdf.endswith("jeunes-france-allemagne.pdf"):                           # encadré des deux chiffres : mise en page dessinée, rétablie à la main
+        i = next(n for n, b in enumerate(out) if b["k"] == "cards"); j = next(n for n, b in enumerate(out) if b.get("text", "").startswith("Eurostat, août 2026"))
+        k = next(n for n, b in enumerate(out) if b.get("text", "") == "Aller plus loin dans la Doctrine")    # liens de navigation du PDF : remplacés par le bloc « Pour aller plus loin »
+        del out[k:k + 2]
+        out[i:j + 1] = [{"k": "table", "html": '<div class="cards"><div class="card"><strong>20,6 %</strong><span>France : des jeunes actifs de moins de 25 ans sont au chômage</span></div><div class="card"><strong>7,4 %</strong><span>Allemagne : des jeunes actifs de moins de 25 ans sont au chômage</span></div></div><p class="legend">Eurostat, août 2026 (communiqué du 1er octobre 2026). <span class="tag">[FAIT]</span></p>'}]
+    n_pop = 0
+    while out and n_pop < 5 and entete(out[0]):
+        out.pop(0); n_pop += 1
+    out = [b for b in out if not re.fullmatch(r"(NOTE EXPLICATIVE|ANNEXE[A-ZÉ ’']*|DOSSIER COMPLET|GUIDE GÉNÉRAL)\s*·\s*(PILIER [IVX]+|DOCTRINE ÉCONOLOGIQUE)", b.get("text", ""))]
+    body = render_blocks(out, h1)
+    body = re.sub(r"(<(?:p|li)[^>]*>)\[(HYPOTH[ÈE]SE)\]\s*", r'\1<span class="tag">[\2]</span> ', body)
+    body = re.sub(r"<strong>(\d+) c</strong>", r"<strong>\1 centimes</strong>", body)
+    return EMOJI.sub("", body)
+
+def page_document(url, titre, desc, h1, meta, resume, body, crumbs_html, crumbs_ld, aside_html, d_pub, d_maj, up):
+    jsonld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Article", "headline": h1, "description": desc, "datePublished": d_pub, "dateModified": d_maj,
+         "inLanguage": "fr-FR", "mainEntityOfPage": url,
+         "author": {"@type": "Person", "name": AUTEUR, "url": SITE + "a-propos/"},
+         "publisher": {"@type": "Organization", "name": "Doctrine Éconologique", "url": SITE}},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs_ld)]}]}
+    return f"""<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(titre)}</title>
+<meta name="description" content="{html.escape(desc)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{html.escape(titre)}">
+<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{SITE}assets/partage-doctrine.jpg">
+<link rel="stylesheet" href="{up}assets/doctrine-navigation.css">
+<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>
+<style>{CSS}
+{CSS_TABLES}</style>
+</head>
+<body>
+<nav class="doctrine-navigation" aria-label="Navigation de la Doctrine">
+  <a href="{up}">Retour au site de la Doctrine</a>
+</nav>
+<main>
+<p class="crumbs">{crumbs_html}</p>
+<h1>{esc(h1)}</h1>
+<p class="meta">{meta} · Publié le {fr_date(d_pub)} · Mis à jour le {fr_date(d_maj)} · Par <a href="{up}a-propos/">{AUTEUR}</a></p>
+<p class="resume">{esc(resume)}</p>
+{sans_doublon(body)}
+{aside_html}
+</main>
+<script src="{up}assets/doctrine-share.js" defer></script>
+</body>
+</html>
+"""
+
+def pages_annexes(piliers):
+    n = 0
+    for p in piliers:
+        for a in p["annexes"]:
+            pdf = a["pdf"]; kb = round(os.path.getsize(os.path.join(ROOT, pdf)) / 1024)
+            d_pub, d_maj = git_date(pdf, True), git_date(pdf, False)
+            body = corps_document(pdf, a["h1"])
+            man = os.path.join(ROOT, "tools", "corps", f"{p['slug']}--{a['slug']}.html")
+            if os.path.exists(man): body = open(man, encoding="utf-8").read().strip()
+            url = f"{SITE}piliers/{p['slug']}/{a['slug']}/"
+            crumbs = (f'<a href="../../../">Accueil</a> › <a href="../../../#piliers">Piliers</a> › '
+                      f'<a href="../">{esc(p["nom"])}</a> › {esc(a["nom"])}')
+            ld = [("Accueil", SITE), ("Piliers", SITE + "#piliers"), (p["nom"], f"{SITE}piliers/{p['slug']}/"), (a["nom"], url)]
+            aside = (f'<aside class="more" aria-labelledby="plus">\n<h2 id="plus">Pour aller plus loin</h2>\n<div class="actions">\n'
+                     f'<a class="btn-touch btn-touch--fluid" href="../">Lire le pilier {p["romain"]} : {esc(p["nom"])}</a>\n'
+                     f'<a class="btn-touch btn-touch--soft btn-touch--fluid" href="../../../{pdf}">Version PDF ({kb} Ko)</a>\n'
+                     f'<a class="btn-touch btn-touch--soft btn-touch--fluid" href="{p["drive"]}" target="_blank" rel="noopener">Dossier Drive du pilier <span class="sr">(s\'ouvre dans un nouvel onglet)</span></a>\n'
+                     f'</div>\n</aside>')
+            html_out = page_document(url, f'{a["titre_seo"]} | Doctrine Éconologique', a["desc"], a["h1"],
+                                     f'Annexe du Pilier {p["romain"]}', a["desc"], body, crumbs, ld, aside, d_pub, d_maj, "../../../")
+            out = os.path.join(ROOT, "piliers", p["slug"], a["slug"], "index.html")
+            os.makedirs(os.path.dirname(out), exist_ok=True)
+            open(out, "w", encoding="utf-8").write(html_out); n += 1
+            print(f"{p['slug']}/{a['slug']}: PDF {len(subprocess.run(['pdftotext', os.path.join(ROOT, pdf), '-'], capture_output=True, text=True).stdout.split())} mots / page {len(re.sub(r'<[^>]+>', ' ', body).split())} mots")
+    return n
+
+GUIDE = {"pdf": "doctrine-guide-de-lecture-v6.pdf", "h1": "Lire la Doctrine Éconologique",
+         "titre_seo": "Guide de lecture : par où commencer",
+         "desc": "Ce qu’est la Doctrine Éconologique, comment elle est construite, par où commencer : le guide de lecture général, version 6."}
+
+def page_guide():
+    g = GUIDE; pdf = g["pdf"]; kb = round(os.path.getsize(os.path.join(ROOT, pdf)) / 1024)
+    d_pub, d_maj = git_date(pdf, True), git_date(pdf, False)
+    body = corps_document(pdf, g["h1"])
+    man = os.path.join(ROOT, "tools", "corps", "guide-de-lecture.html")
+    if os.path.exists(man): body = open(man, encoding="utf-8").read().strip()
+    url = SITE + "guide-de-lecture/"
+    crumbs = '<a href="../">Accueil</a> › Guide de lecture'
+    ld = [("Accueil", SITE), ("Guide de lecture", url)]
+    aside = ('<aside class="more" aria-labelledby="plus">\n<h2 id="plus">Pour aller plus loin</h2>\n<div class="actions">\n'
+             '<a class="btn-touch btn-touch--fluid" href="../piliers/">Les 17 piliers</a>\n'
+             '<a class="btn-touch btn-touch--fluid" href="../questionnaires/">Les questionnaires</a>\n'
+             '<a class="btn-touch btn-touch--soft btn-touch--fluid" href="../a-propos/">À propos de la doctrine</a>\n'
+             f'<a class="btn-touch btn-touch--soft btn-touch--fluid" href="../{pdf}">Version PDF ({kb} Ko)</a>\n'
+             '</div>\n</aside>')
+    html_out = page_document(url, f'{g["titre_seo"]} | Doctrine Éconologique', g["desc"], g["h1"],
+                             "Guide de lecture · version 6", g["desc"], body, crumbs, ld, aside, d_pub, d_maj, "../")
+    os.makedirs(os.path.join(ROOT, "guide-de-lecture"), exist_ok=True)
+    open(os.path.join(ROOT, "guide-de-lecture", "index.html"), "w", encoding="utf-8").write(html_out)
+
 def main(slugs):
     piliers = json.load(open(os.path.join(ROOT, "tools/piliers.json"), encoding="utf-8"))
     pub = [x for x in piliers if x["statut"] != "chantier"]
@@ -473,3 +720,5 @@ if __name__ == "__main__":
         open(os.path.join(ROOT, "piliers", "index.html"), "w", encoding="utf-8").write(hub(pubs))
         os.makedirs(os.path.join(ROOT, "questionnaires"), exist_ok=True)
         open(os.path.join(ROOT, "questionnaires", "index.html"), "w", encoding="utf-8").write(questionnaires())
+        pages_annexes(json.load(open(os.path.join(ROOT, "tools/piliers.json"), encoding="utf-8")))
+        page_guide()
