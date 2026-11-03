@@ -392,6 +392,7 @@ QUESTIONNAIRES = [
     ("Pilier I", "QCM Énergie", "qcm-energie", "energie-souveraine", "19 questions sur le prix de l’énergie, le nucléaire, EDF et la souveraineté énergétique, en mode rapide ou approfondi."),
     ("Pilier IV", "L’ASPA, le minimum vieillesse", "qcm-aspa", "reparation-des-retraites", "18 questions sur l’ASPA : conditions, récupération sur succession, non-recours et dimension internationale."),
     ("Pilier VI", "Bâtiment et métiers utiles", "qcm-pilier-vi", "batiment-metiers-utiles", "Formation, emploi des jeunes, besoins de recrutement et comparaison avec l’Allemagne, en mode rapide ou approfondi."),
+    ("Pilier VIII", "Les immigrants de la journée", "qcm-immigrants-journee", "frontaliers-capital-humain", "5 questions sur les travailleurs frontaliers : combien sont-ils, ce qu’ils coûtent à l’assurance chômage française et la piste de compensation."),
     ("Pilier X", "Et si la France s’habillait elle-même ?", "qcm-textile", "textile-habillement-chaussure", "11 questions : fabriquer en France vêtements et chaussures, à quel prix, et qui y gagnerait."),
     ("Pilier XIII", "Bulletin citoyen : et si on votait différemment ?", "qcm-democratie-decisionnelle", "democratie-decisionnelle", "12 questions pour comparer vos positions à celles des partis, à partir de leurs positions sourcées, sans enregistrement."),
     ("Pilier XV", "Fraude fiscale", "qcm-fraude-fiscale", "fraude-fiscale", "10 questions en mode rapide ou 15 en mode pédagogique sur les chiffres, les mécanismes et les pistes de contrôle."),
@@ -402,7 +403,7 @@ QUESTIONNAIRES = [
 def questionnaires():
     url = SITE + "questionnaires/"
     titre = "Les questionnaires de la doctrine | Doctrine Éconologique"
-    desc = "Huit questionnaires de la Doctrine Éconologique : énergie, retraites, bâtiment, textile, démocratie, fraude fiscale. Des faits sourcés, la conclusion vous appartient."
+    desc = "Neuf questionnaires de la doctrine : énergie, retraites, frontaliers, textile, démocratie, fraude fiscale. Des faits sourcés, la conclusion vous appartient."
     items = []
     for etiq, nom, qcm, slug, res in QUESTIONNAIRES:
         lien_pilier = f' <a href="../piliers/{slug}/">Lire le pilier</a>' if slug else ""

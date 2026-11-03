@@ -184,7 +184,12 @@
     "accroche": "Assurance chômage · compensation genevoise · modèle monégasque",
     "pdf": "fiches/pilier-08-aller-droit-au-but.pdf",
     "annexes": [],
-    "questionnaires": [],
+    "questionnaires": [
+      {
+        "url": "qcm-immigrants-journee/",
+        "nom": "Les immigrants de la journée"
+      }
+    ],
     "drive": "https://drive.google.com/drive/folders/1eGxc6AfZ5yB_lNPMnEv0E91LpdL-Iq2O",
     "corps_manuel": true,
     "titre_seo": "Frontaliers : chômage cotisé ici, payé là"
