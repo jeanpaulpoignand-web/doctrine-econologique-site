@@ -4,7 +4,7 @@
 
 Doctrine Éconologique propose une vision économique, politique et sociétale nouvelle, fondée sur la réalité physique (énergie, matière, territoire) plutôt que sur les abstractions financières et les dogmes dominants. Elle repose sur six piliers fondamentaux : **énergie, industrie, réparation, transmission, justice sociale et vérité des coûts**.
 
-**Site officiel** : [https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/](https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/)
+**Site officiel** : [https://doctrine-econologique.fr/](https://doctrine-econologique.fr/)
 
 ---
 

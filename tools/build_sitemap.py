@@ -10,7 +10,7 @@ tri par chemin. Usage : python3 tools/build_sitemap.py
 import datetime, json, os, re, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = "https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/"
+SITE = "https://doctrine-econologique.fr/"
 AUJOURDHUI = datetime.date.today().isoformat()
 
 

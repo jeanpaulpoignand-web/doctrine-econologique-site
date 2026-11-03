@@ -7,7 +7,7 @@ import datetime, json, os, re, subprocess, sys, html
 import pdfplumber
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = "https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/"
+SITE = "https://doctrine-econologique.fr/"
 TAGS = ("[FAIT]", "[CALCUL]", "[ANALYSE]", "[PROPOSITION]")
 MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
 
