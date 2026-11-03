@@ -382,6 +382,67 @@ def hub(piliers):
 </html>
 """
 
+QUESTIONNAIRES = [
+    ("Pilier I", "QCM Énergie", "qcm-energie", "energie-souveraine", "19 questions sur le prix de l’énergie, le nucléaire, EDF et la souveraineté énergétique, en mode rapide ou approfondi."),
+    ("Pilier IV", "L’ASPA, le minimum vieillesse", "qcm-aspa", "reparation-des-retraites", "18 questions sur l’ASPA : conditions, récupération sur succession, non-recours et dimension internationale."),
+    ("Pilier VI", "Bâtiment et métiers utiles", "qcm-pilier-vi", "batiment-metiers-utiles", "Formation, emploi des jeunes, besoins de recrutement et comparaison avec l’Allemagne, en mode rapide ou approfondi."),
+    ("Pilier X", "Et si la France s’habillait elle-même ?", "qcm-textile", "textile-habillement-chaussure", "11 questions : fabriquer en France vêtements et chaussures, à quel prix, et qui y gagnerait."),
+    ("Pilier XIII", "Bulletin citoyen : et si on votait différemment ?", "qcm-democratie-decisionnelle", "democratie-decisionnelle", "12 questions pour comparer vos positions à celles des partis, à partir de leurs positions sourcées, sans enregistrement."),
+    ("Pilier XV", "Fraude fiscale", "qcm-fraude-fiscale", "fraude-fiscale", "10 questions en mode rapide ou 15 en mode pédagogique sur les chiffres, les mécanismes et les pistes de contrôle."),
+    ("Hors pilier", "Et si on avait voté différemment ?", "qcm-general", None, "Emploi, salaires, énergie, retraites : comparer la trajectoire réelle de la France à deux scénarios politiques alternatifs pour 2026."),
+    ("Pilier XVII · chantier", "Consigne mégots", "qcm-consigne-megots", None, "Propreté publique et responsabilité du déchet : questionnaire du chantier XVII, dont la page pilier n’est pas encore publiée."),
+]
+
+def questionnaires():
+    url = SITE + "questionnaires/"
+    titre = "Les questionnaires de la doctrine | Doctrine Éconologique"
+    desc = "Huit questionnaires de la Doctrine Éconologique : énergie, retraites, bâtiment, textile, démocratie, fraude fiscale. Des faits sourcés, la conclusion vous appartient."
+    items = []
+    for etiq, nom, qcm, slug, res in QUESTIONNAIRES:
+        lien_pilier = f' <a href="../piliers/{slug}/">Lire le pilier</a>' if slug else ""
+        items.append(f'<li class="pil"><div class="pil-num">{etiq}</div><h2><a href="../{qcm}/">{esc(nom)}</a></h2><p>{esc(res)}</p><p>{lien_pilier.strip()}</p></li>' if slug else
+                     f'<li class="pil"><div class="pil-num">{etiq}</div><h2><a href="../{qcm}/">{esc(nom)}</a></h2><p>{esc(res)}</p></li>')
+    jsonld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "CollectionPage", "name": "Les questionnaires de la Doctrine Éconologique", "description": desc, "url": url, "inLanguage": "fr-FR",
+         "isPartOf": {"@type": "WebSite", "name": "Doctrine Éconologique", "url": SITE}},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": SITE},
+            {"@type": "ListItem", "position": 2, "name": "Questionnaires", "item": url}]}]}
+    return f"""<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(titre)}</title>
+<meta name="description" content="{html.escape(desc)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{html.escape(titre)}">
+<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{SITE}assets/partage-doctrine.jpg">
+<link rel="stylesheet" href="../assets/doctrine-navigation.css">
+<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>
+<style>{CSS}
+.pils{{list-style:none;padding:0;margin:24px 0}}.pil{{padding:18px 0;border-top:1px solid var(--trait,#d9cfbd)}}.pil h2{{margin:4px 0 6px;font-size:22px}}.pil p{{margin:0 0 6px}}.pil-num{{font:600 13px/1.4 system-ui,-apple-system,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--doux,#6b5d46)}}</style>
+</head>
+<body>
+<nav class="doctrine-navigation" aria-label="Navigation de la Doctrine">
+  <a href="../">Retour au site de la Doctrine</a>
+</nav>
+<main>
+<p class="crumbs"><a href="../">Accueil</a> › Questionnaires</p>
+<h1>Les questionnaires de la Doctrine Éconologique</h1>
+<p class="resume">Chaque questionnaire pose des questions sourcées. Aucun ne juge : chaque réponse est qualifiée (fait, calcul, hypothèse, analyse) et renvoie aux documents du pilier. La conclusion vous appartient.</p>
+<ul class="pils">
+{chr(10).join(items)}
+</ul>
+<p><a class="btn-touch btn-touch--soft btn-touch--fluid" href="../piliers/">Voir la liste des 17 piliers</a></p>
+</main>
+</body>
+</html>
+"""
+
 def main(slugs):
     piliers = json.load(open(os.path.join(ROOT, "tools/piliers.json"), encoding="utf-8"))
     pub = [x for x in piliers if x["statut"] != "chantier"]
@@ -410,3 +471,5 @@ if __name__ == "__main__":
         open(os.path.join(ROOT, "a-propos", "index.html"), "w", encoding="utf-8").write(apropos())
         pubs = [x for x in json.load(open(os.path.join(ROOT, "tools/piliers.json"), encoding="utf-8")) if x["statut"] != "chantier"]
         open(os.path.join(ROOT, "piliers", "index.html"), "w", encoding="utf-8").write(hub(pubs))
+        os.makedirs(os.path.join(ROOT, "questionnaires"), exist_ok=True)
+        open(os.path.join(ROOT, "questionnaires", "index.html"), "w", encoding="utf-8").write(questionnaires())

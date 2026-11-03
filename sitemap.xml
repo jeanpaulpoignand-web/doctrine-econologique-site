@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/a-propos/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/bulletin-arbitrage/</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/piliers/agriculture-alimentation/</loc>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/piliers/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/piliers/mobilite-securite-routiere/</loc>
@@ -78,7 +78,7 @@
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-aspa/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-consigne-megots/</loc>
@@ -86,7 +86,7 @@
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-democratie-decisionnelle/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-energie/fiches/q1-prix-energie.html</loc>
@@ -166,11 +166,11 @@
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-energie/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-fraude-fiscale/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-general/documents/</loc>
@@ -274,10 +274,14 @@
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-pilier-vi/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
   </url>
   <url>
     <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/qcm-textile/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://jeanpaulpoignand-web.github.io/doctrine-econologique-site/questionnaires/</loc>
+    <lastmod>2026-11-03</lastmod>
   </url>
 </urlset>
