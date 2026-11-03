@@ -3,7 +3,7 @@
 Usage : python3 tools/build_piliers.py [slug ...]   (sans argument : tous les piliers publiés)
 Dépendances : pdfplumber. Aucune étape de build n'est ajoutée à la publication : les pages générées sont commitées.
 Le texte vient uniquement du PDF ; titre de page, accroche et résumé viennent de tools/piliers.json (à valider)."""
-import json, os, re, subprocess, sys, html
+import datetime, json, os, re, subprocess, sys, html
 import pdfplumber
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,6 +18,8 @@ def fr_date(iso):
 def git_date(path, first):
     cmd = ["git", "log", "--follow", "--format=%cs"] + (["--diff-filter=A"] if first else ["-1"]) + ["--", path]
     out = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True).stdout.split()
+    if not first and subprocess.run(["git", "status", "--porcelain", "--", path], cwd=ROOT, capture_output=True, text=True).stdout.strip():
+        return datetime.date.today().isoformat()      # fichier modifié et pas encore commité : date du jour
     return (out[-1] if first else out[0]) if out else ""
 
 def esc(s): return html.escape(s, quote=False)

@@ -49,7 +49,7 @@ def main():
     if os.path.exists(pj):
         for p in json.load(open(pj, encoding="utf-8")):
             sources[f"piliers/{p['slug']}/index.html"] = p["pdf"]
-    sales = {l[3:].split(" -> ")[-1].strip('"') for l in git("status", "--porcelain").splitlines()}
+    sales = {l.strip().split(None, 1)[1].split(" -> ")[-1].strip('"') for l in git("status", "--porcelain").splitlines() if l.strip()}
     urls = []
     for dp, dn, fn in os.walk(ROOT):
         dn[:] = [d for d in dn if not d.startswith(".")]
