@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<style>h2.hh{border:0;padding:0}
   :root{
     --bleu-fonce:#6B3A4E;
     --bleu-moyen:#8E5A70;
@@ -97,7 +97,7 @@
   }
   .mode:hover{transform:translateY(-3px);border-color:var(--bleu-moyen);box-shadow:var(--ombre)}
   .mode .ic{font-size:1.5rem}
-  .mode h3{font-family:'Fraunces',serif;font-size:1.18rem;color:var(--bleu-fonce);font-weight:600}
+  .mode h3,.mode h2.hh{font-family:'Fraunces',serif;font-size:1.18rem;color:var(--bleu-fonce);font-weight:600}
   .mode p{font-size:.86rem;color:var(--gris-doux);line-height:1.45}
   .mode .go{
     margin-top:10px;align-self:flex-start;font-weight:600;font-size:.85rem;
@@ -249,13 +249,13 @@
     <div class="modes">
       <button class="mode rapide" onclick="demarrer('rapide')">
         <span class="ic">⚡</span>
-        <h3>Version rapide</h3>
+        <h2 class="hh">Version rapide</h2>
         <p>On enchaîne. Réponse, explication courte, question suivante. Cinq minutes.</p>
         <span class="go">Commencer →</span>
       </button>
       <button class="mode lente" onclick="demarrer('lente')">
         <span class="ic">📖</span>
-        <h3>Version approfondie</h3>
+        <h2 class="hh">Version approfondie</h2>
         <p>Chaque question ouvre l’explication complète, le document du Pilier X et la source.</p>
         <span class="go">Commencer →</span>
       </button>

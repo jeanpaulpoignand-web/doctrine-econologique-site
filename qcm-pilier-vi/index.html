@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<style>h2.hh{border:0;padding:0}
   :root{
     --bleu-fonce:#6B3A4E;
     --bleu-moyen:#8E5A70;
@@ -97,7 +97,7 @@
   }
   .mode:hover{transform:translateY(-3px);border-color:var(--bleu-moyen);box-shadow:var(--ombre)}
   .mode .ic{font-size:1.5rem}
-  .mode h3{font-family:'Fraunces',serif;font-size:1.18rem;color:var(--bleu-fonce);font-weight:600}
+  .mode h3,.mode h2.hh{font-family:'Fraunces',serif;font-size:1.18rem;color:var(--bleu-fonce);font-weight:600}
   .mode p{font-size:.86rem;color:var(--gris-doux);line-height:1.45}
   .mode .go{
     margin-top:10px;align-self:flex-start;font-weight:600;font-size:.85rem;
@@ -253,8 +253,8 @@
     <p class="intro-txt">Comment forme-t-on à un métier ? Comment lire les besoins de recrutement et comparer la France et l’Allemagne ? <strong>Explorez les faits, puis faites vos propres choix.</strong></p>
     <p class="note-neutre">Les faits, calculs, études, analyses et propositions sont distingués. Les choix de société n’ont pas de bonne ou de mauvaise réponse. Vos choix et votre progression restent uniquement en mémoire pendant cette page ; rien n’est enregistré ni envoyé.</p>
     <div class="modes">
-      <button class="mode rapide" onclick="demarrer('rapide')"><span class="ic">⚡</span><h3>Version rapide</h3><p>Huit étapes, une par thème. Contexte, réponse et explication courte. Environ cinq minutes, selon votre rythme.</p><span class="go">Commencer →</span></button>
-      <button class="mode lente" onclick="demarrer('lente')"><span class="ic">📖</span><h3>Version approfondie</h3><p>Les vingt-huit questions et choix, avec explications complètes, documents et sources officielles.</p><span class="go">Commencer →</span></button>
+      <button class="mode rapide" onclick="demarrer('rapide')"><span class="ic">⚡</span><h2 class="hh">Version rapide</h2><p>Huit étapes, une par thème. Contexte, réponse et explication courte. Environ cinq minutes, selon votre rythme.</p><span class="go">Commencer →</span></button>
+      <button class="mode lente" onclick="demarrer('lente')"><span class="ic">📖</span><h2 class="hh">Version approfondie</h2><p>Les vingt-huit questions et choix, avec explications complètes, documents et sources officielles.</p><span class="go">Commencer →</span></button>
     </div>
     <div class="meta-intro"><span>📄 Huit thèmes</span><span>🗂️ Trois blocs</span><span>🔗 Sources à chaque étape</span></div>
   </section>
