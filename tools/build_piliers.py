@@ -12,7 +12,10 @@ TAGS = ("[FAIT]", "[CALCUL]", "[ANALYSE]", "[PROPOSITION]")
 MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
 
 def fr_date(iso):
-    y, m, d = iso.split("-")
+    parts = iso.split("-")
+    if len(parts) == 2:                       # date connue au mois près (texte source sans jour)
+        return f"{MOIS[int(parts[1])-1]} {parts[0]}"
+    y, m, d = parts
     return f"{int(d)} {MOIS[int(m)-1]} {y}"
 
 def git_date(path, first):
@@ -639,7 +642,7 @@ def page_document(url, titre, desc, h1, meta, resume, body, crumbs_html, crumbs_
 <main>
 <p class="crumbs">{crumbs_html}</p>
 <h1>{esc(h1)}</h1>
-<p class="meta">{meta} · Publié le {fr_date(d_pub)} · Mis à jour le {fr_date(d_maj)} · Par <a href="{up}a-propos/">{AUTEUR}</a></p>
+<p class="meta">{meta} · Publié {"en" if len(d_pub) == 7 else "le"} {fr_date(d_pub)} · Mis à jour le {fr_date(d_maj)} · Par <a href="{up}a-propos/">{AUTEUR}</a></p>
 <p class="resume">{esc(resume)}</p>
 {sans_doublon(body)}
 {aside_html}
@@ -653,26 +656,34 @@ def pages_annexes(piliers):
     n = 0
     for p in piliers:
         for a in p["annexes"]:
-            pdf = a["pdf"]; kb = round(os.path.getsize(os.path.join(ROOT, pdf)) / 1024)
-            d_pub, d_maj = git_date(pdf, True), git_date(pdf, False)
-            body = corps_document(pdf, a["h1"])
+            pdf = a.get("pdf")                       # annexe venue d'un PDF du dépôt, ou d'un document Drive (chantier 8)
             man = os.path.join(ROOT, "tools", "corps", f"{p['slug']}--{a['slug']}.html")
+            if pdf:
+                kb = round(os.path.getsize(os.path.join(ROOT, pdf)) / 1024)
+                d_pub, d_maj = git_date(pdf, True), git_date(pdf, False)
+                body = corps_document(pdf, a["h1"])
+            else:
+                kb = None
+                d_pub, d_maj = a["date_pub"], a["date_maj"]
+                body = ""
             if os.path.exists(man): body = open(man, encoding="utf-8").read().strip()
             url = f"{SITE}piliers/{p['slug']}/{a['slug']}/"
             crumbs = (f'<a href="../../../">Accueil</a> › <a href="../../../#piliers">Piliers</a> › '
                       f'<a href="../">{esc(p["nom"])}</a> › {esc(a["nom"])}')
             ld = [("Accueil", SITE), ("Piliers", SITE + "#piliers"), (p["nom"], f"{SITE}piliers/{p['slug']}/"), (a["nom"], url)]
+            pdf_link = (f'<a class="btn-touch btn-touch--soft btn-touch--fluid" href="../../../{pdf}">Version PDF ({kb} Ko)</a>\n' if pdf else "")
             aside = (f'<aside class="more" aria-labelledby="plus">\n<h2 id="plus">Pour aller plus loin</h2>\n<div class="actions">\n'
                      f'<a class="btn-touch btn-touch--fluid" href="../">Lire le pilier {p["romain"]} : {esc(p["nom"])}</a>\n'
-                     f'<a class="btn-touch btn-touch--soft btn-touch--fluid" href="../../../{pdf}">Version PDF ({kb} Ko)</a>\n'
+                     f'{pdf_link}'
                      f'<a class="btn-touch btn-touch--soft btn-touch--fluid" href="{p["drive"]}" target="_blank" rel="noopener">Dossier Drive du pilier <span class="sr">(s\'ouvre dans un nouvel onglet)</span></a>\n'
                      f'</div>\n</aside>')
             html_out = page_document(url, f'{a["titre_seo"]} | Doctrine Éconologique', a["desc"], a["h1"],
-                                     f'Annexe du Pilier {p["romain"]}', a["desc"], body, crumbs, ld, aside, d_pub, d_maj, "../../../")
+                                     a.get("meta", f'Annexe du Pilier {p["romain"]}'), a["desc"], body, crumbs, ld, aside, d_pub, d_maj, "../../../")
             out = os.path.join(ROOT, "piliers", p["slug"], a["slug"], "index.html")
             os.makedirs(os.path.dirname(out), exist_ok=True)
             open(out, "w", encoding="utf-8").write(html_out); n += 1
-            print(f"{p['slug']}/{a['slug']}: PDF {len(subprocess.run(['pdftotext', os.path.join(ROOT, pdf), '-'], capture_output=True, text=True).stdout.split())} mots / page {len(re.sub(r'<[^>]+>', ' ', body).split())} mots")
+            mots_pdf = len(subprocess.run(['pdftotext', os.path.join(ROOT, pdf), '-'], capture_output=True, text=True).stdout.split()) if pdf else "sans PDF (source Drive)"
+            print(f"{p['slug']}/{a['slug']}: PDF {mots_pdf} mots / page {len(re.sub(r'<[^>]+>', ' ', body).split())} mots")
     return n
 
 GUIDE = {"pdf": "doctrine-guide-de-lecture-v6.pdf", "h1": "Lire la Doctrine Éconologique",

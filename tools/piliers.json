@@ -120,6 +120,20 @@
         "titre_seo": "Jeunes sans emploi : France et Allemagne",
         "desc": "Trois lois sur l’apprentissage en vingt ans, le même écart avec l’Allemagne : 20,6 % de jeunes actifs au chômage en France, 7,4 % en Allemagne (Eurostat, août 2026).",
         "nom": "Jeunes sans emploi : France-Allemagne"
+      },
+      {
+        "slug": "tribune-climat-truelle",
+        "h1": "Le climat se sauve avec une truelle, pas avec un clavier",
+        "titre_seo": "Le climat se sauve avec une truelle",
+        "desc": "Tribune de Jean Paul Poignand : sans les artisans du bâtiment, pas de transition écologique. Cinq mesures pour rendre ces métiers attractifs aux jeunes.",
+        "nom": "Tribune : le climat se sauve avec une truelle",
+        "meta": "Tribune · Annexe du Pilier VI",
+        "date_pub": "2026-05",
+        "date_maj": "2026-10-16",
+        "source_drive": {
+          "id": "1WsVTjDl9n-C9sqwIq45O8QJgNDThm-MD",
+          "recupere": "2026-11-05"
+        }
       }
     ],
     "questionnaires": [
@@ -307,7 +321,22 @@
     "resume": "Décider sur les sujets, pas seulement sur les visages.",
     "accroche": "Bulletin décisionnel · double vote · matrice des partis",
     "pdf": "fiches/pilier-13-aller-droit-au-but.pdf",
-    "annexes": [],
+    "annexes": [
+      {
+        "slug": "repartir-son-impot",
+        "h1": "Le vote responsable : répartir son impôt en connaissance de cause",
+        "titre_seo": "Répartir son impôt : le vote responsable",
+        "desc": "Chaque citoyen arbitre l’emploi de l’impôt en connaissance de cause : consultation budgétaire dès 2026, part affectée de 1 à 5 %, garanties, exemples étrangers.",
+        "nom": "Vote responsable : répartir son impôt",
+        "meta": "Annexe du Pilier XIII",
+        "date_pub": "2026-10-08",
+        "date_maj": "2026-10-08",
+        "source_drive": {
+          "id": "1cHcr1gml8LgjHjtWds1dgt4K-oEtA-4ksylhU68Zd2k",
+          "recupere": "2026-11-05"
+        }
+      }
+    ],
     "questionnaires": [
       {
         "url": "qcm-democratie-decisionnelle/",
