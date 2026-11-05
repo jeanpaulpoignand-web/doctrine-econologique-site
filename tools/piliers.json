@@ -357,7 +357,22 @@
     "resume": "On ne solde pas une année de production en la reclassant.",
     "accroche": "Excédent primaire · pensions futures plafonnées · énergie et logement",
     "pdf": "fiches/pilier-14-aller-droit-au-but.pdf",
-    "annexes": [],
+    "annexes": [
+      {
+        "slug": "document-maitre",
+        "h1": "Amortissement de la dette : le document maître",
+        "titre_seo": "Amortir la dette : le document maître",
+        "desc": "Comment amortir 3 600 Md€ de dette publique sans l’effacer : prélèvement dédié, cantonnement, énergie, travail, logement. Faits, calculs et hypothèses datés.",
+        "nom": "Document maître : amortir la dette",
+        "meta": "Annexe du Pilier XIV · Version 1.1",
+        "date_pub": "2026-10-07",
+        "date_maj": "2026-10-29",
+        "source_drive": {
+          "id": "14euMeYqkHyOXcSRchiKzVZF1ueERZYiBpU3lMgizYa0",
+          "recupere": "2026-11-05"
+        }
+      }
+    ],
     "questionnaires": [],
     "drive": "https://drive.google.com/drive/folders/1GrCVMkHaVr6ZLhvO6RHCM9SvYGM-M-5d",
     "corps_manuel": true,
