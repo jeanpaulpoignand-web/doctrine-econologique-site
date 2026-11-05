@@ -220,7 +220,7 @@ def page(p, body, pdf_kb, d_pub, d_maj, prev=None, nxt=None):
     titre = f"{p['titre_seo']} | Doctrine Éconologique"
     desc = f"{p['resume']} {p['accroche']}."
     jsonld = {"@context": "https://schema.org", "@graph": [
-        {"@type": "Article", "headline": p["titre_page"], "description": desc, "datePublished": d_pub, "dateModified": d_maj,
+        {"@type": "Article", "headline": p["nom"], "description": desc, "datePublished": d_pub, "dateModified": d_maj,
          "inLanguage": "fr-FR", "mainEntityOfPage": url,
          "author": {"@type": "Person", "name": AUTEUR, "url": SITE + "a-propos/"},
          "publisher": {"@type": "Organization", "name": "Doctrine Éconologique", "url": SITE}},
