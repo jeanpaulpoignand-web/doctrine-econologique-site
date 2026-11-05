@@ -313,6 +313,8 @@ def apropos():
 <h1>À propos de la Doctrine Éconologique</h1>
 <h2>Qui porte la doctrine</h2>
 <p>La Doctrine Éconologique est portée par {AUTEUR}. Ingénieur des techniques et industries agroalimentaires, il a commencé ce travail en janvier 2026. Il tranche les arbitrages et en assume le contenu sous son nom.</p>
+<h2>Un projet indépendant, sans lien avec Doctrine.fr</h2>
+<p>La Doctrine Éconologique est un projet citoyen indépendant. Elle n’a aucun lien avec Doctrine.fr, la plateforme d’information juridique, ni avec aucune organisation portant un nom proche. Son adresse est doctrine-econologique.fr.</p>
 <h2>Pourquoi cette doctrine</h2>
 <p>Le mot « éconologie » réunit économie et écologie. L’écologie dit surtout ce qu’il ne faut pas faire ; l’éconologie propose des solutions, dans le sens de la souveraineté et de la production locale.</p>
 <p>Une société prospère ne peut pas durablement dissimuler ce qu’elle produit, ce qu’elle consomme, et qui paie réellement.</p>
@@ -325,6 +327,10 @@ def apropos():
 <p>Chaque affirmation importante porte une étiquette : [FAIT] pour une donnée sourcée, [CALCUL] pour un calcul reproductible, [HYPOTHÈSE] pour ce qui reste à démontrer, [ANALYSE] pour une lecture de la doctrine, [PROPOSITION] pour une mesure proposée. Les faits sont ainsi distingués des propositions.</p>
 <h2>Contact</h2>
 <p>Pour une question, une correction ou une source à signaler : <a href="mailto:{CONTACT}">{CONTACT}</a>.</p>
+<h2 id="mentions">Mentions légales</h2>
+<p>Éditeur du site et responsable de la publication : {AUTEUR} (contact ci-dessus).</p>
+<p>Hébergement : GitHub Pages, service de GitHub, Inc. (github.com). Nom de domaine : OVH (ovhcloud.com).</p>
+<p>Les sources des chiffres sont citées dans chaque fiche. Les marques mentionnées appartiennent à leurs propriétaires.</p>
 <p><a class="btn-touch btn-touch--soft btn-touch--fluid" href="../#piliers">Voir les piliers</a></p>
 </main>
 </body>
