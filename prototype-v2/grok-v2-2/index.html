@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#17273e">
+  <meta name="description" content="Maquette V2.2 non indexée. Découvrez la Doctrine Éconologique en 90 secondes : sujets du quotidien, questionnaires citoyens sourcés et méthode contradictoire.">
+  <title>Doctrine Éconologique · V2.2 — Une économie qui nous concerne (non indexée)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#17273e;--ink2:#30445b;--paper:#faf8f3;--pure:#fffefa;--warm:#f0ede3;--line:#dddcd2;--muted:#576675;--accent:#b9573a;--accent-dark:#97452f;--gold:#e5bd78;--teal:#2e7168;--shadow:0 12px 40px rgba(23,39,62,.08);--serif:'Cormorant Garamond',Georgia,serif;--sans:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--ink);background:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.55}
+    a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}h1,h2,h3,p{margin-top:0}.container{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .eyebrow{font:600 11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+    .site-header{background:rgba(250,248,243,.94);border-bottom:1px solid rgba(23,39,62,.08);position:sticky;top:0;z-index:40;backdrop-filter:blur(12px)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}.brand-mark{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--ink);color:#fff;font:600 24px/1 var(--serif)}
+    .brand-name{font-family:var(--serif);font-size:22px;font-weight:700;line-height:.9}.brand-caption{font:500 9px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+    .nav-links{display:flex;gap:22px;align-items:center;font-size:13.5px;font-weight:600}.nav-links a:hover{color:var(--accent)}
+    .nav-action{padding:9px 16px;background:var(--ink);color:#fff;border-radius:999px}.nav-action:hover{background:#2a3f5c;color:#fff}
+    .menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+    .hero{padding:64px 0 72px;background:radial-gradient(circle at 80% 20%,#e8eedc 0,transparent 40%),linear-gradient(135deg,#faf8f3,#f3eee4)}
+    .hero h1{font:600 clamp(42px,5.5vw,76px)/.95 var(--serif);letter-spacing:-.03em;margin:12px 0 18px;max-width:720px}
+    .hero h1 em{color:var(--teal);font-style:italic;font-weight:500}
+    .lead{font-size:17.5px;color:#3a4a5c;max-width:520px;margin:0 0 28px}
+    .cta-row{display:flex;flex-wrap:wrap;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:10px;font-weight:700;font-size:14px;transition:transform .15s,background .15s}
+    .btn:hover{transform:translateY(-1px)}.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-dark)}
+    .btn-secondary{border:1px solid #b8c0c0;background:rgba(255,255,255,.5)}
+    .discovery{padding:48px 0;background:#fff}
+    .discovery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:20px}
+    .disc-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+    .disc-card:hover,.disc-card.active{border-color:var(--accent);box-shadow:var(--shadow)}
+    .disc-card h3{font-size:18px;margin:8px 0 6px}.disc-reveal{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:14.5px}
+    .disc-card.active .disc-reveal{display:block}
+    .section{padding:56px 0}.section-heading{max-width:640px;margin-bottom:28px}
+    .filters{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 12px}
+    .filter-btn{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:600}
+    .filter-btn[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .search{width:100%;max-width:360px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px}
+    .topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:8px}
+    .topic-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;min-height:220px;transition:box-shadow .2s,transform .2s}
+    .topic-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+    .topic-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .badge{font:500 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;background:#f0ede3;color:var(--ink2)}
+    .badge.facture{background:#f8e8e0;color:#8a4a32}.badge.emploi{background:#e6f0ea;color:#2e5c4a}.badge.impot{background:#e8eaf5;color:#3a4a7a}
+    .topic-num{font:500 11px var(--mono);color:var(--muted)}
+    .topic-card h3{font-size:19px;margin:6px 0 8px;line-height:1.2}
+    .topic-question{font-size:14.5px;color:var(--ink2);flex:1;margin:0 0 14px}
+    .topic-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;font-weight:600}
+    .mini-qcm{color:var(--accent)}
+    .method-ais{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .ai-dot{display:flex;align-items:center;gap:6px;font-size:13px;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+    .ai-dot span{width:10px;height:10px;border-radius:50%;display:inline-block}
+    .sticky-qcm{position:fixed;bottom:70px;right:16px;z-index:50;display:none}
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 0 10px;z-index:45;font-size:12px}
+    .bottom-nav a{display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:600}
+    @media(max-width:760px){
+      .nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:#fff;padding:16px;border-bottom:1px solid var(--line)}
+      .menu-toggle{display:block}.sticky-qcm{display:block}.hero{padding:40px 0 48px}.section{padding:40px 0}
+    }
+    a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #e0a24e;outline-offset:3px}
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"Doctrine Éconologique","url":"https://doctrine-econologique.fr/","description":"Contribution citoyenne : 17 piliers pour une France qui produit, répare et transmet.","potentialAction":{"@type":"SearchAction","target":"https://doctrine-econologique.fr/?s={search_term_string}","query-input":"required name=search_term_string"}}
+  </script>
+</head>
+<body>
+  <a class="skip sr-only" href="#main">Aller au contenu</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#accueil">
+        <span class="brand-mark">é.</span>
+        <span><span class="brand-name">Doctrine Éconologique</span><span class="brand-caption">Comprendre · Comparer · Décider</span></span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+      <nav class="nav-links" id="nav-links">
+        <a href="#decouverte">En 90 secondes</a>
+        <a href="#explorer">Explorer</a>
+        <a href="#methode">Méthode</a>
+        <a href="https://doctrine-econologique.fr/questionnaires/" class="nav-action" target="_blank" rel="noopener">Les QCM ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="accueil">
+      <div class="container">
+        <p class="eyebrow">Une démarche citoyenne · Indépendante des partis</p>
+        <h1>Une économie qui parle <em>de votre vie</em>.</h1>
+        <p class="lead">Énergie, objets qui durent, retraites, argent public : commencez par ce qui vous concerne. Chaque sujet se vérifie dans les chiffres et les sources.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#decouverte">Découvrir en 90 secondes</a>
+          <a class="btn btn-secondary" href="#explorer">Voir les 17 sujets</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORIGINAL 1 : Parcours Découverte -->
+    <section class="discovery" id="decouverte">
+      <div class="container">
+        <p class="eyebrow">Parcours découverte</p>
+        <h2>Qu’est-ce qui vous préoccupe le plus aujourd’hui ?</h2>
+        <p>Choisissez une porte. Une phrase suffit pour commencer. Le questionnaire vous attend ensuite.</p>
+        <div class="discovery-grid">
+          <div class="disc-card" data-topic="energie">
+            <p class="eyebrow">Facture</p>
+            <h3>Ma facture d’énergie</h3>
+            <div class="disc-reveal">
+              <p>Pourquoi l’électricité pèse-t-elle autant ? Le nucléaire historique reste l’un des moyens les moins chers, mais le mix et les importations font grimper le prix de revient de l’économie.</p>
+              <a class="btn btn-primary" style="margin-top:10px;font-size:13px" href="https://doctrine-econologique.fr/qcm-energie/" target="_blank" rel="noopener">Commencer le QCM Énergie ↗</a>
+            </div>
+          </div>
+          <div class="disc-card" data-topic="objets">
+            <p class="eyebrow">Objets</p>
+            <h3>Des objets qui durent</h3>
+            <div class="disc-reveal">
+              <p>Remplacer coûte souvent plus cher que réparer. Une garantie décennale et des métiers de réparation relocalisés réduisent le gaspillage et créent de l’emploi local.</p>
+              <a class="btn btn-primary" style="margin-top:10px;font-size:13px" href="https://doctrine-econologique.fr/piliers/garantie-decennale/" target="_blank" rel="noopener">Voir le dossier ↗</a>
+            </div>
+          </div>
+          <div class="disc-card" data-topic="impots">
+            <p class="eyebrow">Impôts & proches</p>
+            <h3>L’argent public et les anciens</h3>
+            <div class="disc-reveal">
+              <p>Où va vraiment l’impôt ? Comment financer dignement le grand âge sans reporter la charge sur les générations suivantes ?</p>
+              <a class="btn btn-primary" style="margin-top:10px;font-size:13px" href="https://doctrine-econologique.fr/qcm-aspa/" target="_blank" rel="noopener">QCM ASPA / retraites ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="explorer">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Explorer la Doctrine</p>
+          <h2>À chacun sa porte d’entrée.</h2>
+          <p>17 dossiers. Pas d’ordre imposé. Filtrez par thème ou cherchez un mot.</p>
+        </div>
+        <input class="search" id="topic-search" type="search" placeholder="Rechercher un sujet (énergie, retraite, textile…)" aria-label="Rechercher un dossier">
+        <div class="filters" role="group" aria-label="Filtrer par thème">
+          <button class="filter-btn" data-filter="all" aria-pressed="true">Tous</button>
+          <button class="filter-btn" data-filter="quotidien">Vie quotidienne</button>
+          <button class="filter-btn" data-filter="production">Produire & travailler</button>
+          <button class="filter-btn" data-filter="finances">Argent public</button>
+          <button class="filter-btn" data-filter="societe">Démocratie & société</button>
+        </div>
+        <p id="result-count" style="font-size:13px;color:var(--muted);margin:8px 0 4px">17 dossiers affichés</p>
+        <div class="topics" id="topics">
+          <!-- Cards will be injected or static for simplicity; static version below for reliability -->
+          <article class="topic-card" data-group="quotidien" data-search="énergie souveraine facture prix nucléaire">
+            <div class="topic-top"><span class="badge facture">Facture</span><span class="topic-num">01</span></div>
+            <h3>Énergie souveraine</h3>
+            <p class="topic-question">Pourquoi l’énergie pèse-t-elle autant sur nos prix et nos emplois ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/energie-souveraine/" target="_blank" rel="noopener">Voir le dossier ↗</a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-energie/" target="_blank" rel="noopener">QCM ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="quotidien" data-search="garantie décennale réparation objets">
+            <div class="topic-top"><span class="badge">Objets</span><span class="topic-num">02</span></div>
+            <h3>Garantie décennale</h3>
+            <p class="topic-question">Pourquoi remplacer un objet quand on pourrait le réparer durablement ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/garantie-decennale/" target="_blank" rel="noopener">Voir le dossier ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="finances" data-search="financement public impôt argent">
+            <div class="topic-top"><span class="badge impot">Impôt</span><span class="topic-num">03</span></div>
+            <h3>Financement public</h3>
+            <p class="topic-question">Comment suivre l’argent public et choisir ce qui mérite d’être financé ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/financement-public/" target="_blank" rel="noopener">Voir le dossier ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="quotidien" data-search="retraites aspa minimum vieillesse">
+            <div class="topic-top"><span class="badge">Solidarité</span><span class="topic-num">04</span></div>
+            <h3>Réparation des retraites</h3>
+            <p class="topic-question">Comment concilier solidarité, contributions et dignité des anciens ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/reparation-retraites/" target="_blank" rel="noopener">Voir le dossier ↗</a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-aspa/" target="_blank" rel="noopener">QCM ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="quotidien" data-search="grand âge ehpad soignants">
+            <div class="topic-top"><span class="badge">Proches</span><span class="topic-num">05</span></div>
+            <h3>Grand âge et EHPAD</h3>
+            <p class="topic-question">Comment mieux accompagner nos proches sans subir la pénurie de soignants ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/grand-age-ehpad/" target="_blank" rel="noopener">Voir le dossier ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="production" data-search="bâtiment métiers utiles formation jeunes">
+            <div class="topic-top"><span class="badge emploi">Emploi</span><span class="topic-num">06</span></div>
+            <h3>Bâtiment et métiers utiles</h3>
+            <p class="topic-question">Comment redonner envie d’apprendre et d’exercer les métiers qui construisent ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/batiment-metiers-utiles/" target="_blank" rel="noopener">Voir le dossier ↗</a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-pilier-vi/" target="_blank" rel="noopener">QCM ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="societe" data-search="culture éconologie qui paie">
+            <div class="topic-top"><span class="badge">Culture</span><span class="topic-num">07</span></div>
+            <h3>Éconologie culturelle</h3>
+            <p class="topic-question">Qui paie réellement la culture, et comment la rendre accessible ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/econologie-culturelle/" target="_blank" rel="noopener">Voir le dossier ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="production" data-search="frontaliers capital humain chômage">
+            <div class="topic-top"><span class="badge emploi">Emploi</span><span class="topic-num">08</span></div>
+            <h3>Frontaliers et capital humain</h3>
+            <p class="topic-question">Que se passe-t-il quand nous formons ici des talents qui travaillent ailleurs ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/frontaliers-capital-humain/" target="_blank" rel="noopener">Voir le dossier ↗</a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-immigrants-journee/" target="_blank" rel="noopener">QCM ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="production" data-search="agriculture alimentation local">
+            <div class="topic-top"><span class="badge emploi">Emploi</span><span class="topic-num">09</span></div>
+            <h3>Agriculture et alimentation</h3>
+            <p class="topic-question">Comment produire localement sans pénaliser ceux qui nous nourrissent ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/agriculture-alimentation/" target="_blank" rel="noopener">Voir le dossier ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="production" data-search="textile habillement chaussures france">
+            <div class="topic-top"><span class="badge emploi">Emploi</span><span class="topic-num">10</span></div>
+            <h3>Textile et habillement</h3>
+            <p class="topic-question">Peut-on fabriquer des vêtements durables et abordables près de chez nous ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/textile-habillement-chaussure/" target="_blank" rel="noopener">Voir le dossier ↗</a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-textile/" target="_blank" rel="noopener">QCM ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="societe" data-search="mobilité sécurité routière vies">
+            <div class="topic-top"><span class="badge">Sécurité</span><span class="topic-num">11</span></div>
+            <h3>Mobilité et sécurité routière</h3>
+            <p class="topic-question">Comment mesurer ce qui sauve réellement des vies sur la route ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/mobilite-securite-routiere/" target="_blank" rel="noopener">Voir le dossier ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="quotidien" data-search="friction monétique carte paiement commerçant">
+            <div class="topic-top"><span class="badge facture">Facture</span><span class="topic-num">12</span></div>
+            <h3>Friction monétique</h3>
+            <p class="topic-question">Combien coûte un paiement par carte à un petit commerçant ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/friction-monetique/" target="_blank" rel="noopener">Voir le dossier ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="societe" data-search="démocratie décisionnelle bulletin citoyen vote">
+            <div class="topic-top"><span class="badge">Vote</span><span class="topic-num">13</span></div>
+            <h3>Démocratie décisionnelle</h3>
+            <p class="topic-question">Et si nous votions aussi sur les décisions concrètes ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/democratie-decisionnelle/" target="_blank" rel="noopener">Voir le dossier ↗</a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-democratie-decisionnelle/" target="_blank" rel="noopener">QCM ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="finances" data-search="amortissement dette générations futures">
+            <div class="topic-top"><span class="badge impot">Impôt</span><span class="topic-num">14</span></div>
+            <h3>Amortissement de la dette</h3>
+            <p class="topic-question">Comment éviter de transférer les coûts d’aujourd’hui aux générations futures ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/amortissement-dette/" target="_blank" rel="noopener">Voir le dossier ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="finances" data-search="fraude fiscale recettes contrôle">
+            <div class="topic-top"><span class="badge impot">Impôt</span><span class="topic-num">15</span></div>
+            <h3>Fraude fiscale</h3>
+            <p class="topic-question">Comment mieux mesurer et combattre les pertes de recettes publiques ?</p>
+            <div class="topic-bottom"><a href="https://doctrine-econologique.fr/piliers/fraude-fiscale/" target="_blank" rel="noopener">Voir le dossier ↗</a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-fraude-fiscale/" target="_blank" rel="noopener">QCM ↗</a></div>
+          </article>
+          <article class="topic-card" data-group="production" data-search="autoroutes concessions infrastructures">
+            <div class="topic-top"><span class="badge">Infra</span><span class="topic-num">16</span></div>
+            <h3>Autoroutes et concessions</h3>
+            <p class="topic-question">À qui appartiennent les infrastructures que nous finançons ?</p>
+            <div class="topic-bottom"><span style="font-size:12px;color:var(--muted)">Lien à valider</span></div>
+          </article>
+          <article class="topic-card" data-group="quotidien" data-search="propreté déchets responsabilité">
+            <div class="topic-top"><span class="badge">Déchets</span><span class="topic-num">17</span></div>
+            <h3>Propreté publique et déchets</h3>
+            <p class="topic-question">Comment répartir justement la responsabilité des déchets ?</p>
+            <div class="topic-bottom"><span style="font-size:12px;color:var(--muted)">Lien à valider</span><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-consigne-megots/" target="_blank" rel="noopener">QCM ↗</a></div>
+          </article>
+        </div>
+        <p id="empty" hidden style="margin-top:16px;color:var(--muted)">Aucun dossier ne correspond. Essayez un autre mot.</p>
+      </div>
+    </section>
+
+    <!-- ORIGINAL 2 : Méthode 5 IA -->
+    <section class="section" id="methode" style="background:#fff">
+      <div class="container">
+        <p class="eyebrow">La confiance se construit</p>
+        <h2>Des idées discutables. Des sources vérifiables.</h2>
+        <p>Chaque thèse est soumise à une triangulation contradictoire avec cinq intelligences artificielles aux biais distincts. Les arbitrages restent humains.</p>
+        <div class="method-ais">
+          <div class="ai-dot"><span style="background:#d4a574"></span> Claude — architecture</div>
+          <div class="ai-dot"><span style="background:#74a8d4"></span> ChatGPT — rigueur</div>
+          <div class="ai-dot"><span style="background:#a8d474"></span> Gemini — exploration</div>
+          <div class="ai-dot"><span style="background:#d47474"></span> Grok — contradiction</div>
+          <div class="ai-dot"><span style="background:#74d4c4"></span> Perplexity — sources</div>
+        </div>
+        <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;font-size:14px">
+          <div><strong>FAIT</strong><br>Information documentée, source et date.</div>
+          <div><strong>CALCUL</strong><br>Résultat dont les hypothèses sont contrôlables.</div>
+          <div><strong>HYPOTHÈSE</strong><br>À démontrer ou tester.</div>
+          <div><strong>PROPOSITION</strong><br>Choix à discuter, avec limites.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:var(--ink);color:#fff">
+      <div class="container" style="text-align:center">
+        <h2 style="font-family:var(--serif);font-size:36px;margin-bottom:12px">Et vous, que décideriez-vous ?</h2>
+        <p style="opacity:.85;max-width:480px;margin:0 auto 20px">Les questionnaires sont sourcés. Ils ne jugent pas. La conclusion vous appartient.</p>
+        <a class="btn btn-primary" href="https://doctrine-econologique.fr/questionnaires/" target="_blank" rel="noopener">Tous les questionnaires citoyens ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer style="padding:32px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)">
+    <div class="container">
+      <strong style="color:var(--ink)">Doctrine Éconologique</strong> — Une France qui produit, répare et transmet.<br>
+      Prototype V2.2 · Grok · 6 novembre 2026 · Non indexé · Ne remplace pas le site officiel.
+    </div>
+  </footer>
+
+  <a class="sticky-qcm btn btn-primary" href="https://doctrine-econologique.fr/questionnaires/" target="_blank" rel="noopener" style="padding:12px 16px;border-radius:999px;box-shadow:0 8px 24px rgba(185,87,58,.35)">Participer ↗</a>
+
+  <nav class="bottom-nav" aria-label="Navigation mobile">
+    <a href="#accueil"><strong>⌂</strong>Accueil</a>
+    <a href="#decouverte"><strong>⏱</strong>90 s</a>
+    <a href="#explorer"><strong>▦</strong>Sujets</a>
+    <a href="https://doctrine-econologique.fr/questionnaires/" target="_blank" rel="noopener"><strong>☑</strong>QCM</a>
+  </nav>
+
+  <script>
+    // Discovery cards
+    document.querySelectorAll('.disc-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.disc-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      });
+    });
+
+    // Filters & search
+    const cards = [...document.querySelectorAll('.topic-card')];
+    const filters = [...document.querySelectorAll('.filter-btn')];
+    const search = document.getElementById('topic-search');
+    const count = document.getElementById('result-count');
+    const empty = document.getElementById('empty');
+    let active = 'all';
+    const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    function render() {
+      const term = norm(search.value.trim());
+      let n = 0;
+      cards.forEach(card => {
+        const ok = (active === 'all' || card.dataset.group === active) && (!term || norm(card.dataset.search).includes(term));
+        card.hidden = !ok;
+        if (ok) n++;
+      });
+      count.textContent = n + ' dossier' + (n > 1 ? 's' : '') + ' affiché' + (n > 1 ? 's' : '');
+      empty.hidden = n !== 0;
+    }
+    filters.forEach(btn => btn.addEventListener('click', () => {
+      active = btn.dataset.filter;
+      filters.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      render();
+    }));
+    search.addEventListener('input', render);
+
+    // Mobile menu
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('open', !open);
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
+    }));
+    render();
+  </script>
+</body>
+</html>
