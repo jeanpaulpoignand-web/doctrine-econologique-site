@@ -1,0 +1,105 @@
+/* Doctrine Éconologique — V2.4 extension QCM ASPA, Bâtiment, Textile.
+   Surcouche visuelle uniquement ; aucune règle métier ni valeur de question modifiée.
+   Chargée après les styles historiques et la charte qcm-charte-v24.css.
+*/
+body.qcm-citizen.qcm-classic{
+  --bleu-fonce:var(--q-ink);--bleu-moyen:var(--q-teal);
+  --gris:var(--q-ink);--gris-doux:var(--q-muted);
+  --papier:var(--q-paper);--papier-2:var(--q-surface);
+  --carte:var(--q-surface);--bord:var(--q-line);
+  --ombre:0 9px 28px rgba(23,39,62,.055);
+  background:var(--q-paper)!important;background-image:none!important;
+  font-family:var(--q-sans);color:var(--q-ink);
+}
+body.qcm-classic .wrap{max-width:800px}
+body.qcm-classic .topbar{padding:18px 0 10px}
+body.qcm-classic .retour{color:var(--q-teal);font-size:.85rem;letter-spacing:0;text-transform:none}
+body.qcm-classic header.hero{
+  text-align:left;background:linear-gradient(135deg,#fffefa,#faf4ec);
+  padding:clamp(22px,4vw,34px);margin:0 0 22px;
+  border:1px solid var(--q-line);border-radius:18px;
+}
+body.qcm-classic .eyebrow{letter-spacing:.15em;color:var(--q-accent-dark);margin-bottom:9px}
+body.qcm-classic h1{
+  font:700 clamp(2.25rem,5vw,3.6rem)/1.05 var(--q-serif);
+  color:var(--q-ink);letter-spacing:-.025em;
+}
+body.qcm-classic h1 .pil{
+  display:block;margin-bottom:10px;font:600 .88rem/1.2 var(--q-sans);
+  color:var(--q-accent-dark);letter-spacing:.12em;
+}
+body.qcm-classic .hero p.sous{
+  font:400 1rem/1.55 var(--q-sans);color:var(--q-muted);
+  max-width:660px;margin:15px 0 0;
+}
+body.qcm-classic .card{
+  background:var(--q-surface);border:1px solid var(--q-line);
+  border-radius:16px;box-shadow:var(--ombre);
+  padding:clamp(20px,3vw,29px);
+}
+body.qcm-classic .card+.card{margin-top:18px}
+body.qcm-classic .intro-txt{color:var(--q-ink);font-size:1rem}
+body.qcm-classic .intro-txt strong{color:var(--q-ink)}
+body.qcm-classic .note-neutre{
+  background:#f7f5f0;border-left:2px solid var(--q-line);
+  border-radius:0 8px 8px 0;color:var(--q-muted);
+  font-size:.83rem;font-style:normal;padding:10px 13px;margin:18px 0 21px;
+}
+body.qcm-classic .mode{
+  background:#fff;border:1.5px solid var(--q-line);
+  border-radius:14px;min-height:146px;box-shadow:none;
+}
+body.qcm-classic .mode:hover{transform:none;border-color:var(--q-teal);box-shadow:0 5px 18px rgba(23,39,62,.07)}
+body.qcm-classic .mode :is(h2.hh,h3){
+  font:700 1.65rem/1.15 var(--q-serif);color:var(--q-ink);
+}
+body.qcm-classic .mode p{font-size:.93rem;color:var(--q-muted)}
+body.qcm-classic .mode .go,body.qcm-classic .mode.lente .go{
+  border-radius:9px;padding:10px 16px;background:var(--q-accent);
+  color:#fff;font-size:.9rem;min-height:44px;
+}
+body.qcm-classic .meta-intro{color:var(--q-muted)}
+body.qcm-classic .prog-head{color:var(--q-muted)}
+body.qcm-classic .bar{height:6px;background:#e7e7df}
+body.qcm-classic .bar i{background:var(--q-accent)}
+body.qcm-classic .qnum{font:600 .9rem/1.4 var(--q-mono);color:var(--q-accent-dark)}
+body.qcm-classic .qtext{
+  font:700 clamp(1.6rem,3.6vw,2.2rem)/1.17 var(--q-serif);
+  color:var(--q-ink);margin-bottom:20px;
+}
+body.qcm-classic .opts{gap:11px}
+body.qcm-classic .opt{
+  min-height:56px;border:1.5px solid var(--q-line);
+  border-radius:13px;background:#fff;color:var(--q-ink);
+  font-family:var(--q-sans);padding:16px 18px;
+}
+body.qcm-classic .opt:not(:disabled):hover{background:#faf8f3;border-color:var(--q-teal)}
+body.qcm-classic .opt :is(.lettre,.badge){border-radius:7px}
+body.qcm-classic .opt.selected,body.qcm-classic .opt[aria-pressed="true"]{
+  border:2px solid var(--q-accent);background:#fff3ed;
+  box-shadow:inset 4px 0 0 var(--q-accent);
+}
+body.qcm-classic :is(.btn,.btn-primary){
+  min-height:48px;border-radius:10px;
+}
+body.qcm-classic .btn-primary:not(:disabled){background:var(--q-accent);border-color:var(--q-accent);color:#fff}
+body.qcm-classic :is(.result,.result-card,.score-card,.feedback){border-radius:14px}
+body.qcm-classic :is(.source-box,.source-list,.note-method,.method-note,.explain){
+  border-color:var(--q-line);color:var(--q-muted);
+}
+body.qcm-classic :is(.source-box,.source-list,.note-method,.method-note) a{color:var(--q-teal)}
+body.qcm-classic .doctrine-navigation{max-width:800px}
+body.qcm-classic #ce-que-dit-le-pilier{
+  margin-block:18px;background:#fdfcf8;
+  box-shadow:none;border-color:var(--q-line);
+}
+body.qcm-classic #ce-que-dit-le-pilier h2{
+  font:700 clamp(1.25rem,2.5vw,1.55rem)/1.2 var(--q-serif);
+}
+@media(max-width:540px){
+  body.qcm-classic{padding:0 12px 36px}
+  body.qcm-classic header.hero{padding:21px 18px}
+  body.qcm-classic .card{padding:20px 17px}
+  body.qcm-classic .modes{grid-template-columns:1fr}
+  body.qcm-classic .mode{min-height:0}
+}
