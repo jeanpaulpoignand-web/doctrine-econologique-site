@@ -52,7 +52,7 @@ def general_qcm(browser):
 def energie_qcm(browser):
     page, errors = open_qcm(browser, 'qcm-energie/')
     page.screenshot(path=str(OUT / 'energie-desktop-accueil.png'), full_page=True)
-    page.locator('button[onclick="startQuiz(\'rapide\')"]').click()
+    page.locator('button[onclick="startQuiz(\'rapide\')"]').first.click()
     page.locator('#answers button').first.wait_for(timeout=8000)
     page.screenshot(path=str(OUT / 'energie-desktop-question.png'), full_page=True)
     for i in range(19):
