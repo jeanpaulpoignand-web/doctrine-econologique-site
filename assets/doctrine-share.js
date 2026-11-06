@@ -30,7 +30,7 @@
   const host=location.hostname.toLowerCase();
   if(host!=='raw.githack.com' && host!=='rawgit.com') return;
   const chunks=location.pathname.split('/').filter(Boolean);
-  if(chunks.length<4 || chunks[2]!=='preview-v26-2026-11-07') return;
+  if(chunks.length<4 || !/^preview-v2[67]-2026-11-07$/.test(chunks[2])) return;
   const base='/'+chunks.slice(0,3).join('/')+'/';
   function toPreview(href){
     if(!href||href.startsWith('mailto:')||href.startsWith('tel:')||href.startsWith('sms:')||href.startsWith('javascript:')) return null;
@@ -66,7 +66,7 @@
     notice.id='preview-v26-notice';
     notice.setAttribute('role','note');
     notice.style.cssText='box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;padding:7px 12px;background:#f6f0e4;color:#17273e;border-bottom:1px solid #dddcd2;text-align:center;font:600 12px/1.45 system-ui,-apple-system,sans-serif;position:relative;z-index:40';
-    notice.innerHTML='Prépublication V2.6 — site d’essai, non officiel <span aria-hidden="true">·</span> <a href="'+base+'index.html" style="color:#97452f;text-decoration:underline">Accueil de la prépublication</a>';
+    notice.innerHTML='Prépublication V2.7 — site d’essai, non officiel <span aria-hidden="true">·</span> <a href="'+base+'index.html" style="color:#97452f;text-decoration:underline">Accueil de la prépublication</a>';
     document.body.insertBefore(notice,document.body.firstChild);
     rewriteLinks(document);
     new MutationObserver(records=>{
