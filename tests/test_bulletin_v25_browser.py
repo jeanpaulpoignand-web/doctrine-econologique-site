@@ -56,7 +56,7 @@ def test_path(browser,width,height,label):
         assert page.locator('#reading-dialog .reading-sources').count()==1
         page.screenshot(path=str(OUT/f'{label}-lecture.png'),full_page=False)
         page.keyboard.press('Escape')
-        assert page.locator('#reading-dialog').count()==0
+        page.locator('#reading-dialog').wait_for(state='detached',timeout=5000)
         assert page.locator('#next-question').is_disabled()
         # Six answers are necessary for reliable ranking. Use nine positions and three without opinion.
         for i in range(12):
