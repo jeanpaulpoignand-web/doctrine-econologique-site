@@ -29,6 +29,23 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Vérifier les 9 QCM et le routage de prépublication
         run: python tests/test_preview_v26.py
+      - name: Vérifier la disponibilité de l'adresse de prépublication
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+          base = 'https://raw.githack.com/jeanpaulpoignand-web/doctrine-econologique-site/preview-v26-2026-11-07/'
+          for path in ['index.html','questionnaires/index.html','qcm-general/index.html','qcm-democratie-decisionnelle/index.html']:
+              req = urllib.request.Request(base+path, headers={'User-Agent':'Mozilla/5.0'})
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as response:
+                      body = response.read(1500)
+                      print(path, response.status, response.headers.get('Content-Type'), len(body), flush=True)
+                      assert response.status == 200 and (b'<!doctype html' in body.lower() or b'<html' in body.lower())
+              except Exception as exc:
+                  print('REMOTE PREVIEW NOT VERIFIED:', path, type(exc).__name__, str(exc), flush=True)
+                  raise
+          PY
       - name: Conserver les captures réelles
         if: always()
         uses: actions/upload-artifact@v4
