@@ -1,0 +1,97 @@
+/* Doctrine Éconologique — Surcouche QCM V2.4 : fraude fiscale, frontaliers,
+   consigne mégots. Pure présentation, sans modification du moteur ou des réponses. */
+body.qcm-special{background:var(--q-paper)!important;color:var(--q-ink);font-family:var(--q-sans)}
+body.qcm-special :is(.card,.mode-card,.result-item){border-radius:16px;border-color:var(--q-line);box-shadow:0 5px 21px rgba(23,39,62,.05)}
+body.qcm-special .doctrine-navigation{max-width:960px}
+body.qcm-special :is(.eyebrow,.tag,.qnum,.qtag){color:var(--q-accent-dark);letter-spacing:.1em}
+body.qcm-special :is(.subtitle,.lede,.context,.progress-meta,.progress-text,.result-note,.note){color:var(--q-muted)}
+body.qcm-special :is(.answer,.answer-button,button.answer){min-height:56px;border-radius:13px}
+body.qcm-special :is(.answer,.answer-button,button.answer):focus-visible{outline:3px solid var(--q-focus);outline-offset:3px}
+body.qcm-special :is(.btn,.next,.restart,.primary-button,.secondary-button,.ghost-button){min-height:48px;border-radius:10px}
+body.qcm-special details>summary{color:var(--q-teal)}
+body.qcm-special .doctrine-navigation a{color:var(--q-ink)}
+
+/* Fraude fiscale : le bleu institutionnel cède à la même identité citoyenne. */
+body.qcm-fraude{
+  --bg:var(--q-paper);--card:var(--q-surface);--text:var(--q-ink);
+  --muted:var(--q-muted);--border:var(--q-line);
+  --primary:var(--q-accent);--primary-dark:var(--q-accent-dark);
+  --accent:#fff3ed;--shadow:0 5px 21px rgba(23,39,62,.05);
+}
+body.qcm-fraude .site-header{
+  background:linear-gradient(135deg,#fffefa,#faf4ec);color:var(--q-ink);
+  border-bottom:1px solid var(--q-line);padding:26px 0;
+}
+body.qcm-fraude .site-header h1{color:var(--q-ink)}
+body.qcm-fraude .site-header .subtitle{color:var(--q-muted)}
+body.qcm-fraude .back-link{background:#fffefa;color:var(--q-teal);border:1px solid var(--q-line)}
+body.qcm-fraude .mode-card{background:#fff;box-shadow:none}
+body.qcm-fraude .mode-card:is(:hover,:focus-visible){background:#faf8f3;border-color:var(--q-teal)}
+body.qcm-fraude .mode-card strong{font:700 1.6rem/1.15 var(--q-serif)}
+body.qcm-fraude .question-text{font:700 clamp(1.55rem,3vw,2.1rem)/1.2 var(--q-serif)}
+body.qcm-fraude .answer-button{background:#fff;border:1.5px solid var(--q-line);padding:16px}
+body.qcm-fraude .answer-button.selected{border:2px solid var(--q-accent);background:#fff3ed;outline:none;box-shadow:inset 4px 0 0 var(--q-accent)}
+body.qcm-fraude .progress-bar{height:6px;background:#e7e7df}
+body.qcm-fraude #progressFill{background:var(--q-accent)}
+body.qcm-fraude .notice{background:#f7f5f0;border-left-color:var(--q-line)}
+body.qcm-fraude .doc-links{background:var(--q-surface);border-color:var(--q-line)}
+body.qcm-fraude :is(.doc-links a,.source-list a){color:var(--q-teal)}
+body.qcm-fraude :is(.primary-button){background:var(--q-accent)}
+body.qcm-fraude .primary-button:hover{background:var(--q-accent-dark)}
+body.qcm-fraude .site-footer{color:var(--q-muted)}
+
+/* Frontaliers : conserver les états factuels 'correct / incorrect', rendre
+   le reste neutre, lisible et cohérent avec l'accueil. */
+body.qcm-frontaliers{
+  --fond:var(--q-paper);--carte:var(--q-surface);--texte:var(--q-ink);
+  --muted:var(--q-muted);--bord:var(--q-line);--bleu:var(--q-teal);
+}
+body.qcm-frontaliers header{
+  background:linear-gradient(135deg,#fffefa,#faf4ec);color:var(--q-ink);
+  border-bottom:1px solid var(--q-line);padding:24px 18px;
+}
+body.qcm-frontaliers header h1{color:var(--q-ink)}
+body.qcm-frontaliers header .subtitle{color:var(--q-muted)}
+body.qcm-frontaliers header .back-link{
+  color:var(--q-teal);background:var(--q-surface);border-color:var(--q-line);
+}
+body.qcm-frontaliers .track{background:#e7e7df;height:6px}
+body.qcm-frontaliers .track .bar{background:var(--q-accent)}
+body.qcm-frontaliers .question{font:700 clamp(1.7rem,3.6vw,2.35rem)/1.15 var(--q-serif)}
+body.qcm-frontaliers button.answer{background:#fff;border:1.5px solid var(--q-line);color:var(--q-ink)}
+body.qcm-frontaliers button.answer:hover:not(:disabled){transform:none;background:#faf8f3;border-color:var(--q-teal)}
+body.qcm-frontaliers button.answer.good{background:var(--vert-bg);border-color:var(--vert)}
+body.qcm-frontaliers button.answer.bad{background:var(--rouge-bg);border-color:var(--rouge)}
+body.qcm-frontaliers :is(.next,.restart){background:var(--q-accent);color:#fff}
+body.qcm-frontaliers :is(.next,.restart):hover{background:var(--q-accent-dark)}
+body.qcm-frontaliers .qnum{color:var(--q-accent-dark)}
+body.qcm-frontaliers .score-big{color:var(--q-ink);font-family:var(--q-serif)}
+body.qcm-frontaliers .feedback{border-left-color:var(--q-line);background:#f7f5f0}
+body.qcm-frontaliers .letter{background:#f7f4ee}
+
+/* Consigne mégots : maintien du noindex de production, interface cohérente. */
+body.qcm-megots{
+  --paper:var(--q-paper);--paper2:var(--q-surface);--warm:#f7f5f0;
+  --ink:var(--q-ink);--soft:var(--q-muted);--muted:var(--q-muted);
+  --line:var(--q-line);--faint:#e7e7df;--accent:var(--q-accent);
+  --accent2:var(--q-accent-dark);--shadow:0 5px 21px rgba(23,39,62,.05);
+}
+body.qcm-megots .hero{background:linear-gradient(135deg,#fffefa,#faf4ec);border:1px solid var(--q-line);border-radius:18px;padding:25px 18px;margin:12px 0 22px}
+body.qcm-megots .hero h1{font:700 clamp(2.25rem,5vw,3.6rem)/1.05 var(--q-serif)}
+body.qcm-megots .hero .eyebrow{color:var(--q-accent-dark)}
+body.qcm-megots .card{background:var(--q-surface)}
+body.qcm-megots .qtitle{font:700 clamp(1.55rem,3.5vw,2.15rem)/1.2 var(--q-serif)}
+body.qcm-megots .answer{background:#fff;color:var(--q-ink);padding:17px}
+body.qcm-megots .answer:hover{border-color:var(--q-teal)}
+body.qcm-megots .answer.selected{border:2px solid var(--q-accent);background:#fff3ed;box-shadow:inset 4px 0 0 var(--q-accent)}
+body.qcm-megots .btn-primary{background:var(--q-accent);color:#fff}
+body.qcm-megots .btn-secondary{color:var(--q-ink);border-color:var(--q-line)}
+body.qcm-megots .progress>span{background:var(--q-accent)}
+body.qcm-megots .axisbar span{background:var(--q-accent)}
+body.qcm-megots .audit{font-size:.72rem;color:var(--q-muted);border-color:var(--q-line)}
+
+@media(max-width:600px){
+  body.qcm-fraude .site-header{padding:19px 0}
+  body.qcm-frontaliers .wrap{width:calc(100% - 24px)}
+  body.qcm-megots .hero{padding:20px 16px}
+}

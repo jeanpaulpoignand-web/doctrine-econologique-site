@@ -179,3 +179,29 @@ body.qcm-energie details.qcm-method{margin:22px 0;border:1px solid var(--q-line)
 body.qcm-energie details.qcm-method>summary{cursor:pointer;color:var(--q-teal);font-weight:600}
 body.qcm-energie details.qcm-method .method-box{margin:12px 0 0;border:none;box-shadow:none;background:transparent}
 body.qcm-energie details.qcm-method h2{font-family:var(--q-sans);font-size:1.15rem}
+
+/* Corrections issues des captures Chromium réelles : contraste et sobriété. */
+body.qcm-citizen .doctrine-navigation a.doctrine-navigation-drive{color:#fff!important;background:#173650}
+body.qcm-citizen .doctrine-navigation button.doctrine-navigation-share{
+  width:auto!important;max-width:max-content;min-height:44px!important;
+  margin:0;padding:10px 16px;flex:0 0 auto;
+  background:var(--q-accent);border:1px solid var(--q-accent-dark);color:#fff;
+  border-radius:9px;box-shadow:0 2px 0 var(--q-accent-dark);
+}
+body.qcm-energie details.qcm-fiches{margin-top:22px;border-top:1px solid var(--q-line);padding-top:14px}
+body.qcm-energie details.qcm-fiches>summary{cursor:pointer;color:var(--q-teal);font-size:.95rem;font-weight:600}
+body.qcm-energie details.qcm-fiches .fiches-liste{margin-top:15px;border-top:0;padding-top:0}
+
+/* Navigation mobile : les 4 actions tiennent sur deux lignes, pas quatre. */
+@media(max-width:520px){
+  body.qcm-citizen .doctrine-navigation{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    width:100%;gap:8px;padding:10px;
+  }
+  body.qcm-citizen .doctrine-navigation>a,
+  body.qcm-citizen .doctrine-navigation>button.doctrine-navigation-share{
+    box-sizing:border-box;width:100%!important;max-width:none;
+    min-height:52px!important;margin:0;padding:9px 7px;
+    font-size:.8rem!important;line-height:1.25;text-align:center;
+  }
+}

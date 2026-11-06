@@ -9,13 +9,10 @@ import re
 import subprocess
 import sys
 
-PAGES = (
-    'qcm-general/index.html',
-    'qcm-energie/index.html',
-    'qcm-aspa/index.html',
-    'qcm-pilier-vi/index.html',
-    'qcm-textile/index.html',
-)
+PILOTS = ('qcm-general/index.html', 'qcm-energie/index.html')
+CLASSIC = ('qcm-aspa/index.html', 'qcm-pilier-vi/index.html', 'qcm-textile/index.html')
+SPECIAL = ('qcm-fraude-fiscale/index.html', 'qcm-immigrants-journee/index.html', 'qcm-consigne-megots/index.html')
+PAGES = PILOTS + CLASSIC + SPECIAL
 
 
 def baseline(path):
@@ -40,7 +37,11 @@ def main():
             'canonical': r'<link\b[^>]*rel=["\']canonical["\'][^>]*>',
         }
         for label, pattern in props.items():
-            if sections(before, pattern) != sections(after, pattern):
+            old_parts, new_parts = sections(before, pattern), sections(after, pattern)
+            if label == 'scripts' and path == 'qcm-general/index.html':
+                # Seule exception admise : fermer le panneau documentaire au démarrage.
+                new_parts = [part.replace('repereDisclosure.open=false;', 'repereDisclosure.open=current===0;') for part in new_parts]
+            if old_parts != new_parts:
                 print(f'FAIL {path}: {label} changed')
                 ok = False
         body = sections(after, r'<body\b[^>]*>')
@@ -50,19 +51,23 @@ def main():
         if '../assets/qcm-charte-v24.css' not in after:
             print(f'FAIL {path}: shared stylesheet missing')
             ok = False
-        if path in PAGES[2:] and '../assets/qcm-charte-v24-classic.css' not in after:
+        if path in CLASSIC and '../assets/qcm-charte-v24-classic.css' not in after:
             print(f'FAIL {path}: classic theme adapter missing')
+            ok = False
+        if path in SPECIAL and '../assets/qcm-charte-v24-special.css' not in after:
+            print(f'FAIL {path}: specialized theme adapter missing')
             ok = False
         if len(sections(after, r'<h1\b')) != 1:
             print(f'FAIL {path}: expected a single H1')
             ok = False
         print(f'{"OK" if ok else "CHECK"} {path}')
-    for path in ['assets/qcm-charte-v24.css','assets/qcm-charte-v24-classic.css']:
+    for path in ['assets/qcm-charte-v24.css','assets/qcm-charte-v24-classic.css','assets/qcm-charte-v24-special.css']:
         css = Path(path).read_text(encoding='utf-8')
-        if 'qcm-citizen' not in css or css.count('{') != css.count('}'):
+        scope = 'qcm-special' if path.endswith('-special.css') else 'qcm-citizen'
+        if scope not in css or css.count('{') != css.count('}'):
             print(f'FAIL: invalid/incomplete CSS theme {path}')
             ok = False
-    print('SAFE — style changes only; scripts, SEO and links preserved' if ok else 'FAILED — do not merge')
+    print('SAFE — scoring unchanged; only an audited sources-panel default may differ; SEO and links preserved' if ok else 'FAILED — do not merge')
     return 0 if ok else 1
 
 
