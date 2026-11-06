@@ -59,7 +59,8 @@ def main():
         print(f'{"OK" if ok else "CHECK"} {path}')
     for path in ['assets/qcm-charte-v24.css','assets/qcm-charte-v24-classic.css','assets/qcm-charte-v24-special.css']:
         css = Path(path).read_text(encoding='utf-8')
-        if 'qcm-citizen' not in css or css.count('{') != css.count('}'):
+        scope = 'qcm-special' if path.endswith('-special.css') else 'qcm-citizen'
+        if scope not in css or css.count('{') != css.count('}'):
             print(f'FAIL: invalid/incomplete CSS theme {path}')
             ok = False
     print('SAFE — style changes only; scripts, SEO and links preserved' if ok else 'FAILED — do not merge')
