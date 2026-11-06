@@ -191,3 +191,17 @@ body.qcm-citizen .doctrine-navigation button.doctrine-navigation-share{
 body.qcm-energie details.qcm-fiches{margin-top:22px;border-top:1px solid var(--q-line);padding-top:14px}
 body.qcm-energie details.qcm-fiches>summary{cursor:pointer;color:var(--q-teal);font-size:.95rem;font-weight:600}
 body.qcm-energie details.qcm-fiches .fiches-liste{margin-top:15px;border-top:0;padding-top:0}
+
+/* Navigation mobile : les 4 actions tiennent sur deux lignes, pas quatre. */
+@media(max-width:520px){
+  body.qcm-citizen .doctrine-navigation{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    width:100%;gap:8px;padding:10px;
+  }
+  body.qcm-citizen .doctrine-navigation>a,
+  body.qcm-citizen .doctrine-navigation>button.doctrine-navigation-share{
+    box-sizing:border-box;width:100%!important;max-width:none;
+    min-height:52px!important;margin:0;padding:9px 7px;
+    font-size:.8rem!important;line-height:1.25;text-align:center;
+  }
+}
