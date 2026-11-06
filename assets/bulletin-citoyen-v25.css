@@ -216,3 +216,35 @@ body.bulletin-v25 [role="note"]{overflow-wrap:anywhere}
   body.bulletin-v25 *,body.bulletin-v25 *::before,body.bulletin-v25 *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
 @media print{body.bulletin-v25 .doctrine-navigation,body.bulletin-v25 .top-nav{display:none}}
+/* Recette V2.5.1 : dernière poche de contraste et de hauteur, révélée par les vraies captures Chromium. */
+body.bulletin-v25 .home-forgotten-callout{
+  background:#f7f4ed;border:1px solid var(--line);border-radius:15px;
+  box-shadow:none;padding:clamp(18px,2.6vw,24px);margin-top:21px;
+}
+body.bulletin-v25 .home-forgotten-callout h2{
+  font:700 clamp(1.5rem,2.8vw,2rem)/1.16 var(--font-editorial);
+  color:var(--ink);margin-bottom:10px;
+}
+body.bulletin-v25 .home-forgotten-callout p{color:var(--soft);font-size:.95rem}
+body.bulletin-v25 .home-forgotten-row span{
+  color:var(--green-dark);background:#fff;border:1px solid var(--line);
+  border-radius:9px;font-size:.83rem;font-weight:600;padding:8px 10px;
+}
+body.bulletin-v25 .home-forgotten-btn{display:inline-flex;text-align:center;box-shadow:none}
+body.bulletin-v25 .forgotten-proof-note{color:var(--soft);border-top-color:var(--line)}
+body.bulletin-v25 .forgotten-proof-card .level-label{color:var(--terracotta-dark)}
+body.bulletin-v25 .forgotten-proof-card a.source-btn.secondary-source{
+  color:var(--ink);background:#f5f3ed;border:1px solid var(--line);
+  box-shadow:none;min-height:44px;
+}
+body.bulletin-v25 .forgotten-proof-card a.source-btn:not(.secondary-source){color:#fff}
+@media(max-width:540px){
+  body.bulletin-v25 .doctrine-navigation :is(a,button){
+    flex:1 1 calc(50% - 7px);font-size:.81rem;padding:9px 8px;
+    min-width:0;line-height:1.32;
+  }
+  body.bulletin-v25 .question-actions .question-help{
+    flex:0 0 auto;width:100%;min-height:52px;padding:12px 14px;
+  }
+  body.bulletin-v25 .question-actions .no-opinion{flex:0 0 auto;min-height:48px}
+}
