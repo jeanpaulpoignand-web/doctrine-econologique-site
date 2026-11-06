@@ -45,7 +45,7 @@ def main():
             errors=[]
             page.on("pageerror",lambda e:errors.append(str(e)))
             resp=page.goto(BASE+"index.html",wait_until="domcontentloaded",timeout=30000)
-            page.locator("#preview-v27-notice").wait_for()
+            page.locator("#preview-v26-notice").wait_for()
             assert resp.status==200,resp.status
             assert page.locator("h1").count()==1
             assert "noindex" in page.locator('meta[name="robots"]').last.get_attribute("content")
@@ -57,7 +57,7 @@ def main():
             # Real browser link click, not just static URL inspection
             page.locator('a[href*="/qcm-energie/index.html"]:visible').first.click()
             assert page.url.startswith(BASE+"qcm-energie/index.html"),page.url
-            page.locator("#preview-v27-notice a").click()
+            page.locator("#preview-v26-notice a").click()
             assert page.url.startswith(BASE+"index.html"),page.url
             page.locator('a[href*="/questionnaires/index.html"]:visible').first.click()
             assert page.url.startswith(BASE+"questionnaires/index.html"),page.url
@@ -66,7 +66,7 @@ def main():
             page.screenshot(path=str(ART/f"{kind}-catalogue.png"),full_page=True)
             for q in QCMS:
                 page.goto(BASE+q+"/index.html",wait_until="domcontentloaded",timeout=30000)
-                page.locator("#preview-v27-notice").wait_for()
+                page.locator("#preview-v26-notice").wait_for()
                 assert page.title(),q
                 assert "noindex" in page.locator('meta[name="robots"]').last.get_attribute("content"),q
                 spill=page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth")
