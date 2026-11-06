@@ -77,9 +77,11 @@ def main():
             page.locator("#preview-v26-notice").wait_for()
             assert page.locator(".pil").count()==17,(kind,"wrong catalogue size")
             assert page.locator(".pil h2 a").count()==15,(kind,"wrong published count")
-            assert "non audité" in page.locator(".pil").nth(13).inner_text()
-            assert "en chantier" in page.locator(".pil").nth(15).inner_text()
-            assert "en chantier" in page.locator(".pil").nth(16).inner_text()
+            captions=[x.strip().lower().replace("\u00a0"," ") for x in page.locator(".pil-num").all_text_contents()]
+            assert len(captions)==17,(kind,"pillar labels",captions)
+            assert "non audité" in captions[13],(kind,"pillar XIV",captions)
+            assert "en chantier" in captions[15],(kind,"pillar XVI",captions)
+            assert "en chantier" in captions[16],(kind,"pillar XVII",captions)
             page.screenshot(path=str(ART/f"{kind}-17-piliers.png"),full_page=True)
             page.locator('a[href*="/piliers/energie-souveraine/index.html"]').first.click()
             assert page.url.startswith(BASE+"piliers/energie-souveraine/index.html"),page.url
