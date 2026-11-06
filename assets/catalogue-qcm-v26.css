@@ -21,3 +21,15 @@ body .doctrine-navigation a{border-color:#dddcd2;background:#fffefa;color:#17273
 body .btn-touch--soft{--touch-focus:#b9573a;--touch-fg:#97452f;border-radius:10px;max-width:100%}
 @media(max-width:700px){main{padding:26px 17px 60px}.pils{grid-template-columns:1fr;gap:13px}.pil{padding:21px 20px}.pil h2{font-size:1.7rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+
+/* Prépublication : rendre les QCM repérables d'un coup d'œil. */
+.pil h2 a::after{content:"  ↗";color:#b9573a;font:700 .8em/1 'IBM Plex Sans',system-ui,sans-serif;white-space:nowrap}
+.pil:hover{border-color:#d5b5a1;box-shadow:0 13px 35px rgba(23,39,62,.08)}
+body .doctrine-navigation{gap:10px}
+@media(max-width:600px){
+ body .doctrine-navigation{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:10px 12px}
+ body .doctrine-navigation>a,body .doctrine-navigation>.doctrine-navigation-share{
+   width:100%;max-width:none;min-height:44px;padding:8px;font-size:.81rem;line-height:1.25
+ }
+}
