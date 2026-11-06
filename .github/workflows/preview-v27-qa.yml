@@ -1,0 +1,58 @@
+name: Prépublication V2.7 — 17 piliers / 9 QCM
+on:
+  push:
+    branches:
+      - preview-v27-2026-11-07
+  pull_request:
+    paths:
+      - 'piliers/**'
+      - 'assets/pilier-charte-v27.css'
+      - 'assets/doctrine-share.js'
+      - 'tests/*v27*.py'
+      - '.github/workflows/preview-v27-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contenu-et-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Vérifier 15 pages et catalogue — texte et SEO strictement identiques
+        run: python3 tests/check_piliers_v27_integrity.py
+  navigation-mobile-ordinateur:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Chromium
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Vérifier les 15 pages, les 2 chantiers et les 9 questionnaires
+        run: python tests/test_preview_v27.py
+      - name: Vérifier le miroir V2.7 public non indexé
+        run: |
+          python3 - <<'PY'
+          from urllib.request import Request,urlopen
+          base="https://raw.githack.com/jeanpaulpoignand-web/doctrine-econologique-site/preview-v27-2026-11-07/"
+          for path in ["index.html","piliers/index.html","piliers/energie-souveraine/index.html","piliers/amortissement-dette/index.html","qcm-democratie-decisionnelle/index.html"]:
+              with urlopen(Request(base+path,headers={"User-Agent":"Mozilla/5.0"}),timeout=25) as r:
+                  prefix=r.read(800).lower()
+                  assert r.status==200,(path,r.status)
+                  assert b"<html" in prefix or b"<!doctype html" in prefix,path
+                  print("REMOTE 200",path,r.headers.get("content-type"))
+          PY
+      - name: Archiver les captures réelles
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prepublication-v27-piliers-captures
+          path: .test-artifacts/preview-v27/
+          retention-days: 14
+          if-no-files-found: warn
