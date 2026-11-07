@@ -351,7 +351,7 @@ def main():
               page.locator('button[onclick="showBriefing()"]').click()
               page.locator('button[onclick="startQuiz(\'approfondi\')"]').click()
             else:
-              page.locator('button[onclick="startQuiz(\'rapide\')"]').click()
+              page.locator('#home button[onclick="startQuiz(\'rapide\')"]').click()
             page.locator("#answers button").first.click()
             button_visible_in_viewport(page,"#nextBtn",(label,slug,mode))
             assert "Question 1 /" in page.locator("#progressText").inner_text()
