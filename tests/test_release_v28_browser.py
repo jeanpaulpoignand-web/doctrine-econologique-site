@@ -166,6 +166,20 @@ def main():
           evidence=page.locator(".aspa-evidence-card")
           assert evidence.count()==2,(label,"deux encadres ASPA attendus")
           assert page.locator("#aspa-faits").inner_text()=="Ce qui est établi"
+          assert page.locator(".aspa-national-hero").is_visible()
+          assert "5,182 milliards d’euros" in page.locator(".aspa-national-hero").inner_text()
+          assert "4,868 Md€" in page.locator(".aspa-national-grid").inner_text()
+          assert "108,7 M€" in page.locator(".aspa-national-grid").inner_text()
+          accord=page.locator(".aspa-1968-cards")
+          assert accord.locator(".card").count()==3,(label,"resume de l'accord incomplet")
+          assert "65 ans" in accord.inner_text()
+          assert "jamais cotisé" in accord.inner_text()
+          assert "n’est pas attribuée simplement à l’arrivée en France" in accord.inner_text()
+          assert accord.locator(".card p strong").first.evaluate("(el)=>getComputedStyle(el).display")=="inline",(label,"gras non inline")
+          assert page.locator("a[href='../../fiches/pilier-04-aller-droit-au-but.pdf']").count()==1
+          if label in ("iphone","ipad-paysage"):
+            page.locator(".aspa-national").screenshot(path=str(ART/f"{label}-pilier4-budget-national.png"))
+            accord.screenshot(path=str(ART/f"{label}-pilier4-accord-1968.png"))
           assert page.locator("#aspa-manques").inner_text()=="Ce qu’il reste à mesurer"
           assert evidence.nth(0).locator("p").count()==3
           assert evidence.nth(1).locator("p").count()==3
