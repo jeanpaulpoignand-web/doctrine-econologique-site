@@ -233,13 +233,16 @@
  const empty=document.getElementById('empty');
  let active='all';
  const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+ function setFilter(group){active=group;filters.forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.filter===group)));}
  function render(){const term=norm(search.value.trim());let n=0;
   cards.forEach(card=>{const ok=(active==='all'||card.dataset.group===active)&&(!term||norm(card.dataset.search).includes(term));card.hidden=!ok;if(ok)n++;});
   count.textContent=n+' dossier'+(n>1?'s':'')+' affiché'+(n>1?'s':''); empty.hidden=n!==0;
  }
- filters.forEach(btn=>btn.addEventListener('click',()=>{active=btn.dataset.filter;filters.forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));render();}));
- search.addEventListener('input',render);
- document.querySelectorAll('[data-focus]').forEach(btn=>btn.addEventListener('click',()=>{const id=btn.dataset.focus;search.value='';active='all';filters.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter==='all')));render();const card=document.getElementById('dossier-'+id);card.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});card.classList.add('is-focused');setTimeout(()=>card.classList.remove('is-focused'),2500);}));
+ // La recherche porte toujours sur tous les dossiers, quel que soit le filtre précédent.
+ search.addEventListener('input',()=>{if(search.value.trim())setFilter('all');render();});
+ // Choisir une catégorie réinitialise la recherche pour éviter un résultat vide trompeur.
+ filters.forEach(btn=>btn.addEventListener('click',()=>{search.value='';setFilter(btn.dataset.filter);render();}));
+ document.querySelectorAll('[data-focus]').forEach(btn=>btn.addEventListener('click',()=>{const id=btn.dataset.focus;search.value='';setFilter('all');render();const card=document.getElementById('dossier-'+id);card.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});card.classList.add('is-focused');setTimeout(()=>card.classList.remove('is-focused'),2500);}));
  const toggle=document.getElementById('menu-toggle'), nav=document.getElementById('nav-links');
  toggle.addEventListener('click',()=>{let open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));nav.classList.toggle('open',!open);});
  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.setAttribute('aria-expanded','false');nav.classList.remove('open');}));
