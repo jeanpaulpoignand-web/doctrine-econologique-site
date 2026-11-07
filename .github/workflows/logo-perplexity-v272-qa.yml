@@ -1,0 +1,50 @@
+name: Prépublication V2.7.2 — Logo Perplexity
+on:
+  push:
+    branches:
+      - preview-v27-logo-2026-11-07
+  pull_request:
+    branches:
+      - preview-v27-menu-2026-11-07
+    paths:
+      - 'assets/doctrine-share.js'
+      - 'assets/identite/**'
+      - 'tests/test_logo_perplexity_v272.py'
+      - '.github/workflows/logo-perplexity-v272-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-logo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer navigateur de test
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Contrôler le logo Perplexity sur les pages et appareils
+        run: python tests/test_logo_perplexity_v272.py
+      - name: Vérifier l'accessibilité de l'image sur la prépublication
+        run: |
+          python - <<'PY'
+          from urllib.request import Request,urlopen
+          b="https://raw.githack.com/jeanpaulpoignand-web/doctrine-econologique-site/preview-v27-logo-2026-11-07/"
+          for path in ["index.html","assets/doctrine-share.js","assets/identite/symbole-perplexity.png","assets/identite/logo-perplexity-v272.css"]:
+              with urlopen(Request(b+path,headers={"User-Agent":"Mozilla/5.0"}),timeout=25) as r:
+                  assert r.status==200,(path,r.status)
+                  assert len(r.read(100))>=30,path
+                  print("PREVIEW OK",path,r.headers.get("Content-Type"))
+          PY
+      - name: Captures réelles en cas de réussite ou erreur
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logo-perplexity-v272-captures
+          path: .test-artifacts/preview-v272-logo/
+          retention-days: 14
+          if-no-files-found: warn

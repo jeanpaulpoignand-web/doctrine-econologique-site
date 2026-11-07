@@ -20,3 +20,142 @@
   window.addEventListener('resize',close);window.addEventListener('scroll',close,true);
  });
 })();
+
+
+/* Navigation de production — même menu pour accueil, piliers et questionnaires. */
+(()=>{'use strict';
+  const loader=document.currentScript;
+  if(!loader || !loader.src)return;
+  const root=new URL('../',loader.src).href;
+  const entries=[
+    ['Accueil',root+'index.html'],
+    ['Les 17 piliers',root+'piliers/index.html'],
+    ['Les 9 questionnaires',root+'questionnaires/index.html'],
+    ['Bulletin citoyen',root+'qcm-democratie-decisionnelle/index.html'],
+    ['Guide de lecture',root+'guide-de-lecture/index.html'],
+    ['À propos',root+'a-propos/index.html']
+  ];
+  function init(){
+    if(document.getElementById('dmenu-panel'))return;
+    for(const href of [root+'assets/menu-global-v271.css',root+'assets/identite/logo-perplexity-v272.css']){
+      if(!document.querySelector('link[rel="stylesheet"][href="'+href+'"]')){
+        const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href=href;document.head.appendChild(sheet);
+      }
+    }
+    if(!document.querySelector('link[rel="apple-touch-icon"]')){
+      const apple=document.createElement('link');apple.rel='apple-touch-icon';
+      apple.setAttribute('sizes','180x180');apple.href=root+'apple-touch-icon.png';document.head.appendChild(apple);
+    }
+    if(!document.querySelector('link[rel="icon"]')){
+      const icon=document.createElement('link');icon.rel='icon';icon.type='image/png';
+      icon.setAttribute('sizes','32x32');icon.href=root+'favicon-32.png';document.head.appendChild(icon);
+    }
+    const homepage=document.getElementById('menu-toggle');
+    const existing=document.getElementById('nav-links');
+    if(homepage&&existing){
+      // L'accueil conserve son propre hamburger ; ne pas afficher deux menus.
+      for(const [i,[label,url]] of entries.entries()){
+        const a=document.createElement('a');
+        a.href=url;a.textContent=label;
+        a.className='dmenu-home-mobile'+(i===3?' dmenu-home-action':'');
+        a.addEventListener('click',()=>{
+          existing.classList.remove('open');homepage.setAttribute('aria-expanded','false');
+          homepage.setAttribute('aria-label','Ouvrir le menu de navigation');
+        });
+        existing.appendChild(a);
+      }
+      homepage.setAttribute('aria-label','Ouvrir le menu de navigation');
+      homepage.addEventListener('click',()=>{
+        homepage.setAttribute('aria-label',homepage.getAttribute('aria-expanded')==='true'?'Fermer le menu de navigation':'Ouvrir le menu de navigation');
+      });
+      document.addEventListener('keydown',e=>{
+        if(e.key==='Escape'&&existing.classList.contains('open')){
+          existing.classList.remove('open');homepage.setAttribute('aria-expanded','false');
+          homepage.setAttribute('aria-label','Ouvrir le menu de navigation');homepage.focus();
+        }
+      });
+      return;
+    }
+    const bar=document.createElement('div');bar.id='dmenu-bar';
+    const brand=document.createElement('a');brand.href=root+'index.html';brand.className='dmenu-brand';
+    brand.setAttribute('aria-label','Doctrine Éconologique — retour à l’accueil');
+    const mark=document.createElement('span');mark.className='dmenu-brandmark dlogo-mounted';
+    const markImg=document.createElement('img');
+    markImg.src=root+'assets/identite/symbole-perplexity.png';markImg.alt='';
+    markImg.width=38;markImg.height=38;markImg.decoding='async';
+    mark.appendChild(markImg);
+    const name=document.createElement('span');name.className='dmenu-brandname';name.textContent='Doctrine Éconologique';
+    brand.append(mark,name);
+    const toggle=document.createElement('button');toggle.type='button';toggle.className='dmenu-button';
+    toggle.id='dmenu-toggle';toggle.setAttribute('aria-controls','dmenu-panel');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','Ouvrir le menu de navigation');
+    toggle.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+    bar.append(brand,toggle);
+    const overlay=document.createElement('div');overlay.id='dmenu-overlay';overlay.hidden=true;
+    const panel=document.createElement('nav');panel.id='dmenu-panel';panel.hidden=true;
+    panel.setAttribute('aria-label','Navigation générale de la Doctrine');
+    const heading=document.createElement('div');heading.className='dmenu-panel-head';
+    const title=document.createElement('span');title.className='dmenu-panel-title';title.textContent='Explorer la Doctrine';
+    const closeBtn=document.createElement('button');closeBtn.type='button';closeBtn.className='dmenu-close';
+    closeBtn.setAttribute('aria-label','Fermer le menu');closeBtn.textContent='×';
+    heading.append(title,closeBtn);panel.appendChild(heading);
+    const links=document.createElement('div');links.className='dmenu-list';
+    for(const [i,[label,url]] of entries.entries()){
+      if(i===4){const sep=document.createElement('div');sep.className='dmenu-separator';sep.setAttribute('aria-hidden','true');links.append(sep);}
+      const a=document.createElement('a');a.href=url;a.textContent=label;a.className='dmenu-link'+(i===3?' dmenu-primary':'');
+      links.appendChild(a);
+    }
+    panel.appendChild(links);
+    const foot=document.createElement('p');foot.className='dmenu-foot';
+    foot.textContent='Une démarche citoyenne indépendante · Les documents et les sources restent accessibles.';
+    panel.appendChild(foot);
+    document.body.insertBefore(bar,document.body.firstChild);
+    document.body.append(overlay,panel);
+    function setOpen(open,restoreFocus){
+      if(open){
+        const top=Math.min(Math.max(65,bar.getBoundingClientRect().bottom+8),Math.max(65,innerHeight-180));
+        panel.style.top=top+'px';panel.style.maxHeight='calc(100dvh - '+(top+8)+'px)';
+      }
+      panel.hidden=!open;overlay.hidden=!open;toggle.setAttribute('aria-expanded',String(open));
+      toggle.setAttribute('aria-label',open?'Fermer le menu de navigation':'Ouvrir le menu de navigation');
+      document.body.classList.toggle('dmenu-open',open);
+      if(open)panel.querySelector('a').focus();
+      else if(restoreFocus)toggle.focus();
+    }
+    toggle.addEventListener('click',()=>setOpen(panel.hidden,true));
+    closeBtn.addEventListener('click',()=>setOpen(false,true));
+    overlay.addEventListener('click',()=>setOpen(false,true));
+    panel.addEventListener('click',e=>{if(e.target.closest('a'))setOpen(false,false);});
+    document.addEventListener('keydown',e=>{
+      if(panel.hidden)return;
+      if(e.key==='Escape'){e.preventDefault();setOpen(false,true);return;}
+      if(e.key!=='Tab')return;
+      const focusables=[...panel.querySelectorAll('a[href],button:not([disabled])')];
+      const first=focusables[0],last=focusables[focusables.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+})();
+
+
+
+
+/* Continuité des liens internes : une navigation sur le site ne doit pas ouvrir un
+   nouvel onglet. Le balisage HTML des liens sources externes reste inchangé. */
+(()=>{'use strict';
+  function init(){
+    document.querySelectorAll('a[href]').forEach(a=>{
+      try{
+        const url=new URL(a.getAttribute('href'),location.href);
+        if(url.origin===location.origin && (a.target==='_blank'||a.target==='_top')){
+          a.removeAttribute('target');
+        }
+      }catch{}
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();

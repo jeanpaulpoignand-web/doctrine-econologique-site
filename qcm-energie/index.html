@@ -358,14 +358,16 @@ footer{
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Doctrine Éconologique — Souveraineté, production, vérité des coûts">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" sizes="32x32" href="../assets/icone-doctrine-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="../assets/icone-doctrine-180.png">
-<meta name="apple-mobile-web-app-title" content="Doctrine">
+<meta name="apple-mobile-web-app-title" content="Doctrine Éconologique">
 <meta name="description" content="Testez vos connaissances sur les prix de l’énergie, le nucléaire, EDF et la souveraineté énergétique avec le QCM de la Doctrine Éconologique.">
 <link rel="canonical" href="https://doctrine-econologique.fr/qcm-energie/">
+  <!-- Charte graphique citoyenne V2.4 ; moteur, questions et SEO inchangés -->
+  <link rel="stylesheet" href="../assets/qcm-charte-v24.css">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
 </head>
 
-<body class="touch-ui">
+<body class="touch-ui qcm-citizen qcm-energie">
 <nav class="doctrine-navigation" aria-label="Navigation de la Doctrine">
   <a href="https://doctrine-econologique.fr/#pilier-1" target="_top">Retour au site de la Doctrine</a>
   <a href="../piliers/energie-souveraine/">Lire le pilier</a>
@@ -428,6 +430,7 @@ footer{
        (s'ouvre dans un nouvel onglet)</a>
     </div>
 
+    <details class="quality-tools"><summary>Outils de validation (usage interne)</summary>
     <div class="test">
       <div class="eyebrow">Mode test — sessions de validation</div>
       <p class="small">Permet de simuler 4 profils types pour vérifier la cohérence du résultat.</p>
@@ -436,7 +439,8 @@ footer{
       <button class="secondary" onclick="simulate('MIX')">Profil mixte</button>
       <button class="secondary" onclick="simulate('NUCUE')">Nucléaire + Marché UE</button>
     </div>
-
+</details>
+    <details class="qcm-fiches"><summary>Consulter les 19 fiches explicatives</summary>
     <div class="fiches-liste" id="fiches-liste">
       <h2>Les 19 fiches du questionnaire</h2>
       <p class="small">Chaque fiche explique l’enjeu d’une question avant que vous y répondiez.</p>
@@ -462,6 +466,7 @@ footer{
         <li><a href="fiches/q19-doctrine.html">Question 19 — Synthèse : quelle orientation énergétique ?</a></li>
       </ol>
     </div>
+    </details>
   </div>
 </section>
 
@@ -552,6 +557,7 @@ footer{
     <h2>Partis les plus proches</h2>
     <div id="parties"></div>
 
+    <details class="qcm-method"><summary>Sources et méthode du calcul</summary>
     <div class="method-box">
       <h2>Comment ce résultat est calculé ?</h2>
       <p>
@@ -568,7 +574,7 @@ footer{
         <strong>Matrice partis — Pilier 1 Énergie — V4 consolidée</strong>.
       </p>
     </div>
-
+</details>
     <div class="explain show">
       <strong>Note méthodologique :</strong> ce prototype ne remplace pas la matrice probatoire complète.
       Il donne une orientation énergétique dominante à partir des choix de l'utilisateur.

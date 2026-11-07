@@ -1,0 +1,50 @@
+name: Bulletin citoyen V2.5 — intégrité et recette navigateur
+on:
+  pull_request:
+    branches:
+      - design/qcm-charte-extension-fraude-frontaliers-megots-v2-4-2026-11-06
+    paths:
+      - 'qcm-democratie-decisionnelle/index.html'
+      - 'assets/bulletin-citoyen-v25.css'
+      - 'tests/check_bulletin_v25_integrity.py'
+      - 'tests/test_bulletin_v25_browser.py'
+      - '.github/workflows/bulletin-v25-qa.yml'
+  workflow_dispatch:
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Vérifier les règles métier et les métadonnées SEO
+        run: |
+          git fetch --no-tags origin main
+          python3 tests/check_bulletin_v25_integrity.py
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Playwright Chromium
+        run: |
+          python3 -m pip install playwright
+          python3 -m playwright install --with-deps chromium
+      - name: Servir la branche localement
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/bulletin-v25-http.log 2>&1 &
+          echo $! > /tmp/bulletin-v25-http.pid
+          sleep 2
+      - name: Vérifier les parcours, CSS et captures réelles
+        run: python3 tests/test_bulletin_v25_browser.py
+      - name: Archiver les captures des deux formats
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bulletin-citoyen-v25-captures-reelles
+          path: .test-artifacts/bulletin-v25/
+          retention-days: 14
+          if-no-files-found: ignore

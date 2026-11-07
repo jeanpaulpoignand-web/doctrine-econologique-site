@@ -1,0 +1,39 @@
+name: QCM V2.4 — recette navigateur
+on:
+  pull_request:
+    branches:
+      - design/qcm-fusion-fonctionnelle-v2-4-2026-11-06
+      - design/qcm-charte-extension-aspa-batiment-textile-v2-4-2026-11-06
+    paths:
+      - 'qcm-*/index.html'
+      - 'assets/qcm-charte-v24*.css'
+      - 'tests/test_qcm_v24_browser.py'
+      - '.github/workflows/qcm-v24-browser.yml'
+permissions:
+  contents: read
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python3 -m pip install --upgrade playwright
+      - run: python3 -m playwright install --with-deps chromium
+      - name: Démarrer le site en HTTP local
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/qcm-http.log 2>&1 &
+          echo $! > /tmp/qcm-http.pid
+          sleep 2
+      - name: Test parcours QCM et captures
+        run: python3 tests/test_qcm_v24_browser.py
+      - name: Conserver les aperçus réels
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qcm-v24-apercus-reels
+          path: .test-artifacts/qcm-v24-screens/
+          if-no-files-found: ignore
+          retention-days: 7

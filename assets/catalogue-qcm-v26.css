@@ -1,0 +1,41 @@
+/* V2.6 prépublication — catalogue des 9 QCM, surcouche présentation uniquement */
+:root{--fond:#faf8f3;--texte:#17273e;--doux:#576675;--ligne:#dddcd2;--rouge:#b9573a;--nuit:#17273e}
+body{background:#faf8f3;color:#17273e;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.65}
+main{max-width:1060px;padding:clamp(25px,4vw,52px) clamp(16px,3vw,30px) 70px}
+.crumbs{font-size:.83rem;color:#576675}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;color:#17273e}
+h1{font-size:clamp(2.7rem,5vw,4.3rem);line-height:1.05;letter-spacing:-.02em;font-weight:700;max-width:850px}
+.resume{font:400 1.03rem/1.65 'IBM Plex Sans',system-ui,sans-serif;color:#30445b;background:#fffefa;border:1px solid #dddcd2;border-left:4px solid #b9573a;border-radius:0 12px 12px 0;padding:16px 20px;margin:22px 0 34px}
+.pils{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:25px 0 35px}
+.pil{display:flex;flex-direction:column;padding:25px 26px 22px;border:1px solid #dddcd2;border-radius:16px;background:#fffefa;box-shadow:0 10px 28px rgba(23,39,62,.045);margin:0;min-width:0}
+.pil-num{font:700 .72rem/1.5 'IBM Plex Mono',monospace;letter-spacing:.10em;color:#97452f;text-transform:uppercase}
+.pil h2{border:0;margin:9px 0 9px;padding:0;font-size:clamp(1.55rem,2.7vw,2rem);line-height:1.15}
+.pil h2 a{text-decoration:none;color:#17273e}
+.pil h2 a:hover,.pil h2 a:focus-visible{color:#97452f;text-decoration:underline;text-underline-offset:3px}
+.pil p{font-size:.94rem;line-height:1.55;color:#576675;margin-bottom:10px}
+.pil p:last-child{margin-top:auto}
+.pil p a{display:inline-flex;align-items:center;font-size:.85rem;min-height:40px;color:#2e7168;font-weight:700;text-underline-offset:3px}
+.pil a:focus-visible,.crumbs a:focus-visible{outline:3px solid #b9573a;outline-offset:4px}
+body .doctrine-navigation{border-color:#dddcd2;background:#f6f0e4;color:#17273e}
+body .doctrine-navigation a{border-color:#dddcd2;background:#fffefa;color:#17273e;border-radius:9px;font-weight:600}
+body .btn-touch--soft{--touch-focus:#b9573a;--touch-fg:#97452f;border-radius:10px;max-width:100%}
+@media(max-width:700px){main{padding:26px 17px 60px}.pils{grid-template-columns:1fr;gap:13px}.pil{padding:21px 20px}.pil h2{font-size:1.7rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+
+/* Prépublication : rendre les QCM repérables d'un coup d'œil. */
+.pil h2 a::after{content:"  ↗";color:#b9573a;font:700 .8em/1 'IBM Plex Sans',system-ui,sans-serif;white-space:nowrap}
+.pil:hover{border-color:#d5b5a1;box-shadow:0 13px 35px rgba(23,39,62,.08)}
+body .doctrine-navigation{gap:10px}
+@media(max-width:600px){
+ body .doctrine-navigation{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:10px 12px}
+ body .doctrine-navigation>a,body .doctrine-navigation>.doctrine-navigation-share{
+   width:100%;max-width:none;min-height:44px;padding:8px;font-size:.81rem;line-height:1.25
+ }
+}
+/* Recette WebKit Safari : réduire la taille du mot « questionnaires »
+   sur iPhone étroit plutôt que masquer un débordement horizontal. */
+@media(max-width:380px){
+  h1{font-size:clamp(2rem,9.5vw,2.3rem);line-height:1.08;overflow-wrap:break-word;hyphens:auto}
+  .pil h2{overflow-wrap:break-word;hyphens:auto}
+}

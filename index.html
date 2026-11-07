@@ -1,326 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="color-scheme" content="light only">
-<meta name="google-site-verification" content="LMzf7-uWAuAehcu64csRugPDF9o78WXtWJSUxVmWf7Y" />
-<meta name="description" content="Doctrine Éconologique : 17 piliers pour une France qui produit, répare et transmet. Énergie, retraites, grand âge, dette : des fiches chiffrées et sourcées.">
-<link rel="canonical" href="https://doctrine-econologique.fr/" />
-<title>Doctrine Éconologique : 17 piliers pour une France qui produit</title>
-<!--
-Doctrine Éconologique — page d'accueil.
-Documents publics : ./fiches/ (charte « Aller droit au but »).
-Les documents de travail restent sur le Drive et ne sont jamais liés depuis le site.
--->
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap">
-<style>
-:root{
-  --paper:#FDFBF7;--paper2:#FFFFFC;--warm:#F5F0E3;
-  --ink:#0A0A0A;--soft:#1F1F1F;--muted:#564A36;
-  --line:#C5BDA8;--faint:#DCD4BE;
-  --rouge:#8B2C1E;--or:#6B5520;--dark:#0E0E0E;
-  --p1:#1F3864;--p2:#1A6B3A;--p3:#4A5159;--p4:#8B2C1E;--p5:#0E1B2E;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;color-scheme:light}
-body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.65;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.15}
-a{color:inherit}
-.nav{
-  position:sticky;top:0;z-index:50;background:rgba(253,251,247,.97);
-  border-bottom:1px solid var(--line);padding:18px 32px;
-  display:flex;justify-content:space-between;align-items:center;gap:12px
-}
-.brand{text-decoration:none;display:flex;gap:10px;align-items:baseline}
-.brand-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600}
-.brand-version{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--rouge);letter-spacing:2px}
-.nav-links{display:flex;gap:26px;list-style:none;font-size:14px;font-weight:700}
-.nav-links a{text-decoration:none}
-.nav-links a:hover{color:var(--rouge)}
-@media(max-width:600px){.nav{padding:10px 16px 6px;flex-wrap:wrap;row-gap:4px}.brand-name{font-size:21px}.nav-links{width:100%;gap:20px;font-size:13px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}.nav-links::-webkit-scrollbar{display:none}.nav-links a{display:inline-block;padding:8px 0}}
-.hero{padding:80px 28px 46px;text-align:center;max-width:880px;margin:auto}
-.hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--rouge);margin-bottom:28px}
-.hero h1{font-size:clamp(38px,7vw,76px);font-weight:500;margin-bottom:28px}
-.hero h1 em{color:var(--rouge)}
-.hero-lede{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.4vw,22px);max-width:650px;margin:0 auto 36px}
-.hero-byline{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:24px;max-width:360px;margin:auto}
-.finalite-wrap{max-width:1080px;margin:0 auto 36px;padding:0 28px}
-.finalite-card{background:var(--paper2);border:1px solid var(--line);border-left:4px solid var(--rouge);border-radius:6px;padding:22px 26px}
-.finalite-card h2{font-size:clamp(26px,3.5vw,36px);font-weight:600;margin-bottom:12px}
-.finalite-card p{font-size:15px;line-height:1.5;margin-bottom:12px}
-.finalite-card blockquote{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;line-height:1.35;color:var(--soft);margin:14px 0}
-.finalite-card cite{font-size:14px;font-style:normal}
-.finalite-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 18px;background:var(--rouge);color:#fff;border-radius:4px;text-decoration:none;font-size:14px;font-weight:700}
-.finalite-button:hover{filter:brightness(1.1)}
-.finalite-button:focus-visible{outline:3px solid var(--or);outline-offset:4px}
-@media(max-width:600px){.finalite-wrap{padding:0 16px}.finalite-card{padding:20px}.finalite-card p{font-size:16px}.finalite-button{width:100%}}
-.ps-wrap{max-width:1080px;margin:auto;padding:0 28px 54px}
-.ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.ps-card{background:var(--paper2);border:1px solid var(--line);border-left:3px solid var(--rouge);padding:28px;border-radius:4px}
-.ps-card.solution{border-left-color:var(--or)}
-.ps-card-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);margin-bottom:14px}
-.ps-card.solution .ps-card-label{color:var(--or)}
-.ps-card h3{font-size:24px;margin-bottom:14px}
-@media(max-width:720px){.ps-grid{grid-template-columns:1fr}}
-
-.section{padding:70px 28px;max-width:1080px;margin:auto}
-.section-head{text-align:center;max-width:720px;margin:0 auto 48px}
-.section-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rouge);margin-bottom:12px}
-.section-title{font-size:clamp(30px,4.5vw,46px);font-weight:500;margin-bottom:16px}
-.section-title em{color:var(--rouge)}
-.section-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--soft)}
-
-.entry-wrap{max-width:1080px;margin:auto;padding:0 28px 72px}
-.entry-card{
-  position:relative;overflow:hidden;
-  background:
-    radial-gradient(circle at 82% 18%, rgba(14,27,46,.08), transparent 34%),
-    linear-gradient(180deg,#FFFFFC 0%,#F8F6EF 100%);
-  border:1px solid var(--line);
-  border-left:5px solid var(--p5);
-  border-radius:8px;
-  padding:34px;
-  box-shadow:0 16px 40px rgba(14,27,46,.07);
-}
-.entry-card::before{
-  content:'';
-  position:absolute;
-  right:18px;
-  top:24px;
-  width:210px;
-  height:420px;
-  background:url('./assets/pilier-antique-filigrane.svg') center/contain no-repeat;
-  opacity:.42;
-  pointer-events:none;
-}
-.entry-card > *{position:relative;z-index:1}
-.entry-kicker{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
-  color:var(--p5);
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-weight:700;
-  margin-bottom:16px;
-}
-.entry-card h2{
-  font-size:clamp(36px,5.6vw,64px);
-  font-weight:600;
-  margin-bottom:18px;
-}
-.entry-card h2 em{color:var(--rouge);font-style:italic}
-.entry-lede{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:clamp(20px,2.6vw,28px);
-  color:var(--soft);
-  max-width:680px;
-  margin-bottom:28px;
-}
-.entry-tools{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
-.entry-tool{
-  display:flex;
-  flex-direction:column;
-  min-height:230px;
-  text-decoration:none;
-  color:var(--ink);
-  border:1px solid rgba(14,27,46,.24);
-  border-radius:8px;
-  padding:24px;
-  background:
-    linear-gradient(135deg,rgba(14,27,46,.055),rgba(255,255,252,.94)),
-    repeating-linear-gradient(90deg,rgba(14,27,46,.032) 0 1px,transparent 1px 12px);
-  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
-}
-.entry-tool:hover{
-  transform:translateY(-3px);
-  border-color:var(--p5);
-  box-shadow:0 14px 30px rgba(14,27,46,.15);
-}
-.entry-tool-label{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--p5);
-  font-weight:700;
-  margin-bottom:12px;
-}
-.entry-tool h3{font-size:32px;margin-bottom:14px}
-.entry-tool p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--soft);margin-bottom:auto}
-.entry-tool-cta{
-  margin-top:22px;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  font-weight:700;
-  color:var(--rouge);
-}
-@media(max-width:760px){
-  .entry-tools{grid-template-columns:1fr}
-  .entry-card{padding:26px}
-  .entry-card::before{right:-26px;top:70px;width:180px;height:360px}
-}
-
-.study-card{background:var(--paper2);border:1px solid var(--line);border-top:4px solid var(--rouge);border-radius:6px;padding:36px 32px;max-width:820px;margin:auto}
-.study-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);margin-bottom:16px}
-.study-card h3{font-size:clamp(28px,4vw,38px);margin-bottom:20px}
-.study-card p{font-size:17px;color:var(--soft);margin-bottom:24px}
-.study-stats{display:grid;grid-template-columns:1fr;gap:14px;padding:22px;background:var(--paper);border:1px solid var(--faint);border-radius:5px;margin-bottom:28px}
-.study-stat-box{background:var(--paper2);border:1px solid var(--faint);border-left:4px solid var(--rouge);border-radius:4px;padding:16px 18px}
-.study-stat-box.allouee{border-left-color:var(--or)}
-.study-stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,48px);font-weight:700;color:var(--rouge);line-height:1;margin-bottom:8px}
-.study-stat-box.allouee .study-stat-num{color:var(--or)}
-.study-stat-label{font-size:14px;color:var(--muted);font-weight:700}
-.read-link{display:inline-flex;gap:8px;text-decoration:none;color:var(--rouge);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--rouge);padding-bottom:5px}
-.read-link:hover{color:var(--ink);border-bottom-color:var(--ink)}
-
-.pillars-wrap{max-width:1080px;margin:auto;padding:0 28px 70px}
-.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:880px){.pillars-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.pillars-grid{grid-template-columns:1fr}}
-.pillar-card{background:var(--paper2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:24px;min-height:340px;display:flex;flex-direction:column}
-.pillar-card.energie{--accent:var(--p1)}
-.pillar-card.garantie{--accent:var(--p2)}
-.pillar-card.finance{--accent:var(--p3)}
-.pillar-card.aspa{--accent:var(--p4)}
-.pillar-card.culture{--accent:var(--p4)}
-.pillar-card.fraude{--accent:var(--or)}
-.pillar-card{scroll-margin-top:96px}
-#pilier-14{scroll-margin-top:180px}
-section[id]{scroll-margin-top:84px}
-@media(max-width:600px){.pillar-card{scroll-margin-top:112px}#pilier-14{scroll-margin-top:190px}section[id]{scroll-margin-top:100px}}
-.pillar-card.grandage{--accent:#5B3A6E}
-.pillar-card.batiment{--accent:#7A4E1D}
-.pillar-card.frontaliers{--accent:#2E5A3C}
-.pillar-card.agriculture{--accent:#5C6B26}
-.pillar-card.textile{--accent:#6B3A4E}
-.pillar-card.monetique{--accent:#1F5A57}
-.pillar-card.mobilite{--accent:#3B4A6B}
-.pillar-card.democratie{--accent:var(--p5)}
-.pillar-card.dette{--accent:var(--p3)}
-.pillar-card.autoroutes{--accent:var(--p3)}
-.pillar-card.proprete{--accent:var(--p2)}
-.pillar-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;font-weight:700}
-.pillar-card h3{font-size:23px;margin:8px 0 10px}
-.pillar-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--soft);margin-bottom:14px}
-.pillar-stat{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);border-bottom:1px solid var(--faint);padding-bottom:14px;margin-bottom:18px}
-.pillar-actions{margin-top:auto;display:flex;flex-direction:column;gap:10px}
-.pillar-link{display:block;align-self:stretch;background:var(--accent);color:#fff;text-decoration:none;text-align:center;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:14px 12px 12px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-.pillar-link small{display:block;margin-top:4px;font-size:10.5px;font-weight:500;letter-spacing:.3px;text-transform:none;opacity:.9}
-.new-tab-note{display:block;margin-top:3px;font-size:10px;font-weight:500;letter-spacing:.2px;text-transform:none;opacity:.82}
-.pillar-link:hover{filter:brightness(1.1)}
-.pillar-link~.pillar-link{background:none;box-shadow:none;color:var(--accent);padding:12px 0;text-align:left;font-size:12px;letter-spacing:.5px;border-bottom:none;text-decoration:underline;text-underline-offset:4px;align-self:flex-start}
-.pillar-qcm-button{background:transparent;color:var(--accent);border:1.5px solid var(--accent);text-decoration:none;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:11px;border-radius:4px}
-.pillar-highlight{background:rgba(0,0,0,.03);border-left:2px solid var(--accent);padding:12px;border-radius:0 4px 4px 0}
-.pillar-highlight-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
-.pillar-highlight-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700}
-.pillar-highlight-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--soft)}
-/* Ergonomie tactile (lot 1) : relief + enfoncement, mêmes valeurs que .btn-touch (assets/doctrine-navigation.css) */
-.pillar-link:not(.pillar-link~.pillar-link),.pillar-qcm-button,.position-cta,.finalite-button{--edge:rgba(0,0,0,.38);box-sizing:border-box;min-height:44px;transition:transform .1s ease-out,box-shadow .1s ease-out;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.pillar-link:not(.pillar-link~.pillar-link),.position-cta,.finalite-button{box-shadow:0 4px 0 var(--edge),0 6px 10px rgba(0,0,0,.15)}
-.pillar-qcm-button{display:block;box-shadow:0 2px 0 var(--accent)}
-.pillar-link:not(.pillar-link~.pillar-link):active,.position-cta:active,.finalite-button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--edge),0 1px 2px rgba(0,0,0,.15)}
-.pillar-qcm-button:active{transform:translateY(2px);box-shadow:0 0 0 var(--accent);background:rgba(127,127,127,.12)}
-.pillar-link:focus-visible,.pillar-qcm-button:focus-visible,.position-cta:focus-visible{outline:3px solid var(--or);outline-offset:3px}
-@media(prefers-reduced-motion:reduce){.pillar-link,.pillar-qcm-button,.position-cta,.finalite-button{transition:none}}
-.pillar-integrity{border-top:1px solid var(--line);padding-top:12px}
-.pillar-integrity h4{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 6px}
-.pillar-integrity p{font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.45;color:var(--soft);margin:0 0 8px}
-.pillar-integrity-links{display:flex;flex-wrap:wrap;gap:4px 16px}
-.pillar-integrity-links a:not(.btn-touch){font-size:12px;color:var(--accent);text-decoration:underline;text-underline-offset:4px;padding:6px 0}
-.pillar-integrity-links a:not(.btn-touch):focus-visible{outline:3px solid var(--or);outline-offset:3px}
-.pillar-integrity-links .pillar-casier-btn{--touch-bg:var(--accent);--touch-focus:var(--accent);flex:1 1 100%;font-size:13px;margin:2px 0 6px;padding:12px 14px}
-.pillar-integrity-links .pillar-casier-btn .new-tab-note{margin-top:0;font-size:10.5px;opacity:.9}
-.pillar-integrity .integrity-note{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;line-height:1.4;color:var(--muted);margin:6px 0 0}
-.pillar-image{width:100%;margin-top:16px;border-radius:8px;border:1px solid var(--line);display:block;box-shadow:0 4px 18px rgba(0,0,0,.08)}
-
-.position-dark{background:var(--dark);color:#F0EBDC;padding:80px 28px;text-align:center}
-.position-dark .inner{max-width:840px;margin:auto}
-.position-dark h2{color:#F0EBDC;font-size:clamp(30px,4.5vw,48px);font-weight:500}
-.position-dark h2 em{color:#D4593F}
-.position-dark .section-sub{color:#B8AE94;margin-bottom:40px}
-.manifesto-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,4vw,38px);border-top:1px solid #C9A95B;border-bottom:1px solid #C9A95B;padding:44px 20px;margin-bottom:36px}
-.manifesto-text .line{display:block}
-.manifesto-text .verb{color:#D4593F;font-style:normal}
-.position-actions{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
-.position-cta{display:flex;justify-content:center;align-items:center;gap:12px;background:#D4593F;color:white;text-decoration:none;padding:20px 26px;border-radius:4px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
-.position-cta.secondary{background:#0E1B2E;border:1px solid rgba(240,235,220,.25)}
-@media(max-width:720px){.position-actions{grid-template-columns:1fr}}
-.label-beta{font-family:'IBM Plex Mono',monospace;font-size:9px;background:rgba(0,0,0,.25);padding:3px 7px;border-radius:2px}
-.position-note{font-family:'Cormorant Garamond',serif;font-style:italic;color:#B8AE94;margin-top:22px}
-
-.committee-intro{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;max-width:720px;text-align:center;margin:0 auto 48px}
-.committee-intro em{color:var(--rouge);font-style:normal;font-weight:700}
-.ia-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:900px;margin:auto}
-@media(max-width:720px){.ia-grid{grid-template-columns:repeat(2,1fr)}}
-.ia-card{background:var(--paper2);border:1px solid var(--line);padding:22px 14px;text-align:center;border-radius:6px}
-.ia-mark{width:46px;height:46px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-.claude{background:#C95E3B}.gpt{background:#0F8F6E}.gemini{background:#2868D8}.grok{background:#111}.perplexity{background:#1A8A8A}
-.ia-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700}
-.ia-pub{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase}
-.ia-role{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--soft)}
-.committee-note{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-align:center;margin:40px auto 0;max-width:760px}
-
-.colophon{background:var(--warm);padding:64px 28px 28px;border-top:1px solid var(--line)}
-.colophon-inner{max-width:1080px;margin:auto}
-.colophon-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;text-align:center;max-width:680px;margin:0 auto 48px}
-.colophon-quote:before{content:'« ';color:var(--rouge)}
-.colophon-quote:after{content:' »';color:var(--rouge)}
-.colophon-cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;border-top:1px solid var(--line);padding-top:40px}
-@media(max-width:700px){.colophon-cols{grid-template-columns:1fr}}
-.colophon-brand p,.colophon-col a{font-size:13px;color:var(--soft);text-decoration:none}
-.colophon-col h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);margin-bottom:14px}
-.colophon-col ul{list-style:none}
-.colophon-col li{margin-bottom:8px}
-.colophon-bottom{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.colophon-bottom em{color:var(--rouge);font-style:normal}
-.fade-in{opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-.position-cta.fade-in{transition:opacity .7s,transform .1s ease-out,box-shadow .1s ease-out}
-.position-cta.fade-in.visible:active{transform:translateY(3px)}
-@media(prefers-reduced-motion:reduce){.position-cta.fade-in{transition:opacity .7s}}
-/* Pilier VII — deux billets (cinéma / Opéra de Paris) */
-.p7-billets{margin-top:16px;display:flex;flex-direction:column;gap:12px}
-.p7-kicker{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:700}
-.p7-billet{position:relative;background:var(--warm);border:1px solid var(--line);border-radius:6px;padding:12px 16px}
-.p7-billet::before,.p7-billet::after{content:"";position:absolute;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--paper2);border:1px solid var(--line)}
-.p7-billet::before{left:-8px;border-left-color:transparent;border-bottom-color:transparent;transform:rotate(45deg)}
-.p7-billet::after{right:-8px;border-right-color:transparent;border-top-color:transparent;transform:rotate(45deg)}
-.p7-entete{display:flex;flex-direction:column;border-bottom:1px dashed var(--line);padding-bottom:8px;margin-bottom:8px}
-.p7-lieu{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600}
-.p7-oeuvre{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;line-height:1.2}
-.p7-ligne{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px;color:var(--soft)}
-.p7-ligne strong{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--ink);white-space:nowrap}
-.p7-public strong{color:var(--rouge)}
-.p7-opera .p7-public strong{font-size:30px}
-.p7-chute{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;line-height:1.3;margin-top:2px}
-.p7-slogan{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--rouge)}
-.p7-sources{font-family:'IBM Plex Mono',monospace;font-size:9px;line-height:1.5;color:var(--muted)}
-</style>
-<link rel="stylesheet" href="assets/doctrine-navigation.css">
-<script src="assets/doctrine-share.js" defer></script>
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Doctrine Éconologique">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:title" content="Doctrine Éconologique : 17 piliers pour une France qui produit">
-<meta property="og:description" content="Doctrine Éconologique : 17 piliers pour une France qui produit, répare et transmet. Énergie, retraites, grand âge, dette : des fiches chiffrées et sourcées.">
-<meta property="og:url" content="https://doctrine-econologique.fr/">
-<meta property="og:image" content="https://doctrine-econologique.fr/assets/partage-doctrine.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Doctrine Éconologique — Souveraineté, production, vérité des coûts">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icone-doctrine-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/icone-doctrine-180.png">
-<meta name="apple-mobile-web-app-title" content="Doctrine">
-<meta name="doctrine-share-text" content="La Doctrine Éconologique : souveraineté, production, vérité des coûts. Une vision réaliste pour une France indépendante.">
-<script type="application/ld+json">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#17273e">
+  <meta name="description" content="Doctrine Éconologique : 17 piliers pour une France qui produit, répare et transmet. Énergie, retraites, grand âge, dette : des fiches chiffrées et sourcées.">
+  <title>Doctrine Éconologique : 17 piliers pour une France qui produit</title>
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -339,7 +25,7 @@ section[id]{scroll-margin-top:84px}
       "url": "https://doctrine-econologique.fr/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://doctrine-econologique.fr/assets/icone-doctrine-180.png",
+        "url": "https://doctrine-econologique.fr/apple-touch-icon.png",
         "width": 180,
         "height": 180
       },
@@ -352,540 +38,215 @@ section[id]{scroll-margin-top:84px}
   ]
 }
 </script>
+  <meta name="google-site-verification" content="LMzf7-uWAuAehcu64csRugPDF9o78WXtWJSUxVmWf7Y" />
+  <link rel="canonical" href="https://doctrine-econologique.fr/" />
+  <meta name="author" content="Jean Paul Poignand">
+  <meta name="apple-mobile-web-app-title" content="Doctrine Éconologique">
+  <meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctrine Éconologique">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Doctrine Éconologique : 17 piliers pour une France qui produit">
+<meta property="og:description" content="Doctrine Éconologique : 17 piliers pour une France qui produit, répare et transmet. Énergie, retraites, grand âge, dette : des fiches chiffrées et sourcées.">
+<meta property="og:url" content="https://doctrine-econologique.fr/">
+<meta property="og:image" content="https://doctrine-econologique.fr/assets/partage-doctrine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctrine Éconologique — Souveraineté, production, vérité des coûts">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/identite/logo-perplexity-v272.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#17273e;--ink2:#30445b;--midnight:#17273e;--night2:#263a52;--paper:#faf8f3;--pure:#fffefa;--warm:#f0ede3;--cream:#f6f0e4;--line:#dddcd2;--muted:#576675;--accent:#b9573a;--accent-dark:#97452f;--gold:#e5bd78;--teal:#2e7168;--shadow:0 18px 50px rgba(23,39,62,.08);--serif:'Cormorant Garamond',Georgia,serif;--sans:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;color:var(--ink);background:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.55}button,input{font:inherit}a{color:inherit}button,a,input{ -webkit-tap-highlight-color:transparent }a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #e0a24e;outline-offset:4px;border-radius:6px}button{cursor:pointer}h1,h2,h3,p{margin-top:0}.container{width:min(1180px,calc(100% - 56px));margin:0 auto}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip{position:absolute;top:-60px;left:20px;z-index:60;background:white;padding:12px}.skip:focus{top:16px}.eyebrow{font:600 11px/1.6 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}.site-header{background:rgba(250,248,243,.96);border-bottom:1px solid rgba(23,39,62,.1);position:sticky;top:0;z-index:30;backdrop-filter:blur(14px)}.header-inner{display:flex;align-items:center;justify-content:space-between;gap:22px;min-height:83px}.brand{display:flex;align-items:center;gap:13px;text-decoration:none}.brand-mark{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;color:#fff;background:var(--midnight);font:600 28px/1 var(--serif)}.brand-name{font-family:var(--serif);font-size:26px;line-height:.88;font-weight:700}.brand-name,.brand-caption{display:block}.brand-caption{font:500 9px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:6px}.nav-links{display:flex;gap:26px;align-items:center}.nav-links a{text-decoration:none;font-size:13px;font-weight:600}.nav-links a:hover{color:var(--accent)}.nav-links .nav-action{padding:10px 17px;background:var(--midnight);color:white;border-radius:100px}.nav-links .nav-action:hover{color:white;background:#37526b}.menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:12px;padding:10px 13px;color:var(--ink)}
+.hero{position:relative;overflow:hidden;padding:85px 0 100px;background:radial-gradient(circle at 78% 31%,#e3e9d9 0,transparent 37%),linear-gradient(132deg,#faf8f3 52%,#f2eddf)}.hero:before{content:"";position:absolute;right:-200px;bottom:-410px;width:700px;height:700px;border:1px solid rgba(23,39,62,.11);border-radius:50%;pointer-events:none}.hero:after{content:"";position:absolute;right:-130px;bottom:-330px;width:530px;height:530px;border:1px solid rgba(23,39,62,.10);border-radius:50%;pointer-events:none}.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:65px;align-items:center;position:relative;z-index:1}.hero .eyebrow{margin:0 0 23px}.hero h1{font:600 clamp(55px,6vw,88px)/.98 var(--serif);letter-spacing:-.035em;max-width:750px;margin:0 0 25px}.hero h1 em{font-weight:500;color:var(--teal);font-style:italic}.hero .lead{font-size:18px;color:#37485b;max-width:555px;line-height:1.7;margin:0 0 32px}.cta-row{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;padding:15px 23px;border-radius:10px;font-weight:700;font-size:14px;transition:transform .2s,background .2s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--accent);color:white}.btn-primary:hover{background:var(--accent-dark)}.btn-secondary{border:1px solid #aeb7b7;color:var(--ink);background:rgba(255,255,255,.45)}.btn-secondary:hover{background:white}.hero-note{display:flex;align-items:center;gap:9px;margin-top:28px;color:var(--muted);font:500 11px/1.6 var(--mono)}.hero-note span{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block}
+.question-board{background:var(--midnight);color:white;padding:26px;border-radius:24px;box-shadow:0 30px 65px rgba(23,39,62,.2);transform:rotate(1deg)}.board-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}.board-head span{font:500 10px/1.5 var(--mono);letter-spacing:.1em;color:#f5d093;text-transform:uppercase}.board-dot{width:9px;height:9px;border-radius:100%;background:#e8bc75;box-shadow:0 0 0 6px rgba(232,188,117,.11)}.question-board h2{font:600 36px/1.1 var(--serif);margin-bottom:23px}.question-list{display:grid;gap:10px}.question-btn{display:flex;text-align:left;gap:12px;align-items:center;justify-content:space-between;width:100%;padding:17px 16px;border:1px solid #506079;background:#263a52;color:white;border-radius:13px;transition:background .18s,transform .18s}.question-btn:hover{background:#3a5169;transform:translateX(2px)}.question-btn span:first-child{font-size:13px;line-height:1.4;font-weight:600}.question-btn span:last-child{font-size:19px;color:#f0cb93}.board-foot{margin:20px 1px 0;color:#b9c4d1;font-size:11px}
+.stats{background:#fffefa;border-block:1px solid var(--line)}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:35px;padding:29px 0}.stats-item{display:flex;gap:17px;align-items:center}.stats-item:not(:first-child){border-left:1px solid var(--line);padding-left:35px}.stats-number{font:600 38px/1 var(--serif);color:var(--teal)}.stats-item p{font-size:12px;color:var(--muted);margin:0;line-height:1.5}
+.section{padding:100px 0}.section-heading{max-width:780px}.section-heading .eyebrow{margin-bottom:17px}.section-heading h2{font:600 clamp(42px,4.7vw,59px)/1.05 var(--serif);letter-spacing:-.018em;margin-bottom:17px}.section-heading>p:not(.eyebrow){font-size:17px;color:var(--muted);line-height:1.7}.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:42px}.path-card{padding:31px 28px;border-radius:18px;border:1px solid var(--line);background:var(--pure);box-shadow:0 8px 24px rgba(23,39,62,.03)}.step-index{display:inline-grid;place-items:center;width:39px;height:39px;background:#e7eee7;color:var(--teal);border-radius:50%;font-weight:700;font-family:var(--mono);font-size:12px}.path-card h3{font:700 27px/1.1 var(--serif);margin:22px 0 12px}.path-card p{font-size:14px;color:var(--muted);line-height:1.6;margin:0}
+.explore{background:#f1eee7;border-top:1px solid #e2ded1;border-bottom:1px solid #e2ded1}.explore-bar{display:flex;justify-content:space-between;align-items:end;gap:25px;flex-wrap:wrap}.search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #bbbcb7;padding:0 17px;min-height:52px;border-radius:12px;min-width:310px;box-shadow:0 5px 20px rgba(23,39,62,.04)}.search svg{width:19px;color:var(--muted);flex-shrink:0}.search input{border:0;outline:0!important;background:transparent;min-width:0;flex:1;width:100%;font-size:14px;color:var(--ink)}.search:focus-within{outline:3px solid #e0a24e;outline-offset:3px}.filter-row{margin:29px 0 22px;display:flex;flex-wrap:wrap;gap:9px}.filter{border:1px solid #c9c9bf;background:transparent;padding:9px 14px;color:var(--ink2);border-radius:30px;font-weight:600;font-size:12px}.filter:hover{background:#fff}.filter[aria-pressed="true"]{background:var(--midnight);color:white;border-color:var(--midnight)}.result-note{font:500 11px/1.6 var(--mono);color:var(--muted);margin:0 0 18px}.topic-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.topic-card[hidden]{display:none!important}.topic-card{display:flex;flex-direction:column;background:var(--pure);padding:24px 25px 20px;min-height:298px;border:1px solid #e1ded4;border-radius:17px;box-shadow:0 3px 10px rgba(23,39,62,.015);transition:transform .2s,box-shadow .2s,border-color .2s;scroll-margin-top:130px}.topic-card:hover{transform:translateY(-3px);box-shadow:0 14px 35px rgba(23,39,62,.08);border-color:#c4c0b4}.topic-card.is-focused{box-shadow:0 0 0 4px #dfb974,0 14px 35px rgba(23,39,62,.09)}.topic-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.topic-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font:600 20px/1 var(--serif)}.theme-quotidien{background:#f8e8df;color:#a65336}.theme-production{background:#e5eee8;color:#276b58}.theme-finances{background:#e2e8f3;color:#3c5683}.theme-societe{background:#f2e9d6;color:#835f25}.topic-num{font:500 10px var(--mono);color:#687581;letter-spacing:.06em}.topic-category{font:600 10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin:0 0 7px}.topic-card h3{font:700 28px/1.07 var(--serif);margin:0 0 11px}.topic-question{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 20px}.topic-bottom{border-top:1px solid #e6e4dc;margin-top:auto;padding-top:15px}.card-link{text-decoration:none;font-size:12px;font-weight:700;color:var(--accent)}.card-link:hover{text-decoration:underline;text-underline-offset:3px}.card-unlinked{font-size:11px;color:#737e85}.empty{background:#fff;max-width:550px;padding:25px;border-radius:12px;border:1px solid var(--line)}
+.method-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}.method-feature{padding:35px;border-radius:20px;background:#e7ece6;border:1px solid #d6dfd7}.method-feature h3{font:600 29px/1.15 var(--serif);margin-bottom:18px}.proof-row{border-top:1px solid #bfcec4;padding:14px 0;display:flex;align-items:start;gap:13px}.proof-row:last-child{padding-bottom:0}.proof-badge{display:inline-block;font:600 10px/1 var(--mono);letter-spacing:.03em;background:#fff;padding:7px 8px;color:var(--ink);border-radius:5px;min-width:94px;text-align:center}.proof-row p{margin:0;font-size:12px;color:#53665c;line-height:1.5}
+.participate{padding:0 0 100px}.participate-panel{border-radius:25px;background:var(--midnight);color:white;padding:53px 60px;display:flex;justify-content:space-between;gap:45px;align-items:center;background-image:radial-gradient(circle at 90% 20%,rgba(229,189,120,.11),transparent 32%)}.participate-panel .eyebrow{color:#e5bd78}.participate-panel h2{font:600 clamp(38px,4vw,54px)/1.06 var(--serif);max-width:550px;margin:10px 0 15px}.participate-panel p:not(.eyebrow){color:#c7d2df;max-width:540px;font-size:14px;margin:0}.participate-actions{flex-shrink:0;display:grid;gap:11px;min-width:215px}.participate-actions .btn{text-align:center}.participate-actions .btn-secondary{color:#fff;border-color:#8191a0;background:transparent}.site-footer{border-top:1px solid #dedbd1;padding:42px 0 28px;background:#ebe9df}.footer-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}.footer-grid strong{font:700 24px var(--serif)}.footer-grid p{font-size:12px;color:var(--muted);max-width:550px;line-height:1.6}.footer-links{display:flex;gap:20px;align-items:flex-start}.footer-links a{font-size:12px;font-weight:600}.prototype{margin-top:24px;padding-top:19px;border-top:1px solid #d1d0c6;font-size:11px;color:#65707c}
+@media(max-width:950px){.hero-grid{grid-template-columns:1fr;gap:50px}.question-board{max-width:600px;transform:none}.topic-grid{grid-template-columns:repeat(2,1fr)}.method-grid{gap:32px}.nav-links{gap:14px}.nav-links a{font-size:12px}.participate-panel{padding:42px 39px}}@media(max-width:700px){.container{width:min(100% - 32px,1180px)}.header-inner{min-height:72px}.brand-name{font-size:24px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:72px;left:0;right:0;padding:20px 18px 22px;flex-direction:column;align-items:stretch;background:#faf8f3;border-bottom:1px solid var(--line);box-shadow:0 20px 32px rgba(23,39,62,.07)}.nav-links.open{display:flex}.nav-links a{font-size:14px;padding:10px 9px}.nav-links .nav-action{text-align:center}.hero{padding:58px 0 65px}.hero h1{font-size:clamp(48px,11vw,68px)}.hero .lead{font-size:16px}.question-board{padding:23px;border-radius:20px}.question-board h2{font-size:31px}.stats-grid{gap:10px;padding:22px 0}.stats-item{display:block}.stats-item:not(:first-child){padding-left:14px}.stats-number{font-size:32px}.stats-item p{font-size:10px}.section{padding:70px 0}.section-heading h2{font-size:44px}.path-grid,.topic-grid,.method-grid{grid-template-columns:1fr}.path-card{padding:24px}.topic-card{min-height:0}.search{min-width:100%;width:100%}.explore-bar{display:block}.participate{padding-bottom:70px}.participate-panel{padding:34px 24px;display:block}.participate-panel h2{font-size:42px}.participate-actions{margin-top:28px}.footer-grid{display:block}.footer-links{margin-top:25px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+
+/* V2 - parcours QCM, composants progressifs, présentation accessible */
+.qcm-section{padding:80px 0 94px;background:linear-gradient(135deg,#17273e 0%,#233d52 100%);color:#fff;scroll-margin-top:90px}.qcm-intro{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:31px}.qcm-intro>div{max-width:690px}.qcm-intro .eyebrow{color:#e5bd78}.qcm-intro h2{font:600 clamp(40px,5vw,59px)/1.04 var(--serif);margin:10px 0 14px}.qcm-intro p:not(.eyebrow){font-size:15px;color:#d1dbe2;max-width:600px;margin:0}.qcm-all{white-space:nowrap;color:#fff;border:1px solid #c5b48f;padding:12px 16px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:700}.qcm-all:hover{background:#ffffff1e}.qcm-cards{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px}.qcm-card{background:#fffefa;color:#17273e;border-radius:16px;padding:30px;display:flex;flex-direction:column;min-height:255px}.qcm-main{background:#f4e6cd}.qcm-step{font:600 10px/1.6 var(--mono);letter-spacing:.08em;color:#846131;text-transform:uppercase}.qcm-card h3{font:600 32px/1.06 var(--serif);margin:20px 0 11px}.qcm-card p{font-size:13px;color:#455261;line-height:1.58;margin-bottom:18px}.qcm-card a{display:inline-flex;color:#153d54;font-weight:700;font-size:13px;margin-top:auto;text-underline-offset:5px}.qcm-note{color:#c0cdd7;margin:18px 0 0;font-size:11px}.mini-qcm{display:inline-flex;text-decoration:none;font-size:12px;font-weight:700;color:#216959;background:#e7f4e9;padding:8px 11px;border-radius:7px;margin-top:8px}.mini-qcm:hover{background:#d6eddf}.bottom-nav{display:none}
+@media(max-width:950px){.qcm-cards{grid-template-columns:1fr 1fr}.qcm-main{grid-column:span 2}.qcm-intro{align-items:start}}
+@media(max-width:700px){.qcm-section{padding:55px 0 68px}.qcm-intro{display:block}.qcm-all{display:inline-block;margin-top:20px}.qcm-cards{grid-template-columns:1fr}.qcm-main{grid-column:auto}.qcm-card{min-height:0;padding:25px}.qcm-card h3{margin:14px 0}.bottom-nav{position:fixed;display:grid;grid-template-columns:repeat(3,1fr);bottom:0;left:0;right:0;padding:8px max(10px,env(safe-area-inset-left)) calc(9px + env(safe-area-inset-bottom));background:#fffefa;box-shadow:0 -5px 25px #17273e22;border-top:1px solid #dddcd2;z-index:35}.bottom-nav a{display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;text-decoration:none;font-size:11px;font-weight:700;min-height:42px}.bottom-nav a strong{font-size:17px;line-height:1}.bottom-nav a[href="#qcm"]{color:#9d4028}body{padding-bottom:68px}}
+/* V2.3 — fusion structurée, parcours 90 s accessible, repères d'impact, méthode 5 IA */
+.discovery-section{padding:72px 0 80px;background:var(--pure);border-bottom:1px solid var(--line);scroll-margin-top:90px}.discovery-header{display:flex;justify-content:space-between;align-items:end;gap:25px}.discovery-header>div{max-width:770px}.discovery-header h2,.five-ai-content h2{font:600 clamp(37px,4.6vw,57px)/1.04 var(--serif);letter-spacing:-.018em;margin:10px 0 15px}.discovery-header p:not(.eyebrow),.five-ai-content p:not(.eyebrow){font-size:15px;color:var(--muted);line-height:1.65;max-width:690px;margin-bottom:0}.discovery-hint{font:600 10px/1.8 var(--mono);color:var(--teal);white-space:nowrap}.discovery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:29px;align-items:start}.discovery-card{padding:25px 25px 21px;border:1px solid #d9d9cb;border-radius:18px;background:linear-gradient(155deg,#faf8f3,#fffefa);box-shadow:0 9px 27px rgba(23,39,62,.035)}.discovery-card:focus-within{border-color:var(--teal)}.discovery-kicker{font:600 10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.07em;color:#976048}.discovery-card h3{font:600 30px/1.08 var(--serif);margin:14px 0 9px}.discovery-card>p{font-size:13px;color:var(--muted);margin:0 0 19px;min-height:42px}.discovery-trigger{width:100%;border:1px solid #9dafab;padding:11px 13px;border-radius:10px;color:var(--ink);background:#fff;text-align:left;display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:700;min-height:46px}.discovery-trigger[aria-expanded=true]{background:#e5eee8;color:#235a4b;border-color:#799f90}.discovery-trigger:hover{background:#edf3ef}.discovery-answer[hidden]{display:none!important}.discovery-answer{border-top:1px solid var(--line);padding-top:17px;margin-top:17px}.discovery-answer p{font-size:13px;line-height:1.6;color:#394d5b}.discovery-actions{display:flex;gap:9px;flex-wrap:wrap}.discovery-actions a{font-size:12px;font-weight:700;text-underline-offset:4px;border-bottom:1px solid #b6d2c5;padding:7px 0}.discovery-actions a.discovery-qcm{background:var(--teal);border:0;color:white;border-radius:8px;padding:9px 11px}.impact-tag{display:inline-flex;align-self:flex-start;font:600 10px/1.4 var(--mono);color:#655022;border:1px solid #e9dabb;background:#f9f2e3;border-radius:7px;padding:5px 8px;margin:0 0 10px}.five-ai-section{background:#e9efe8;padding:60px 0 64px;border-block:1px solid #d6e2d8}.five-ai-content{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:35px;align-items:center}.five-ai-content h2{margin:9px 0 12px}.five-ai-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}.five-ai-tags span{font:600 11px/1.6 var(--mono);background:#fffefa;border:1px solid #bdccc0;border-radius:100px;padding:9px 12px}.ai-disclosure{margin-top:23px;background:#fffefa;border:1px solid #c8d8ca;border-radius:12px;padding:0 18px}.ai-disclosure summary{cursor:pointer;font-size:13px;font-weight:700;padding:17px 3px;min-height:44px}.ai-disclosure summary:focus-visible{outline:3px solid #e0a24e;outline-offset:2px}.ai-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 25px;border-top:1px solid #e2e8e2;padding:18px 4px 5px}.ai-detail-grid p{font-size:12px;margin:0 0 9px}.ai-disclaimer{font-size:12px;color:#576675;max-width:850px;padding:2px 4px 12px}.discovery-section .eyebrow,.five-ai-section .eyebrow{margin-bottom:0}
+@media(max-width:950px){.discovery-grid{grid-template-columns:1fr 1fr}.discovery-grid .discovery-card:last-child{grid-column:span 2}.five-ai-content{grid-template-columns:1fr}.five-ai-tags{justify-content:flex-start}}
+@media(max-width:700px){.discovery-section{padding:53px 0 60px}.discovery-header{display:block}.discovery-hint{display:block;margin-top:18px}.discovery-grid{grid-template-columns:1fr}.discovery-grid .discovery-card:last-child{grid-column:auto}.discovery-card>p{min-height:0}.five-ai-section{padding:49px 0}.ai-detail-grid{grid-template-columns:1fr}.filter-row{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding:2px 1px 10px}.filter{white-space:nowrap;flex:0 0 auto;min-height:43px}body{padding-bottom:calc(75px + env(safe-area-inset-bottom))}}
+</style>
+  <script src="assets/doctrine-share.js" defer></script>
 </head>
 <body>
-<nav class="doctrine-navigation" aria-label="Navigation de la Doctrine">
-  <a class="doctrine-navigation-drive" href="https://drive.google.com/drive/folders/1q9m_hdS9y0ShBcaDAjA-21KrJyV-l5la" target="_blank" rel="noopener">Documents de la Doctrine sur Drive</a>
-</nav>
-
-<nav class="nav">
-  <a href="#accueil" class="brand">
-    <span class="brand-name">Doctrine Éconologique</span>
-    <span class="brand-version">v5.1</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#accueil">Accueil</a></li>
-    <li><a href="#piliers">Piliers</a></li>
-    <li><a href="#positionner">Se positionner</a></li>
-    <li><a href="./questionnaires/">Questionnaires</a></li>
-    <li><a href="#methode">Méthode</a></li>
-    <li><a href="./a-propos/">À propos</a></li>
-    <li><a href="https://drive.google.com/drive/folders/1q9m_hdS9y0ShBcaDAjA-21KrJyV-l5la" target="_blank" rel="noopener">Drive</a></li>
-  </ul>
-</nav>
-
-<main>
-<section class="hero" id="accueil">
-  <div class="hero-kicker">Manifeste</div>
-  <h1>Une France qui produit,<br><em>répare</em>, transmet.</h1>
-  <p class="hero-lede">Un cadre institutionnel français pour la souveraineté énergétique, la durabilité obligatoire, le capital humain reclassé, la justice contributive et la démocratie décisionnelle. Dix-sept numéros, quatorze piliers publiés, trois chantiers : le XIV, Amortissement de la dette (non audité), le XVI, Autoroutes, et le XVII, Propreté publique et responsabilité du déchet (non encore publiés).</p>
-  <div class="hero-byline">Jean Paul Poignand · Côte d'Azur & Besançon</div>
-</section>
-
-<section class="finalite-wrap" aria-labelledby="finalite-titre">
-  <div class="finalite-card">
-    <h2 id="finalite-titre">La finalité de ce site : le vote responsable</h2>
-    <p>Chaque pilier de la doctrine apporte des leviers chiffrés et sourcés. Le bulletin d'arbitrage les réunit : vous cochez, vous déplacez les curseurs, et vous voyez ce que chaque choix coûte ou fait perdre.</p>
-    <p>Notre objectif : qu'en France, chaque citoyen puisse un jour, au moment de sa déclaration de revenus, répartir l'effort budgétaire en connaissance de cause, puis découvrir les choix de ses compatriotes.</p>
-    <p><strong>Dès 2026, c'est techniquement possible.</strong> Il commencerait par une consultation budgétaire citoyenne, facultative et anonyme. Ensuite viendrait une part réelle de l'impôt sur le revenu, de 1 à 5 %, affectée selon les choix exprimés, comme le fait déjà l'Italie.</p>
-    <blockquote>« Tous les Citoyens ont le droit de constater, par eux-mêmes ou par leurs représentants, la nécessité de la contribution publique […] d'en suivre l'emploi. » <cite>— Déclaration des droits de l'homme et du citoyen, article 14</cite></blockquote>
-    <a class="finalite-button" href="bulletin-arbitrage/">Essayer le bulletin d'arbitrage →</a>
+<a href="#main" class="skip">Aller au contenu</a>
+<header class="site-header"><div class="container header-inner">
+ <a class="brand" href="#accueil" aria-label="Doctrine Éconologique, accueil"><span class="brand-mark dlogo-mounted"><img src="assets/identite/symbole-perplexity.png" width="44" height="44" alt="" decoding="async"></span><span><span class="brand-name">Doctrine Éconologique</span><span class="brand-caption">Comprendre · Comparer · Décider</span></span></a>
+ <button class="menu-toggle" id="menu-toggle" aria-controls="nav-links" aria-expanded="false">☰ <span class="sr-only">Menu</span></button>
+ <nav class="nav-links" id="nav-links" aria-label="Navigation principale"><a href="#decouverte">Découvrir en 90 s</a><a href="#comprendre">Comprendre</a><a href="#explorer">Explorer les sujets</a><a href="#methode">Notre méthode</a><a href="#qcm" class="nav-action">Les QCM citoyens ↗</a></nav>
+</div></header>
+<main id="main">
+<section class="hero" id="accueil"><div class="container hero-grid">
+  <div><p class="eyebrow">Une démarche citoyenne · indépendante des partis</p><h1>Une économie qui parle de <em>votre vie.</em></h1><p class="lead">Énergie, retraites, emplois, argent public : derrière les grands débats se cachent des questions très concrètes. Ici, chaque sujet se découvre simplement, puis se vérifie dans les chiffres et les sources.</p><div class="cta-row"><a class="btn btn-primary" href="#qcm">Commencer un QCM <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="#decouverte">Découvrir en 90 s</a></div><div class="hero-note"><span aria-hidden="true"></span> Une France qui produit, répare et transmet.</div></div>
+  <aside class="question-board" aria-label="Accès rapide par question"><div class="board-head"><span>Votre point de départ</span><span class="board-dot" aria-hidden="true"></span></div><h2>Qu'est-ce qui vous concerne aujourd'hui ?</h2><div class="question-list">
+  <button type="button" class="question-btn" data-focus="1"><span>Ma facture d'énergie et ses causes</span><span aria-hidden="true">↗</span></button>
+  <button type="button" class="question-btn" data-focus="2"><span>Des objets qui durent et se réparent</span><span aria-hidden="true">↗</span></button>
+  <button type="button" class="question-btn" data-focus="5"><span>L'avenir de mes proches âgés</span><span aria-hidden="true">↗</span></button>
+  <button type="button" class="question-btn" data-focus="3"><span>L'utilisation de nos impôts</span><span aria-hidden="true">↗</span></button>
+  </div><p class="board-foot">Choisissez une question : le dossier correspondant s'affichera plus bas.</p></aside>
+</div></section>
+<section class="stats" aria-label="Repères du site"><div class="container stats-grid"><div class="stats-item"><strong class="stats-number">17</strong><p>sujets à explorer<br>à votre rythme</p></div><div class="stats-item"><strong class="stats-number">4</strong><p>grandes portes d'entrée<br>pour s'orienter</p></div><div class="stats-item"><strong class="stats-number">1</strong><p>méthode : distinguer les faits,<br>les calculs et les propositions</p></div></div></section>
+<section class="discovery-section" id="decouverte" aria-labelledby="discovery-title"><div class="container">
+  <div class="discovery-header"><div><p class="eyebrow">Nouveauté Grok × ChatGPT · Une minute pour démarrer</p><h2 id="discovery-title">Qu'est-ce qui vous préoccupe aujourd'hui ?</h2><p>Choisissez un sujet. Une première explication apparaît, puis vous pouvez lire le dossier ou répondre à un questionnaire. Vous gardez le choix d'approfondir.</p></div><span class="discovery-hint">3 portes d'entrée · à votre rythme</span></div>
+  <div class="discovery-grid" id="discovery-grid">
+    <article class="discovery-card"><span class="discovery-kicker">01 · Prix du quotidien</span><h3>Ma facture d'énergie</h3><p>Pourquoi l'énergie pèse-t-elle autant sur mon budget ?</p><button type="button" class="discovery-trigger" aria-expanded="false" aria-controls="discovery-energie" data-discovery="energie">Comprendre en une phrase <span aria-hidden="true">＋</span></button><div class="discovery-answer" id="discovery-energie" hidden><p>Le coût de production, les réseaux, les taxes et les règles de marché peuvent influencer la facture : la Doctrine propose d'examiner ces mécanismes séparément.</p><div class="discovery-actions"><a href="/piliers/energie-souveraine/">Lire le dossier ↗</a><a class="discovery-qcm" href="/qcm-energie/">QCM Énergie ↗</a></div></div></article>
+    <article class="discovery-card"><span class="discovery-kicker">02 · Réparer et produire</span><h3>Des objets qui durent</h3><p>Et si réparer devenait plus simple que remplacer ?</p><button type="button" class="discovery-trigger" aria-expanded="false" aria-controls="discovery-objets" data-discovery="objets">Comprendre en une phrase <span aria-hidden="true">＋</span></button><div class="discovery-answer" id="discovery-objets" hidden><p>La Doctrine étudie l'allongement de la durée de vie des produits et ses effets possibles sur les réparateurs, les ménages et les déchets.</p><div class="discovery-actions"><a href="/piliers/garantie-decennale/">Lire le dossier ↗</a><a class="discovery-qcm" href="#explorer">Explorer les thèmes ↓</a></div></div></article>
+    <article class="discovery-card"><span class="discovery-kicker">03 · Solidarité</span><h3>L'avenir de nos proches</h3><p>Comment concilier solidarité, soins et argent public ?</p><button type="button" class="discovery-trigger" aria-expanded="false" aria-controls="discovery-proches" data-discovery="proches">Comprendre en une phrase <span aria-hidden="true">＋</span></button><div class="discovery-answer" id="discovery-proches" hidden><p>Le grand âge et les retraites imposent des arbitrages concrets sur les moyens, les métiers du soin et la justice entre générations.</p><div class="discovery-actions"><a href="/piliers/grand-age-ehpad/">Lire le dossier ↗</a><a class="discovery-qcm" href="/qcm-aspa/">QCM Retraites ↗</a></div></div></article>
   </div>
-</section>
-
-<div class="entry-wrap">
-  <section class="entry-card fade-in" aria-label="Outils citoyens principaux">
-    <div class="entry-kicker">Bulletin citoyen dynamique</div>
-    <h2>Et si on votait <em>différemment</em> ?</h2>
-    <p class="entry-lede">Deux portes d'entrée : voter sur des décisions précises plutôt que sur un programme, ou explorer ce qui aurait pu changer si la France avait fait d'autres choix politiques.</p>
-    <div class="entry-tools">
-      <a class="entry-tool" href="./qcm-democratie-decisionnelle/">
-        <div class="entry-tool-label">Bulletin citoyen</div>
-        <h3>Votez vos idées</h3>
-        <p>Répondez à 12 axes concrets, puis découvrez les partis politiques les plus proches, les écarts et les angles morts démocratiques. Version 2 du 18 octobre 2026 : 15 partis, positions sourcées.</p>
-        <div class="entry-tool-cta">Lancer le bulletin →</div>
-      </a>
-      <a class="entry-tool" href="./qcm-general/">
-        <div class="entry-tool-label">Histoire alternative</div>
-        <h3>Et si on avait voté différemment ?</h3>
-        <p>Explorer les conséquences possibles de choix électoraux passés et comparer leurs effets économiques, sociaux et productifs.</p>
-        <div class="entry-tool-cta">Explorer les scénarios →</div>
-      </a>
-    </div>
-  </section>
-</div>
-
-<div class="ps-wrap">
-  <div class="ps-grid">
-    <div class="ps-card fade-in">
-      <div class="ps-card-label">◉ Le constat</div>
-      <h3>Une économie qui fuit, une démocratie de programmes</h3>
-      <p>Dépendance énergétique, désindustrialisation, obsolescence programmée, perte de compétences, captation de valeur par les pays voisins. Le contribuable paie sans voir, sans décider, sans contrôler.</p>
-    </div>
-    <div class="ps-card solution fade-in">
-      <div class="ps-card-label">◆ La doctrine</div>
-      <h3>Dix-sept numéros, quatorze piliers publiés, trois chantiers : le XIV, Amortissement de la dette (non audité), le XVI, Autoroutes, et le XVII, Propreté publique et responsabilité du déchet (non encore publiés).</h3>
-      <p>Énergie souveraine, garantie décennale, financement public, retraites et ASPA, grand âge, bâtiment et métiers utiles, éconologie culturelle, frontaliers, agriculture, textile, mobilité, friction monétique, démocratie décisionnelle et fraude fiscale. Chaque pilier publié est documenté, chiffré et soumis au crible de cinq intelligences artificielles.</p>
-    </div>
-  </div>
-</div>
-
-<section class="section" id="decouvrir">
-  <div class="section-head fade-in">
-    <div class="section-kicker">Étude courte · 2 minutes</div>
-    <h2 class="section-title">Commencer par <em>un chiffre</em>.</h2>
-    <p class="section-sub">Avant la doctrine, l'observation. Cinq questions pour ouvrir les yeux sur ce que la France assume seule.</p>
-  </div>
-  <div class="study-card fade-in">
-    <div class="study-label">Pilier VIII — Frontaliers</div>
-    <h3>Ce que la France assume seule.</h3>
-    <p>En 2022, 450 000 résidents de France travaillaient en Suisse, au Luxembourg, en Allemagne ou en Belgique. Quand l'un d'eux perd son emploi, c'est l'assurance chômage française qui l'indemnise, alors qu'il a cotisé dans son pays d'emploi. Monaco, lui, cotise au régime français. Combien les pays d'emploi remboursent-ils ?</p>
-    <div class="study-stats">
-      <div class="study-stat-box">
-        <div class="study-stat-num">450 000</div>
-        <div class="study-stat-label">Frontaliers résidant en France (2022)</div>
-      </div>
-      <div class="study-stat-box">
-        <div class="study-stat-num">860 M€</div>
-        <div class="study-stat-label">Surcoût net pour l'assurance chômage française en 2025</div>
-      </div>
-      <div class="study-stat-box allouee">
-        <div class="study-stat-num">≈ 25 %</div>
-        <div class="study-stat-label">Seule part remboursée par les pays d'emploi — source Unédic, 2025</div>
-      </div>
-    </div>
-    <a href="./fiches/pilier-08-aller-droit-au-but.pdf" target="_blank" class="read-link" rel="noopener">Je veux en savoir plus <span>→</span> <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-  </div>
-</section>
-
-<section id="piliers">
-  <div class="section-head fade-in" style="padding:0 28px">
-    <div class="section-kicker">Les piliers documentés</div>
-    <h2 class="section-title">Sommaire des <em>piliers</em>.</h2>
-    <p class="section-sub">Les piliers conservent leur numérotation pour assurer la traçabilité de la doctrine et permettre l'approfondissement via les documents sources. <a href="./piliers/">Voir la liste complète des piliers →</a> Dix-sept numéros, quatorze piliers publiés, trois chantiers : le XIV, Amortissement de la dette (non audité), le XVI, Autoroutes, et le XVII, Propreté publique et responsabilité du déchet (non encore publiés).</p>
-  </div>
-  <div class="pillars-wrap">
-    <div class="pillars-grid">
-      <article class="pillar-card energie fade-in" id="pilier-1">
-        <div class="pillar-num">Pilier I</div>
-        <h3>Énergie souveraine</h3>
-        <div class="pillar-tagline">L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité.</div>
-        <div class="pillar-stat">Nucléaire · biométhane local · rendement national</div>
-        <div class="pillar-actions">
-          <a href="./piliers/energie-souveraine/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-01-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-energie/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1npocKsHkCjCufZIIVSlF7KJoADbXgbal" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card garantie fade-in" id="pilier-2">
-        <div class="pillar-num">Pilier II</div>
-        <h3>Garantie décennale</h3>
-        <div class="pillar-tagline">Comment rendre aux ménages de l'ordre de 2 milliards d'euros par an ?</div>
-        <div class="pillar-stat">Dix ans de garantie transmissible à la revente · pièces et logiciels garantis 10 ans · réparation de proximité</div>
-        <div class="pillar-actions">
-          <a href="./piliers/garantie-decennale/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-02-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./fiches/pilier-02-dossier-complet.pdf" target="_blank" class="pillar-link" rel="noopener">Dossier complet → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Économie ménages en France</div>
-            <div class="pillar-highlight-num">≈ 2 Md€</div>
-            <div class="pillar-highlight-text">par an à maturité (estimation, de 1 à 3,5 Md€)</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1VlV4-e7jEMAnLcdf2ix7W1-yOPvC-0pS" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card finance fade-in" id="pilier-3">
-        <div class="pillar-num">Pilier III</div>
-        <h3>Financement public</h3>
-        <div class="pillar-tagline">Transparence et contrôle des flux. Réallouer avant de taxer.</div>
-        <div class="pillar-stat">Auditer · plafonner · sanctuariser</div>
-        <div class="pillar-actions">
-          <a href="./piliers/financement-public/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-03-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Associations · immigration et intégration</div>
-            <div class="pillar-highlight-num">+ 52 %</div>
-            <div class="pillar-highlight-text">de financements publics entre 2019 et 2023, quand les demandes d'asile progressaient de 7,4 % (Cour des comptes)</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1JmkaqTYJSyaNsJCxe0MQb0Q4XS2N4RF3" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card aspa fade-in" id="pilier-4">
-        <div class="pillar-num">Pilier IV</div>
-        <h3>Réparation des retraites</h3>
-        <div class="pillar-tagline">Minimum vieillesse, ASPA et justice contributive.</div>
-        <div class="pillar-stat">Solidarité nationale · cotisations · dignité des anciens</div>
-        <div class="pillar-actions">
-          <a href="./piliers/reparation-des-retraites/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-04-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-aspa/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Idée force</div>
-            <div class="pillar-highlight-num">Justice contributive</div>
-            <div class="pillar-highlight-text">protéger les anciens pauvres sans effacer l'effort de ceux qui ont cotisé</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1F6lpxKYBYRVzaIoV7nUszpBhj144AN9f" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card grandage fade-in" id="pilier-5">
-        <div class="pillar-num">Pilier V</div>
-        <h3>Grand âge et EHPAD</h3>
-        <div class="pillar-tagline">Prévenir coûte moins cher que réparer.</div>
-        <div class="pillar-stat">Ratios de soignants · domicile d’abord · retour des soignants</div>
-        <div class="pillar-actions">
-          <a href="./piliers/grand-age-ehpad/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-05-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./fiches/pilier-05-annexe-chiffres.pdf" target="_blank" class="pillar-link" rel="noopener">Annexe chiffrée → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">En 2050 (DREES)</div>
-            <div class="pillar-highlight-num">2,8 millions</div>
-            <div class="pillar-highlight-text">de seniors en perte d’autonomie, contre 2,0 millions en 2021</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1k5fKJQzjj6wzmB_NHnVyAC9nw8wFSXDD" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card batiment fade-in" id="pilier-6">
-        <div class="pillar-num">Pilier VI</div>
-        <h3>Bâtiment et métiers utiles</h3>
-        <div class="pillar-tagline">Le climat se sauve avec une truelle, pas avec un clavier.</div>
-        <div class="pillar-stat">Rendre les métiers du bâtiment attractifs : sortie de chantier garantie, pause de récupération, lycées d’excellence</div>
-        <div class="pillar-actions">
-          <a href="./piliers/batiment-metiers-utiles/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-06-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-pilier-vi/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-          <a href="./fiches/pilier-06-jeunes-france-allemagne.pdf" target="_blank" class="pillar-link" rel="noopener">Jeunes sans emploi : France-Allemagne → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Couvreurs (France Travail, 2026)</div>
-            <div class="pillar-highlight-num">79,6 %</div>
-            <div class="pillar-highlight-text">des recrutements annoncés difficiles par l'employeur, contre un peu plus de 4 sur 10 en moyenne, 43,8 % (France Travail, BMO 2026, relevé du 16 octobre 2026)</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1BBlBBeG5u2fo64M1uGiEY9qy9vXDumYn" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card culture fade-in" id="pilier-7">
-        <div class="pillar-num">Pilier VII</div>
-        <h3>Éconologie culturelle</h3>
-        <div class="pillar-tagline">La culture comme bien commun. Vérité des coûts, justice territoriale.</div>
-        <div class="pillar-stat">Reçu fiscal culturel · création de proximité</div>
-        <div class="pillar-actions">
-          <a href="./piliers/econologie-culturelle/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-07-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./fiches/pilier-07-annexe-chiffrage.pdf" target="_blank" class="pillar-link" rel="noopener">Annexe de chiffrage → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Idée force</div>
-            <div class="pillar-highlight-num">Reçu fiscal culturel</div>
-            <div class="pillar-highlight-text">chaque contribuable voit ce qu'il finance</div>
-          </div>
-          <figure class="p7-billets" aria-label="Deux billets : ce que paie le spectateur et ce que paie l'argent public, au cinéma et à l'Opéra de Paris">
-            <div class="p7-kicker">Ce que vous payez · ce que paie le contribuable</div>
-            <div class="p7-billet p7-cinema">
-              <div class="p7-entete"><span class="p7-lieu">Cinéma de quartier</span><span class="p7-oeuvre">Séance du soir</span></div>
-              <div class="p7-ligne"><span>Vous payez</span><strong>12,50 €</strong></div>
-              <div class="p7-ligne p7-public"><span>Financement public moyen</span><strong>≈ 2 €</strong></div>
-            </div>
-            <div class="p7-billet p7-opera">
-              <div class="p7-entete"><span class="p7-lieu">Opéra national de Paris</span><span class="p7-oeuvre">La Traviata</span></div>
-              <div class="p7-ligne"><span>Vous payez</span><strong>95 €</strong></div>
-              <div class="p7-ligne p7-public"><span>Financement public moyen</span><strong>≈ 120 €</strong></div>
-            </div>
-            <p class="p7-chute">À l'opéra, le contribuable paie environ 60&nbsp;fois plus par place qu'au cinéma.</p>
-            <p class="p7-slogan">Le peuple paie, l'élite assiste.</p>
-            <figcaption class="p7-sources">Calcul : soutien du CNC au cinéma 315,5&nbsp;M€ ÷ 156,2&nbsp;M d'entrées (CNC, 2025), financé surtout par des taxes sur le secteur · subvention de l'État 100,7&nbsp;M€ ÷ 829&nbsp;274 spectateurs (Opéra de Paris, 2024). Prix des places : exemples.</figcaption>
-          </figure>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1z7PvknJlYJSx3A7cvdMKTWiAjMK92z84" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card frontaliers fade-in" id="pilier-8">
-        <div class="pillar-num">Pilier VIII</div>
-        <h3>Frontaliers et capital humain</h3>
-        <div class="pillar-tagline">Cotisé là-bas, indemnisé ici.</div>
-        <div class="pillar-stat">Assurance chômage · compensation genevoise · modèle monégasque</div>
-        <div class="pillar-actions">
-          <a href="./piliers/frontaliers-capital-humain/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-08-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-immigrants-journee/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Assurance chômage (Unédic, 2025)</div>
-            <div class="pillar-highlight-num">860 M€</div>
-            <div class="pillar-highlight-text">de surcoût net : environ un quart seulement remboursé par les pays d’emploi</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/11Ln3_aQ7qKAocDn42RKUL8nVhOI878WW" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card agriculture fade-in" id="pilier-9">
-        <div class="pillar-num">Pilier IX</div>
-        <h3>Agriculture et alimentation souveraine</h3>
-        <div class="pillar-tagline">Ne pas importer ce qu’on interdit de produire.</div>
-        <div class="pillar-stat">Clauses miroirs · contingents plafonnés · transition payée avant d’être imposée</div>
-        <div class="pillar-actions">
-          <a href="./piliers/agriculture-alimentation/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-09-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./fiches/pilier-09-annexe-chiffres.pdf" target="_blank" class="pillar-link" rel="noopener">Annexe chiffrée → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <a href="./fiches/pilier-09-note-loue.pdf" target="_blank" class="pillar-link" rel="noopener">La Loue, le karst, le Comté → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Ministère de l’Agriculture (1982 → 2023)</div>
-            <div class="pillar-highlight-num">× 3</div>
-            <div class="pillar-highlight-text">d’agents par exploitation : 1 pour 40 fermes, puis 1 pour 13</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/11YrF4EXYCOozepElOSPWlNF70-VEpZ47" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card textile fade-in" id="pilier-10">
-        <div class="pillar-num">Pilier X</div>
-        <h3>Textile, habillement, chaussure</h3>
-        <div class="pillar-tagline">Fabriquer ici, garder ce qui sert.</div>
-        <div class="pillar-stat">Aides liées à l’emploi · lin filé en France · achat durable accessible</div>
-        <div class="pillar-actions">
-          <a href="./piliers/textile-habillement-chaussure/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-10-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-textile/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-          <a href="./fiches/pilier-10-note-autonomie.pdf" target="_blank" class="pillar-link" rel="noopener">Et si la France fabriquait tout ce qu’elle porte ? → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <a href="./fiches/pilier-10-annexe-lin-eau.pdf" target="_blank" class="pillar-link" rel="noopener">Le lin, l’eau et la matière française → <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">S’habiller en France, au nécessaire</div>
-            <div class="pillar-highlight-num">580 000</div>
-            <div class="pillar-highlight-text">emplois directs, pour 15 vêtements et 2 paires par an au lieu de 43 et 4, à budget presque égal (estimation)</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1PBE8pwxsbmzuH58qnforcdwDbMYwZs5s" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card mobilite fade-in" id="pilier-11">
-        <div class="pillar-num">Pilier XI</div>
-        <h3>Mobilité et sécurité routière</h3>
-        <div class="pillar-tagline">Compter les morts, pas les amendes.</div>
-        <div class="pillar-stat">Bilan des radars · dépistage rééquilibré · prévention embarquée sans transmission</div>
-        <div class="pillar-actions">
-          <a href="./piliers/mobilite-securite-routiere/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-11-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Amendes routières (Cour des comptes, 2024)</div>
-            <div class="pillar-highlight-num">38 %</div>
-            <div class="pillar-highlight-text">des dépenses vont au désendettement de l’État, sans lien avec la sécurité routière</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1BwJzGDWrqaIjap_VORdQJEFfyrX_h4m_" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card monetique fade-in" id="pilier-12">
-        <div class="pillar-num">Pilier XII</div>
-        <h3>Friction monétique</h3>
-        <div class="pillar-tagline">Être payé ne doit pas coûter plus cher aux petits.</div>
-        <div class="pillar-stat">Coût tout compris affiché · plafond des micro-paiements · réseau national</div>
-        <div class="pillar-actions">
-          <a href="./piliers/friction-monetique/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-12-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Réseau national CB</div>
-            <div class="pillar-highlight-num">− 26 points</div>
-            <div class="pillar-highlight-text">de part des paiements en quatre ans, au profit de Visa et Mastercard (estimation)</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1lum1ArBIVFJhxdQI4pEA5ECYm67DXBO0" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card democratie fade-in" id="pilier-13">
-        <div class="pillar-num">Pilier XIII</div>
-        <h3>Démocratie décisionnelle</h3>
-        <div class="pillar-tagline">Décider sur les sujets, pas seulement sur les visages.</div>
-        <div class="pillar-stat">Bulletin décisionnel · double vote · matrice des partis</div>
-        <div class="pillar-actions">
-          <a href="./piliers/democratie-decisionnelle/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-13-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-democratie-decisionnelle/" class="pillar-qcm-button">Remplir mon bulletin de vote →</a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Confiance (Cevipof, 2025)</div>
-            <div class="pillar-highlight-num">61 % / 24 %</div>
-            <div class="pillar-highlight-text">maire contre Assemblée nationale</div>
-          </div>
-          <aside class="pillar-integrity" aria-labelledby="integrite-elus-titre">
-            <h4 id="integrite-elus-titre">Transparence et intégrité des élus</h4>
-            <p>« Les programmes politiques disent ce que les candidats promettent. Leurs décisions, leurs votes et les informations judiciaires publiquement documentées permettent aussi d’éclairer le jugement citoyen. »</p>
-            <div class="pillar-integrity-links">
-              <a class="btn-touch btn-touch--fluid pillar-casier-btn" href="https://casier-politique.fr/" target="_blank" rel="noopener noreferrer"><span><span aria-hidden="true">👉 </span>Consulter Casier Politique</span><span class="new-tab-note">Ressource externe (s'ouvre dans un nouvel onglet)</span></a>
-              <a href="https://casier-politique.fr/about" target="_blank" rel="noopener noreferrer">Présentation du site <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a>
-            </div>
-            <p class="integrity-note">Ressource externe — La Doctrine Éconologique ne garantit pas l’exhaustivité ni l’actualisation des informations publiées par ce tiers. Site tiers, non registre judiciaire officiel ; présomption d’innocence.</p>
-          </aside>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1BpX-gouvJTwx2vG-RHorHNat3VxAj0Jr" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card dette fade-in" id="pilier-14">
-        <div class="pillar-num">Pilier XIV</div>
-        <h3>Amortissement de la dette</h3>
-        <div class="pillar-tagline">On ne solde pas une année de production en la reclassant.</div>
-        <div class="pillar-stat">Excédent primaire · pensions futures plafonnées · énergie et logement</div>
-        <div class="pillar-actions">
-          <p class="pillar-highlight-label">Chantier non audité · hors des quatorze piliers publiés du guide</p>
-          <a href="./piliers/amortissement-dette/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-14-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./piliers/amortissement-dette/document-maitre/" class="pillar-link">Document maître →</a>
-          <a href="./bulletin-arbitrage/index.html" class="pillar-link">Bulletin d'arbitrage →</a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Dette publique (Insee, fin juin 2026)</div>
-            <div class="pillar-highlight-num">3 595,5 Md€ · 119 % du PIB</div>
-            <div class="pillar-highlight-text">[FAIT] Stock de départ ; les trajectoires d’amortissement restent des hypothèses.</div>
-          </div>
-          <p class="pillar-highlight-text">Le XIV traite l’amortissement du stock de dette ; voir le <a href="#pilier-3">III pour les agences et flux de financement public</a>, le <a href="#pilier-4">IV pour la réparation des petites retraites</a> et le <a href="#pilier-11">XI pour le budget de mobilité et de sécurité routière</a>.</p>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1GrCVMkHaVr6ZLhvO6RHCM9SvYGM-M-5d" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card fraude fade-in" id="pilier-15">
-        <div class="pillar-num">Pilier XV</div>
-        <h3>Fraude fiscale</h3>
-        <div class="pillar-tagline">Vérité des chiffres, justice contributive et souveraineté fiscale effective.</div>
-        <div class="pillar-stat">Écart fiscal · TVA · contrôle fiscal · facilitateurs</div>
-        <div class="pillar-actions">
-          <a href="./piliers/fraude-fiscale/" class="pillar-link">Lire le pilier →<small>Page complète : texte, sources et questionnaires</small></a>
-          <a href="./fiches/pilier-15-aller-droit-au-but.pdf" target="_blank" class="pillar-link" rel="noopener">Version PDF →<small>PDF · l’essentiel du pilier en quelques pages <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></small></a>
-          <a href="./qcm-fraude-fiscale/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-label">Idée force</div>
-            <div class="pillar-highlight-num">Aucun chiffre central unique</div>
-            <div class="pillar-highlight-text">distinguer faits DGFiP, estimations sectorielles et ordres de grandeur non officiels</div>
-          </div>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1W93q74ry8jbgD9hPQ8JUFNqopx71wAZo" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card autoroutes fade-in" id="pilier-16">
-        <div class="pillar-num">Pilier XVI</div>
-        <h3>Autoroutes et fin des concessions</h3>
-        <div class="pillar-tagline">Ne pas payer pour récupérer.</div>
-        <div class="pillar-stat">Concessions · biens de retour · souveraineté des infrastructures</div>
-        <div class="pillar-actions">
-          <p class="pillar-highlight-label">Chantier · non encore publié</p>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-text">2031–2036 · premières grandes concessions à échéance ; les biens de retour reviennent de plein droit et gratuitement à l’autorité concédante.</div>
-          </div>
-          <p class="pillar-highlight-text">Source : Sénat, rapport n° 709 (2020) · ART.</p>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1q9m_hdS9y0ShBcaDAjA-21KrJyV-l5la" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-      <article class="pillar-card proprete fade-in" id="pilier-17">
-        <div class="pillar-num">Pilier XVII</div>
-        <h3>Propreté publique et responsabilité du déchet</h3>
-        <div class="pillar-tagline">Libre de fumer, pas d’en laisser le déchet à tous.</div>
-        <div class="pillar-stat">Consigne mégots · paquet tracé · responsabilité du producteur</div>
-        <div class="pillar-actions">
-          <p class="pillar-highlight-label">Chantier · synthèse arbitrée en cours · montant de la consigne non arrêté</p>
-          <div class="pillar-highlight">
-            <div class="pillar-highlight-text">Ville de Paris (2025) · coût estimé : 10 M€ par an · 4 à 5 millions de mégots ramassés par jour.</div>
-          </div>
-          <p class="pillar-highlight-text">Précision : les 10 M€ correspondent au coût du jet de mégots au sol pour la collectivité. Source : Ville de Paris, communiqué du 20 mai 2025.</p>
-          <a href="./qcm-consigne-megots/" class="pillar-qcm-button">Répondre au questionnaire →</a>
-        </div>
-        <a class="doctrine-pillar-drive" href="https://drive.google.com/drive/folders/1q9m_hdS9y0ShBcaDAjA-21KrJyV-l5la" target="_blank" rel="noopener">Approfondir le pilier sur Drive →</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<div class="position-dark" id="positionner">
-  <div class="inner">
-    <div class="section-head fade-in">
-      <div class="section-kicker">Bulletin citoyen dynamique</div>
-      <h2>Quel <em>parti politique</em> porte vos idées ?</h2>
-      <p class="section-sub">Deux entrées complémentaires : voter sur les sujets aujourd'hui, ou explorer ce que d'autres choix politiques passés auraient pu produire.</p>
-    </div>
-    <div class="manifesto-text fade-in">
-      <span class="line">Le peuple informé <span class="verb">vote</span>.</span>
-      <span class="line">Les élus <span class="verb">exécutent</span>.</span>
-      <span class="line">Les partis politiques <span class="verb">se positionnent</span>.</span>
-      <span class="line">La matrice <span class="verb">vérifie</span>.</span>
-    </div>
-    <div class="position-actions">
-      <a href="./qcm-democratie-decisionnelle/" class="position-cta fade-in">Et si on votait différemment ? <span>→</span><span class="label-beta">BÊTA</span></a>
-      <a href="./qcm-general/" class="position-cta secondary fade-in">Et si on avait voté différemment ? <span>→</span></a>
-    </div>
-    <p class="position-note fade-in"><a href="./questionnaires/">Voir tous les questionnaires de la doctrine</a></p>
-        <p class="position-note fade-in">Version de travail en audit. La matrice des partis politiques est consolidée au fur et à mesure que les sources officielles sont vérifiées et archivées.</p>
-  </div>
-</div>
-
-<section class="section" id="methode">
-  <div class="section-head fade-in">
-    <div class="section-kicker">Méthode</div>
-    <h2 class="section-title">Le <em>comité de rédaction</em>.</h2>
-  </div>
-  <p class="committee-intro fade-in">La doctrine est construite par <em>triangulation contradictoire</em>. Chaque thèse est soumise à cinq intelligences artificielles aux biais et architectures distincts. Leurs désaccords révèlent les angles morts. Les arbitrages restent humains.</p>
-  <p class="committee-intro fade-in">La doctrine est portée par Jean Paul Poignand, qui tranche les arbitrages. <a href="./a-propos/">À propos de la doctrine et de son auteur →</a></p>
-  <div class="ia-grid">
-    <div class="ia-card fade-in"><div class="ia-mark claude">C</div><div class="ia-name">Claude</div><div class="ia-pub">Anthropic</div><div class="ia-role">Architecte, intégrateur</div></div>
-    <div class="ia-card fade-in"><div class="ia-mark gpt">G</div><div class="ia-name">ChatGPT</div><div class="ia-pub">OpenAI</div><div class="ia-role">Rigueur institutionnelle</div></div>
-    <div class="ia-card fade-in"><div class="ia-mark gemini">G</div><div class="ia-name">Gemini</div><div class="ia-pub">Google</div><div class="ia-role">Corrélations macro</div></div>
-    <div class="ia-card fade-in"><div class="ia-mark grok">X</div><div class="ia-name">Grok</div><div class="ia-pub">xAI</div><div class="ia-role">Données de terrain</div></div>
-    <div class="ia-card fade-in"><div class="ia-mark perplexity">P</div><div class="ia-name">Perplexity</div><div class="ia-pub">Perplexity AI</div><div class="ia-role">Sourcing systématique</div></div>
-  </div>
-  <p class="committee-note">Anthropic, OpenAI, Google, xAI et Perplexity AI sont des marques de leurs propriétaires respectifs. Leur mention ne suggère aucun partenariat ni endossement.</p>
-</section>
-
+</div></section>
+<span id="positionner" aria-hidden="true"></span>
+<section class="qcm-section" id="qcm" aria-labelledby="qcm-title"><div class="container">
+<div class="qcm-intro"><div><p class="eyebrow">Participez en quelques minutes</p><h2 id="qcm-title">Et vous, que décideriez-vous ?</h2><p>Pas besoin de connaître la Doctrine : un questionnaire vous aide à examiner des décisions concrètes, à votre rythme. Les réponses et les sources restent accessibles.</p></div><a class="qcm-all" href="/questionnaires/">Tous les questionnaires ↗</a></div>
+<div class="qcm-cards">
+<article class="qcm-card qcm-main"><span class="qcm-step">01 · Bulletin citoyen</span><h3>Et si on votait différemment ?</h3><p>Explorer les décisions et les arbitrages plutôt que les seules étiquettes.</p><a href="/qcm-democratie-decisionnelle/">Lancer le bulletin citoyen ↗</a></article>
+<article class="qcm-card"><span class="qcm-step">02 · Questionnaires transversaux</span><h3>Tester vos idées</h3><p>Un parcours général pour découvrir les questions économiques et citoyennes.</p><a href="/qcm-general/">Commencer le QCM général ↗</a></article>
+<article class="qcm-card"><span class="qcm-step">03 · Questionnaires thématiques</span><h3>Choisir un sujet précis</h3><p>Énergie, retraites, bâtiment, textile ou fraude fiscale : commencez où vous voulez.</p><a href="/questionnaires/">Choisir un thème ↗</a></article>
+</div><p class="qcm-note">Les questionnaires s'ouvrent sur le site officiel. La participation et les pages publiques existantes restent inchangées.</p>
+</div></section>
+<section class="section" id="comprendre"><div class="container"><div class="section-heading"><p class="eyebrow">Simple au départ · approfondi à l'arrivée</p><h2>Pas besoin d'être économiste pour avoir son mot à dire.</h2><p>La Doctrine Éconologique est un ensemble de travaux citoyens. Elle ne demande pas d'adhérer à un parti : elle invite à examiner des problèmes, les données disponibles et les solutions proposées.</p></div><div class="path-grid">
+  <article class="path-card"><span class="step-index">01</span><h3>Partir de votre quotidien</h3><p>Une facture, un emploi, une retraite, un service public : commencez par la question qui vous touche.</p></article>
+  <article class="path-card"><span class="step-index">02</span><h3>Voir ce que disent les sources</h3><p>Les données établies, les calculs, les hypothèses et les propositions doivent rester distincts.</p></article>
+  <article class="path-card"><span class="step-index">03</span><h3>Construire votre opinion</h3><p>Comparer les options, leurs coûts et leurs limites. Ne pas seulement choisir un slogan.</p></article>
+</div></div></section>
+<span id="piliers" aria-hidden="true"></span>
+<section class="section explore" id="explorer"><div class="container"><div class="explore-bar"><div class="section-heading"><p class="eyebrow">Explorer la doctrine</p><h2>À chacun sa porte d'entrée.</h2><p>Choisissez un thème ou recherchez directement un sujet. Les numéros des piliers restent accessibles, sans imposer un ordre de lecture.</p></div><label class="search" for="topic-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg><input id="topic-search" placeholder="Énergie, retraite, agriculture…" type="search" autocomplete="off" aria-label="Rechercher un sujet"></label></div>
+<div class="filter-row" role="group" aria-label="Filtrer les sujets"><button type="button" class="filter" data-filter="all" aria-pressed="true">Tous les sujets</button><button type="button" class="filter" data-filter="quotidien" aria-pressed="false">Vie quotidienne</button><button type="button" class="filter" data-filter="production" aria-pressed="false">Produire & travailler</button><button type="button" class="filter" data-filter="finances" aria-pressed="false">Argent public</button><button type="button" class="filter" data-filter="societe" aria-pressed="false">Démocratie & société</button></div>
+<p id="result-count" class="result-note" aria-live="polite">17 dossiers affichés</p>
+<div id="topic-grid" class="topic-grid"><article class="topic-card" id="dossier-1" data-original-anchor="pilier-1" data-group="quotidien" data-search="Énergie souveraine Pourquoi l’énergie pèse-t-elle autant sur nos prix et nos emplois ? Vivre au quotidien"><span id="pilier-1" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 01</span></div>
+  <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Factures</span><h3>Énergie souveraine</h3><p class="topic-question">Pourquoi l’énergie pèse-t-elle autant sur nos prix et nos emplois ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/energie-souveraine/" aria-label="Ouvrir le dossier Énergie souveraine sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-energie/">QCM du sujet ↗</a></div>
+</article>
+<article class="topic-card" id="dossier-2" data-original-anchor="pilier-2" data-group="quotidien" data-search="Garantie décennale Pourquoi remplacer un objet quand on pourrait le réparer durablement ? Vivre au quotidien"><span id="pilier-2" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 02</span></div>
+  <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Réparation</span><h3>Garantie décennale</h3><p class="topic-question">Pourquoi remplacer un objet quand on pourrait le réparer durablement ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/garantie-decennale/" aria-label="Ouvrir le dossier Garantie décennale sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="topic-card" id="dossier-3" data-original-anchor="pilier-3" data-group="finances" data-search="Financement public Comment suivre l’argent public et choisir ce qui mérite d’être financé ? Argent public"><span id="pilier-3" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-finances" aria-hidden="true">€</span><span class="topic-num">DOSSIER 03</span></div>
+  <p class="topic-category">Argent public</p><span class="impact-tag">Impact : Impôts</span><h3>Financement public</h3><p class="topic-question">Comment suivre l’argent public et choisir ce qui mérite d’être financé ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/financement-public/" aria-label="Ouvrir le dossier Financement public sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="topic-card" id="dossier-4" data-original-anchor="pilier-4" data-group="quotidien" data-search="Réparation des retraites Comment concilier solidarité, contributions et dignité des anciens ? Vivre au quotidien"><span id="pilier-4" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 04</span></div>
+  <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Retraites</span><h3>Réparation des retraites</h3><p class="topic-question">Comment concilier solidarité, contributions et dignité des anciens ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/reparation-des-retraites/" aria-label="Ouvrir le dossier Réparation des retraites sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-aspa/">QCM du sujet ↗</a></div>
+</article>
+<article class="topic-card" id="dossier-5" data-original-anchor="pilier-5" data-group="quotidien" data-search="Grand âge et EHPAD Comment mieux accompagner nos proches sans subir la pénurie de soignants ? Vivre au quotidien"><span id="pilier-5" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 05</span></div>
+  <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Solidarité</span><h3>Grand âge et EHPAD</h3><p class="topic-question">Comment mieux accompagner nos proches sans subir la pénurie de soignants ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/grand-age-ehpad/" aria-label="Ouvrir le dossier Grand âge et EHPAD sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="topic-card" id="dossier-6" data-original-anchor="pilier-6" data-group="production" data-search="Bâtiment et métiers utiles Comment redonner envie d’apprendre et d’exercer les métiers qui construisent ? Produire et travailler"><span id="pilier-6" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 06</span></div>
+  <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Emplois</span><h3>Bâtiment et métiers utiles</h3><p class="topic-question">Comment redonner envie d’apprendre et d’exercer les métiers qui construisent ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/batiment-metiers-utiles/" aria-label="Ouvrir le dossier Bâtiment et métiers utiles sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-pilier-vi/">QCM du sujet ↗</a></div>
+</article>
+<article class="topic-card" id="dossier-7" data-original-anchor="pilier-7" data-group="societe" data-search="Éconologie culturelle Qui paie réellement la culture, et comment la rendre accessible ? Démocratie et société"><span id="pilier-7" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-societe" aria-hidden="true">◈</span><span class="topic-num">DOSSIER 07</span></div>
+  <p class="topic-category">Démocratie et société</p><span class="impact-tag">Impact : Culture</span><h3>Éconologie culturelle</h3><p class="topic-question">Qui paie réellement la culture, et comment la rendre accessible ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/econologie-culturelle/" aria-label="Ouvrir le dossier Éconologie culturelle sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="topic-card" id="dossier-8" data-original-anchor="pilier-8" data-group="production" data-search="Frontaliers et capital humain Que se passe-t-il quand nous formons ici des talents qui travaillent ailleurs ? Produire et travailler"><span id="pilier-8" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 08</span></div>
+  <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Compétences</span><h3>Frontaliers et capital humain</h3><p class="topic-question">Que se passe-t-il quand nous formons ici des talents qui travaillent ailleurs ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/frontaliers-capital-humain/" aria-label="Ouvrir le dossier Frontaliers et capital humain sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-immigrants-journee/">QCM du sujet ↗</a></div>
+</article>
+<article class="topic-card" id="dossier-9" data-original-anchor="pilier-9" data-group="production" data-search="Agriculture et alimentation Comment produire localement sans pénaliser ceux qui nous nourrissent ? Produire et travailler"><span id="pilier-9" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 09</span></div>
+  <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Alimentation</span><h3>Agriculture et alimentation</h3><p class="topic-question">Comment produire localement sans pénaliser ceux qui nous nourrissent ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/agriculture-alimentation/" aria-label="Ouvrir le dossier Agriculture et alimentation sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="topic-card" id="dossier-10" data-original-anchor="pilier-10" data-group="production" data-search="Textile et habillement Peut-on fabriquer des vêtements durables et abordables près de chez nous ? Produire et travailler"><span id="pilier-10" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 10</span></div>
+  <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Fabrication</span><h3>Textile et habillement</h3><p class="topic-question">Peut-on fabriquer des vêtements durables et abordables près de chez nous ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/textile-habillement-chaussure/" aria-label="Ouvrir le dossier Textile et habillement sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-textile/">QCM du sujet ↗</a></div>
+</article>
+<article class="topic-card" id="dossier-11" data-original-anchor="pilier-11" data-group="societe" data-search="Mobilité et sécurité routière Comment mesurer ce qui sauve réellement des vies sur la route ? Démocratie et société"><span id="pilier-11" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-societe" aria-hidden="true">◈</span><span class="topic-num">DOSSIER 11</span></div>
+  <p class="topic-category">Démocratie et société</p><span class="impact-tag">Impact : Mobilité</span><h3>Mobilité et sécurité routière</h3><p class="topic-question">Comment mesurer ce qui sauve réellement des vies sur la route ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/mobilite-securite-routiere/" aria-label="Ouvrir le dossier Mobilité et sécurité routière sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="topic-card" id="dossier-12" data-original-anchor="pilier-12" data-group="quotidien" data-search="Friction monétique Combien coûte un paiement par carte à un petit commerçant ? Vivre au quotidien"><span id="pilier-12" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 12</span></div>
+  <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Commerce local</span><h3>Friction monétique</h3><p class="topic-question">Combien coûte un paiement par carte à un petit commerçant ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/friction-monetique/" aria-label="Ouvrir le dossier Friction monétique sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="topic-card" id="dossier-13" data-original-anchor="pilier-13" data-group="societe" data-search="Démocratie décisionnelle Et si nous votions aussi sur les décisions concrètes ? Démocratie et société"><span id="pilier-13" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-societe" aria-hidden="true">◈</span><span class="topic-num">DOSSIER 13</span></div>
+  <p class="topic-category">Démocratie et société</p><span class="impact-tag">Impact : Démocratie</span><h3>Démocratie décisionnelle</h3><p class="topic-question">Et si nous votions aussi sur les décisions concrètes ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/democratie-decisionnelle/" aria-label="Ouvrir le dossier Démocratie décisionnelle sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-democratie-decisionnelle/">QCM du sujet ↗</a></div>
+</article>
+<article class="topic-card" id="dossier-14" data-original-anchor="pilier-14" data-group="finances" data-search="Amortissement de la dette Comment éviter de transférer les coûts d’aujourd’hui aux générations futures ? Argent public"><span id="pilier-14" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-finances" aria-hidden="true">€</span><span class="topic-num">DOSSIER 14</span></div>
+  <p class="topic-category">Argent public</p><span class="impact-tag">Impact : Dette publique</span><h3>Amortissement de la dette</h3><p class="topic-question">Comment éviter de transférer les coûts d’aujourd’hui aux générations futures ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/amortissement-dette/" aria-label="Ouvrir le dossier Amortissement de la dette sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="topic-card" id="dossier-15" data-original-anchor="pilier-15" data-group="finances" data-search="Fraude fiscale Comment mieux mesurer et combattre les pertes de recettes publiques ? Argent public"><span id="pilier-15" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-finances" aria-hidden="true">€</span><span class="topic-num">DOSSIER 15</span></div>
+  <p class="topic-category">Argent public</p><span class="impact-tag">Impact : Fiscalité</span><h3>Fraude fiscale</h3><p class="topic-question">Comment mieux mesurer et combattre les pertes de recettes publiques ?</p>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/fraude-fiscale/" aria-label="Ouvrir le dossier Fraude fiscale sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-fraude-fiscale/">QCM du sujet ↗</a></div>
+</article>
+<article class="topic-card" id="dossier-16" data-original-anchor="pilier-16" data-group="production" data-search="Autoroutes et concessions À qui appartiennent les infrastructures que nous finançons ? Produire et travailler"><span id="pilier-16" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 16</span></div>
+  <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Infrastructures</span><h3>Autoroutes et concessions</h3><p class="topic-question">À qui appartiennent les infrastructures que nous finançons ?</p>
+  <div class="topic-bottom"><span class="card-unlinked" title="Aucune URL de dossier fournie dans la maquette Grok">Dossier non relié pour le moment</span></div>
+</article>
+<article class="topic-card" id="dossier-17" data-original-anchor="pilier-17" data-group="quotidien" data-search="Propreté publique et déchets Comment répartir justement la responsabilité des déchets ? Vivre au quotidien"><span id="pilier-17" class="sr-only" aria-hidden="true"></span>
+  <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 17</span></div>
+  <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Environnement</span><h3>Propreté publique et déchets</h3><p class="topic-question">Comment répartir justement la responsabilité des déchets ?</p>
+  <div class="topic-bottom"><span class="card-unlinked" title="Aucune URL de dossier fournie dans la maquette Grok">Dossier non relié pour le moment</span><a class="mini-qcm" href="/qcm-consigne-megots/">QCM du sujet ↗</a></div>
+</article></div>
+<p id="empty" class="empty" hidden>Aucun dossier ne correspond à cette recherche. Essayez un autre mot ou affichez tous les sujets.</p>
+<p style="margin:18px 0 0;font-size:11px;color:#6b7882">Les 15 liens de dossiers et les accès aux questionnaires présents dans cette maquette ont été retrouvés dans le dépôt du site au 6 novembre 2026. Les dossiers 16 et 17 n’ont pas encore d’URL confirmée.</p>
+</div></section>
+<section class="five-ai-section" aria-labelledby="five-ai-title"><div class="container"><div class="five-ai-content"><div><p class="eyebrow">Notre méthode de contradiction</p><h2 id="five-ai-title">Cinq regards pour mieux tester les idées.</h2><p>Une analyse ne devient pas vraie parce que plusieurs IA y ont participé. Leurs rôles sont complémentaires ; les documents sources et les arbitrages restent vérifiables par les citoyens.</p></div><div class="five-ai-tags" aria-label="Les cinq outils consultés"><span>Claude</span><span>Perplexity</span><span>Grok</span><span>Gemini</span><span>ChatGPT</span></div></div><details class="ai-disclosure"><summary>Comprendre le rôle de chaque IA et les limites de la méthode</summary><div class="ai-detail-grid"><p><strong>Claude</strong> · Architecture et rédaction.</p><p><strong>Perplexity</strong> · Recherche et confrontation des sources.</p><p><strong>Grok</strong> · Terrain et retours d'expérience.</p><p><strong>Gemini</strong> · Économie générale et climat.</p><p><strong>ChatGPT</strong> · Calculs, vérifications et outils numériques.</p></div><p class="ai-disclaimer">Ces fonctions décrivent la méthode de travail du projet, non une validation indépendante de chaque chiffre. Les balises FAIT, CALCUL, HYPOTHÈSE, ANALYSE et PROPOSITION restent essentielles.</p></details></div></section>
+<section class="section" id="methode"><div class="container method-grid"><div class="section-heading"><p class="eyebrow">La confiance se construit</p><h2>Des idées discutables. Des sources vérifiables.</h2><p>Un site citoyen crédible ne doit pas mélanger ce qui est établi, ce qui est calculé et ce qui est proposé. Chaque dossier devrait permettre au lecteur de retrouver les documents, les hypothèses et les objections.</p><a class="btn btn-secondary" href="#explorer">Choisir un dossier <span aria-hidden="true">↗</span></a></div><div class="method-feature"><h3>Lire un dossier avec des repères clairs</h3><div class="proof-row"><span class="proof-badge">FAIT</span><p>Une information documentée avec sa source et sa date.</p></div><div class="proof-row"><span class="proof-badge">CALCUL</span><p>Un résultat dont les hypothèses peuvent être contrôlées.</p></div><div class="proof-row"><span class="proof-badge">HYPOTHÈSE</span><p>Une possibilité qui reste à démontrer ou à tester.</p></div><div class="proof-row"><span class="proof-badge">PROPOSITION</span><p>Un choix à discuter, avec ses bénéfices et ses limites.</p></div></div></div></section>
+<section class="participate" id="participer"><div class="container"><div class="participate-panel"><div><p class="eyebrow">Et maintenant ?</p><h2>La démocratie commence aussi par des questions précises.</h2><p>Explorez les sujets, comparez les arguments et découvrez l'idée du bulletin citoyen décisionnel dans le pilier consacré à la démocratie.</p></div><div class="participate-actions"><a href="/qcm-democratie-decisionnelle/" class="btn btn-primary">Lancer le bulletin citoyen ↗</a><a href="/questionnaires/" class="btn btn-secondary">Tous les questionnaires ↗</a></div></div></div></section>
 </main>
-<footer class="colophon">
-  <div class="colophon-inner">
-    <p class="colophon-quote">Une société prospère ne peut pas durablement dissimuler ce qu'elle produit, ce qu'elle consomme, et qui paie réellement.</p>
-    <div class="colophon-cols">
-      <div class="colophon-brand">
-        <h3>Doctrine Éconologique</h3>
-        <p>Cadre institutionnel français pour souveraineté énergétique, production locale, durabilité obligatoire, justice contributive et reprise de contrôle économique. Travail citoyen ouvert, audit contradictoire multi-IA, arbitrage humain.</p>
-      </div>
-      <div class="colophon-col">
-        <h4>Piliers</h4>
-        <ul>
-          <li><a href="./fiches/pilier-01-aller-droit-au-but.pdf" target="_blank" rel="noopener">Énergie <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-02-aller-droit-au-but.pdf" target="_blank" rel="noopener">Garantie décennale <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-03-aller-droit-au-but.pdf" target="_blank" rel="noopener">Financement <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-04-aller-droit-au-but.pdf" target="_blank" rel="noopener">Retraites & minimum vieillesse <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-05-aller-droit-au-but.pdf" target="_blank" rel="noopener">Grand âge et EHPAD <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-06-aller-droit-au-but.pdf" target="_blank" rel="noopener">Bâtiment et métiers utiles <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-07-aller-droit-au-but.pdf" target="_blank" rel="noopener">Culture <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-08-aller-droit-au-but.pdf" target="_blank" rel="noopener">Frontaliers et capital humain <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-09-aller-droit-au-but.pdf" target="_blank" rel="noopener">Agriculture et alimentation <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-10-aller-droit-au-but.pdf" target="_blank" rel="noopener">Textile, habillement, chaussure <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-11-aller-droit-au-but.pdf" target="_blank" rel="noopener">Mobilité et sécurité routière <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-12-aller-droit-au-but.pdf" target="_blank" rel="noopener">Friction monétique <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-13-aller-droit-au-but.pdf" target="_blank" rel="noopener">Démocratie décisionnelle <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-14-aller-droit-au-but.pdf" target="_blank" rel="noopener">Amortissement de la dette · chantier non audité <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-15-aller-droit-au-but.pdf" target="_blank" rel="noopener">Fraude fiscale <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="#pilier-16">Autoroutes et fin des concessions · chantier non encore publié</a></li>
-          <li><a href="#pilier-17">Propreté publique et responsabilité du déchet · chantier non encore publié</a></li>
-        </ul>
-      </div>
-      <div class="colophon-col">
-        <h4>Outils citoyens</h4>
-        <ul>
-          <li><a href="./qcm-democratie-decisionnelle/">Et si on votait différemment ?</a></li>
-          <li><a href="./qcm-general/">Et si on avait voté différemment ?</a></li>
-          <li><a href="./qcm-energie/">Énergie — en savoir plus</a></li>
-          <li><a href="./qcm-aspa/">ASPA — en savoir plus</a></li>
-          <li><a href="./qcm-fraude-fiscale/">Fraude fiscale — en savoir plus</a></li>
-          <li><a href="./qcm-textile/">Textile — en savoir plus</a></li>
-          <li><a href="./qcm-pilier-vi/">Bâtiment et métiers utiles — questionnaire</a></li>
-          <li><a href="./qcm-consigne-megots/">Consigne mégots — questionnaire</a></li>
-          <li><a href="./fiches/pilier-02-dossier-complet.pdf" target="_blank" rel="noopener">Garantie décennale — dossier complet <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-05-annexe-chiffres.pdf" target="_blank" rel="noopener">Grand âge — annexe chiffrée <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-06-jeunes-france-allemagne.pdf" target="_blank" rel="noopener">Bâtiment — jeunes sans emploi, France-Allemagne <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-07-annexe-chiffrage.pdf" target="_blank" rel="noopener">Culture — annexe de chiffrage <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-09-annexe-chiffres.pdf" target="_blank" rel="noopener">Agriculture — annexe chiffrée <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-10-note-autonomie.pdf" target="_blank" rel="noopener">Textile — et si la France fabriquait tout ? <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./fiches/pilier-10-annexe-lin-eau.pdf" target="_blank" rel="noopener">Textile — le lin, l’eau et la matière française <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="./guide-de-lecture/">Guide de lecture · version 6, révision du 7 octobre 2026</a> · <a href="./doctrine-guide-de-lecture-v6.pdf" target="_blank" rel="noopener">Version PDF <span class="new-tab-note">(s'ouvre dans un nouvel onglet)</span></a></li>
-          <li><a href="https://drive.google.com/drive/folders/1q9m_hdS9y0ShBcaDAjA-21KrJyV-l5la" target="_blank" rel="noopener">Drive complet</a></li>
-        </ul>
-      </div>
-    </div>
-    <p class="section-sub">Dix-sept numéros, quatorze piliers publiés, trois chantiers : le XIV, Amortissement de la dette (non audité), le XVI, Autoroutes, et le XVII, Propreté publique et responsabilité du déchet (non encore publiés).</p>
-    <div class="colophon-bottom">
-      <div>© 2026 — Jean Paul Poignand · Côte d'Azur & Besançon · <a href="./a-propos/#mentions">Mentions légales</a></div>
-      <div>Architecture web : JP Poignand <em>avec assistance Claude (Anthropic)</em></div>
-    </div>
-  </div>
-</footer>
-
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div><strong>Doctrine Éconologique</strong><p>Une France qui produit, répare et transmet. Une contribution citoyenne à un débat documenté, ouvert à toutes les sensibilités.</p></div><div class="footer-links"><a href="/piliers/">Les 17 piliers</a><a href="/questionnaires/">Les questionnaires</a><a href="/a-propos/">À propos</a><a href="#accueil">Haut de page ↑</a></div></div><div class="prototype">© 2026 — Jean Paul Poignand · Contribution citoyenne indépendante · Identité graphique : logo réalisé par Perplexity. <a href="/a-propos/#mentions">Mentions légales</a></div></div></footer>
 <script>
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add('visible')}
-  })
-},{threshold:.08});
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+(function(){
+ document.querySelectorAll('.discovery-trigger').forEach(button=>button.addEventListener('click',()=>{
+   const opening=button.getAttribute('aria-expanded')!=='true';
+   document.querySelectorAll('.discovery-trigger').forEach(b=>{b.setAttribute('aria-expanded','false');document.getElementById(b.getAttribute('aria-controls')).hidden=true;});
+   if(opening){button.setAttribute('aria-expanded','true');document.getElementById(button.getAttribute('aria-controls')).hidden=false;}
+ }));
+ const cards=[...document.querySelectorAll('.topic-card')];
+ const filters=[...document.querySelectorAll('[data-filter]')];
+ const search=document.getElementById('topic-search');
+ const count=document.getElementById('result-count');
+ const empty=document.getElementById('empty');
+ let active='all';
+ const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+ function render(){const term=norm(search.value.trim());let n=0;
+  cards.forEach(card=>{const ok=(active==='all'||card.dataset.group===active)&&(!term||norm(card.dataset.search).includes(term));card.hidden=!ok;if(ok)n++;});
+  count.textContent=n+' dossier'+(n>1?'s':'')+' affiché'+(n>1?'s':''); empty.hidden=n!==0;
+ }
+ filters.forEach(btn=>btn.addEventListener('click',()=>{active=btn.dataset.filter;filters.forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));render();}));
+ search.addEventListener('input',render);
+ document.querySelectorAll('[data-focus]').forEach(btn=>btn.addEventListener('click',()=>{const id=btn.dataset.focus;search.value='';active='all';filters.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter==='all')));render();const card=document.getElementById('dossier-'+id);card.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});card.classList.add('is-focused');setTimeout(()=>card.classList.remove('is-focused'),2500);}));
+ const toggle=document.getElementById('menu-toggle'), nav=document.getElementById('nav-links');
+ toggle.addEventListener('click',()=>{let open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));nav.classList.toggle('open',!open);});
+ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.setAttribute('aria-expanded','false');nav.classList.remove('open');}));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){toggle.setAttribute('aria-expanded','false');nav.classList.remove('open');}});
+ render();
+})();
 </script>
+<nav class="bottom-nav" aria-label="Accès rapides sur mobile"><a href="#accueil"><strong>⌂</strong>Accueil</a><a href="#explorer"><strong>▦</strong>Sujets</a><a href="#qcm"><strong>☑</strong>QCM</a></nav>
 </body>
 </html>

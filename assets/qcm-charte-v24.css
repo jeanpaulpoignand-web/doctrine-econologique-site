@@ -1,0 +1,207 @@
+/* Doctrine Éconologique — Charte QCM V2.4 — feuille de style de présentation.
+   Base: proposition graphique Grok V2.4.2 ; intégration ChatGPT.
+   Aucun texte/question/score/scénario n'est modifié par cette feuille.
+   Cette CSS n'est activée que par les classes qcm-citizen/qcm-general/qcm-energie.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+body.qcm-citizen{
+  --q-paper:#faf8f3;--q-ink:#17273e;--q-accent:#b9573a;
+  --q-accent-dark:#92412c;--q-teal:#27675d;--q-muted:#576675;
+  --q-line:#d5d6d0;--q-surface:#fffefa;--q-focus:#7c4b13;
+  --q-serif:'Cormorant Garamond',Georgia,serif;
+  --q-sans:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --q-mono:'IBM Plex Mono',ui-monospace,monospace;
+  background:var(--q-paper);color:var(--q-ink);
+  font-family:var(--q-sans);line-height:1.55;
+  color-scheme:light;
+}
+body.qcm-citizen :is(button,input,select,textarea){font-family:var(--q-sans)}
+body.qcm-citizen :is(button,a,summary,input):focus-visible{
+  outline:3px solid var(--q-focus)!important;outline-offset:3px!important;
+}
+body.qcm-citizen a{color:var(--q-teal);text-underline-offset:3px}
+body.qcm-citizen :is(h1,h2,h3){color:var(--q-ink);text-wrap:pretty}
+body.qcm-citizen h1{
+  font-family:var(--q-serif);font-weight:700;
+  font-size:clamp(2.15rem,5vw,3.65rem);line-height:1.04;letter-spacing:-.025em;
+}
+body.qcm-citizen h2{font-family:var(--q-serif);font-weight:700;line-height:1.15}
+body.qcm-citizen h3{font-weight:700;line-height:1.35}
+body.qcm-citizen :is(.subtitle,.small,.note,.qtext,.progress-row,.progress-text){color:var(--q-muted)}
+body.qcm-citizen :is(.card,.question-card,.result-main,.mode-card,.briefing-card,.source-item,.scorebox,.bar-card,.link-card){
+  border-color:var(--q-line);border-radius:16px;
+}
+body.qcm-citizen :is(.primary,.btn,button:not(.secondary):not(.answer):not(.mode-card):not(.intro-toggle):not(.fiche-modal-bar button)){
+  min-height:48px;border-radius:10px;
+}
+body.qcm-citizen :is(.primary,.btn):not(:disabled){background:var(--q-accent);border-color:var(--q-accent);color:#fff}
+body.qcm-citizen :is(.primary,.btn):not(:disabled):hover{background:var(--q-accent-dark);border-color:var(--q-accent-dark)}
+body.qcm-citizen button:disabled{cursor:not-allowed;opacity:.55}
+body.qcm-citizen :is(.back,.back-home){color:var(--q-teal);text-decoration:none;font-weight:600}
+body.qcm-citizen :is(.back,.back-home):hover{text-decoration:underline}
+body.qcm-citizen .doctrine-navigation{
+  width:min(980px,100%);margin-inline:auto;
+  border:1px solid var(--q-line);border-radius:12px;
+  background:var(--q-surface);box-shadow:0 3px 14px rgba(23,39,62,.04)
+}
+body.qcm-citizen .doctrine-navigation a{color:var(--q-ink)}
+/* QCM général : on garde l'ensemble des IDs/classes attendus par son JS. */
+body.qcm-general{--bg:var(--q-paper);--card:var(--q-surface);--text:var(--q-ink);--muted:var(--q-muted);--line:var(--q-line);--accent:var(--q-accent);--shadow:0 12px 35px rgba(23,39,62,.07);--radius:18px;
+  background:var(--q-paper);color:var(--q-ink)}
+body.qcm-general>main.card{
+  width:min(920px,100%);background:var(--q-surface);
+  border:1px solid var(--q-line);box-shadow:0 10px 40px rgba(23,39,62,.07);
+  border-radius:18px;color:var(--q-ink)
+}
+body.qcm-general .hero{background:linear-gradient(135deg,#fffefa,#faf4ec);border-bottom:1px solid var(--q-line)}
+body.qcm-general .hero h1{max-width:690px;margin:0 0 17px}
+body.qcm-general :is(.subtitle,.small,.qtext,.progress-row,.progress-text,.result-main p,.bar-head,.answers-recap,.method-note,.sources,.mode-card span,.link-card span){color:var(--q-muted)}
+body.qcm-general .content{background:var(--q-surface)}
+body.qcm-general :is(.mode-card,button.answer,.link-card){
+  background:#fff;border:1.5px solid var(--q-line);color:var(--q-ink);
+  border-radius:14px;box-shadow:none;transition:background-color .16s,border-color .16s,box-shadow .16s
+}
+body.qcm-general :is(.mode-card,button.answer,.link-card):is(:hover,:focus-visible){
+  transform:none;background:#faf8f3;border-color:var(--q-teal);outline-offset:3px
+}
+body.qcm-general button.answer{min-height:58px;padding:17px 19px;text-align:left}
+body.qcm-general button.answer.selected,
+body.qcm-general button.answer[aria-pressed="true"]{
+  border:2px solid var(--q-accent);background:#fff3ed;
+  box-shadow:inset 4px 0 0 var(--q-accent);font-weight:600
+}
+body.qcm-general .mode-card strong{font-weight:700;color:var(--q-ink)}
+body.qcm-general .mode-card{min-height:124px}
+body.qcm-general .qtitle{font-family:var(--q-serif);font-size:clamp(1.65rem,3.5vw,2.25rem);font-weight:700}
+body.qcm-general .progress{height:6px;background:#e7e7df}
+body.qcm-general .progress>div{background:var(--q-accent)}
+body.qcm-general :is(.secondary,.primary){min-height:48px;border-radius:10px;padding:11px 17px}
+body.qcm-general .secondary{background:transparent;border:1px solid var(--q-line);color:var(--q-ink)}
+body.qcm-general .secondary:hover{background:#f6f1ea}
+body.qcm-general .primary{border:1px solid var(--q-accent);background:var(--q-accent);color:#fff}
+body.qcm-general .primary:hover{background:var(--q-accent-dark)}
+body.qcm-general :is(.result-main,.bar-card,.method-note,.scenario-snapshot,.summary-table,.explanation,.link-card){
+  background:var(--q-surface);color:var(--q-ink);border:1px solid var(--q-line);box-shadow:none
+}
+body.qcm-general .bar-track{background:#e7e7df}
+body.qcm-general .bar-fill{background:var(--q-accent)}
+body.qcm-general .summary-table :is(th,td){color:var(--q-ink);border-color:var(--q-line)}
+body.qcm-general .summary-table th{background:#f5f3ed}
+body.qcm-general .version-notice{
+  background:#f6f2eb;border:1px solid var(--q-line);border-radius:10px;
+  padding:10px 14px;margin:0 0 16px;
+}
+body.qcm-general .version-notice p{color:var(--q-muted);font-size:.82rem;line-height:1.5}
+body.qcm-general .version-notice strong{color:var(--q-ink)}
+body.qcm-general :is(.reading-guide,.method-note,.repere-disclosure){
+  background:#faf9f6;border:1px solid var(--q-line);border-radius:12px;
+}
+body.qcm-general .reading-guide{padding:15px}
+body.qcm-general .repere-disclosure>summary,
+body.qcm-general details>summary{color:var(--q-teal)}
+body.qcm-general .explanation strong{color:var(--q-ink)}
+body.qcm-general .explanation{background:#f6f4ed}
+/* QCM énergie : on ne change ni les attributs/JS des réponses ni les 19 fiches. */
+body.qcm-energie{--bg:var(--q-paper);--card:var(--q-surface);--ink:var(--q-ink);--soft:var(--q-muted);--line:var(--q-line);--gold:var(--q-accent);--gold2:var(--q-accent-dark);--sp:var(--q-teal);--tmi:#426a80;--mix:#75698c;
+  background:var(--q-paper);color:var(--q-ink)}
+body.qcm-energie .container{max-width:960px}
+body.qcm-energie .hero{background:linear-gradient(135deg,#fffefa,#faf4ec);border:1px solid var(--q-line);border-radius:18px;padding:clamp(22px,4vw,36px)}
+body.qcm-energie .hero h1{margin:8px 0 16px}
+body.qcm-energie :is(.card,.briefing-card,.mode-card,.scorebox,.source-item,.method-box,.fiche-access,.source-box,.doctrine-box){
+  background:var(--q-surface);border-color:var(--q-line);border-radius:14px;
+  box-shadow:0 2px 16px rgba(23,39,62,.035)
+}
+body.qcm-energie .card{padding:clamp(19px,3vw,30px)}
+body.qcm-energie :is(.eyebrow,.mode-badge){color:var(--q-accent-dark)}
+body.qcm-energie :is(.subtitle,.small,.progress,.mode-card p,.briefing-card p){color:var(--q-muted)}
+body.qcm-energie .mode-card h2{font-family:var(--q-serif);font-size:1.85rem}
+body.qcm-energie .mode-card button{margin-top:14px}
+body.qcm-energie button:not(.secondary):not(.fiche-modal-bar button){
+  background:var(--q-accent);border-color:var(--q-accent);color:#fff;
+  border-radius:10px;min-height:48px;text-align:center;
+}
+body.qcm-energie button:not(.secondary):not(.fiche-modal-bar button):hover{
+  background:var(--q-accent-dark);border-color:var(--q-accent-dark)
+}
+body.qcm-energie button.secondary{background:transparent;color:var(--q-ink);border-color:var(--q-line);border-radius:10px;min-height:48px;text-align:center}
+body.qcm-energie button.secondary:hover{background:#f6f1ea;color:var(--q-ink)}
+body.qcm-energie .progress{color:var(--q-muted)}
+body.qcm-energie .bar{height:6px;background:#e7e7df}
+body.qcm-energie .fill{background:var(--q-accent)}
+body.qcm-energie .question{font:700 clamp(1.7rem,3.6vw,2.3rem)/1.15 var(--q-serif);color:var(--q-ink)}
+body.qcm-energie #answers button{
+  color:var(--q-ink);background:#fff;border:1.5px solid var(--q-line);
+  min-height:58px;padding:17px 19px;text-align:left;border-radius:14px;
+  transition:background-color .16s,border-color .16s,box-shadow .16s
+}
+body.qcm-energie #answers button:is(:hover,:focus-visible){background:#faf8f3;border-color:var(--q-teal)}
+body.qcm-energie #answers button[aria-pressed="true"],
+body.qcm-energie #answers button.selected{
+  background:#fff3ed;border:2px solid var(--q-accent);
+  box-shadow:inset 4px 0 0 var(--q-accent);font-weight:600
+}
+body.qcm-energie :is(.explain,.source-box,.doctrine-box,.fiche-access,.source-item){
+  border-left-color:var(--q-line);color:var(--q-muted)
+}
+body.qcm-energie .method-box{border-left:1px solid var(--q-line);padding:14px 18px}
+body.qcm-energie .method-box h2{font-size:1.4rem}
+body.qcm-energie .proof-links a{border-color:var(--q-line);border-left:3px solid var(--q-accent);border-radius:12px;color:var(--q-ink)}
+body.qcm-energie .mode-badge{background:#fbf0e8;border:1px solid #e4c8b8}
+body.qcm-energie .result-banner{background:var(--q-ink);border-radius:16px}
+body.qcm-energie .result-banner h2{color:#fff}
+body.qcm-energie .result-banner p{color:#fff}
+body.qcm-energie .party{background:#f7f3ed;border-left-color:var(--q-line);border-radius:10px}
+body.qcm-energie .party h2{font-family:var(--q-sans);font-size:1.4rem}
+body.qcm-energie .fiche-modal-bar{background:var(--q-ink)}
+/* Outils de validation : toujours accessibles, jamais la première chose à lire. */
+body.qcm-energie details.quality-tools{margin-top:20px;border-top:1px solid var(--q-line);padding-top:12px}
+body.qcm-energie details.quality-tools>summary{font-size:.85rem;color:var(--q-muted);cursor:pointer}
+body.qcm-energie details.quality-tools .test{margin-top:10px;padding:10px 0}
+/* Navigation à faible encombrement sur petit écran. */
+@media(max-width:640px){
+  body.qcm-general{padding:12px;gap:12px}
+  body.qcm-general :is(.hero,.content){padding:20px}
+  body.qcm-general .mode-grid,body.qcm-general .links-grid{grid-template-columns:1fr}
+  body.qcm-general .nav{align-items:stretch}
+  body.qcm-general .nav :is(.nav-left,.nav-right){width:100%}
+  body.qcm-energie .container{padding-inline:12px}
+  body.qcm-energie :is(.hero,.card){padding:20px}
+  body.qcm-energie .briefing-grid{grid-template-columns:1fr}
+  body.qcm-energie #answers button{margin-block:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  body.qcm-citizen *,body.qcm-citizen *::before,body.qcm-citizen *::after{
+    scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important
+  }
+}
+
+body.qcm-energie details.qcm-method{margin:22px 0;border:1px solid var(--q-line);border-radius:12px;background:#faf9f6;padding:12px 14px}
+body.qcm-energie details.qcm-method>summary{cursor:pointer;color:var(--q-teal);font-weight:600}
+body.qcm-energie details.qcm-method .method-box{margin:12px 0 0;border:none;box-shadow:none;background:transparent}
+body.qcm-energie details.qcm-method h2{font-family:var(--q-sans);font-size:1.15rem}
+
+/* Corrections issues des captures Chromium réelles : contraste et sobriété. */
+body.qcm-citizen .doctrine-navigation a.doctrine-navigation-drive{color:#fff!important;background:#173650}
+body.qcm-citizen .doctrine-navigation button.doctrine-navigation-share{
+  width:auto!important;max-width:max-content;min-height:44px!important;
+  margin:0;padding:10px 16px;flex:0 0 auto;
+  background:var(--q-accent);border:1px solid var(--q-accent-dark);color:#fff;
+  border-radius:9px;box-shadow:0 2px 0 var(--q-accent-dark);
+}
+body.qcm-energie details.qcm-fiches{margin-top:22px;border-top:1px solid var(--q-line);padding-top:14px}
+body.qcm-energie details.qcm-fiches>summary{cursor:pointer;color:var(--q-teal);font-size:.95rem;font-weight:600}
+body.qcm-energie details.qcm-fiches .fiches-liste{margin-top:15px;border-top:0;padding-top:0}
+
+/* Navigation mobile : les 4 actions tiennent sur deux lignes, pas quatre. */
+@media(max-width:520px){
+  body.qcm-citizen .doctrine-navigation{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    width:100%;gap:8px;padding:10px;
+  }
+  body.qcm-citizen .doctrine-navigation>a,
+  body.qcm-citizen .doctrine-navigation>button.doctrine-navigation-share{
+    box-sizing:border-box;width:100%!important;max-width:none;
+    min-height:52px!important;margin:0;padding:9px 7px;
+    font-size:.8rem!important;line-height:1.25;text-align:center;
+  }
+}

@@ -1,0 +1,24 @@
+name: QCM V2.4 — contrôle de non-régression
+on:
+  pull_request:
+    branches:
+      - design/qcm-fusion-fonctionnelle-v2-4-2026-11-06
+      - design/qcm-charte-extension-aspa-batiment-textile-v2-4-2026-11-06
+    paths:
+      - 'qcm-*/index.html'
+      - 'assets/qcm-charte-v24*.css'
+      - 'tests/check_qcm_v24_integrity.py'
+      - '.github/workflows/qcm-v24-integrity.yml'
+permissions:
+  contents: read
+jobs:
+  qcm-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Comparer au code de production
+        run: |
+          git fetch --no-tags origin main
+          python3 tests/check_qcm_v24_integrity.py

@@ -1,0 +1,58 @@
+name: Prépublication V2.6 — navigation et 9 QCM
+on:
+  push:
+    branches:
+      - preview-v26-2026-11-07
+  pull_request:
+    branches:
+      - design/bulletin-citoyen-charte-v2-5-2026-11-07
+    paths:
+      - index.html
+      - questionnaires/index.html
+      - assets/doctrine-share.js
+      - assets/catalogue-qcm-v26.css
+      - tests/test_preview_v26.py
+      - .github/workflows/preview-v26-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview-navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Playwright
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Vérifier les 9 QCM et le routage de prépublication
+        run: python tests/test_preview_v26.py
+      - name: Vérifier la disponibilité de l'adresse de prépublication
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+          base = 'https://raw.githack.com/jeanpaulpoignand-web/doctrine-econologique-site/preview-v26-2026-11-07/'
+          for path in ['index.html','questionnaires/index.html','qcm-general/index.html','qcm-democratie-decisionnelle/index.html']:
+              req = urllib.request.Request(base+path, headers={'User-Agent':'Mozilla/5.0'})
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as response:
+                      body = response.read(1500)
+                      print(path, response.status, response.headers.get('Content-Type'), len(body), flush=True)
+                      assert response.status == 200 and (b'<!doctype html' in body.lower() or b'<html' in body.lower())
+              except Exception as exc:
+                  print('REMOTE PREVIEW NOT VERIFIED:', path, type(exc).__name__, str(exc), flush=True)
+                  raise
+          PY
+      - name: Conserver les captures réelles
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prepublication-v26-captures
+          path: .test-artifacts/preview-v26/
+          retention-days: 14
+          if-no-files-found: warn
