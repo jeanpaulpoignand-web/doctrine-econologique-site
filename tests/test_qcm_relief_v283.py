@@ -97,6 +97,17 @@ def main():
         assert classic["shadow"]!="none",(label,"Classic QCM flat",classic)
         page.locator(".opts .opt").first.scroll_into_view_if_needed()
         page.screenshot(path=str(OUT/f"{label}-aspa-choix-relief.png"),full_page=False)
+        page.locator(".opts .opt").first.click()
+        good=page.locator(".opts .opt.bonne").first
+        good.wait_for()
+        good_style=good.evaluate("e=>({bg:getComputedStyle(e).backgroundImage,shadow:getComputedStyle(e).boxShadow,color:getComputedStyle(e).borderTopColor})")
+        assert good_style["bg"]=="none",(label,"correct factual answer background overwritten",good_style)
+        assert "inset" in good_style["shadow"],(label,"correct factual answer indicator hidden",good_style)
+        if page.locator(".opts .opt.mauvaise").count():
+          wrong_style=page.locator(".opts .opt.mauvaise").first.evaluate("e=>({bg:getComputedStyle(e).backgroundImage,shadow:getComputedStyle(e).boxShadow,color:getComputedStyle(e).borderTopColor})")
+          assert wrong_style["bg"]=="none",(label,"incorrect factual answer overwritten",wrong_style)
+          assert wrong_style["color"]!=good_style["color"],(label,"correct and incorrect colors identical")
+
 
         visit("qcm-fraude-fiscale")
         page.locator("#quickModeBtn").click()
