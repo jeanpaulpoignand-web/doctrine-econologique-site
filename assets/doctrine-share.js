@@ -66,7 +66,7 @@
     notice.id='preview-v26-notice';
     notice.setAttribute('role','note');
     notice.style.cssText='box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;padding:7px 12px;background:#f6f0e4;color:#17273e;border-bottom:1px solid #dddcd2;text-align:center;font:600 12px/1.45 system-ui,-apple-system,sans-serif;position:relative;z-index:40';
-    notice.innerHTML='Prépublication V2.7 — site d’essai, non officiel <span aria-hidden="true">·</span> <a href="'+base+'index.html" style="color:#97452f;text-decoration:underline">Accueil de la prépublication</a>';
+    notice.innerHTML='Prépublication V2.7.2 — site d’essai, non officiel <span aria-hidden="true">·</span> <a href="'+base+'index.html" style="color:#97452f;text-decoration:underline">Accueil de la prépublication</a>';
     document.body.insertBefore(notice,document.body.firstChild);
     rewriteLinks(document);
     new MutationObserver(records=>{
