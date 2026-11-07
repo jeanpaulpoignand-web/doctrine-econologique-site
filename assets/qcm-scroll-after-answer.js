@@ -25,28 +25,39 @@
     var style=window.getComputedStyle(el);
     return style.display!=="none" && style.visibility!=="hidden" && el.getClientRects().length>0;
   }
+  var scrollGeneration=0;
+  function centerAction(targetSelector){
+    var action=document.querySelector(targetSelector);
+    if(!visible(action))return;
+    var rect=action.getBoundingClientRect();
+    var viewportHeight=window.visualViewport?window.visualViewport.height:window.innerHeight;
+    // Ne pas décaler la lecture lorsque le bouton est déjà entièrement visible.
+    if(rect.top>=12 && rect.bottom<=viewportHeight-12)return;
+    var wanted=window.scrollY+rect.top-(viewportHeight-rect.height)*0.61;
+    var limit=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+    window.scrollTo({top:Math.min(limit,Math.max(0,wanted)),behavior:reduced.matches?"auto":"smooth"});
+  }
   function reveal(targetSelector){
+    var generation=++scrollGeneration;
     document.documentElement.dataset.qcmScrollTarget=targetSelector;
-    // Attendre la reconstruction des cartes et l'apparition d'un éventuel
-    // texte pédagogique : un scroll exécuté pendant le rendu se perd sur iOS.
+    // Le DOM de la réponse peut être réécrit. Les animations de feedback
+    // durent jusqu'à 400 ms sur ASPA/textile : revérifier à 600 ms.
     window.requestAnimationFrame(function(){
       window.requestAnimationFrame(function(){
-        var action=document.querySelector(targetSelector);
-        if(!visible(action))return;
-        // Les longs retours pédagogiques peuvent perturber scrollIntoView
-        // sous Safari : calculer directement la position de destination.
-        var rect=action.getBoundingClientRect();
-        var viewportHeight=window.visualViewport?window.visualViewport.height:window.innerHeight;
-        var wanted=window.scrollY+rect.top-(viewportHeight-rect.height)*0.61;
-        var limit=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
-        var destination=Math.min(limit,Math.max(0,wanted));
-        window.scrollTo({top:destination,behavior:reduced.matches?"instant":"smooth"});
+        if(generation!==scrollGeneration)return;
+        centerAction(targetSelector);
+        window.setTimeout(function(){
+          if(generation!==scrollGeneration)return;
+          centerAction(targetSelector);
+        },600);
       });
     });
   }
   document.addEventListener("click",function(event){
     var element=event.target;
     if(!(element instanceof Element))return;
+    // Une navigation volontaire annule une correction de scroll en attente.
+    if(element.closest("#nextBtn,#next,#next-question,#validateBtn,#landmarkNextBtn"))scrollGeneration++;
     for(var i=0;i<rules.length;i++){
       var selector=rules[i][0];
       if(element.closest(selector)){reveal(rules[i][1]);return;}
