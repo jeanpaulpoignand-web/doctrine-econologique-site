@@ -34,6 +34,14 @@ ul{padding-left:22px;margin:0 0 16px}li{margin:0 0 6px}
 .actions{display:flex;flex-direction:column;gap:12px}.actions a{text-decoration:none;color:var(--touch-fg);margin:0}.actions .btn-touch--soft{color:var(--rouge)}
 .pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;font:600 15px/1.4 system-ui,-apple-system,sans-serif}
 .pager a{color:var(--nuit)}
+/* Accès au vote immédiatement après le titre, sans lecture préalable imposée */
+.p13-vote-entry{display:flex;align-items:center;flex-wrap:wrap;gap:12px 16px;padding:13px 0 18px;margin:0 0 8px;border-bottom:1px solid var(--ligne)}
+.p13-vote-now{display:inline-flex;justify-content:center;align-items:center;gap:14px;min-height:54px;padding:13px 23px;background:#a94f35;border:2px solid #a94f35;border-radius:12px;color:white!important;font:750 16px/1.35 system-ui,-apple-system,sans-serif;text-decoration:none;box-shadow:0 4px 0 #743522;transition:transform .16s,box-shadow .16s}
+.p13-vote-now:hover{background:#873f2c;border-color:#873f2c;transform:translateY(-1px)}
+.p13-vote-now:focus-visible{outline:3px solid #163c66;outline-offset:4px}
+.p13-vote-now:active{transform:translateY(2px);box-shadow:0 2px 0 #743522}
+.p13-vote-note{font:500 12px/1.5 system-ui,-apple-system,sans-serif;color:var(--doux);max-width:280px}
+@media(max-width:560px){.p13-vote-entry{align-items:stretch;flex-direction:column;gap:9px;padding:12px 0 17px}.p13-vote-now{width:100%;min-height:56px;padding:13px 14px;font-size:15px}.p13-vote-note{max-width:none;text-align:center;font-size:11px}}
 @media print{.doctrine-navigation,.pager{display:none}}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +59,10 @@ ul{padding-left:22px;margin:0 0 16px}li{margin:0 0 6px}
 <main>
 <p class="crumbs"><a href="../../">Accueil</a> › <a href="../../#piliers">Piliers</a> › Démocratie décisionnelle</p>
 <h1>Démocratie décisionnelle</h1>
+<div class="p13-vote-entry" aria-label="Accès immédiat au bulletin citoyen">
+  <a class="p13-vote-now" href="../../qcm-democratie-decisionnelle/?start=ideas">Voter maintenant sur les 12 sujets <span aria-hidden="true">→</span></a>
+  <span class="p13-vote-note">Bulletin citoyen de démonstration · sans inscription · résultat personnel, non transmis</span>
+</div>
 <p class="meta">Pilier XIII · Publié le 2 octobre 2026 · Mis à jour le 17 octobre 2026 · Par <a href="../../a-propos/">Jean Paul Poignand</a></p>
 <p class="resume">Décider sur les sujets, pas seulement sur les visages.</p>
 <p class="hero">« Décider sur les sujets, pas seulement sur les visages. »</p>
