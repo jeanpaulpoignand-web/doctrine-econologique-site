@@ -2308,6 +2308,12 @@ window.app={
   toggleAll(button){const panel=document.getElementById('all-parties');panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));},
   toggleSources(button){const panel=button.nextElementSibling;panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));}
 };
+// Accès direct depuis le Pilier XIII : un clic mène à la première question
+// sans imposer une seconde page d'accueil. Sans effet sur les autres accès.
+if(new URLSearchParams(window.location.search).get('start')==='ideas'){
+  state.screen='ideas';
+  state.step=0;
+}
 render();
     </script>
   </body>
