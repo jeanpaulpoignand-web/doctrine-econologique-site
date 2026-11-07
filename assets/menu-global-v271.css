@@ -9,7 +9,7 @@
   min-height:60px;padding:7px clamp(13px,3vw,30px);
   display:flex;align-items:center;justify-content:space-between;gap:15px;
   background:rgba(250,248,243,.97);border-bottom:1px solid var(--dmenu-line);
-  color:var(--dmenu-ink);position:sticky;top:0;z-index:97;
+  color:var(--dmenu-ink);position:sticky;top:0;z-index:100;
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
 }
 #dmenu-bar .dmenu-brand{
