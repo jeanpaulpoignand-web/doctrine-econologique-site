@@ -73,6 +73,29 @@ def main():
       assert page.locator("#dossier-4").is_visible(),(label,"retraite hors du filtre argent public")
       assert page.locator(".topic-card:visible").count()==1
       assert page.locator("#result-count").inner_text()=="1 dossier affiché"
+      # Test de régression pour le défaut réel remonté sur iPhone : ASPA donnait 0.
+      search.fill("ASPA")
+      suggestions=page.locator("#search-suggestions")
+      assert page.locator("#dossier-4").is_visible(),(label,"ASPA doit afficher le pilier IV")
+      assert page.locator(".topic-card:visible").count()==1,(label,"ASPA devrait retourner un seul dossier")
+      assert page.locator("#result-count").inner_text()=="1 dossier affiché"
+      assert suggestions.is_visible(),(label,"acces direct invisible sous le champ")
+      assert suggestions.locator(".search-hit").count()==1,(label,"acces direct unique ASPA")
+      assert suggestions.locator(".search-hit-main").get_attribute("href")=="/piliers/reparation-des-retraites/"
+      assert suggestions.locator(".search-hit-quiz").get_attribute("href")=="/qcm-aspa/"
+      assert suggestions.locator(".search-hit-main").evaluate("(el)=>el.getBoundingClientRect().height")>=44,(label,"resultat difficile a toucher")
+      assert all_topics.get_attribute("aria-pressed")=="true"
+      if label in ("iphone","ipad-paysage"):
+        suggestions.screenshot(path=str(ART/f"{label}-recherche-aspa-resultat.png"))
+      # Accents, recherches a plusieurs mots, termes du dossier et URL de QCM.
+      for word,expected in [
+        ("aspa",4),("A SPA",4),("allocation solidarité personnes âgées",4),
+        ("minimum vieillesse",4),("accord franco-algérien",4),("QCM ASPA",4),
+        ("ZFE",11),("paiement carte",12),("EHPAD",5),("dette",14)
+      ]:
+        search.fill(word)
+        assert page.locator(f"#dossier-{expected}").is_visible(),(label,word,"aucun resultat")
+        assert suggestions.is_visible(),(label,word,"suggestion manquante")
       search.fill("ÉNERGIE")
       assert page.locator("#dossier-1").is_visible(),(label,"accent/casse")
       assert page.locator(".topic-card:visible").count()==1
@@ -81,6 +104,7 @@ def main():
       search.fill("mottotalementabsent")
       assert page.locator(".topic-card:visible").count()==0,(label,"aucun resultat")
       assert page.locator("#empty").is_visible()
+      assert "Aucun dossier trouvé" in suggestions.inner_text(),(label,"retour de recherche vide peu clair")
       page.locator('[data-filter="production"]').click()
       assert search.input_value()=="",(label,"un filtre efface la recherche")
       assert page.locator(".topic-card:visible").count()==5
@@ -90,6 +114,7 @@ def main():
       search.fill("")
       assert page.locator(".topic-card:visible").count()==17,(label,"recherche effacee")
       assert page.locator("#empty").is_hidden()
+      assert suggestions.is_hidden(),(label,"suggestions pas effacees")
       if label=="ipad-paysage":
         search.fill("retraite")
         page.locator("#explorer").scroll_into_view_if_needed()
