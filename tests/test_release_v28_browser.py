@@ -174,7 +174,7 @@ def main():
           assert accord.locator(".card").count()==3,(label,"resume de l'accord incomplet")
           assert "65 ans" in accord.inner_text()
           assert "jamais cotisé" in accord.inner_text()
-          assert "ne donne aucun versement automatique" in accord.inner_text()
+          assert "n’est pas attribuée simplement à l’arrivée en France" in accord.inner_text()
           assert accord.locator(".card p strong").first.evaluate("(el)=>getComputedStyle(el).display")=="inline",(label,"gras non inline")
           assert page.locator("a[href='../../fiches/pilier-04-aller-droit-au-but.pdf']").count()==1
           if label in ("iphone","ipad-paysage"):
