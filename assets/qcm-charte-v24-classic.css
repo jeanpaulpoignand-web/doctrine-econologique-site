@@ -103,3 +103,70 @@ body.qcm-classic #ce-que-dit-le-pilier h2{
   body.qcm-classic .modes{grid-template-columns:1fr}
   body.qcm-classic .mode{min-height:0}
 }
+
+
+/* V2.8.3 — Relief discret des options : ASPA, Bâtiment et Textile.
+   Un niveau de relief identique pour TOUTES les réponses, sans biais visuel. */
+body.qcm-classic .opts .opt{
+  min-height:67px;
+  border:2px solid #c5cdc8;
+  background:linear-gradient(175deg,#fff,#fbfaf7);
+  border-radius:15px;
+  padding:18px 20px;
+  line-height:1.5;
+  box-shadow:0 4px 0 #d7d8d1,0 11px 22px rgba(23,39,62,.12),inset 0 1px 0 #fff;
+  transform:translateY(0);
+  transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease,background .14s ease;
+  -webkit-tap-highlight-color:rgba(185,87,58,.13);
+}
+@media(hover:hover){
+  body.qcm-classic .opts .opt:not(:disabled):not(.selected):not([aria-pressed="true"]):hover{
+    transform:translateY(-2px);
+    background:linear-gradient(175deg,#fff,#f6f8f4);
+    border-color:var(--q-teal);
+    box-shadow:0 6px 0 #cad4ce,0 16px 26px rgba(23,39,62,.15);
+  }
+}
+body.qcm-classic .opts .opt:not(:disabled):active{
+  transform:translateY(3px);
+  box-shadow:0 1px 0 #d7d8d1,0 3px 8px rgba(23,39,62,.12);
+}
+body.qcm-classic .opts .opt.selected,
+body.qcm-classic .opts .opt[aria-pressed="true"]{
+  border-color:var(--q-accent);
+  background:linear-gradient(175deg,#fff8f3,#fff0e9);
+  box-shadow:inset 5px 0 0 var(--q-accent),0 3px 0 #dab7a6,0 10px 18px rgba(23,39,62,.12);
+}
+body.qcm-classic .modes .mode{
+  border:2px solid #c5cdc8;
+  background:linear-gradient(175deg,#fff,#fbfaf7);
+  box-shadow:0 4px 0 #d7d8d1,0 12px 21px rgba(23,39,62,.11);
+}
+@media(hover:hover){
+ body.qcm-classic .modes .mode:hover{
+  transform:translateY(-2px);border-color:var(--q-teal);
+  box-shadow:0 6px 0 #cad4ce,0 17px 25px rgba(23,39,62,.14)
+ }
+}
+body.qcm-classic .modes .mode:active{transform:translateY(3px);box-shadow:0 1px 0 #d7d8d1,0 3px 8px rgba(23,39,62,.11)}
+@media(prefers-reduced-motion:reduce){
+ body.qcm-classic :is(.opts .opt,.modes .mode){transition:none!important;animation:none!important}
+}
+
+
+/* Garde-fou V2.8.3 : la correction factuelle ASPA/Bâtiment/Textile
+   doit primer sur le relief blanc neutre, même sur Safari. */
+body.qcm-classic .opts .opt.bonne{
+  border-color:var(--vert);
+  background:var(--vert-bg);
+  box-shadow:inset 5px 0 0 var(--vert),0 3px 0 #b8d2c4,0 10px 18px rgba(23,39,62,.11);
+}
+body.qcm-classic .opts .opt.mauvaise{
+  border-color:var(--rouge);
+  background:var(--rouge-bg);
+  box-shadow:inset 5px 0 0 var(--rouge),0 3px 0 #dbb6b0,0 10px 18px rgba(23,39,62,.11);
+}
+body.qcm-classic .opts .opt.selection:not(.bonne):not(.mauvaise){
+  border-color:var(--bleu-fonce);
+  box-shadow:0 0 0 2px var(--bleu-fonce),0 3px 0 #d7d8d1,0 10px 18px rgba(23,39,62,.11);
+}

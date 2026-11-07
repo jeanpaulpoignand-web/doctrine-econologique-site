@@ -248,3 +248,44 @@ body.bulletin-v25 .forgotten-proof-card a.source-btn:not(.secondary-source){colo
   }
   body.bulletin-v25 .question-actions .no-opinion{flex:0 0 auto;min-height:48px}
 }
+
+/* V2.8.3 — Rendre les choix du Bulletin citoyen tactiles et engageants,
+   sans animation persuasive ni différence de relief selon l'orientation. */
+body.bulletin-v25 :is(.choice-card,.choice-card.secondary,.choice-card.warn,.vote-card){
+  border:2px solid #c5cdc8;
+  border-radius:17px;
+  background:linear-gradient(175deg,#fff,#fbfaf7);
+  box-shadow:0 5px 0 #d7d8d1,0 15px 27px rgba(23,39,62,.13),inset 0 1px 0 #fff;
+  transform:none;
+  animation:none!important;
+  transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease,background .14s ease;
+  -webkit-tap-highlight-color:rgba(185,87,58,.13);
+}
+@media(hover:hover){
+  body.bulletin-v25 :is(.choice-card,.choice-card.secondary,.choice-card.warn,.vote-card):hover{
+    transform:translateY(-2px);
+    background:linear-gradient(175deg,#fff,#f6f8f4);
+    border-color:var(--green-dark);
+    box-shadow:0 7px 0 #cad4ce,0 19px 29px rgba(23,39,62,.15);
+  }
+}
+body.bulletin-v25 :is(.choice-card,.choice-card.secondary,.choice-card.warn,.vote-card):active{
+  transform:translateY(3px);
+  box-shadow:0 1px 0 #d7d8d1,0 4px 10px rgba(23,39,62,.11);
+}
+/* Les panneaux contenant les curseurs sont des surfaces de travail,
+   pas des boutons cliquables : les rendre lisibles sans suggérer un choix. */
+body.bulletin-v25 .axis-card{
+  border:1.5px solid #ccd1cc;
+  box-shadow:0 5px 0 #e4e2da,0 15px 28px rgba(23,39,62,.10);
+}
+body.bulletin-v25 :is(.no-opinion,.question-help,.btn.primary){
+  box-shadow:0 3px 0 rgba(23,39,62,.18),0 7px 14px rgba(23,39,62,.10);
+}
+body.bulletin-v25 :is(.no-opinion,.question-help,.btn.primary):active{
+  transform:translateY(2px);
+  box-shadow:0 1px 0 rgba(23,39,62,.18),0 3px 7px rgba(23,39,62,.10);
+}
+@media(prefers-reduced-motion:reduce){
+ body.bulletin-v25 :is(.choice-card,.vote-card,.no-opinion,.question-help,.btn.primary){transition:none!important;animation:none!important}
+}
