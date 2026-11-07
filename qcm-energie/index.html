@@ -347,6 +347,7 @@ footer{
 </style>
 <link rel="stylesheet" href="../assets/doctrine-navigation.css">
 <script src="../assets/doctrine-share.js" defer></script>
+<script src="../assets/qcm-scroll-after-answer.js" defer></script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Doctrine Éconologique">
 <meta property="og:locale" content="fr_FR">
@@ -1048,9 +1049,8 @@ function choose(type){
 
     document.getElementById("nextBtn").style.display = "block";
   } else {
-    setTimeout(()=>{
-      nextQuestion();
-    }, 280);
+    // Même en mode rapide, laisser le lecteur poursuivre lui-même.
+    document.getElementById("nextBtn").style.display = "block";
   }
 }
 
