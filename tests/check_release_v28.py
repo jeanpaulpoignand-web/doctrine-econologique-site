@@ -53,6 +53,19 @@ def assert_eq(path,ref=PREVIEW):
     assert old.count(previous)==1,(path,"ancien scroll inattendu")
     assert s.count(previous)==0,(path,"ancien scroll concurrent conserve")
     old=old.replace(previous,"")
+  if path=="qcm-democratie-decisionnelle/index.html":
+    # La seule adaptation du moteur autorisée est l'ouverture directe de
+    # la première question par paramètre, sans toucher aux votes ni aux scores.
+    direct_start=(
+      "// Accès direct depuis le Pilier XIII : un clic mène à la première question" + chr(10)
+      + "// sans imposer une seconde page d'accueil. Sans effet sur les autres accès." + chr(10)
+      + "if(new URLSearchParams(window.location.search).get('start')==='ideas'){" + chr(10)
+      + "  state.screen='ideas';" + chr(10)
+      + "  state.step=0;" + chr(10)
+      + "}" + chr(10)
+    )
+    assert s.count(direct_start)==1,(path,"demarrage direct absent ou altere")
+    s=s.replace(direct_start,"")
   for pattern in [r"<script\b[^>]*>[\s\S]*?</script>",r"<h[123]\b[^>]*>[\s\S]*?</h[123]>",
                   r'<link\b[^>]*rel=["\x27]canonical["\x27][^>]*>']:
     assert parts(s,pattern)==parts(old,pattern),(path,"content regression",pattern)
