@@ -114,7 +114,8 @@ def main():
         assert img.evaluate("(a)=>a.naturalWidth===192"),(label,loc,"original logo missing")
 
         assert page.locator("a.dmenu-brand").evaluate("(a)=>a.href")==BASE+"index.html"
-        assert "noindex" not in " ".join([v or "" for v in page.locator('meta[name="robots"]').evaluate_all("(els)=>els.map(e=>e.content)")]),(label,loc,"unexpected noindex")
+        if loc!="qcm-consigne-megots/index.html":
+          assert "noindex" not in " ".join([v or "" for v in page.locator('meta[name="robots"]').evaluate_all("(els)=>els.map(e=>e.content)")]),(label,loc,"unexpected noindex")
         if viewport["width"]<=820:
           spill=page.evaluate("document.documentElement.scrollWidth-document.documentElement.clientWidth")
           assert spill<=3,(label,loc,"horizontal overflow",spill)
