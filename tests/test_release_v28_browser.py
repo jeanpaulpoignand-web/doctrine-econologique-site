@@ -58,6 +58,13 @@ def main():
       search=page.locator("#topic-search")
       all_topics=page.locator('[data-filter="all"]')
       finances=page.locator('[data-filter="finances"]')
+      # Les filtres sont de vrais boutons tactiles, pas des etiquettes plates.
+      relief=all_topics.evaluate("(el)=>{const s=getComputedStyle(el);return {height:el.getBoundingClientRect().height,shadow:s.boxShadow,texture:s.backgroundImage,transition:s.transitionDuration}}")
+      assert relief["height"]>=44,(label,"cible tactile inferieure a 44 px",relief)
+      assert relief["shadow"]!="none" and relief["texture"]!="none",(label,"relief/texture absents",relief)
+      active_style=all_topics.evaluate("(el)=>getComputedStyle(el).backgroundColor")
+      finances_style=finances.evaluate("(el)=>getComputedStyle(el).backgroundColor")
+      assert active_style!=finances_style,(label,"onglet selectionne non distinct")
       finances.click()
       assert finances.get_attribute("aria-pressed")=="true"
       assert page.locator(".topic-card:visible").count()==3,(label,"filtre argent public")
