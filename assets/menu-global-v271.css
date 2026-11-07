@@ -94,3 +94,10 @@
 @media(prefers-reduced-motion:reduce){
   #dmenu-bar .dmenu-button{transition:none}
 }
+
+@media(max-width:700px){
+  .site-header .nav-links.open{
+    max-height:calc(100dvh - 78px);overflow-y:auto;overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+}
