@@ -27,7 +27,7 @@ def main():
     engine=os.getenv("BROWSER_ENGINE","chromium").lower()
     assert engine in ("chromium","webkit"),engine
     browser=(p.webkit if engine=="webkit" else p.chromium).launch(headless=True)
-    for label,viewport in [("desktop",{"width":1440,"height":900}),("iphone",{"width":390,"height":844}),("iphone-small",{"width":320,"height":650}),("ipad",{"width":820,"height":1180})]:
+    for label,viewport in [("desktop",{"width":1440,"height":900}),("iphone",{"width":390,"height":844}),("iphone-small",{"width":320,"height":650}),("ipad",{"width":820,"height":1180}),("ipad-paysage",{"width":1180,"height":820})]:
       ctx=browser.new_context(viewport=viewport,device_scale_factor=1)
       ctx.route("https://fonts.googleapis.com/**",lambda route:route.abort())
       ctx.route("https://fonts.gstatic.com/**",lambda route:route.abort())
@@ -54,6 +54,47 @@ def main():
       assert page.locator('link[rel="canonical"]').get_attribute("href")=="https://doctrine-econologique.fr/"
       assert page.locator('meta[name="google-site-verification"]').count()==1
       assert page.locator('meta[name="robots"]').count()==0
+      # Recherche globale : la categorie active ne doit jamais masquer un autre sujet pertinent.
+      search=page.locator("#topic-search")
+      all_topics=page.locator('[data-filter="all"]')
+      finances=page.locator('[data-filter="finances"]')
+      # Les filtres sont de vrais boutons tactiles, pas des etiquettes plates.
+      relief=all_topics.evaluate("(el)=>{const s=getComputedStyle(el);return {height:el.getBoundingClientRect().height,shadow:s.boxShadow,texture:s.backgroundImage,transition:s.transitionDuration}}")
+      assert relief["height"]>=44,(label,"cible tactile inferieure a 44 px",relief)
+      assert relief["shadow"]!="none" and relief["texture"]!="none",(label,"relief/texture absents",relief)
+      active_style=all_topics.evaluate("(el)=>getComputedStyle(el).backgroundColor")
+      finances_style=finances.evaluate("(el)=>getComputedStyle(el).backgroundColor")
+      assert active_style!=finances_style,(label,"onglet selectionne non distinct")
+      finances.click()
+      assert finances.get_attribute("aria-pressed")=="true"
+      assert page.locator(".topic-card:visible").count()==3,(label,"filtre argent public")
+      search.fill("retraite")
+      assert all_topics.get_attribute("aria-pressed")=="true",(label,"recherche globale")
+      assert page.locator("#dossier-4").is_visible(),(label,"retraite hors du filtre argent public")
+      assert page.locator(".topic-card:visible").count()==1
+      assert page.locator("#result-count").inner_text()=="1 dossier affiché"
+      search.fill("ÉNERGIE")
+      assert page.locator("#dossier-1").is_visible(),(label,"accent/casse")
+      assert page.locator(".topic-card:visible").count()==1
+      search.fill("fraude")
+      assert page.locator("#dossier-15").is_visible(),(label,"autre groupe")
+      search.fill("mottotalementabsent")
+      assert page.locator(".topic-card:visible").count()==0,(label,"aucun resultat")
+      assert page.locator("#empty").is_visible()
+      page.locator('[data-filter="production"]').click()
+      assert search.input_value()=="",(label,"un filtre efface la recherche")
+      assert page.locator(".topic-card:visible").count()==5
+      search.fill("agriculture")
+      assert all_topics.get_attribute("aria-pressed")=="true"
+      assert page.locator("#dossier-9").is_visible()
+      search.fill("")
+      assert page.locator(".topic-card:visible").count()==17,(label,"recherche effacee")
+      assert page.locator("#empty").is_hidden()
+      if label=="ipad-paysage":
+        search.fill("retraite")
+        page.locator("#explorer").scroll_into_view_if_needed()
+        page.screenshot(path=str(ART/"ipad-paysage-recherche-retraite.png"),full_page=False)
+        search.fill("")
       # Le panneau bleu de l'accueil doit rester parfaitement droit, y compris sur iPad paysage.
       assert page.locator(".question-board").count()==1
       assert page.locator(".question-board").evaluate("(el)=>getComputedStyle(el).transform")=="none",(label,"panneau bleu incline")
