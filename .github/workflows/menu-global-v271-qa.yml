@@ -27,6 +27,18 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Menu sur iPhone, iPhone étroit et ordinateur
         run: python tests/test_menu_global_v271.py
+      - name: Vérifier l'adresse publique de la prépublication
+        run: |
+          python - <<'PY'
+          from urllib.request import Request,urlopen
+          base="https://raw.githack.com/jeanpaulpoignand-web/doctrine-econologique-site/preview-v27-menu-2026-11-07/"
+          for path in ["index.html","piliers/index.html","qcm-democratie-decisionnelle/index.html","assets/doctrine-share.js","assets/menu-global-v271.css"]:
+              with urlopen(Request(base+path,headers={"User-Agent":"Mozilla/5.0"}),timeout=20) as r:
+                  prefix=r.read(1024)
+                  assert r.status==200,(path,r.status)
+                  assert len(prefix)>100,(path,len(prefix))
+                  print("PREVIEW HTTP 200",path)
+          PY
       - name: Captures réelles
         if: always()
         uses: actions/upload-artifact@v4
