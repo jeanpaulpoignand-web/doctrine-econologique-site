@@ -18,6 +18,7 @@
   };
   var rules=flows[slug];
   if(!rules)return;
+  document.documentElement.dataset.qcmScrollReady=slug;
   var reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
   function visible(el){
     if(!el || el.hidden || el.disabled || el.closest("[hidden],.hidden"))return false;
@@ -25,13 +26,21 @@
     return style.display!=="none" && style.visibility!=="hidden" && el.getClientRects().length>0;
   }
   function reveal(targetSelector){
+    document.documentElement.dataset.qcmScrollTarget=targetSelector;
     // Attendre la reconstruction des cartes et l'apparition d'un éventuel
     // texte pédagogique : un scroll exécuté pendant le rendu se perd sur iOS.
     window.requestAnimationFrame(function(){
       window.requestAnimationFrame(function(){
         var action=document.querySelector(targetSelector);
         if(!visible(action))return;
-        action.scrollIntoView({block:"center",inline:"nearest",behavior:reduced.matches?"auto":"smooth"});
+        // Les longs retours pédagogiques peuvent perturber scrollIntoView
+        // sous Safari : calculer directement la position de destination.
+        var rect=action.getBoundingClientRect();
+        var viewportHeight=window.visualViewport?window.visualViewport.height:window.innerHeight;
+        var wanted=window.scrollY+rect.top-(viewportHeight-rect.height)*0.61;
+        var limit=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+        var destination=Math.min(limit,Math.max(0,wanted));
+        window.scrollTo({top:destination,behavior:reduced.matches?"instant":"smooth"});
       });
     });
   }
