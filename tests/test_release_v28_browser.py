@@ -54,6 +54,9 @@ def main():
       assert page.locator('link[rel="canonical"]').get_attribute("href")=="https://doctrine-econologique.fr/"
       assert page.locator('meta[name="google-site-verification"]').count()==1
       assert page.locator('meta[name="robots"]').count()==0
+      # Le panneau bleu de l'accueil doit rester parfaitement droit, y compris sur iPad paysage.
+      assert page.locator(".question-board").count()==1
+      assert page.locator(".question-board").evaluate("(el)=>getComputedStyle(el).transform")=="none",(label,"panneau bleu incline")
 
       if viewport["width"]<=700:
         toggle=page.locator("#menu-toggle")
