@@ -38,7 +38,9 @@ def button_visible_in_viewport(page,selector,label):
       scrollY,innerHeight,visualHeight:visualViewport?.height,
       documentScrollHeight:document.documentElement.scrollHeight,documentClientHeight:document.documentElement.clientHeight,
       display:el&&getComputedStyle(el).display,ancestorHidden:!!el?.closest('[hidden],.hidden'),
-      scriptLoaded:!!document.querySelector('script[src="../assets/qcm-scroll-after-answer.js"]')};
+      scriptLoaded:!!document.querySelector('script[src="../assets/qcm-scroll-after-answer.js"]'),
+      ready:document.documentElement.dataset.qcmScrollReady,
+      target:document.documentElement.dataset.qcmScrollTarget};
     }""",arg=selector)
     raise AssertionError((label,"bouton non centre apres le vote",details))
   assert page.locator(selector).is_visible(),(label,selector,"bouton non visible")
