@@ -1,6 +1,8 @@
 name: Bulletin citoyen V2.5 — intégrité et recette navigateur
 on:
   pull_request:
+    branches:
+      - design/qcm-charte-extension-fraude-frontaliers-megots-v2-4-2026-11-06
     paths:
       - 'qcm-democratie-decisionnelle/index.html'
       - 'assets/bulletin-citoyen-v25.css'

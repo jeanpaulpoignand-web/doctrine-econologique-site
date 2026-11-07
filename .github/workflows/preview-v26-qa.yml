@@ -4,6 +4,8 @@ on:
     branches:
       - preview-v26-2026-11-07
   pull_request:
+    branches:
+      - design/bulletin-citoyen-charte-v2-5-2026-11-07
     paths:
       - index.html
       - questionnaires/index.html

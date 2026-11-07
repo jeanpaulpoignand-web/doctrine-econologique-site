@@ -1,6 +1,9 @@
 name: QCM V2.4 — recette navigateur
 on:
   pull_request:
+    branches:
+      - design/qcm-fusion-fonctionnelle-v2-4-2026-11-06
+      - design/qcm-charte-extension-aspa-batiment-textile-v2-4-2026-11-06
     paths:
       - 'qcm-*/index.html'
       - 'assets/qcm-charte-v24*.css'

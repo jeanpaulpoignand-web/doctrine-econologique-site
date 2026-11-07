@@ -4,6 +4,8 @@ on:
     branches:
       - preview-v27-logo-2026-11-07
   pull_request:
+    branches:
+      - preview-v27-menu-2026-11-07
     paths:
       - 'assets/doctrine-share.js'
       - 'assets/identite/**'
