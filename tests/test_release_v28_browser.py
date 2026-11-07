@@ -36,6 +36,9 @@ def main():
         path=unquote(urlparse(route.request.url).path)
         if not path.startswith(PREFIX):return route.fulfill(status=404,body="Outside preview")
         filename=path[len(PREFIX):]
+        # Reproduire les réécritures de l’hébergeur statique : /dossier/ -> /dossier/index.html
+        if not filename or filename.endswith("/"):
+          filename+="index.html"
         fp=(ROOT/filename).resolve()
         if not fp.is_relative_to(ROOT) or not fp.is_file():
           missing.append(filename)
