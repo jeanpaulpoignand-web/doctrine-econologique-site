@@ -34,3 +34,30 @@ jobs:
           path: .test-artifacts/qcm-relief-v283/
           retention-days: 14
           if-no-files-found: warn
+
+  safari-webkit-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer WebKit (moteur Safari)
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps webkit
+      - name: Vérifier les boutons QCM en relief sur iPad et iPhone (Safari/WebKit)
+        env:
+          BROWSER_ENGINE: webkit
+        run: python tests/test_qcm_relief_v283.py
+      - name: Archiver les captures Safari
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qcm-relief-v283-apercus-webkit
+          path: .test-artifacts/qcm-relief-v283-webkit/
+          retention-days: 14
+          if-no-files-found: warn
