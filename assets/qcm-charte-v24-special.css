@@ -95,3 +95,66 @@ body.qcm-megots .audit{font-size:.72rem;color:var(--q-muted);border-color:var(--
   body.qcm-frontaliers .wrap{width:calc(100% - 24px)}
   body.qcm-megots .hero{padding:20px 16px}
 }
+
+/* V2.8.3 — Relief tactile neutre : Fraude fiscale, Frontaliers, Mégots.
+   La correction factuelle verte/rouge des Frontaliers reste prioritaire. */
+body.qcm-special :is(.answer,.answer-button,button.answer){
+  min-height:67px;
+  padding:18px 20px;
+  border:2px solid #c5cdc8;
+  background:linear-gradient(175deg,#fff,#fbfaf7);
+  border-radius:15px;
+  color:var(--q-ink);
+  line-height:1.5;
+  box-shadow:0 4px 0 #d7d8d1,0 11px 22px rgba(23,39,62,.12),inset 0 1px 0 #fff;
+  transform:translateY(0);
+  transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease,background .14s ease;
+  -webkit-tap-highlight-color:rgba(185,87,58,.13);
+}
+@media(hover:hover){
+  body.qcm-special :is(.answer,.answer-button,button.answer):not(:disabled):hover{
+    transform:translateY(-2px);border-color:var(--q-teal);
+    background:linear-gradient(175deg,#fff,#f6f8f4);
+    box-shadow:0 6px 0 #cad4ce,0 16px 26px rgba(23,39,62,.15);
+  }
+}
+body.qcm-special :is(.answer,.answer-button,button.answer):not(:disabled):active{
+  transform:translateY(3px);
+  box-shadow:0 1px 0 #d7d8d1,0 3px 8px rgba(23,39,62,.12);
+}
+body.qcm-special :is(.answer,.answer-button,button.answer).selected,
+body.qcm-special :is(.answer,.answer-button,button.answer)[aria-pressed="true"]{
+  border-color:var(--q-accent);
+  background:linear-gradient(175deg,#fff8f3,#fff0e9);
+  box-shadow:inset 5px 0 0 var(--q-accent),0 3px 0 #dab7a6,0 10px 18px rgba(23,39,62,.12);
+}
+body.qcm-fraude .mode-card{
+  border:2px solid #c5cdc8;background:linear-gradient(175deg,#fff,#fbfaf7);
+  box-shadow:0 4px 0 #d7d8d1,0 12px 22px rgba(23,39,62,.12);
+}
+@media(hover:hover){
+ body.qcm-fraude .mode-card:hover{
+   transform:translateY(-2px);box-shadow:0 6px 0 #cad4ce,0 16px 25px rgba(23,39,62,.15);
+ }
+}
+body.qcm-fraude .mode-card:active{
+  transform:translateY(3px);box-shadow:0 1px 0 #d7d8d1,0 3px 8px rgba(23,39,62,.11);
+}
+/* États objectifs du QCM Frontaliers : garder la distinction bonne/mauvaise. */
+body.qcm-frontaliers button.answer.good,
+body.qcm-frontaliers button.answer.good:disabled,
+body.qcm-frontaliers button.answer.good:hover{
+  background:var(--vert-bg);border-color:var(--vert);
+  box-shadow:inset 4px 0 0 var(--vert),0 3px 0 #c5d6c9,0 9px 17px rgba(23,39,62,.10);
+  transform:none;
+}
+body.qcm-frontaliers button.answer.bad,
+body.qcm-frontaliers button.answer.bad:disabled,
+body.qcm-frontaliers button.answer.bad:hover{
+  background:var(--rouge-bg);border-color:var(--rouge);
+  box-shadow:inset 4px 0 0 var(--rouge),0 3px 0 #dbbeb7,0 9px 17px rgba(23,39,62,.10);
+  transform:none;
+}
+@media(prefers-reduced-motion:reduce){
+ body.qcm-special :is(.answer,.answer-button,button.answer,.mode-card){transition:none!important;animation:none!important}
+}
