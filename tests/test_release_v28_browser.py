@@ -347,7 +347,14 @@ def main():
         page.screenshot(path=str(ART/f"{label}-pilier13-vote-premier-ecran.png"),full_page=False)
       cta.click()
       assert "?start=ideas" in page.url,(label,"lien de demarrage direct perdu")
-      assert page.locator("#axis-question").is_visible(),(label,"premiere question non ouverte")
+      try:
+        page.locator("#axis-question").wait_for(state="visible",timeout=8000)
+      except Exception:
+        debug=page.evaluate("""() => ({url:location.href,ready:document.readyState,
+          rootText:document.querySelector('#root')?.textContent?.slice(0,600),
+          start:new URLSearchParams(location.search).get('start'),
+          hasAxis:!!document.querySelector('#axis-question')})""")
+        raise AssertionError((label,"premiere question non ouverte",debug,"JS errors",errors[-4:]))
       assert page.locator("#next-question").is_disabled(),(label,"question suivante deja active")
       assert page.locator("#no-opinion").is_visible(),(label,"choix sans avis absent")
       # Un accès classique au QCM continue de montrer son écran de choix.
