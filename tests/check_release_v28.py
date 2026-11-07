@@ -66,6 +66,25 @@ def main():
     if path!="index.html":
       assert_eq(path)
     print("PASS static SEO+Apple",path)
+  # All published HTML, including source fiches and annexes, must use the SAME
+  # Apple icon; a shortcut created from any interior page must not revert to
+  # the old é. or bulletin pictogram. Non-published legacy v7 variants are
+  # intentionally excluded by _config.yml.
+  all_html=[]
+  for entry in ROOT.rglob("*.html"):
+    path=entry.relative_to(ROOT).as_posix()
+    if path.startswith(("archives/","tools/","prototype-v2/","tests/",".github/")):continue
+    if path in ("qcm-general/qcm-general-v7-1-index.html","qcm-general/qcm-general-v7-2-index.html"):continue
+    all_html.append(path)
+  assert len(all_html)>=90,("published HTML inventory incomplete",len(all_html))
+  for path in all_html:
+    h=text(path).split("</head>",1)[0]
+    match=re.search(r'<link[^>]*rel="apple-touch-icon"[^>]*href="([^"]+)"',h,re.I)
+    assert match,(path,"Apple shortcut logo missing")
+    icon=(ROOT/path).parent.joinpath(match.group(1)).resolve()
+    assert icon==(ROOT/"apple-touch-icon.png").resolve(),(path,"wrong old Apple icon",match.group(1))
+    assert len(parts(h,r'<link\b[^>]*rel="apple-touch-icon"'))==1,(path,"duplicate icon")
+  print("PASS all",len(all_html),"published HTML pages use the same Perplexity Apple touch icon")
   main_html=text("index.html"); old_head=original(MAIN,"index.html").split("</head>",1)[0]
   assert "noindex" not in main_html.split("</head>",1)[0].lower()
   assert 'name="google-site-verification"' in main_html.split("</head>",1)[0]
