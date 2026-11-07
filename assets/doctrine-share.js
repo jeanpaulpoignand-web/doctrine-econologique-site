@@ -30,7 +30,7 @@
   const host=location.hostname.toLowerCase();
   if(host!=='raw.githack.com' && host!=='rawgit.com') return;
   const chunks=location.pathname.split('/').filter(Boolean);
-  if(chunks.length<4 || !/^preview-v2[67]-2026-11-07$|^preview-v27-menu-2026-11-07$/.test(chunks[2])) return;
+  if(chunks.length<4 || !/^preview-v2[67]-2026-11-07$|^preview-v27-(menu|logo)-2026-11-07$/.test(chunks[2])) return;
   const base='/'+chunks.slice(0,3).join('/')+'/';
   function toPreview(href){
     if(!href||href.startsWith('mailto:')||href.startsWith('tel:')||href.startsWith('sms:')||href.startsWith('javascript:')) return null;
@@ -66,7 +66,7 @@
     notice.id='preview-v26-notice';
     notice.setAttribute('role','note');
     notice.style.cssText='box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;padding:7px 12px;background:#f6f0e4;color:#17273e;border-bottom:1px solid #dddcd2;text-align:center;font:600 12px/1.45 system-ui,-apple-system,sans-serif;position:relative;z-index:40';
-    notice.innerHTML='Prépublication V2.7 — site d’essai, non officiel <span aria-hidden="true">·</span> <a href="'+base+'index.html" style="color:#97452f;text-decoration:underline">Accueil de la prépublication</a>';
+    notice.innerHTML='Prépublication V2.7.2 — site d’essai, non officiel <span aria-hidden="true">·</span> <a href="'+base+'index.html" style="color:#97452f;text-decoration:underline">Accueil de la prépublication</a>';
     document.body.insertBefore(notice,document.body.firstChild);
     rewriteLinks(document);
     new MutationObserver(records=>{
@@ -93,7 +93,7 @@
 (()=>{'use strict';
   if(!['raw.githack.com','rawgit.com'].includes(location.hostname.toLowerCase()))return;
   const parts=location.pathname.split('/').filter(Boolean);
-  if(parts.length<4||parts[2]!=='preview-v27-menu-2026-11-07')return;
+  if(parts.length<4||!['preview-v27-menu-2026-11-07','preview-v27-logo-2026-11-07'].includes(parts[2]))return;
   const root='/'+parts.slice(0,3).join('/')+'/';
   const entries=[
     ['Accueil',root+'index.html'],
@@ -191,6 +191,46 @@
       if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
       else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
     });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+})();
+
+
+/* V2.7.2 — identité Perplexity, symbole issu de l'original PNG utilisateur.
+ * Uniquement dans la branche de prépublication dédiée ; jamais en production.
+ */
+(()=>{'use strict';
+  if(!['raw.githack.com','rawgit.com'].includes(location.hostname.toLowerCase()))return;
+  const p=location.pathname.split('/').filter(Boolean);
+  if(p.length<4||p[2]!=='preview-v27-logo-2026-11-07')return;
+  const base='/'+p.slice(0,3).join('/')+'/';
+  const image=location.origin+base+'assets/identite/symbole-perplexity.png';
+  function init(){
+    if(!document.querySelector('link[href*="logo-perplexity-v272.css"]')){
+      const css=document.createElement('link');css.rel='stylesheet';
+      css.href=base+'assets/identite/logo-perplexity-v272.css';document.head.appendChild(css);
+    }
+    // Un favicon unique, identique au symbole choisi.
+    document.querySelectorAll('link[rel="icon"],link[rel="shortcut icon"],link[rel="apple-touch-icon"]').forEach(el=>el.remove());
+    for(const [rel,sizes] of [['icon','192x192'],['apple-touch-icon','192x192']]){
+      const ico=document.createElement('link');ico.rel=rel;ico.type='image/png';
+      ico.setAttribute('sizes',sizes);ico.href=image;document.head.appendChild(ico);
+    }
+    function mount(){
+      for(const selector of ['.site-header .brand-mark','#dmenu-bar .dmenu-brandmark']){
+        for(const slot of document.querySelectorAll(selector)){
+          if(slot.classList.contains('dlogo-mounted'))continue;
+          slot.classList.add('dlogo-mounted');
+          const img=document.createElement('img');img.src=image;img.width=44;img.height=44;
+          img.alt='';img.decoding='async';img.title='Symbole de la Doctrine Éconologique — création Perplexity';
+          slot.replaceChildren(img);
+        }
+      }
+    }
+    mount();
+    const mo=new MutationObserver(mount);
+    mo.observe(document.body,{childList:true,subtree:true});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();

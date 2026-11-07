@@ -1,0 +1,26 @@
+/* Identité V2.7.2 — symbole fourni par l'utilisateur, créé par Perplexity.
+ * Source originale : Drive du projet. Utiliser sans recolorisation ni réinterprétation.
+ * Application limitée à preview-v27-logo-2026-11-07.
+ */
+.site-header .brand-mark.dlogo-mounted {
+  width:44px;height:44px;padding:0;flex:none;background:transparent;
+  border-radius:50%;box-shadow:none;overflow:visible;
+}
+.site-header .brand-mark.dlogo-mounted img {
+  display:block;width:100%;height:100%;object-fit:contain;border-radius:50%;
+}
+#dmenu-bar .dmenu-brandmark.dlogo-mounted {
+  width:38px;height:38px;padding:0;background:transparent;
+  border-radius:50%;overflow:visible;box-shadow:none;
+}
+#dmenu-bar .dmenu-brandmark.dlogo-mounted img {
+  display:block;width:100%;height:100%;object-fit:contain;border-radius:50%;
+}
+@media(max-width:700px){
+  .site-header .brand-mark.dlogo-mounted{width:40px;height:40px}
+  #dmenu-bar .dmenu-brandmark.dlogo-mounted{width:35px;height:35px}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-header .brand-mark.dlogo-mounted img,
+  #dmenu-bar .dmenu-brandmark.dlogo-mounted img{animation:none;transition:none}
+}
