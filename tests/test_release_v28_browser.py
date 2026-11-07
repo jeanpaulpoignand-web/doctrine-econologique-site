@@ -279,6 +279,30 @@ def main():
         if viewport["width"]<=820:
           spill=page.evaluate("document.documentElement.scrollWidth-document.documentElement.clientWidth")
           assert spill<=3,(label,loc,"horizontal overflow",spill)
+      # Pilier XIII : entrée au bulletin accessible dès le premier écran,
+      # sans défilement ni deuxième écran d'introduction à franchir.
+      page.goto(BASE+"piliers/democratie-decisionnelle/index.html",wait_until="domcontentloaded")
+      cta=page.locator(".p13-vote-now")
+      assert cta.count()==1 and cta.is_visible(),(label,"bouton Voter maintenant manquant")
+      assert cta.get_attribute("href")=="../../qcm-democratie-decisionnelle/?start=ideas"
+      assert cta.evaluate("""el=>{
+        const r=el.getBoundingClientRect();
+        return r.top>=0 && r.bottom<=window.innerHeight+3 && r.height>=44
+      }"""),(label,"vote pas visible sans defiler")
+      assert page.locator(".p13-vote-note").is_visible(),(label,"precisions sur vote de demonstration manquantes")
+      if label in ("desktop","iphone","iphone-small","ipad-paysage"):
+        page.screenshot(path=str(ART/f"{label}-pilier13-vote-premier-ecran.png"),full_page=False)
+      cta.click()
+      assert "?start=ideas" in page.url,(label,"lien de demarrage direct perdu")
+      assert page.locator("#axis-question").is_visible(),(label,"premiere question non ouverte")
+      assert page.locator("#next-question").is_disabled(),(label,"question suivante deja active")
+      assert page.locator("#no-opinion").is_visible(),(label,"choix sans avis absent")
+      # Un accès classique au QCM continue de montrer son écran de choix.
+      page.goto(BASE+"qcm-democratie-decisionnelle/index.html",wait_until="domcontentloaded")
+      assert page.locator(".hero-grid .choice-card").count()>=2,(label,"accueil du bulletin modifie")
+      # Le contenu explicatif du pilier reste disponible aux lecteurs.
+      page.goto(BASE+"piliers/democratie-decisionnelle/index.html",wait_until="domcontentloaded")
+      assert page.get_by_text("DEUX BULLETINS POUR VOIR LA DIFFÉRENCE").is_visible()
       # QCM général, question 6 illustrée par la capture iPhone : après
       # avoir voté, faire apparaître « Question suivante » sans l'activer.
       # Vérifier les deux modes, y compris l'explication pédagogique.
