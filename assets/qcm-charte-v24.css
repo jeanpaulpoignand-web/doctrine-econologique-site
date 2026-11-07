@@ -239,7 +239,7 @@ body.qcm-general .answers button.answer[aria-pressed="true"]::before{
 body.qcm-general .answers:not(.answered) button.answer,
 body.qcm-general .mode-card{animation:none !important;filter:none !important}
 @media(hover:hover){
-  body.qcm-general .answers button.answer:not(:disabled):hover{
+  body.qcm-general .answers button.answer:not(:disabled):not(.selected):not([aria-pressed="true"]):hover{
     transform:translateY(-2px);border-color:var(--q-teal);
     background:linear-gradient(175deg,#fff,#f6f8f4);
     box-shadow:0 6px 0 #cad4ce,0 16px 26px rgba(23,39,62,.15),inset 0 1px 0 #fff;
@@ -280,7 +280,7 @@ body.qcm-energie #answers button{
   -webkit-tap-highlight-color:rgba(185,87,58,.13);
 }
 @media(hover:hover){
-  body.qcm-energie #answers button:not(:disabled):hover{
+  body.qcm-energie #answers button:not(:disabled):not(.selected):not([aria-pressed="true"]):hover{
     transform:translateY(-2px);border-color:var(--q-teal);
     background:linear-gradient(175deg,#fff,#f6f8f4);
     box-shadow:0 6px 0 #cad4ce,0 16px 26px rgba(23,39,62,.15);
