@@ -32,16 +32,27 @@ def parts(s,pat):
   return re.findall(pat,s,flags=re.I|re.S)
 def assert_eq(path,ref=PREVIEW):
   s=text(path); old=original(ref,path)
-  if path=="qcm-general/index.html":
-    # Exception strictement bornee au defilement demande apres un choix.
-    # Revenir virtuellement au script d'origine et conserver le controle
-    # d'identite de tout le reste (reponses, pondérations, navigation).
-    extra_fn='\n// Après un choix explicite, rapprocher le bouton suivant sans déclencher le passage de question.\nfunction scrollToNextQuestionButton(){requestAnimationFrame(()=>{nextBtn.scrollIntoView({block:"center",inline:"nearest",behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})})}'
-    before='btn.addEventListener("click",function(){userAnswers[current]=a.profile;renderQuestion()});'
-    after='btn.addEventListener("click",function(){userAnswers[current]=a.profile;renderQuestion();scrollToNextQuestionButton()});'
-    assert s.count(extra_fn)==1,(path,"scroll helper missing or duplicated")
-    assert s.count(after)==1,(path,"answer handler not strictly modified as expected")
-    s=s.replace(extra_fn,"").replace(after,before)
+  if path in [name+"/index.html" for name in QCMS]:
+    # Nouvel assistant de défilement mutualisé : aucune modification des données
+    # ni des moteurs des questionnaires (hormis mode rapide Énergie ci-dessous).
+    loader='<script src="../assets/qcm-scroll-after-answer.js" defer></script>'
+    assert s.count(loader)==1,(path,"script de defilement manquant ou duplique")
+    s=s.replace(loader,"")
+  if path=="qcm-energie/index.html":
+    # Le mode rapide Energie quitte le passage automatique apres 280 ms :
+    # après le vote, l'utilisateur choisit quand passer à la question suivante.
+    before='  } else {\n    setTimeout(()=>{\n      nextQuestion();\n    }, 280);\n  }'
+    after='  } else {\n    // Même en mode rapide, laisser le lecteur poursuivre lui-même.\n    document.getElementById("nextBtn").style.display = "block";\n  }'
+    before=before.replace('\n','\n')
+    after=after.replace('\n','\n')
+    assert s.count(after)==1,(path,"mode rapide Energie modifie autrement")
+    s=s.replace(after,before)
+  if path in ("qcm-aspa/index.html","qcm-textile/index.html"):
+    # Suppression strictement bornee de l'ancien scroll, remplace par le helper commun.
+    previous='  $("nextBtn").scrollIntoView({behavior:"smooth",block:"nearest"});' + chr(10)
+    assert old.count(previous)==1,(path,"ancien scroll inattendu")
+    assert s.count(previous)==0,(path,"ancien scroll concurrent conserve")
+    old=old.replace(previous,"")
   for pattern in [r"<script\b[^>]*>[\s\S]*?</script>",r"<h[123]\b[^>]*>[\s\S]*?</h[123]>",
                   r'<link\b[^>]*rel=["\x27]canonical["\x27][^>]*>']:
     assert parts(s,pattern)==parts(old,pattern),(path,"content regression",pattern)

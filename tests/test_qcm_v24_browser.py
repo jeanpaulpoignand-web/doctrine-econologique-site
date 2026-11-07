@@ -57,6 +57,10 @@ def energie_qcm(browser):
     page.screenshot(path=str(OUT / 'energie-desktop-question.png'), full_page=True)
     for i in range(19):
         page.locator('#answers button').first.click()
+        # Le mode rapide ne saute plus automatiquement : même parcours que
+        # les autres QCM, l'utilisateur confirme chaque étape.
+        page.locator('#nextBtn').wait_for(state='visible', timeout=8000)
+        page.locator('#nextBtn').click()
         if i < 18:
             page.wait_for_function('(n) => document.querySelector("#progressText").textContent.includes(`Question ${n} / 19`)', arg=i + 2, timeout=8000)
     page.locator('#result').wait_for(state='visible', timeout=10000)
