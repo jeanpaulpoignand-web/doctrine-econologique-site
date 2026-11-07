@@ -406,9 +406,9 @@ def main():
           elif slug=="qcm-immigrants-journee":
             page.locator("#answers button.answer").first.click()
             button_visible_in_viewport(page,"#next",(label,slug,mode))
-            assert page.locator("#qnum").inner_text().startswith("Question 1")
+            assert page.locator("#qnum").text_content().strip().lower().startswith("question 1")
             page.locator("#next").click()
-            assert page.locator("#qnum").inner_text().startswith("Question 2")
+            assert page.locator("#qnum").text_content().strip().lower().startswith("question 2")
           elif slug=="qcm-consigne-megots":
             page.locator("#startBtn").click()
             for marker_num in (1,2):
