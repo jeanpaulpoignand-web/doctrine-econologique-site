@@ -6,6 +6,7 @@
 #dmenu-bar *,
 #dmenu-panel *{box-sizing:border-box}
 #dmenu-bar{
+  width:100%;align-self:stretch;flex-shrink:0;
   min-height:60px;padding:7px clamp(13px,3vw,30px);
   display:flex;align-items:center;justify-content:space-between;gap:15px;
   background:rgba(250,248,243,.97);border-bottom:1px solid var(--dmenu-line);
