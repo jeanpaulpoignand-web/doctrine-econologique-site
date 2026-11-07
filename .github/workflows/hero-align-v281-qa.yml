@@ -1,0 +1,31 @@
+name: Prévisualisation V2.8.1 — alignement du panneau de départ
+on:
+  push:
+    branches:
+      - preview-v28-hero-align-2026-11-07
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  hero-alignment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Chromium
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Vérifier rotation et alignement des colonnes sur 5 écrans
+        run: python tests/test_hero_align_v281.py
+      - name: Archiver les captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hero-aligne-v281-captures
+          path: .test-artifacts/hero-align/
+          retention-days: 14
+          if-no-files-found: warn
