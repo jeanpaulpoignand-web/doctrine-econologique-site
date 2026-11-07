@@ -49,7 +49,8 @@ def main():
   for path in PAGES:
     s=text(path);head=s.split("</head>",1)[0]
     assert "<head" in head and "<html" in s[:80],path
-    assert len(tags(s,"h1"))==1,(path,"H1")
+    markup=re.sub(r"<script\b[^>]*>[\s\S]*?</script>","",s,flags=re.I)
+    assert len(tags(markup,"h1"))==1,(path,"H1 outside JS templates")
     assert re.search(r"<title>[^<]{12,}</title>",head,re.I),path
     assert re.search(r'<meta\b[^>]*name=["\x27]description["\x27]',head,re.I),path
     assert len(parts(head,r'<link\b[^>]*rel=["\x27]canonical["\x27][^>]*>'))==1,(path,"canonical")
