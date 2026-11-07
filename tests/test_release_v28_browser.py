@@ -279,6 +279,32 @@ def main():
         if viewport["width"]<=820:
           spill=page.evaluate("document.documentElement.scrollWidth-document.documentElement.clientWidth")
           assert spill<=3,(label,loc,"horizontal overflow",spill)
+      # QCM général, question 6 illustrée par la capture iPhone : après
+      # avoir voté, faire apparaître « Question suivante » sans l'activer.
+      # Vérifier les deux modes, y compris l'explication pédagogique.
+      for mode in ("fast","learn"):
+        page.goto(BASE+f"qcm-general/index.html?mode={mode}&q=6",wait_until="domcontentloaded",timeout=30000)
+        answer=page.locator("#answers button.answer").first
+        answer.wait_for()
+        assert page.locator("#stepLabel").inner_text()=="Question 6 / 10",(label,mode,"lien direct mal lu")
+        assert page.locator("#nextBtn").is_disabled(),(label,mode,"suivant activé sans choix")
+        answer.click()
+        next_button=page.locator("#nextBtn")
+        assert next_button.is_enabled(),(label,mode,"suivant doit être activé")
+        # Un défilement doux peut prendre quelques centaines de ms.
+        page.wait_for_function("""() => {
+          const el=document.getElementById('nextBtn'),r=el.getBoundingClientRect();
+          return !el.disabled && r.top>=-1 && r.bottom<=window.innerHeight+4;
+        }""",timeout=7000)
+        assert page.locator("#stepLabel").inner_text()=="Question 6 / 10",(label,mode,"passage automatique non demandé")
+        assert page.locator("#answers .answer.selected").count()==1,(label,mode,"choix perdu")
+        if mode=="learn":
+          assert page.locator("#explanationBox").is_visible(),(label,"explication pédagogique disparue")
+        if label in ("iphone","iphone-small","ipad-paysage") and mode=="fast":
+          page.screenshot(path=str(ART/f"{label}-qcm-general-apres-vote-scroll.png"),full_page=False)
+        next_button.click()
+        assert page.locator("#stepLabel").inner_text()=="Question 7 / 10",(label,mode,"suivant ne fonctionne plus")
+        assert page.locator("#nextBtn").is_disabled(),(label,mode,"question suivante activée avant vote")
       assert not missing,(label,"missing assets",sorted(set(missing))[:10])
       assert not errors,(label,"JS error",errors[:8])
       print("PASS",label,"production links, menu, Perplexity icon on 27 pages, SEO, no JS errors or overflow")
