@@ -3,11 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#17273e">
-  <meta name="description" content="Prépublication V2.6 non indexée : découvrir la Doctrine Éconologique, explorer 17 thèmes, consulter les sources et participer aux questionnaires citoyens.">
-  <title>Doctrine Éconologique — Prépublication V2.6 (non indexée)</title>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Doctrine Éconologique — Prépublication V2.6","inLanguage":"fr","description":"Prototype non indexé de navigation citoyenne, documentée et accessible.","isPartOf":{"@type":"WebSite","name":"Doctrine Éconologique","url":"https://doctrine-econologique.fr/"}}</script>
+  <meta name="description" content="Doctrine Éconologique : 17 piliers pour une France qui produit, répare et transmet. Énergie, retraites, grand âge, dette : des fiches chiffrées et sourcées.">
+  <title>Doctrine Éconologique : 17 piliers pour une France qui produit</title>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://doctrine-econologique.fr/#website",
+      "name": "Doctrine Éconologique",
+      "url": "https://doctrine-econologique.fr/",
+      "inLanguage": "fr-FR",
+      "publisher": {"@id": "https://doctrine-econologique.fr/#organisation"}
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://doctrine-econologique.fr/#organisation",
+      "name": "Doctrine Éconologique",
+      "url": "https://doctrine-econologique.fr/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://doctrine-econologique.fr/apple-touch-icon.png",
+        "width": 180,
+        "height": 180
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Jean Paul Poignand",
+        "url": "https://doctrine-econologique.fr/a-propos/"
+      }
+    }
+  ]
+}
+</script>
+  <meta name="google-site-verification" content="LMzf7-uWAuAehcu64csRugPDF9o78WXtWJSUxVmWf7Y" />
+  <link rel="canonical" href="https://doctrine-econologique.fr/" />
+  <meta name="author" content="Jean Paul Poignand">
+  <meta name="apple-mobile-web-app-title" content="Doctrine Éconologique">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta property="og:type" content="website">
+<meta property="og:site_name" content="Doctrine Éconologique">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Doctrine Éconologique : 17 piliers pour une France qui produit">
+<meta property="og:description" content="Doctrine Éconologique : 17 piliers pour une France qui produit, répare et transmet. Énergie, retraites, grand âge, dette : des fiches chiffrées et sourcées.">
+<meta property="og:url" content="https://doctrine-econologique.fr/">
+<meta property="og:image" content="https://doctrine-econologique.fr/assets/partage-doctrine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doctrine Éconologique — Souveraineté, production, vérité des coûts">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/identite/logo-perplexity-v272.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -37,7 +86,7 @@
 <body>
 <a href="#main" class="skip">Aller au contenu</a>
 <header class="site-header"><div class="container header-inner">
- <a class="brand" href="#accueil" aria-label="Doctrine Éconologique, accueil"><span class="brand-mark">é.</span><span><span class="brand-name">Doctrine Éconologique</span><span class="brand-caption">Comprendre · Comparer · Décider</span></span></a>
+ <a class="brand" href="#accueil" aria-label="Doctrine Éconologique, accueil"><span class="brand-mark dlogo-mounted"><img src="assets/identite/symbole-perplexity.png" width="44" height="44" alt="" decoding="async"></span><span><span class="brand-name">Doctrine Éconologique</span><span class="brand-caption">Comprendre · Comparer · Décider</span></span></a>
  <button class="menu-toggle" id="menu-toggle" aria-controls="nav-links" aria-expanded="false">☰ <span class="sr-only">Menu</span></button>
  <nav class="nav-links" id="nav-links" aria-label="Navigation principale"><a href="#decouverte">Découvrir en 90 s</a><a href="#comprendre">Comprendre</a><a href="#explorer">Explorer les sujets</a><a href="#methode">Notre méthode</a><a href="#qcm" class="nav-action">Les QCM citoyens ↗</a></nav>
 </div></header>
@@ -55,17 +104,18 @@
 <section class="discovery-section" id="decouverte" aria-labelledby="discovery-title"><div class="container">
   <div class="discovery-header"><div><p class="eyebrow">Nouveauté Grok × ChatGPT · Une minute pour démarrer</p><h2 id="discovery-title">Qu'est-ce qui vous préoccupe aujourd'hui ?</h2><p>Choisissez un sujet. Une première explication apparaît, puis vous pouvez lire le dossier ou répondre à un questionnaire. Vous gardez le choix d'approfondir.</p></div><span class="discovery-hint">3 portes d'entrée · à votre rythme</span></div>
   <div class="discovery-grid" id="discovery-grid">
-    <article class="discovery-card"><span class="discovery-kicker">01 · Prix du quotidien</span><h3>Ma facture d'énergie</h3><p>Pourquoi l'énergie pèse-t-elle autant sur mon budget ?</p><button type="button" class="discovery-trigger" aria-expanded="false" aria-controls="discovery-energie" data-discovery="energie">Comprendre en une phrase <span aria-hidden="true">＋</span></button><div class="discovery-answer" id="discovery-energie" hidden><p>Le coût de production, les réseaux, les taxes et les règles de marché peuvent influencer la facture : la Doctrine propose d'examiner ces mécanismes séparément.</p><div class="discovery-actions"><a href="https://doctrine-econologique.fr/piliers/energie-souveraine/" target="_blank" rel="noopener noreferrer">Lire le dossier ↗</a><a class="discovery-qcm" href="https://doctrine-econologique.fr/qcm-energie/" target="_blank" rel="noopener noreferrer">QCM Énergie ↗</a></div></div></article>
-    <article class="discovery-card"><span class="discovery-kicker">02 · Réparer et produire</span><h3>Des objets qui durent</h3><p>Et si réparer devenait plus simple que remplacer ?</p><button type="button" class="discovery-trigger" aria-expanded="false" aria-controls="discovery-objets" data-discovery="objets">Comprendre en une phrase <span aria-hidden="true">＋</span></button><div class="discovery-answer" id="discovery-objets" hidden><p>La Doctrine étudie l'allongement de la durée de vie des produits et ses effets possibles sur les réparateurs, les ménages et les déchets.</p><div class="discovery-actions"><a href="https://doctrine-econologique.fr/piliers/garantie-decennale/" target="_blank" rel="noopener noreferrer">Lire le dossier ↗</a><a class="discovery-qcm" href="#explorer">Explorer les thèmes ↓</a></div></div></article>
-    <article class="discovery-card"><span class="discovery-kicker">03 · Solidarité</span><h3>L'avenir de nos proches</h3><p>Comment concilier solidarité, soins et argent public ?</p><button type="button" class="discovery-trigger" aria-expanded="false" aria-controls="discovery-proches" data-discovery="proches">Comprendre en une phrase <span aria-hidden="true">＋</span></button><div class="discovery-answer" id="discovery-proches" hidden><p>Le grand âge et les retraites imposent des arbitrages concrets sur les moyens, les métiers du soin et la justice entre générations.</p><div class="discovery-actions"><a href="https://doctrine-econologique.fr/piliers/grand-age-ehpad/" target="_blank" rel="noopener noreferrer">Lire le dossier ↗</a><a class="discovery-qcm" href="https://doctrine-econologique.fr/qcm-aspa/" target="_blank" rel="noopener noreferrer">QCM Retraites ↗</a></div></div></article>
+    <article class="discovery-card"><span class="discovery-kicker">01 · Prix du quotidien</span><h3>Ma facture d'énergie</h3><p>Pourquoi l'énergie pèse-t-elle autant sur mon budget ?</p><button type="button" class="discovery-trigger" aria-expanded="false" aria-controls="discovery-energie" data-discovery="energie">Comprendre en une phrase <span aria-hidden="true">＋</span></button><div class="discovery-answer" id="discovery-energie" hidden><p>Le coût de production, les réseaux, les taxes et les règles de marché peuvent influencer la facture : la Doctrine propose d'examiner ces mécanismes séparément.</p><div class="discovery-actions"><a href="/piliers/energie-souveraine/">Lire le dossier ↗</a><a class="discovery-qcm" href="/qcm-energie/">QCM Énergie ↗</a></div></div></article>
+    <article class="discovery-card"><span class="discovery-kicker">02 · Réparer et produire</span><h3>Des objets qui durent</h3><p>Et si réparer devenait plus simple que remplacer ?</p><button type="button" class="discovery-trigger" aria-expanded="false" aria-controls="discovery-objets" data-discovery="objets">Comprendre en une phrase <span aria-hidden="true">＋</span></button><div class="discovery-answer" id="discovery-objets" hidden><p>La Doctrine étudie l'allongement de la durée de vie des produits et ses effets possibles sur les réparateurs, les ménages et les déchets.</p><div class="discovery-actions"><a href="/piliers/garantie-decennale/">Lire le dossier ↗</a><a class="discovery-qcm" href="#explorer">Explorer les thèmes ↓</a></div></div></article>
+    <article class="discovery-card"><span class="discovery-kicker">03 · Solidarité</span><h3>L'avenir de nos proches</h3><p>Comment concilier solidarité, soins et argent public ?</p><button type="button" class="discovery-trigger" aria-expanded="false" aria-controls="discovery-proches" data-discovery="proches">Comprendre en une phrase <span aria-hidden="true">＋</span></button><div class="discovery-answer" id="discovery-proches" hidden><p>Le grand âge et les retraites imposent des arbitrages concrets sur les moyens, les métiers du soin et la justice entre générations.</p><div class="discovery-actions"><a href="/piliers/grand-age-ehpad/">Lire le dossier ↗</a><a class="discovery-qcm" href="/qcm-aspa/">QCM Retraites ↗</a></div></div></article>
   </div>
 </div></section>
+<span id="positionner" aria-hidden="true"></span>
 <section class="qcm-section" id="qcm" aria-labelledby="qcm-title"><div class="container">
-<div class="qcm-intro"><div><p class="eyebrow">Participez en quelques minutes</p><h2 id="qcm-title">Et vous, que décideriez-vous ?</h2><p>Pas besoin de connaître la Doctrine : un questionnaire vous aide à examiner des décisions concrètes, à votre rythme. Les réponses et les sources restent accessibles.</p></div><a class="qcm-all" href="https://doctrine-econologique.fr/questionnaires/" target="_blank" rel="noopener noreferrer">Tous les questionnaires ↗</a></div>
+<div class="qcm-intro"><div><p class="eyebrow">Participez en quelques minutes</p><h2 id="qcm-title">Et vous, que décideriez-vous ?</h2><p>Pas besoin de connaître la Doctrine : un questionnaire vous aide à examiner des décisions concrètes, à votre rythme. Les réponses et les sources restent accessibles.</p></div><a class="qcm-all" href="/questionnaires/">Tous les questionnaires ↗</a></div>
 <div class="qcm-cards">
-<article class="qcm-card qcm-main"><span class="qcm-step">01 · Bulletin citoyen</span><h3>Et si on votait différemment ?</h3><p>Explorer les décisions et les arbitrages plutôt que les seules étiquettes.</p><a href="https://doctrine-econologique.fr/qcm-democratie-decisionnelle/" target="_blank" rel="noopener noreferrer">Lancer le bulletin citoyen ↗</a></article>
-<article class="qcm-card"><span class="qcm-step">02 · Questionnaires transversaux</span><h3>Tester vos idées</h3><p>Un parcours général pour découvrir les questions économiques et citoyennes.</p><a href="https://doctrine-econologique.fr/qcm-general/" target="_blank" rel="noopener noreferrer">Commencer le QCM général ↗</a></article>
-<article class="qcm-card"><span class="qcm-step">03 · Questionnaires thématiques</span><h3>Choisir un sujet précis</h3><p>Énergie, retraites, bâtiment, textile ou fraude fiscale : commencez où vous voulez.</p><a href="https://doctrine-econologique.fr/questionnaires/" target="_blank" rel="noopener noreferrer">Choisir un thème ↗</a></article>
+<article class="qcm-card qcm-main"><span class="qcm-step">01 · Bulletin citoyen</span><h3>Et si on votait différemment ?</h3><p>Explorer les décisions et les arbitrages plutôt que les seules étiquettes.</p><a href="/qcm-democratie-decisionnelle/">Lancer le bulletin citoyen ↗</a></article>
+<article class="qcm-card"><span class="qcm-step">02 · Questionnaires transversaux</span><h3>Tester vos idées</h3><p>Un parcours général pour découvrir les questions économiques et citoyennes.</p><a href="/qcm-general/">Commencer le QCM général ↗</a></article>
+<article class="qcm-card"><span class="qcm-step">03 · Questionnaires thématiques</span><h3>Choisir un sujet précis</h3><p>Énergie, retraites, bâtiment, textile ou fraude fiscale : commencez où vous voulez.</p><a href="/questionnaires/">Choisir un thème ↗</a></article>
 </div><p class="qcm-note">Les questionnaires s'ouvrent sur le site officiel. La participation et les pages publiques existantes restent inchangées.</p>
 </div></section>
 <section class="section" id="comprendre"><div class="container"><div class="section-heading"><p class="eyebrow">Simple au départ · approfondi à l'arrivée</p><h2>Pas besoin d'être économiste pour avoir son mot à dire.</h2><p>La Doctrine Éconologique est un ensemble de travaux citoyens. Elle ne demande pas d'adhérer à un parti : elle invite à examiner des problèmes, les données disponibles et les solutions proposées.</p></div><div class="path-grid">
@@ -73,102 +123,103 @@
   <article class="path-card"><span class="step-index">02</span><h3>Voir ce que disent les sources</h3><p>Les données établies, les calculs, les hypothèses et les propositions doivent rester distincts.</p></article>
   <article class="path-card"><span class="step-index">03</span><h3>Construire votre opinion</h3><p>Comparer les options, leurs coûts et leurs limites. Ne pas seulement choisir un slogan.</p></article>
 </div></div></section>
+<span id="piliers" aria-hidden="true"></span>
 <section class="section explore" id="explorer"><div class="container"><div class="explore-bar"><div class="section-heading"><p class="eyebrow">Explorer la doctrine</p><h2>À chacun sa porte d'entrée.</h2><p>Choisissez un thème ou recherchez directement un sujet. Les numéros des piliers restent accessibles, sans imposer un ordre de lecture.</p></div><label class="search" for="topic-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg><input id="topic-search" placeholder="Énergie, retraite, agriculture…" type="search" autocomplete="off" aria-label="Rechercher un sujet"></label></div>
 <div class="filter-row" role="group" aria-label="Filtrer les sujets"><button type="button" class="filter" data-filter="all" aria-pressed="true">Tous les sujets</button><button type="button" class="filter" data-filter="quotidien" aria-pressed="false">Vie quotidienne</button><button type="button" class="filter" data-filter="production" aria-pressed="false">Produire & travailler</button><button type="button" class="filter" data-filter="finances" aria-pressed="false">Argent public</button><button type="button" class="filter" data-filter="societe" aria-pressed="false">Démocratie & société</button></div>
 <p id="result-count" class="result-note" aria-live="polite">17 dossiers affichés</p>
-<div id="topic-grid" class="topic-grid"><article class="topic-card" id="dossier-1" data-group="quotidien" data-search="Énergie souveraine Pourquoi l’énergie pèse-t-elle autant sur nos prix et nos emplois ? Vivre au quotidien">
+<div id="topic-grid" class="topic-grid"><article class="topic-card" id="dossier-1" data-original-anchor="pilier-1" data-group="quotidien" data-search="Énergie souveraine Pourquoi l’énergie pèse-t-elle autant sur nos prix et nos emplois ? Vivre au quotidien"><span id="pilier-1" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 01</span></div>
   <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Factures</span><h3>Énergie souveraine</h3><p class="topic-question">Pourquoi l’énergie pèse-t-elle autant sur nos prix et nos emplois ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/energie-souveraine/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Énergie souveraine sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-energie/" target="_blank" rel="noopener noreferrer">QCM du sujet ↗</a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/energie-souveraine/" aria-label="Ouvrir le dossier Énergie souveraine sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-energie/">QCM du sujet ↗</a></div>
 </article>
-<article class="topic-card" id="dossier-2" data-group="quotidien" data-search="Garantie décennale Pourquoi remplacer un objet quand on pourrait le réparer durablement ? Vivre au quotidien">
+<article class="topic-card" id="dossier-2" data-original-anchor="pilier-2" data-group="quotidien" data-search="Garantie décennale Pourquoi remplacer un objet quand on pourrait le réparer durablement ? Vivre au quotidien"><span id="pilier-2" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 02</span></div>
   <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Réparation</span><h3>Garantie décennale</h3><p class="topic-question">Pourquoi remplacer un objet quand on pourrait le réparer durablement ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/garantie-decennale/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Garantie décennale sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/garantie-decennale/" aria-label="Ouvrir le dossier Garantie décennale sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
 </article>
-<article class="topic-card" id="dossier-3" data-group="finances" data-search="Financement public Comment suivre l’argent public et choisir ce qui mérite d’être financé ? Argent public">
+<article class="topic-card" id="dossier-3" data-original-anchor="pilier-3" data-group="finances" data-search="Financement public Comment suivre l’argent public et choisir ce qui mérite d’être financé ? Argent public"><span id="pilier-3" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-finances" aria-hidden="true">€</span><span class="topic-num">DOSSIER 03</span></div>
   <p class="topic-category">Argent public</p><span class="impact-tag">Impact : Impôts</span><h3>Financement public</h3><p class="topic-question">Comment suivre l’argent public et choisir ce qui mérite d’être financé ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/financement-public/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Financement public sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/financement-public/" aria-label="Ouvrir le dossier Financement public sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
 </article>
-<article class="topic-card" id="dossier-4" data-group="quotidien" data-search="Réparation des retraites Comment concilier solidarité, contributions et dignité des anciens ? Vivre au quotidien">
+<article class="topic-card" id="dossier-4" data-original-anchor="pilier-4" data-group="quotidien" data-search="Réparation des retraites Comment concilier solidarité, contributions et dignité des anciens ? Vivre au quotidien"><span id="pilier-4" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 04</span></div>
   <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Retraites</span><h3>Réparation des retraites</h3><p class="topic-question">Comment concilier solidarité, contributions et dignité des anciens ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/reparation-des-retraites/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Réparation des retraites sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-aspa/" target="_blank" rel="noopener noreferrer">QCM du sujet ↗</a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/reparation-des-retraites/" aria-label="Ouvrir le dossier Réparation des retraites sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-aspa/">QCM du sujet ↗</a></div>
 </article>
-<article class="topic-card" id="dossier-5" data-group="quotidien" data-search="Grand âge et EHPAD Comment mieux accompagner nos proches sans subir la pénurie de soignants ? Vivre au quotidien">
+<article class="topic-card" id="dossier-5" data-original-anchor="pilier-5" data-group="quotidien" data-search="Grand âge et EHPAD Comment mieux accompagner nos proches sans subir la pénurie de soignants ? Vivre au quotidien"><span id="pilier-5" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 05</span></div>
   <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Solidarité</span><h3>Grand âge et EHPAD</h3><p class="topic-question">Comment mieux accompagner nos proches sans subir la pénurie de soignants ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/grand-age-ehpad/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Grand âge et EHPAD sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/grand-age-ehpad/" aria-label="Ouvrir le dossier Grand âge et EHPAD sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
 </article>
-<article class="topic-card" id="dossier-6" data-group="production" data-search="Bâtiment et métiers utiles Comment redonner envie d’apprendre et d’exercer les métiers qui construisent ? Produire et travailler">
+<article class="topic-card" id="dossier-6" data-original-anchor="pilier-6" data-group="production" data-search="Bâtiment et métiers utiles Comment redonner envie d’apprendre et d’exercer les métiers qui construisent ? Produire et travailler"><span id="pilier-6" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 06</span></div>
   <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Emplois</span><h3>Bâtiment et métiers utiles</h3><p class="topic-question">Comment redonner envie d’apprendre et d’exercer les métiers qui construisent ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/batiment-metiers-utiles/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Bâtiment et métiers utiles sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-pilier-vi/" target="_blank" rel="noopener noreferrer">QCM du sujet ↗</a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/batiment-metiers-utiles/" aria-label="Ouvrir le dossier Bâtiment et métiers utiles sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-pilier-vi/">QCM du sujet ↗</a></div>
 </article>
-<article class="topic-card" id="dossier-7" data-group="societe" data-search="Éconologie culturelle Qui paie réellement la culture, et comment la rendre accessible ? Démocratie et société">
+<article class="topic-card" id="dossier-7" data-original-anchor="pilier-7" data-group="societe" data-search="Éconologie culturelle Qui paie réellement la culture, et comment la rendre accessible ? Démocratie et société"><span id="pilier-7" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-societe" aria-hidden="true">◈</span><span class="topic-num">DOSSIER 07</span></div>
   <p class="topic-category">Démocratie et société</p><span class="impact-tag">Impact : Culture</span><h3>Éconologie culturelle</h3><p class="topic-question">Qui paie réellement la culture, et comment la rendre accessible ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/econologie-culturelle/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Éconologie culturelle sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/econologie-culturelle/" aria-label="Ouvrir le dossier Éconologie culturelle sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
 </article>
-<article class="topic-card" id="dossier-8" data-group="production" data-search="Frontaliers et capital humain Que se passe-t-il quand nous formons ici des talents qui travaillent ailleurs ? Produire et travailler">
+<article class="topic-card" id="dossier-8" data-original-anchor="pilier-8" data-group="production" data-search="Frontaliers et capital humain Que se passe-t-il quand nous formons ici des talents qui travaillent ailleurs ? Produire et travailler"><span id="pilier-8" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 08</span></div>
   <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Compétences</span><h3>Frontaliers et capital humain</h3><p class="topic-question">Que se passe-t-il quand nous formons ici des talents qui travaillent ailleurs ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/frontaliers-capital-humain/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Frontaliers et capital humain sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-immigrants-journee/" target="_blank" rel="noopener noreferrer">QCM du sujet ↗</a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/frontaliers-capital-humain/" aria-label="Ouvrir le dossier Frontaliers et capital humain sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-immigrants-journee/">QCM du sujet ↗</a></div>
 </article>
-<article class="topic-card" id="dossier-9" data-group="production" data-search="Agriculture et alimentation Comment produire localement sans pénaliser ceux qui nous nourrissent ? Produire et travailler">
+<article class="topic-card" id="dossier-9" data-original-anchor="pilier-9" data-group="production" data-search="Agriculture et alimentation Comment produire localement sans pénaliser ceux qui nous nourrissent ? Produire et travailler"><span id="pilier-9" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 09</span></div>
   <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Alimentation</span><h3>Agriculture et alimentation</h3><p class="topic-question">Comment produire localement sans pénaliser ceux qui nous nourrissent ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/agriculture-alimentation/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Agriculture et alimentation sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/agriculture-alimentation/" aria-label="Ouvrir le dossier Agriculture et alimentation sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
 </article>
-<article class="topic-card" id="dossier-10" data-group="production" data-search="Textile et habillement Peut-on fabriquer des vêtements durables et abordables près de chez nous ? Produire et travailler">
+<article class="topic-card" id="dossier-10" data-original-anchor="pilier-10" data-group="production" data-search="Textile et habillement Peut-on fabriquer des vêtements durables et abordables près de chez nous ? Produire et travailler"><span id="pilier-10" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 10</span></div>
   <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Fabrication</span><h3>Textile et habillement</h3><p class="topic-question">Peut-on fabriquer des vêtements durables et abordables près de chez nous ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/textile-habillement-chaussure/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Textile et habillement sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-textile/" target="_blank" rel="noopener noreferrer">QCM du sujet ↗</a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/textile-habillement-chaussure/" aria-label="Ouvrir le dossier Textile et habillement sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-textile/">QCM du sujet ↗</a></div>
 </article>
-<article class="topic-card" id="dossier-11" data-group="societe" data-search="Mobilité et sécurité routière Comment mesurer ce qui sauve réellement des vies sur la route ? Démocratie et société">
+<article class="topic-card" id="dossier-11" data-original-anchor="pilier-11" data-group="societe" data-search="Mobilité et sécurité routière Comment mesurer ce qui sauve réellement des vies sur la route ? Démocratie et société"><span id="pilier-11" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-societe" aria-hidden="true">◈</span><span class="topic-num">DOSSIER 11</span></div>
   <p class="topic-category">Démocratie et société</p><span class="impact-tag">Impact : Mobilité</span><h3>Mobilité et sécurité routière</h3><p class="topic-question">Comment mesurer ce qui sauve réellement des vies sur la route ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/mobilite-securite-routiere/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Mobilité et sécurité routière sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/mobilite-securite-routiere/" aria-label="Ouvrir le dossier Mobilité et sécurité routière sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
 </article>
-<article class="topic-card" id="dossier-12" data-group="quotidien" data-search="Friction monétique Combien coûte un paiement par carte à un petit commerçant ? Vivre au quotidien">
+<article class="topic-card" id="dossier-12" data-original-anchor="pilier-12" data-group="quotidien" data-search="Friction monétique Combien coûte un paiement par carte à un petit commerçant ? Vivre au quotidien"><span id="pilier-12" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 12</span></div>
   <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Commerce local</span><h3>Friction monétique</h3><p class="topic-question">Combien coûte un paiement par carte à un petit commerçant ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/friction-monetique/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Friction monétique sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/friction-monetique/" aria-label="Ouvrir le dossier Friction monétique sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
 </article>
-<article class="topic-card" id="dossier-13" data-group="societe" data-search="Démocratie décisionnelle Et si nous votions aussi sur les décisions concrètes ? Démocratie et société">
+<article class="topic-card" id="dossier-13" data-original-anchor="pilier-13" data-group="societe" data-search="Démocratie décisionnelle Et si nous votions aussi sur les décisions concrètes ? Démocratie et société"><span id="pilier-13" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-societe" aria-hidden="true">◈</span><span class="topic-num">DOSSIER 13</span></div>
   <p class="topic-category">Démocratie et société</p><span class="impact-tag">Impact : Démocratie</span><h3>Démocratie décisionnelle</h3><p class="topic-question">Et si nous votions aussi sur les décisions concrètes ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/democratie-decisionnelle/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Démocratie décisionnelle sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-democratie-decisionnelle/" target="_blank" rel="noopener noreferrer">QCM du sujet ↗</a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/democratie-decisionnelle/" aria-label="Ouvrir le dossier Démocratie décisionnelle sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-democratie-decisionnelle/">QCM du sujet ↗</a></div>
 </article>
-<article class="topic-card" id="dossier-14" data-group="finances" data-search="Amortissement de la dette Comment éviter de transférer les coûts d’aujourd’hui aux générations futures ? Argent public">
+<article class="topic-card" id="dossier-14" data-original-anchor="pilier-14" data-group="finances" data-search="Amortissement de la dette Comment éviter de transférer les coûts d’aujourd’hui aux générations futures ? Argent public"><span id="pilier-14" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-finances" aria-hidden="true">€</span><span class="topic-num">DOSSIER 14</span></div>
   <p class="topic-category">Argent public</p><span class="impact-tag">Impact : Dette publique</span><h3>Amortissement de la dette</h3><p class="topic-question">Comment éviter de transférer les coûts d’aujourd’hui aux générations futures ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/amortissement-dette/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Amortissement de la dette sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/amortissement-dette/" aria-label="Ouvrir le dossier Amortissement de la dette sur le site">Voir le dossier <span aria-hidden="true">↗</span></a></div>
 </article>
-<article class="topic-card" id="dossier-15" data-group="finances" data-search="Fraude fiscale Comment mieux mesurer et combattre les pertes de recettes publiques ? Argent public">
+<article class="topic-card" id="dossier-15" data-original-anchor="pilier-15" data-group="finances" data-search="Fraude fiscale Comment mieux mesurer et combattre les pertes de recettes publiques ? Argent public"><span id="pilier-15" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-finances" aria-hidden="true">€</span><span class="topic-num">DOSSIER 15</span></div>
   <p class="topic-category">Argent public</p><span class="impact-tag">Impact : Fiscalité</span><h3>Fraude fiscale</h3><p class="topic-question">Comment mieux mesurer et combattre les pertes de recettes publiques ?</p>
-  <div class="topic-bottom"><a class="card-link" href="https://doctrine-econologique.fr/piliers/fraude-fiscale/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le dossier Fraude fiscale sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-fraude-fiscale/" target="_blank" rel="noopener noreferrer">QCM du sujet ↗</a></div>
+  <div class="topic-bottom"><a class="card-link" href="/piliers/fraude-fiscale/" aria-label="Ouvrir le dossier Fraude fiscale sur le site">Voir le dossier <span aria-hidden="true">↗</span></a><a class="mini-qcm" href="/qcm-fraude-fiscale/">QCM du sujet ↗</a></div>
 </article>
-<article class="topic-card" id="dossier-16" data-group="production" data-search="Autoroutes et concessions À qui appartiennent les infrastructures que nous finançons ? Produire et travailler">
+<article class="topic-card" id="dossier-16" data-original-anchor="pilier-16" data-group="production" data-search="Autoroutes et concessions À qui appartiennent les infrastructures que nous finançons ? Produire et travailler"><span id="pilier-16" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-production" aria-hidden="true">P</span><span class="topic-num">DOSSIER 16</span></div>
   <p class="topic-category">Produire et travailler</p><span class="impact-tag">Impact : Infrastructures</span><h3>Autoroutes et concessions</h3><p class="topic-question">À qui appartiennent les infrastructures que nous finançons ?</p>
   <div class="topic-bottom"><span class="card-unlinked" title="Aucune URL de dossier fournie dans la maquette Grok">Dossier non relié pour le moment</span></div>
 </article>
-<article class="topic-card" id="dossier-17" data-group="quotidien" data-search="Propreté publique et déchets Comment répartir justement la responsabilité des déchets ? Vivre au quotidien">
+<article class="topic-card" id="dossier-17" data-original-anchor="pilier-17" data-group="quotidien" data-search="Propreté publique et déchets Comment répartir justement la responsabilité des déchets ? Vivre au quotidien"><span id="pilier-17" class="sr-only" aria-hidden="true"></span>
   <div class="topic-top"><span class="topic-icon theme-quotidien" aria-hidden="true">Q</span><span class="topic-num">DOSSIER 17</span></div>
   <p class="topic-category">Vivre au quotidien</p><span class="impact-tag">Impact : Environnement</span><h3>Propreté publique et déchets</h3><p class="topic-question">Comment répartir justement la responsabilité des déchets ?</p>
-  <div class="topic-bottom"><span class="card-unlinked" title="Aucune URL de dossier fournie dans la maquette Grok">Dossier non relié pour le moment</span><a class="mini-qcm" href="https://doctrine-econologique.fr/qcm-consigne-megots/" target="_blank" rel="noopener noreferrer">QCM du sujet ↗</a></div>
+  <div class="topic-bottom"><span class="card-unlinked" title="Aucune URL de dossier fournie dans la maquette Grok">Dossier non relié pour le moment</span><a class="mini-qcm" href="/qcm-consigne-megots/">QCM du sujet ↗</a></div>
 </article></div>
 <p id="empty" class="empty" hidden>Aucun dossier ne correspond à cette recherche. Essayez un autre mot ou affichez tous les sujets.</p>
 <p style="margin:18px 0 0;font-size:11px;color:#6b7882">Les 15 liens de dossiers et les accès aux questionnaires présents dans cette maquette ont été retrouvés dans le dépôt du site au 6 novembre 2026. Les dossiers 16 et 17 n’ont pas encore d’URL confirmée.</p>
 </div></section>
 <section class="five-ai-section" aria-labelledby="five-ai-title"><div class="container"><div class="five-ai-content"><div><p class="eyebrow">Notre méthode de contradiction</p><h2 id="five-ai-title">Cinq regards pour mieux tester les idées.</h2><p>Une analyse ne devient pas vraie parce que plusieurs IA y ont participé. Leurs rôles sont complémentaires ; les documents sources et les arbitrages restent vérifiables par les citoyens.</p></div><div class="five-ai-tags" aria-label="Les cinq outils consultés"><span>Claude</span><span>Perplexity</span><span>Grok</span><span>Gemini</span><span>ChatGPT</span></div></div><details class="ai-disclosure"><summary>Comprendre le rôle de chaque IA et les limites de la méthode</summary><div class="ai-detail-grid"><p><strong>Claude</strong> · Architecture et rédaction.</p><p><strong>Perplexity</strong> · Recherche et confrontation des sources.</p><p><strong>Grok</strong> · Terrain et retours d'expérience.</p><p><strong>Gemini</strong> · Économie générale et climat.</p><p><strong>ChatGPT</strong> · Calculs, vérifications et outils numériques.</p></div><p class="ai-disclaimer">Ces fonctions décrivent la méthode de travail du projet, non une validation indépendante de chaque chiffre. Les balises FAIT, CALCUL, HYPOTHÈSE, ANALYSE et PROPOSITION restent essentielles.</p></details></div></section>
 <section class="section" id="methode"><div class="container method-grid"><div class="section-heading"><p class="eyebrow">La confiance se construit</p><h2>Des idées discutables. Des sources vérifiables.</h2><p>Un site citoyen crédible ne doit pas mélanger ce qui est établi, ce qui est calculé et ce qui est proposé. Chaque dossier devrait permettre au lecteur de retrouver les documents, les hypothèses et les objections.</p><a class="btn btn-secondary" href="#explorer">Choisir un dossier <span aria-hidden="true">↗</span></a></div><div class="method-feature"><h3>Lire un dossier avec des repères clairs</h3><div class="proof-row"><span class="proof-badge">FAIT</span><p>Une information documentée avec sa source et sa date.</p></div><div class="proof-row"><span class="proof-badge">CALCUL</span><p>Un résultat dont les hypothèses peuvent être contrôlées.</p></div><div class="proof-row"><span class="proof-badge">HYPOTHÈSE</span><p>Une possibilité qui reste à démontrer ou à tester.</p></div><div class="proof-row"><span class="proof-badge">PROPOSITION</span><p>Un choix à discuter, avec ses bénéfices et ses limites.</p></div></div></div></section>
-<section class="participate" id="participer"><div class="container"><div class="participate-panel"><div><p class="eyebrow">Et maintenant ?</p><h2>La démocratie commence aussi par des questions précises.</h2><p>Explorez les sujets, comparez les arguments et découvrez l'idée du bulletin citoyen décisionnel dans le pilier consacré à la démocratie.</p></div><div class="participate-actions"><a href="https://doctrine-econologique.fr/qcm-democratie-decisionnelle/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Lancer le bulletin citoyen ↗</a><a href="https://doctrine-econologique.fr/questionnaires/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Tous les questionnaires ↗</a></div></div></div></section>
+<section class="participate" id="participer"><div class="container"><div class="participate-panel"><div><p class="eyebrow">Et maintenant ?</p><h2>La démocratie commence aussi par des questions précises.</h2><p>Explorez les sujets, comparez les arguments et découvrez l'idée du bulletin citoyen décisionnel dans le pilier consacré à la démocratie.</p></div><div class="participate-actions"><a href="/qcm-democratie-decisionnelle/" class="btn btn-primary">Lancer le bulletin citoyen ↗</a><a href="/questionnaires/" class="btn btn-secondary">Tous les questionnaires ↗</a></div></div></div></section>
 </main>
-<footer class="site-footer"><div class="container"><div class="footer-grid"><div><strong>Doctrine Éconologique</strong><p>Une France qui produit, répare et transmet. Une contribution citoyenne à un débat documenté, ouvert à toutes les sensibilités.</p></div><div class="footer-links"><a href="https://doctrine-econologique.fr/" target="_blank" rel="noopener noreferrer">Site actuel ↗</a><a href="#accueil">Haut de page ↑</a></div></div><div class="prototype">PROTOTYPE V2.3 · CONSOLIDATION DES PROPOSITIONS GROK & CHATGPT · 6 NOVEMBRE 2026 · Version de test non indexée, sans modification du site officiel. Liens du dépôt vérifiés, disponibilité publique à confirmer.</div></div></footer>
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div><strong>Doctrine Éconologique</strong><p>Une France qui produit, répare et transmet. Une contribution citoyenne à un débat documenté, ouvert à toutes les sensibilités.</p></div><div class="footer-links"><a href="/piliers/">Les 17 piliers</a><a href="/questionnaires/">Les questionnaires</a><a href="/a-propos/">À propos</a><a href="#accueil">Haut de page ↑</a></div></div><div class="prototype">© 2026 — Jean Paul Poignand · Contribution citoyenne indépendante · Identité graphique : logo réalisé par Perplexity. <a href="/a-propos/#mentions">Mentions légales</a></div></div></footer>
 <script>
 (function(){
  document.querySelectorAll('.discovery-trigger').forEach(button=>button.addEventListener('click',()=>{
