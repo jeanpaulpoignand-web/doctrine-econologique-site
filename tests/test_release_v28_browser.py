@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """V2.8 release candidate — production-origin browser acceptance incl. iPhone/iPad icon."""
 from pathlib import Path
+import os
 from urllib.parse import urlparse, unquote
 import mimetypes
 from playwright.sync_api import sync_playwright
@@ -23,7 +24,9 @@ ART.mkdir(parents=True,exist_ok=True)
 
 def main():
   with sync_playwright() as p:
-    browser=p.chromium.launch(headless=True)
+    engine=os.getenv("BROWSER_ENGINE","chromium").lower()
+    assert engine in ("chromium","webkit"),engine
+    browser=(p.webkit if engine=="webkit" else p.chromium).launch(headless=True)
     for label,viewport in [("desktop",{"width":1440,"height":900}),("iphone",{"width":390,"height":844}),("iphone-small",{"width":320,"height":650}),("ipad",{"width":820,"height":1180})]:
       ctx=browser.new_context(viewport=viewport,device_scale_factor=1)
       ctx.route("https://fonts.googleapis.com/**",lambda route:route.abort())
