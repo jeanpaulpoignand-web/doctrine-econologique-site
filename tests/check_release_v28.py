@@ -32,6 +32,16 @@ def parts(s,pat):
   return re.findall(pat,s,flags=re.I|re.S)
 def assert_eq(path,ref=PREVIEW):
   s=text(path); old=original(ref,path)
+  if path=="qcm-general/index.html":
+    # Exception strictement bornee au defilement demande apres un choix.
+    # Revenir virtuellement au script d'origine et conserver le controle
+    # d'identite de tout le reste (reponses, pondérations, navigation).
+    extra_fn='\n// Après un choix explicite, rapprocher le bouton suivant sans déclencher le passage de question.\nfunction scrollToNextQuestionButton(){requestAnimationFrame(()=>{nextBtn.scrollIntoView({block:"center",inline:"nearest",behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})})}'
+    before='btn.addEventListener("click",function(){userAnswers[current]=a.profile;renderQuestion()});'
+    after='btn.addEventListener("click",function(){userAnswers[current]=a.profile;renderQuestion();scrollToNextQuestionButton()});'
+    assert s.count(extra_fn)==1,(path,"scroll helper missing or duplicated")
+    assert s.count(after)==1,(path,"answer handler not strictly modified as expected")
+    s=s.replace(extra_fn,"").replace(after,before)
   for pattern in [r"<script\b[^>]*>[\s\S]*?</script>",r"<h[123]\b[^>]*>[\s\S]*?</h[123]>",
                   r'<link\b[^>]*rel=["\x27]canonical["\x27][^>]*>']:
     assert parts(s,pattern)==parts(old,pattern),(path,"content regression",pattern)
