@@ -1,0 +1,63 @@
+name: Release candidate V2.8 — SEO, iPhone/iPad et QCM
+on:
+  push:
+    branches:
+      - release/v28-candidate-2026-11-07
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'piliers/**'
+      - 'qcm-*/**'
+      - 'questionnaires/**'
+      - 'assets/**'
+      - 'apple-touch-icon.png'
+      - 'favicon-32.png'
+      - '_config.yml'
+      - 'tests/*release_v28*'
+      - '.github/workflows/release-v28-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  seo-and-apple:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: SEO, preservation des QCM et raccourci Apple
+        run: python tests/check_release_v28.py
+  browser-and-functions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Chromium
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Tester l'accueil, les menus et les icônes iPhone/iPad
+        run: python tests/test_release_v28_browser.py
+      - name: Lancer le serveur HTTP local
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/doctrine-v28-server.log 2>&1 &
+          sleep 2
+      - name: Parcours complets QCM Général et Énergie
+        run: python tests/test_qcm_v24_browser.py
+      - name: Parcours complet Bulletin citoyen
+        run: python tests/test_bulletin_v25_browser.py
+      - name: Archiver les captures des tests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-v28-browser-and-ios-icons
+          path: |
+            .test-artifacts/release-v28/
+            .test-artifacts/qcm-v24-screens/
+            .test-artifacts/bulletin-v25/
+          retention-days: 14
+          if-no-files-found: warn
