@@ -54,6 +54,24 @@ def main():
       assert page.locator('link[rel="canonical"]').get_attribute("href")=="https://doctrine-econologique.fr/"
       assert page.locator('meta[name="google-site-verification"]').count()==1
       assert page.locator('meta[name="robots"]').count()==0
+      # L'encart de transparence doit apparaitre haut dans l'accueil, sourcer
+      # correctement l'article 15 et rester lisible sur iPhone/iPad.
+      principle=page.locator("#transparence-citoyenne")
+      assert principle.count()==1 and principle.is_visible(),(label,"principe de transparence absent")
+      assert principle.evaluate("(el)=>el.previousElementSibling?.classList.contains('stats')"),(label,"encart mal place")
+      assert principle.evaluate("(el)=>el.nextElementSibling?.id==='decouverte'"),(label,"decouverte deplacee")
+      statement="La transparence démocratique ne se mesure pas au volume de documents que l'État publie, mais à la capacité réelle de chaque citoyen à comprendre, vérifier et suivre l'utilisation de l'argent public, sans devoir y consacrer des heures."
+      assert principle.locator("blockquote").inner_text()==statement,(label,"principe modifie")
+      article="La société a le droit de demander compte à tout agent public de son administration."
+      assert article in principle.locator(".accountability-law-quote").inner_text(),(label,"article 15 altere")
+      source=principle.locator("a.accountability-source")
+      assert source.get_attribute("href")=="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006527442"
+      assert source.get_attribute("rel")=="noopener noreferrer"
+      assert principle.locator("a.accountability-pillar").get_attribute("href")=="/piliers/democratie-decisionnelle/"
+      assert principle.evaluate("(el)=>{const r=el.getBoundingClientRect();return r.left>=-1&&r.right<=innerWidth+1;}"),(label,"encart deborde")
+      assert page.locator("html").evaluate("(e)=>e.scrollWidth-e.clientWidth")<=3,(label,"largeur de page debordee")
+      if label in ("desktop","iphone","iphone-small","ipad-paysage"):
+        principle.screenshot(path=str(ART/f"{label}-encart-article15.png"))
       # Recherche globale : la categorie active ne doit jamais masquer un autre sujet pertinent.
       search=page.locator("#topic-search")
       all_topics=page.locator('[data-filter="all"]')
