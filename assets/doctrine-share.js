@@ -215,7 +215,7 @@
     document.querySelectorAll('link[rel="icon"],link[rel="shortcut icon"],link[rel="apple-touch-icon"]').forEach(el=>el.remove());
     for(const [rel,sizes] of [['icon','192x192'],['apple-touch-icon','192x192']]){
       const ico=document.createElement('link');ico.rel=rel;ico.type='image/png';
-      ico.sizes=sizes;ico.href=image;document.head.appendChild(ico);
+      ico.setAttribute('sizes',sizes);ico.href=image;document.head.appendChild(ico);
     }
     function mount(){
       for(const selector of ['.site-header .brand-mark','#dmenu-bar .dmenu-brandmark']){
