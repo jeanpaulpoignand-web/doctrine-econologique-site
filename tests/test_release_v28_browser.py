@@ -186,6 +186,16 @@ def main():
           assert evidence.nth(0).locator("p").count()==3
           assert evidence.nth(1).locator("p").count()==3
           assert page.locator(".aspa-evidence-summary").is_visible()
+          integration=page.locator(".aspa-integration")
+          assert integration.count()==1 and integration.is_visible(),(label,"section integration absente")
+          assert integration.locator(".aspa-integration-item").count()==3,(label,"trois exceptions attendues")
+          assert "6 709 ressortissants algériens" in integration.inner_text()
+          assert "26 janvier 2024" in integration.inner_text()
+          assert "ne s’appliquent pas aux ressortissants algériens" in integration.inner_text()
+          assert "facultative pour les ressortissants algériens" in integration.inner_text()
+          assert "Cette exemption de signature ne les dispense pas du respect des lois françaises" in integration.inner_text()
+          if label in ("iphone","ipad-paysage"):
+            integration.screenshot(path=str(ART/f"{label}-pilier4-integration.png"))
           vote=page.locator(".aspa-vote")
           assert vote.count()==1 and vote.is_visible(),(label,"vote parlementaire absent")
           assert "30 octobre 2025" in vote.inner_text()
