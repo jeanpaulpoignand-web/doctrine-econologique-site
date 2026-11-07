@@ -23,12 +23,24 @@ ART=ROOT/".test-artifacts"/"release-v28"
 ART.mkdir(parents=True,exist_ok=True)
 
 def button_visible_in_viewport(page,selector,label):
-  page.wait_for_function("""selector=>{
-    const el=document.querySelector(selector);
+  geometry="""selector=>{
+    const el=document.querySelector(selector), vv=window.visualViewport;
     if(!el || el.disabled) return false;
-    const r=el.getBoundingClientRect(),h=window.visualViewport?.height||window.innerHeight;
+    const r=el.getBoundingClientRect(),h=vv?.height||window.innerHeight;
     return r.top>=-3 && r.bottom<=h+4 && r.width>0 && r.height>0;
-  }""",arg=selector,timeout=7000)
+  }"""
+  try:
+    page.wait_for_function(geometry,arg=selector,timeout=7000)
+  except Exception:
+    details=page.evaluate("""selector=>{
+      const el=document.querySelector(selector),r=el?.getBoundingClientRect();
+      return {selector,html:el?.outerHTML?.slice(0,240),rect:r&&{top:r.top,bottom:r.bottom,height:r.height},
+      scrollY,innerHeight,visualHeight:visualViewport?.height,
+      documentScrollHeight:document.documentElement.scrollHeight,documentClientHeight:document.documentElement.clientHeight,
+      display:el&&getComputedStyle(el).display,ancestorHidden:!!el?.closest('[hidden],.hidden'),
+      scriptLoaded:!!document.querySelector('script[src="../assets/qcm-scroll-after-answer.js"]')};
+    }""",arg=selector)
+    raise AssertionError((label,"bouton non centre apres le vote",details))
   assert page.locator(selector).is_visible(),(label,selector,"bouton non visible")
 
 
@@ -333,6 +345,7 @@ def main():
           ("qcm-democratie-decisionnelle","normal")
         ]
         for slug,mode in cases:
+          print("RUNCASE",label,slug,mode,flush=True)
           page.goto(BASE+slug+"/index.html",wait_until="domcontentloaded")
           assert page.locator('script[src="../assets/qcm-scroll-after-answer.js"]').count()==1,(label,slug,"assistant de défilement non charge")
           if slug=="qcm-general":
