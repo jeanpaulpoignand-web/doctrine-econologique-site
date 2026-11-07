@@ -161,6 +161,29 @@ def main():
         assert img.evaluate("(a)=>a.naturalWidth===192"),(label,loc,"original logo missing")
 
         assert page.locator("a.dmenu-brand").evaluate("(a)=>a.href")==BASE+"index.html"
+        if loc=="piliers/reparation-des-retraites/index.html":
+          # Regles de lecture : les deux colonnes sont de vraies cartes autonomes.
+          evidence=page.locator(".aspa-evidence-card")
+          assert evidence.count()==2,(label,"deux encadres ASPA attendus")
+          assert page.locator("#aspa-faits").inner_text()=="Ce qui est établi"
+          assert page.locator("#aspa-manques").inner_text()=="Ce qu’il reste à mesurer"
+          assert evidence.nth(0).locator("p").count()==3
+          assert evidence.nth(1).locator("p").count()==3
+          assert page.locator(".aspa-evidence-summary").is_visible()
+          assert "ANCIENNES FORMULATIONS À ABANDONNER" not in page.locator("main").inner_text()
+          assert "Les ressortissants algériens relèvent d’un régime de séjour [HYPOTHÈSE]" not in page.locator("main").inner_text()
+          # Chaque paragraphe doit rester dans son encadre, sans texte orphelin.
+          assert evidence.evaluate_all("""(cards)=>cards.every(card=>[...card.querySelectorAll('p')].every(p=>{
+             const a=card.getBoundingClientRect(),b=p.getBoundingClientRect();
+             return b.left>=a.left-1 && b.right<=a.right+1 && b.top>=a.top-1 && b.bottom<=a.bottom+1
+          }))"""),(label,"paragraphe hors de son encadre")
+          xs=evidence.evaluate_all("(cards)=>cards.map(c=>Math.round(c.getBoundingClientRect().left))")
+          if viewport["width"]<=700:
+            assert abs(xs[0]-xs[1])<=2,(label,"cartes non empilees en mobile")
+          else:
+            assert abs(xs[0]-xs[1])>=20,(label,"colonnes non distinctes")
+          if label in ("iphone","ipad-paysage"):
+            page.locator(".aspa-evidence").screenshot(path=str(ART/f"{label}-pilier4-encadres.png"))
         if loc!="qcm-consigne-megots/index.html":
           assert "noindex" not in " ".join([v or "" for v in page.locator('meta[name="robots"]').evaluate_all("(els)=>els.map(e=>e.content)")]),(label,loc,"unexpected noindex")
         if viewport["width"]<=820:
