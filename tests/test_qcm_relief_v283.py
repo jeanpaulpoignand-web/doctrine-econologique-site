@@ -4,13 +4,15 @@ Tests real styles on the nine QCM in a Chromium-controlled GitHub preview mirror
 """
 from pathlib import Path
 from urllib.parse import unquote,urlparse
-import json,mimetypes,subprocess
+import json,mimetypes,subprocess,os
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parents[1]
 PREFIX="/jeanpaulpoignand-web/doctrine-econologique-site/preview-v283-qcm-relief-2026-11-07/"
 BASE="https://raw.githack.com"+PREFIX
-OUT=ROOT/".test-artifacts"/"qcm-relief-v283"
+ENGINE=os.getenv("BROWSER_ENGINE","chromium").lower()
+assert ENGINE in ("chromium","webkit"),ENGINE
+OUT=ROOT/".test-artifacts"/("qcm-relief-v283" if ENGINE=="chromium" else "qcm-relief-v283-webkit")
 OUT.mkdir(parents=True,exist_ok=True)
 QCMS=["qcm-general","qcm-energie","qcm-aspa","qcm-pilier-vi","qcm-textile",
       "qcm-fraude-fiscale","qcm-immigrants-journee","qcm-consigne-megots",
@@ -31,7 +33,7 @@ def static_check():
 def main():
     static_check()
     with sync_playwright() as p:
-      browser=p.chromium.launch(headless=True)
+      browser=(p.webkit if ENGINE=="webkit" else p.chromium).launch(headless=True)
       for label,w,h in [("iphone",390,844),("ipad",820,1180),("desktop",1440,900)]:
         ctx=browser.new_context(viewport={"width":w,"height":h},device_scale_factor=1)
         ctx.route("https://fonts.googleapis.com/**",lambda route:route.abort())
