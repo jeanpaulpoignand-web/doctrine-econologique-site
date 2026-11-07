@@ -64,7 +64,7 @@ def main():
         assert page.locator("#menu-toggle").is_hidden()
         page.goto(BASE+"piliers/index.html",wait_until="domcontentloaded")
       page.locator("#dmenu-toggle").wait_for()
-      assert page.locator("a.dmenu-brand").get_attribute("href")==BASE+"index.html"
+      assert page.locator("a.dmenu-brand").evaluate("(a)=>a.href")==BASE+"index.html"
       assert page.locator("#dmenu-panel").is_hidden()
       assert page.locator("#dmenu-toggle").get_attribute("aria-expanded")=="false"
       page.locator("#dmenu-toggle").click()
@@ -97,7 +97,7 @@ def main():
         page.goto(BASE+loc,wait_until="domcontentloaded",timeout=30000)
         page.locator("#dmenu-toggle").wait_for()
         assert page.locator("#dmenu-toggle").count()==1,(label,loc,"duplicate or missing menu")
-        assert page.locator("a.dmenu-brand").get_attribute("href")==BASE+"index.html"
+        assert page.locator("a.dmenu-brand").evaluate("(a)=>a.href")==BASE+"index.html"
         assert "noindex" in page.locator('meta[name="robots"]').last.get_attribute("content"),(label,loc,"robots preview")
         if label!="desktop":
           spill=page.evaluate("document.documentElement.scrollWidth-document.documentElement.clientWidth")
