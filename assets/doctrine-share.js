@@ -168,7 +168,7 @@
 (()=>{'use strict';
   if(!['raw.githack.com','rawgit.com'].includes(location.hostname.toLowerCase()))return;
   const parts=location.pathname.split('/').filter(Boolean);
-  if(parts.length<4||!['preview-v28-2026-11-07','preview-v28-hero-align-2026-11-07'].includes(parts[2]))return;
+  if(parts.length<4||!['preview-v28-2026-11-07','preview-v28-hero-align-2026-11-07','preview-v283-qcm-relief-2026-11-07'].includes(parts[2]))return;
   const root='/'+parts.slice(0,3).join('/')+'/';
   function previewHref(raw){
     if(!raw||raw.startsWith('#')||/^(mailto|tel|sms|javascript):/i.test(raw))return null;

@@ -1,0 +1,63 @@
+name: V2.8.3 — cartes QCM en relief, sans chevauchement de texte
+on:
+  push:
+    branches:
+      - preview-v283-qcm-relief-2026-11-07
+  pull_request:
+    branches:
+      - preview-v28-hero-align-2026-11-07
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  visual-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Chromium
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Contrôler l'affichage des 9 QCM et les 3 tailles d'écran
+        run: python tests/test_qcm_relief_v283.py
+      - name: Captures de vrais boutons avant validation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qcm-relief-v283-apercus
+          path: .test-artifacts/qcm-relief-v283/
+          retention-days: 14
+          if-no-files-found: warn
+
+  safari-webkit-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer WebKit (moteur Safari)
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps webkit
+      - name: Vérifier les boutons QCM en relief sur iPad et iPhone (Safari/WebKit)
+        env:
+          BROWSER_ENGINE: webkit
+        run: python tests/test_qcm_relief_v283.py
+      - name: Archiver les captures Safari
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qcm-relief-v283-apercus-webkit
+          path: .test-artifacts/qcm-relief-v283-webkit/
+          retention-days: 14
+          if-no-files-found: warn
