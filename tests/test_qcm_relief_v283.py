@@ -98,6 +98,7 @@ def main():
         page.locator(".opts .opt").first.scroll_into_view_if_needed()
         page.screenshot(path=str(OUT/f"{label}-aspa-choix-relief.png"),full_page=False)
         page.locator(".opts .opt").first.click()
+        page.wait_for_timeout(220)  # CSS border-color transition must complete before color assertion.
         good=page.locator(".opts .opt.bonne").first
         good.wait_for()
         good_style=good.evaluate("e=>({bg:getComputedStyle(e).backgroundImage,shadow:getComputedStyle(e).boxShadow,color:getComputedStyle(e).borderTopColor})")
