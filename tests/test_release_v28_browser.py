@@ -22,6 +22,16 @@ QCMS=["qcm-general","qcm-energie","qcm-aspa","qcm-pilier-vi",
 ART=ROOT/".test-artifacts"/"release-v28"
 ART.mkdir(parents=True,exist_ok=True)
 
+def button_visible_in_viewport(page,selector,label):
+  page.wait_for_function("""selector=>{
+    const el=document.querySelector(selector);
+    if(!el || el.disabled) return false;
+    const r=el.getBoundingClientRect(),h=window.visualViewport?.height||window.innerHeight;
+    return r.top>=-3 && r.bottom<=h+4 && r.width>0 && r.height>0;
+  }""",arg=selector,timeout=7000)
+  assert page.locator(selector).is_visible(),(label,selector,"bouton non visible")
+
+
 def main():
   with sync_playwright() as p:
     engine=os.getenv("BROWSER_ENGINE","chromium").lower()
@@ -305,6 +315,107 @@ def main():
         next_button.click()
         assert page.locator("#stepLabel").inner_text()=="Question 7 / 10",(label,mode,"suivant ne fonctionne plus")
         assert page.locator("#nextBtn").is_disabled(),(label,mode,"question suivante activée avant vote")
+      # Tout questionnaire doit présenter son action suivante après le vote,
+      # sans passer à la question suivante à la place de l'utilisateur.
+      if label in ("desktop","iphone","ipad-paysage"):
+        cases=[
+          ("qcm-general","normal"),
+          ("qcm-general","pedagogique"),
+          ("qcm-energie","rapide"),
+          ("qcm-energie","approfondi"),
+          ("qcm-aspa","rapide"),
+          ("qcm-aspa","lente"),
+          ("qcm-pilier-vi","lente"),
+          ("qcm-textile","lente"),
+          ("qcm-fraude-fiscale","long"),
+          ("qcm-immigrants-journee","normal"),
+          ("qcm-consigne-megots","normal"),
+          ("qcm-democratie-decisionnelle","normal")
+        ]
+        for slug,mode in cases:
+          page.goto(BASE+slug+"/index.html",wait_until="domcontentloaded")
+          assert page.locator('script[src="../assets/qcm-scroll-after-answer.js"]').count()==1,(label,slug,"assistant de défilement non charge")
+          if slug=="qcm-general":
+            page.locator("#learnModeBtn" if mode=="pedagogique" else "#fastModeBtn").click()
+            assert "Question 1 / 10" in page.locator("#stepLabel").inner_text()
+            page.locator("#answers button.answer").first.click()
+            button_visible_in_viewport(page,"#nextBtn",(label,slug,mode))
+            assert page.locator("#stepLabel").inner_text()=="Question 1 / 10"
+            assert page.locator("#answers .answer.selected").count()==1
+            if mode=="pedagogique":
+              assert page.locator("#explanationBox").is_visible(),(label,"le mode pedagogique n'affiche pas d'explication")
+            page.locator("#nextBtn").click()
+            assert page.locator("#stepLabel").inner_text()=="Question 2 / 10"
+          elif slug=="qcm-energie":
+            if mode=="approfondi":
+              page.locator('button[onclick="showBriefing()"]').click()
+              page.locator('button[onclick="startQuiz(\'approfondi\')"]').click()
+            else:
+              page.locator('button[onclick="startQuiz(\'rapide\')"]').click()
+            page.locator("#answers button").first.click()
+            button_visible_in_viewport(page,"#nextBtn",(label,slug,mode))
+            assert "Question 1 /" in page.locator("#progressText").inner_text()
+            if mode=="approfondi":
+              assert page.locator("#explain").is_visible(),(label,"explication approfondie absente")
+            else:
+              page.wait_for_timeout(380)
+              assert "Question 1 /" in page.locator("#progressText").inner_text(),(label,"passage automatique en mode rapide")
+            page.locator("#nextBtn").click()
+            assert "Question 2 /" in page.locator("#progressText").inner_text()
+          elif slug in ("qcm-aspa","qcm-textile"):
+            page.locator('button[onclick="demarrer(\''+mode+'\')"]').click()
+            page.locator("#qbody button.opt").first.click()
+            button_visible_in_viewport(page,"#nextBtn",(label,slug,mode))
+            assert page.locator("#nextBtn").is_enabled()
+            assert "Question 1 /" in page.locator("#progTxt").inner_text()
+            page.locator("#nextBtn").click()
+            assert "Question 2 /" in page.locator("#progTxt").inner_text()
+          elif slug=="qcm-pilier-vi":
+            page.locator('button[onclick="demarrer(\'lente\')"]').click()
+            page.locator("#qbody button.opt").first.click()
+            button_visible_in_viewport(page,"#validateBtn",(label,slug,"valider"))
+            assert page.locator("#validateBtn").is_enabled()
+            page.locator("#validateBtn").click()
+            button_visible_in_viewport(page,"#nextBtn",(label,slug,"suivant"))
+            assert page.locator("#fb").is_visible()
+            page.locator("#nextBtn").click()
+            assert page.locator("#validateBtn").is_disabled(),(label,slug,"nouvelle question non reinitalisee")
+          elif slug=="qcm-fraude-fiscale":
+            page.locator("#longModeBtn").click()
+            page.locator("#answers button.answer-button").first.click()
+            button_visible_in_viewport(page,"#nextBtn",(label,slug,mode))
+            assert page.locator("#answers .selected").count()==1
+            assert page.locator("#questionCounter").inner_text().startswith("Question 1")
+            page.locator("#nextBtn").click()
+            assert page.locator("#questionCounter").inner_text().startswith("Question 2")
+          elif slug=="qcm-immigrants-journee":
+            page.locator("#answers button.answer").first.click()
+            button_visible_in_viewport(page,"#next",(label,slug,mode))
+            assert page.locator("#qnum").inner_text().startswith("Question 1")
+            page.locator("#next").click()
+            assert page.locator("#qnum").inner_text().startswith("Question 2")
+          elif slug=="qcm-consigne-megots":
+            page.locator("#startBtn").click()
+            for marker_num in (1,2):
+              page.locator("#landmarkAnswers button.answer").first.click()
+              button_visible_in_viewport(page,"#landmarkNextBtn",(label,slug,"repere "+str(marker_num)))
+              page.locator("#landmarkNextBtn").click()
+            page.locator("#answers button.answer").first.click()
+            button_visible_in_viewport(page,"#nextBtn",(label,slug,mode))
+            assert page.locator("#counter").inner_text().startswith("Question 1")
+            page.locator("#nextBtn").click()
+            assert page.locator("#counter").inner_text().startswith("Question 2")
+          elif slug=="qcm-democratie-decisionnelle":
+            page.locator('button[onclick="app.go(\'ideas\')"]').click()
+            page.locator("#no-opinion").click()
+            button_visible_in_viewport(page,"#next-question",(label,slug,"sans avis"))
+            assert page.locator("#no-opinion").get_attribute("aria-pressed")=="true"
+            page.locator("#next-question").click()
+            page.locator("#answer-slider").fill("75")
+            button_visible_in_viewport(page,"#next-question",(label,slug,"curseur"))
+            assert page.locator("#next-question").is_enabled()
+          if label=="iphone":
+            page.screenshot(path=str(ART/f"iphone-vote-scroll-{slug}-{mode}.png"),full_page=False)
       assert not missing,(label,"missing assets",sorted(set(missing))[:10])
       assert not errors,(label,"JS error",errors[:8])
       print("PASS",label,"production links, menu, Perplexity icon on 27 pages, SEO, no JS errors or overflow")
