@@ -1,0 +1,49 @@
+name: Prépublication V2.7.1 — Menu hamburger
+on:
+  push:
+    branches:
+      - preview-v27-menu-2026-11-07
+  pull_request:
+    paths:
+      - assets/doctrine-share.js
+      - assets/menu-global-v271.css
+      - tests/test_menu_global_v271.py
+      - .github/workflows/menu-global-v271-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  menu-navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Chromium
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Menu sur iPhone, iPhone étroit et ordinateur
+        run: python tests/test_menu_global_v271.py
+      - name: Vérifier l'adresse publique de la prépublication
+        run: |
+          python - <<'PY'
+          from urllib.request import Request,urlopen
+          base="https://raw.githack.com/jeanpaulpoignand-web/doctrine-econologique-site/preview-v27-menu-2026-11-07/"
+          for path in ["index.html","piliers/index.html","qcm-democratie-decisionnelle/index.html","assets/doctrine-share.js","assets/menu-global-v271.css"]:
+              with urlopen(Request(base+path,headers={"User-Agent":"Mozilla/5.0"}),timeout=20) as r:
+                  prefix=r.read(1024)
+                  assert r.status==200,(path,r.status)
+                  assert len(prefix)>100,(path,len(prefix))
+                  print("PREVIEW HTTP 200",path)
+          PY
+      - name: Captures réelles
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v271-menu-hamburger-captures
+          path: .test-artifacts/preview-v271-menu/
+          retention-days: 14
+          if-no-files-found: warn

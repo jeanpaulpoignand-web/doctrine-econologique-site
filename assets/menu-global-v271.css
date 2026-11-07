@@ -1,0 +1,104 @@
+/* Doctrine Éconologique — V2.7.1 — navigation universelle (prépublication)
+   Le menu est ajouté par le script commun uniquement sur la branche d'essai.
+   Aucune modification de la présentation métier des pages / QCM. */
+:root{--dmenu-ink:#17273e;--dmenu-paper:#faf8f3;--dmenu-surface:#fffefa;--dmenu-cream:#f6f0e4;--dmenu-line:#dddcd2;--dmenu-accent:#b9573a;--dmenu-teal:#2e7168}
+#dmenu-bar,#dmenu-panel,#dmenu-overlay{box-sizing:border-box;font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif}
+#dmenu-bar *,
+#dmenu-panel *{box-sizing:border-box}
+#dmenu-bar{
+  width:100%;align-self:stretch;flex-shrink:0;
+  min-height:60px;padding:7px clamp(13px,3vw,30px);
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+  background:rgba(250,248,243,.97);border-bottom:1px solid var(--dmenu-line);
+  color:var(--dmenu-ink);position:sticky;top:0;z-index:100;
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+}
+#dmenu-bar .dmenu-brand{
+  display:flex;align-items:center;gap:10px;min-width:0;
+  color:var(--dmenu-ink);text-decoration:none;
+  font:700 clamp(17px,2vw,22px)/1.1 "Cormorant Garamond",Georgia,serif;
+}
+#dmenu-bar .dmenu-brandmark{
+  display:grid;place-items:center;flex:none;width:36px;height:36px;
+  background:var(--dmenu-ink);color:#fff;border-radius:10px;
+  font:600 24px/1 "Cormorant Garamond",Georgia,serif;
+}
+#dmenu-bar .dmenu-brandname{max-width:calc(100vw - 150px)}
+#dmenu-bar .dmenu-button{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:47px;height:46px;flex:none;cursor:pointer;touch-action:manipulation;
+  border:1px solid var(--dmenu-line);background:var(--dmenu-surface);
+  color:var(--dmenu-ink);border-radius:11px;
+  transition:border-color .15s ease,background-color .15s ease;
+}
+#dmenu-bar .dmenu-button:hover,
+#dmenu-bar .dmenu-button[aria-expanded="true"]{
+  border-color:var(--dmenu-accent);background:#fcf1e9;
+}
+#dmenu-bar .dmenu-button svg{width:23px;height:23px}
+#dmenu-overlay{
+  position:fixed;inset:0;z-index:98;background:rgba(23,39,62,.22);
+}
+#dmenu-panel{
+  position:fixed;top:calc(68px + env(safe-area-inset-top,0px));right:clamp(8px,2vw,20px);
+  width:min(355px,calc(100vw - 16px));max-height:calc(100dvh - 83px);
+  overflow:auto;overscroll-behavior:contain;
+  padding:18px;background:var(--dmenu-surface);color:var(--dmenu-ink);
+  border:1px solid var(--dmenu-line);border-radius:17px;
+  box-shadow:0 25px 65px rgba(23,39,62,.19);z-index:99;
+}
+#dmenu-panel .dmenu-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+#dmenu-panel .dmenu-panel-title{font:700 27px/1.12 "Cormorant Garamond",Georgia,serif;color:var(--dmenu-ink)}
+#dmenu-panel .dmenu-close{
+  cursor:pointer;width:42px;height:42px;border-radius:9px;border:1px solid var(--dmenu-line);
+  background:transparent;color:var(--dmenu-ink);font-size:22px;line-height:1;
+}
+#dmenu-panel .dmenu-list{display:grid;gap:7px}
+#dmenu-panel .dmenu-link{
+  display:flex;align-items:center;min-height:48px;padding:12px 14px;
+  text-decoration:none;color:var(--dmenu-ink);
+  font:600 15px/1.35 "IBM Plex Sans",system-ui,sans-serif;
+  background:#f9f7f2;border:1px solid transparent;border-radius:10px;
+}
+#dmenu-panel .dmenu-link:hover,#dmenu-panel .dmenu-link:focus-visible{
+  background:#f6eee6;border-color:#dbbdad;color:#97452f;
+}
+#dmenu-panel .dmenu-link.dmenu-primary{
+  background:var(--dmenu-ink);color:#fff;
+}
+#dmenu-panel .dmenu-link.dmenu-primary:hover{background:#30445b}
+#dmenu-panel .dmenu-separator{height:1px;background:var(--dmenu-line);margin:5px 0}
+#dmenu-panel .dmenu-foot{
+  margin:14px 0 0;padding:12px 2px 0;border-top:1px solid var(--dmenu-line);
+  color:#576675;font:500 12px/1.55 "IBM Plex Sans",system-ui,sans-serif;
+}
+#dmenu-bar :is(a,button):focus-visible,
+#dmenu-panel :is(a,button):focus-visible,
+.site-header #menu-toggle:focus-visible{
+  outline:3px solid var(--dmenu-accent);outline-offset:3px;
+}
+#dmenu-panel[hidden],#dmenu-overlay[hidden]{display:none!important}
+/* Accueil V2.3 : conserve son hamburger natif (pas de second bouton). */
+.site-header .dmenu-home-mobile{display:none}
+@media(max-width:700px){
+  #dmenu-bar{min-height:56px;padding:7px 13px}
+  #dmenu-bar .dmenu-brandmark{width:34px;height:34px}
+  #dmenu-bar .dmenu-button{width:45px;height:44px}
+  #dmenu-panel{top:calc(64px + env(safe-area-inset-top,0px))}
+  #dmenu-panel .dmenu-link{font-size:15px}
+  .site-header .dmenu-home-mobile{display:block}
+  .site-header .nav-links a.dmenu-home-mobile{font-weight:700;color:#17273e}
+  .site-header .nav-links a.dmenu-home-mobile.dmenu-home-action{
+    color:#fff;background:#17273e;text-align:center;border-radius:9px;margin-top:3px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #dmenu-bar .dmenu-button{transition:none}
+}
+
+@media(max-width:700px){
+  .site-header .nav-links.open{
+    max-height:calc(100dvh - 78px);overflow-y:auto;overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+}

@@ -30,7 +30,7 @@
   const host=location.hostname.toLowerCase();
   if(host!=='raw.githack.com' && host!=='rawgit.com') return;
   const chunks=location.pathname.split('/').filter(Boolean);
-  if(chunks.length<4 || !/^preview-v2[67]-2026-11-07$/.test(chunks[2])) return;
+  if(chunks.length<4 || !/^preview-v2[67]-2026-11-07$|^preview-v27-menu-2026-11-07$/.test(chunks[2])) return;
   const base='/'+chunks.slice(0,3).join('/')+'/';
   function toPreview(href){
     if(!href||href.startsWith('mailto:')||href.startsWith('tel:')||href.startsWith('sms:')||href.startsWith('javascript:')) return null;
@@ -83,4 +83,115 @@
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',activate,{once:true});
   else activate();
+})();
+
+
+/* V2.7.1 — Menu universel « hamburger » de prépublication.
+ * Uniquement actif sur preview-v27-menu-2026-11-07, jamais sur main.
+ * L'accueil garde son propre hamburger ; les autres pages gagnent un en-tête léger.
+ */
+(()=>{'use strict';
+  if(!['raw.githack.com','rawgit.com'].includes(location.hostname.toLowerCase()))return;
+  const parts=location.pathname.split('/').filter(Boolean);
+  if(parts.length<4||parts[2]!=='preview-v27-menu-2026-11-07')return;
+  const root='/'+parts.slice(0,3).join('/')+'/';
+  const entries=[
+    ['Accueil',root+'index.html'],
+    ['Les 17 piliers',root+'piliers/index.html'],
+    ['Les 9 questionnaires',root+'questionnaires/index.html'],
+    ['Bulletin citoyen',root+'qcm-democratie-decisionnelle/index.html'],
+    ['Guide de lecture',root+'guide-de-lecture/index.html'],
+    ['À propos',root+'a-propos/index.html']
+  ];
+  function init(){
+    if(document.getElementById('dmenu-panel'))return;
+    const style=document.createElement('link');
+    style.rel='stylesheet';style.href=root+'assets/menu-global-v271.css';
+    document.head.appendChild(style);
+    const homepage=document.getElementById('menu-toggle');
+    const existing=document.getElementById('nav-links');
+    if(homepage&&existing){
+      // Accueil V2.3 possède déjà un hamburger fonctionnel : ne pas en afficher deux.
+      for(const [i,[label,url]] of entries.entries()){
+        const a=document.createElement('a');
+        a.href=url;a.textContent=label;
+        a.className='dmenu-home-mobile'+(i===3?' dmenu-home-action':'');
+        a.addEventListener('click',()=>{
+          existing.classList.remove('open');homepage.setAttribute('aria-expanded','false');
+          homepage.setAttribute('aria-label','Ouvrir le menu de navigation');
+        });
+        existing.appendChild(a);
+      }
+      homepage.setAttribute('aria-label','Ouvrir le menu de navigation');
+      homepage.addEventListener('click',()=>{
+        homepage.setAttribute('aria-label',homepage.getAttribute('aria-expanded')==='true'?'Fermer le menu de navigation':'Ouvrir le menu de navigation');
+      });
+      document.addEventListener('keydown',e=>{
+        if(e.key==='Escape'&&existing.classList.contains('open')){
+          existing.classList.remove('open');homepage.setAttribute('aria-expanded','false');
+          homepage.setAttribute('aria-label','Ouvrir le menu de navigation');homepage.focus();
+        }
+      });
+      return;
+    }
+    const bar=document.createElement('div');bar.id='dmenu-bar';
+    const brand=document.createElement('a');brand.href=root+'index.html';brand.className='dmenu-brand';
+    brand.setAttribute('aria-label','Doctrine Éconologique — retour à l’accueil');
+    const mark=document.createElement('span');mark.className='dmenu-brandmark';mark.textContent='é.';
+    const name=document.createElement('span');name.className='dmenu-brandname';name.textContent='Doctrine Éconologique';
+    brand.append(mark,name);
+    const toggle=document.createElement('button');toggle.type='button';toggle.className='dmenu-button';
+    toggle.id='dmenu-toggle';toggle.setAttribute('aria-controls','dmenu-panel');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','Ouvrir le menu de navigation');
+    toggle.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+    bar.append(brand,toggle);
+    const overlay=document.createElement('div');overlay.id='dmenu-overlay';overlay.hidden=true;
+    const panel=document.createElement('nav');panel.id='dmenu-panel';panel.hidden=true;
+    panel.setAttribute('aria-label','Navigation générale de la Doctrine');
+    const heading=document.createElement('div');heading.className='dmenu-panel-head';
+    const title=document.createElement('span');title.className='dmenu-panel-title';title.textContent='Explorer la Doctrine';
+    const closeBtn=document.createElement('button');closeBtn.type='button';closeBtn.className='dmenu-close';
+    closeBtn.setAttribute('aria-label','Fermer le menu');closeBtn.textContent='×';
+    heading.append(title,closeBtn);panel.appendChild(heading);
+    const links=document.createElement('div');links.className='dmenu-list';
+    for(const [i,[label,url]] of entries.entries()){
+      if(i===4){const sep=document.createElement('div');sep.className='dmenu-separator';sep.setAttribute('aria-hidden','true');links.append(sep);}
+      const a=document.createElement('a');a.href=url;a.textContent=label;a.className='dmenu-link'+(i===3?' dmenu-primary':'');
+      links.appendChild(a);
+    }
+    panel.appendChild(links);
+    const foot=document.createElement('p');foot.className='dmenu-foot';
+    foot.textContent='Une démarche citoyenne indépendante · Les documents et les sources restent accessibles.';
+    panel.appendChild(foot);
+    const notice=document.getElementById('preview-v26-notice');
+    if(notice)notice.insertAdjacentElement('afterend',bar);else document.body.insertBefore(bar,document.body.firstChild);
+    document.body.append(overlay,panel);
+    function setOpen(open,restoreFocus){
+      if(open){
+        const top=Math.min(Math.max(65,bar.getBoundingClientRect().bottom+8),Math.max(65,innerHeight-180));
+        panel.style.top=top+'px';panel.style.maxHeight='calc(100dvh - '+(top+8)+'px)';
+      }
+      panel.hidden=!open;overlay.hidden=!open;toggle.setAttribute('aria-expanded',String(open));
+      toggle.setAttribute('aria-label',open?'Fermer le menu de navigation':'Ouvrir le menu de navigation');
+      document.body.classList.toggle('dmenu-open',open);
+      if(open)panel.querySelector('a').focus();
+      else if(restoreFocus)toggle.focus();
+    }
+    toggle.addEventListener('click',()=>setOpen(panel.hidden,true));
+    closeBtn.addEventListener('click',()=>setOpen(false,true));
+    overlay.addEventListener('click',()=>setOpen(false,true));
+    panel.addEventListener('click',e=>{if(e.target.closest('a'))setOpen(false,false);});
+    document.addEventListener('keydown',e=>{
+      if(panel.hidden)return;
+      if(e.key==='Escape'){e.preventDefault();setOpen(false,true);return;}
+      if(e.key!=='Tab')return;
+      const focusables=[...panel.querySelectorAll('a[href],button:not([disabled])')];
+      const first=focusables[0],last=focusables[focusables.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
 })();
