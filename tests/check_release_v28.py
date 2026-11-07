@@ -48,10 +48,8 @@ def assert_eq(path,ref=PREVIEW):
     assert s.count(after)==1,(path,"mode rapide Energie modifie autrement")
     s=s.replace(after,before)
   if path in ("qcm-aspa/index.html","qcm-textile/index.html"):
-    # Le defilement de ces deux QCM est désormais assuré par le fichier commun.
-    # On retire de la comparaison UNIQUEMENT l'ancien scroll concurrent.
-    previous='  $("nextBtn").scrollIntoView({behavior:"smooth",block:"nearest"});\\n'
-    previous=previous.replace('\\\\n','\\n')
+    # Suppression strictement bornee de l'ancien scroll, remplace par le helper commun.
+    previous='  $("nextBtn").scrollIntoView({behavior:"smooth",block:"nearest"});' + chr(10)
     assert old.count(previous)==1,(path,"ancien scroll inattendu")
     assert s.count(previous)==0,(path,"ancien scroll concurrent conserve")
     old=old.replace(previous,"")
