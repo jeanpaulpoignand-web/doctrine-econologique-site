@@ -186,6 +186,16 @@ def main():
           assert evidence.nth(0).locator("p").count()==3
           assert evidence.nth(1).locator("p").count()==3
           assert page.locator(".aspa-evidence-summary").is_visible()
+          vote=page.locator(".aspa-vote")
+          assert vote.count()==1 and vote.is_visible(),(label,"vote parlementaire absent")
+          assert "30 octobre 2025" in vote.inner_text()
+          assert "Gabriel Attal" in vote.inner_text()
+          assert "185" in vote.inner_text() and "184" in vote.inner_text() and "5" in vote.inner_text()
+          assert "résolution non contraignante" in vote.inner_text()
+          assert vote.locator('a[href="https://www.assemblee-nationale.fr/dyn/17/scrutins/3260"]').count()==2
+          if label in ("iphone","ipad-paysage"):
+            vote.screenshot(path=str(ART/f"{label}-pilier4-vote-3260.png"))
+
           assert "ANCIENNES FORMULATIONS À ABANDONNER" not in page.locator("main").inner_text()
           assert "Les ressortissants algériens relèvent d’un régime de séjour [HYPOTHÈSE]" not in page.locator("main").inner_text()
           # Chaque paragraphe doit rester dans son encadre, sans texte orphelin.
