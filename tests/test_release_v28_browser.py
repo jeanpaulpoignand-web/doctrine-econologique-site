@@ -192,6 +192,17 @@ def main():
           assert "Gabriel Attal" in vote.inner_text()
           assert "185" in vote.inner_text() and "184" in vote.inner_text() and "5" in vote.inner_text()
           assert "résolution non contraignante" in vote.inner_text()
+          rapport=page.locator(".aspa-rapport")
+          assert rapport.count()==1 and rapport.is_visible(),(label,"rapport Rodwell non visible")
+          assert "2 milliards d’euros par an" in rapport.inner_text()
+          assert "200 à 300 M€ / an" in rapport.inner_text()
+          assert "1,5 à 2 Md€ / an" in rapport.inner_text()
+          assert "Mathieu Lefèvre" in rapport.inner_text() and "Charles Rodwell" in rapport.inner_text()
+          assert "ne peut pas être fiabilisé rigoureusement" in rapport.inner_text()
+          assert "Philippe Brun" in rapport.inner_text()
+          assert "ni avec les sommes effectivement versées aux allocataires de nationalité algérienne" in rapport.inner_text()
+          if label in ("iphone","ipad-paysage"):
+            rapport.screenshot(path=str(ART/f"{label}-pilier4-rapport-1963.png"))
           assert vote.locator('a[href="https://www.assemblee-nationale.fr/dyn/17/scrutins/3260"]').count()==2
           if label in ("iphone","ipad-paysage"):
             vote.screenshot(path=str(ART/f"{label}-pilier4-vote-3260.png"))
