@@ -49,6 +49,29 @@ body.pilier-v27 .aspa-evidence-summary strong{display:block;font-size:1.12rem;ma
 body.pilier-v27 .aspa-evidence-summary p{margin:0 0 10px}
 body.pilier-v27 .aspa-evidence-summary .aspa-evidence-note{font-size:.87rem;color:var(--p27-muted);margin-bottom:0}
 @media(max-width:700px){body.pilier-v27 .aspa-evidence{grid-template-columns:minmax(0,1fr)}body.pilier-v27 .aspa-evidence-card{padding:20px}body.pilier-v27 .aspa-evidence-summary{padding:18px}}
+
+/* Pilier IV : bloc financier national et explication accessible de l'accord de 1968 */
+body.pilier-v27 .aspa-national{margin:20px 0 20px;border-radius:18px;overflow:hidden;border:1px solid #b9c6c2;box-shadow:0 10px 26px rgba(23,39,62,.09);font-family:var(--p27-sans)}
+body.pilier-v27 .aspa-national-hero{padding:25px 27px 23px;background:linear-gradient(145deg,#19293f,#274a48);color:white}
+body.pilier-v27 .aspa-national-hero>span,body.pilier-v27 .aspa-national-grid span{display:block;font-size:.73rem;letter-spacing:.08em;font-weight:700}
+body.pilier-v27 .aspa-national-hero>strong{display:block;font:700 clamp(2rem,5vw,3rem)/1.18 var(--p27-serif);margin:8px 0 12px;color:white}
+body.pilier-v27 .aspa-national-hero p{font:.9rem/1.55 var(--p27-sans);color:#eff4ef;margin:0}
+body.pilier-v27 .aspa-national-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));background:#fff}
+body.pilier-v27 .aspa-national-grid>div{padding:23px 25px;min-width:0}
+body.pilier-v27 .aspa-national-grid>div+div{border-left:1px solid var(--p27-line)}
+body.pilier-v27 .aspa-national-grid strong{display:block;font:700 clamp(1.7rem,4vw,2.35rem)/1.2 var(--p27-serif);margin:10px 0 5px;color:#8B2C1E}
+body.pilier-v27 .aspa-national-grid p{font:.88rem/1.55 var(--p27-sans);color:var(--p27-muted);margin:0}
+body.pilier-v27 .aspa-finance-source{font:.84rem/1.55 var(--p27-sans);color:var(--p27-muted);margin:10px 0 23px}
+body.pilier-v27 .aspa-national>.aspa-finance-source{background:#eef2ee;margin:0;padding:13px 25px}
+body.pilier-v27 .aspa-finance-source a{color:var(--p27-teal);text-underline-offset:3px}
+body.pilier-v27 .aspa-per-person{margin-top:18px}
+body.pilier-v27 .aspa-per-person .card strong{font-size:clamp(1.35rem,3vw,1.85rem);margin:10px 0}
+body.pilier-v27 .aspa-per-person .card p{font:.9rem/1.55 var(--p27-sans);margin:0}
+body.pilier-v27 .aspa-1968-cards{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+body.pilier-v27 .aspa-1968-cards .card{min-width:0}
+body.pilier-v27 .aspa-1968-cards .card h3{font:700 1.15rem/1.35 var(--p27-sans);margin:0 0 12px;color:var(--p27-ink)}
+body.pilier-v27 .aspa-1968-cards .card p{font:.93rem/1.65 var(--p27-sans);margin:0;color:var(--p27-ink)}
+@media(max-width:700px){body.pilier-v27 .aspa-national-grid,body.pilier-v27 .aspa-1968-cards{grid-template-columns:minmax(0,1fr)}body.pilier-v27 .aspa-national-grid>div+div{border-left:0;border-top:1px solid var(--p27-line)}body.pilier-v27 .aspa-national-hero,body.pilier-v27 .aspa-national-grid>div{padding:20px}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,14 +94,42 @@ body.pilier-v27 .aspa-evidence-summary .aspa-evidence-note{font-size:.87rem;colo
 <p class="hero">« Solidarité oui, opacité non. »</p>
 <p class="lead">Une aide récupérable sur la maison d’une famille française doit l’être aussi sur un patrimoine situé à l’étranger.</p>
 <p><span class="tag">[FAIT]</span> 752 800 personnes percevaient le minimum vieillesse fin 2024 (DREES).</p>
-<h2 class="hh label">DEUX BILLETS POUR VOIR CE QUE LA RÈGLE PROMET</h2>
-<div class="cards"><div class="card"><span>ASPA 2026 · PERSONNE SEULE</span><strong>Ce que l’État verse</strong></div><div class="card"><span>AU DÉCÈS DU BÉNÉFICIAIRE</span><strong>Ce que l’État récupère</strong></div></div>
-<div class="cards"><div class="card"><strong>1 043,59 €</strong><span>Montant maximal par mois</span><strong>12 523 €</strong><span>Soit par an</span></div><div class="card"><span>Seuil de succession (métropole) Récupéré en 2023</span></div><div class="card"><strong>108 586 €</strong><strong>110 M€</strong></div></div>
-<p>Service-Public, montants au 1er janvier 2026 (couple : 1 620,18 € par Seuil 2026 ; récupérations 2023 de la branche vieillesse du régime général mois). (DREES).</p>
-<p>Depuis la réforme de 2023, le seuil de récupération sur succession est passé de 39 000</p>
-<h2>× 2,8</h2>
-<p>€ à 108 586 € en métropole : les petites successions sont protégées, mais la récupération sur les autres doit devenir effective et mesurée.</p>
-<p><span class="tag">[CALCUL]</span> 108 586,14 € ÷ 39 000 € ≈ 2,8. Seuil revalorisé de 0,9 % au 1er janvier 2026 ; plafond annuel de récupération : 8 463,42 € pour une personne seule.</p>
+<h2 class="hh label">LE VRAI BILAN FINANCIER DU MINIMUM VIEILLESSE</h2>
+<p>Les montants ci-dessous concernent le <strong>minimum vieillesse dans son ensemble</strong> : ASPA et anciennes allocations. Ils ne représentent ni les seuls bénéficiaires étrangers ni les seuls ressortissants algériens.</p>
+<section class="aspa-national" aria-label="Montants nationaux du minimum vieillesse">
+  <div class="aspa-national-hero">
+    <span>DÉPENSES NATIONALES EN 2025</span>
+    <strong>5,182 milliards d’euros</strong>
+    <p>Financement net des récupérations sur succession, tous régimes et toutes nationalités. Dernier exercice annuel publié par le FSV.</p>
+  </div>
+  <div class="aspa-national-grid">
+    <div><span>DÉPENSES NATIONALES NETTES · 2024</span><strong>4,868 Md€</strong><p>Minimum vieillesse, ASPA et anciennes allocations.</p></div>
+    <div><span>RÉCUPÉRATIONS SUR SUCCESSIONS · 2024</span><strong>108,7 M€</strong><p>Ensemble des régimes, pour le même exercice 2024.</p></div>
+  </div>
+  <p class="aspa-finance-source">Sources : <a href="https://fsv.fr/solidarite/minimum-vieillesse">Fonds de solidarité vieillesse, données 2024 et 2025</a> ; <a href="https://www.assemblee-nationale.fr/dyn/17/rapports/cion-soc/l17b1478_rapport-fond.pdf">Assemblée nationale, rapport n° 1478</a>. Le montant de 4,868 Md€ est <em>déjà net</em> des récupérations : il ne faut pas y soustraire 108,7 M€ une seconde fois.</p>
+</section>
+<div class="cards aspa-per-person">
+  <div class="card"><span>ASPA EN 2026 · PERSONNE SEULE</span><strong>1 043,59 € / mois</strong><p>Montant maximal ; l’allocation effectivement versée dépend des ressources.</p></div>
+  <div class="card"><span>SUCCESSION EN MÉTROPOLE · DÉCÈS EN 2026</span><strong>Environ 108 586 €</strong><p>Seuil d’actif net au-delà duquel une récupération peut être engagée selon les règles légales.</p></div>
+</div>
+<p class="aspa-finance-source">Source : <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F16871">Service-Public — ASPA, conditions et récupération sur succession</a>. Les plafonds individuels de 2026 ne doivent pas être confondus avec le bilan national de 2024 ou 2025.</p>
+<h2>Accord franco-algérien de 1968 : ce qu’il change, et ce qu’il ne change pas</h2>
+<p>L’accord bilatéral du 27 décembre 1968, modifié notamment en 1985, 1994 et 2001, règle des conditions spécifiques de <strong>circulation, de séjour et de travail</strong> des ressortissants algériens en France. <strong>Il ne crée pas à lui seul un droit automatique à l’ASPA.</strong></p>
+<div class="cards aspa-1968-cards" aria-label="Comprendre l'accord de 1968 et l'ASPA">
+  <section class="card">
+    <h3>Pas de cotisations exigées pour l’ASPA</h3>
+    <p>Un ressortissant algérien qui n’a jamais cotisé à un régime français peut, comme d’autres personnes éligibles, demander l’ASPA : il s’agit d’une aide de solidarité, <strong>pas d’une retraite acquise par cotisations</strong>. Une absence de carrière en France ne suffit donc pas à exclure le droit.</p>
+  </section>
+  <section class="card">
+    <h3>Âge normal : 65 ans, pas 67</h3>
+    <p>La règle générale d’âge pour l’ASPA est <strong>65 ans</strong>, avec certaines exceptions permettant une ouverture plus tôt. L’âge de 67 ans concerne d’autres mécanismes de retraite ; il ne correspond pas au seuil ordinaire de l’ASPA.</p>
+  </section>
+  <section class="card">
+    <h3>Conditions à respecter</h3>
+    <p>L’aide n’est pas attribuée simplement à l’arrivée en France : le demandeur doit notamment avoir de faibles ressources, résider en France de façon stable (notamment plus de neuf mois par an pour le critère du séjour principal) et remplir les règles de séjour applicables. Service-Public prévoit une catégorie particulière pour les ressortissants algériens, <strong>sous certaines conditions</strong>.</p>
+  </section>
+</div>
+<p class="aspa-finance-source">Références : <a href="https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000599731">accord franco-algérien et avenant de 2001 (Légifrance)</a> ; <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F16871">ASPA : âge, ressources, résidence et étrangers (Service-Public)</a> ; <a href="https://questions.assemblee-nationale.fr/q17/17-891QE.htm">réponse du Gouvernement sur les statistiques par nationalité, 17 février 2026</a>.</p>
 <h3 class="label">LA QUESTION POLITIQUE</h3>
 <h3>L’État publie-t-il les montants qu’il récupère réellement sur les successions comportant des biens hors de France, notamment en Algérie, et ceux qui restent non recouvrés ? Les données publiques consultées ne fournissent pas ce bilan détaillé.</h3>
 <p class="legend"><span class="tag">[FAIT]</span> donnée sourcée · [CALCUL] calcul reproductible · [HYPOTHÈSE] à démontrer · [ANALYSE] lecture de la doctrine · [PROPOSITION] mesure proposée</p>
