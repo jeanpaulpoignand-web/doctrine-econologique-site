@@ -11,3 +11,6 @@ exclude:
   - qcm-general/qcm-general-v7-1-index.html
   - qcm-general/qcm-general-v7-2-index.html
   - qcm-fraude-fiscale/README.md
+  - prototype-v2/
+  - tests/
+  - .test-artifacts/
