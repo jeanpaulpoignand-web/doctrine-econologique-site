@@ -1,0 +1,44 @@
+name: Prévisualisation candidate V2.8 — Apple et navigation
+on:
+  push:
+    branches:
+      - preview-v28-2026-11-07
+  pull_request:
+    branches:
+      - release/v28-candidate-2026-11-07
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview-v28:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Installer Chromium
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Parcours d'essai iPhone, iPad et ordinateur
+        run: python tests/test_preview_v28.py
+      - name: Vérifier les vraies adresses de prévisualisation
+        run: |
+          python - <<'PY'
+          from urllib.request import Request, urlopen
+          base="https://raw.githack.com/jeanpaulpoignand-web/doctrine-econologique-site/preview-v28-2026-11-07/"
+          for path in ("index.html","piliers/index.html","qcm-democratie-decisionnelle/index.html","apple-touch-icon.png","assets/doctrine-share.js"):
+           with urlopen(Request(base+path,headers={"User-Agent":"Mozilla/5.0"}),timeout=25) as resp:
+            assert resp.status==200,(path,resp.status)
+            assert len(resp.read(100))>50,path
+            print("HTTP 200",path,resp.headers.get("content-type"))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: preview-v28-iphone-ipad
+          path: .test-artifacts/preview-v28/
+          retention-days: 14
+          if-no-files-found: warn

@@ -159,3 +159,57 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+
+
+/* V2.8 — Couche réservée au miroir d'essai RawGitHack.
+ * NE PAS transférer dans la branche release/v28-candidate ni dans main.
+ * Sur l'hébergement officiel, aucun routage et aucune directive noindex.
+ */
+(()=>{'use strict';
+  if(!['raw.githack.com','rawgit.com'].includes(location.hostname.toLowerCase()))return;
+  const parts=location.pathname.split('/').filter(Boolean);
+  if(parts.length<4||parts[2]!=='preview-v28-2026-11-07')return;
+  const root='/'+parts.slice(0,3).join('/')+'/';
+  function previewHref(raw){
+    if(!raw||raw.startsWith('#')||/^(mailto|tel|sms|javascript):/i.test(raw))return null;
+    let u;try{u=new URL(raw,location.href)}catch{return null;}
+    const host=u.hostname.replace(/^www\./i,'').toLowerCase();
+    let path=null;
+    if(host==='doctrine-econologique.fr')path=u.pathname.replace(/^\/+/,'');
+    else if(u.origin===location.origin){
+      if(u.pathname.startsWith(root))path=u.pathname.slice(root.length);
+      else path=u.pathname.replace(/^\/+/,'');
+    }else return null;
+    if(!path||path.endsWith('/'))path+='index.html';
+    return location.origin+root+path+u.search+u.hash;
+  }
+  function rewrite(node){
+    const els=[];
+    if(node.nodeType===1&&node.matches&&node.matches('a[href]'))els.push(node);
+    if(node.querySelectorAll)node.querySelectorAll('a[href]').forEach(x=>els.push(x));
+    for(const a of els){
+      const m=previewHref(a.getAttribute('href'));
+      if(m&&a.href!==m){a.href=m;if(a.target==='_top'||a.target==='_blank')a.removeAttribute('target')}
+    }
+  }
+  function init(){
+    const robot=document.createElement('meta');
+    robot.name='robots';robot.content='noindex,nofollow';document.head.appendChild(robot);
+    const banner=document.createElement('aside');banner.id='preview-v28-banner';
+    banner.setAttribute('role','note');
+    banner.style.cssText='box-sizing:border-box;position:relative;z-index:120;padding:8px 12px;background:#f6f0e4;color:#17273e;text-align:center;border-bottom:1px solid #dddcd2;font:600 12px/1.45 system-ui,-apple-system,sans-serif';
+    banner.innerHTML='CANDIDATE V2.8 — PRÉVISUALISATION, PAS LE SITE OFFICIEL · <a href="'+root+'index.html" style="color:#97452f;text-decoration:underline">Accueil de la candidate</a>';
+    document.body.insertBefore(banner,document.body.firstChild);
+    rewrite(document);
+    new MutationObserver(records=>{
+      for(const r of records)for(const n of r.addedNodes)if(n.nodeType===1)rewrite(n);
+    }).observe(document.body,{subtree:true,childList:true});
+    document.addEventListener('click',e=>{
+      if(e.defaultPrevented||e.button!==0||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey)return;
+      const a=e.target.closest&&e.target.closest('a[href]');
+      if(!a||a.hasAttribute('download'))return;
+      const m=previewHref(a.href);if(m&&a.href!==m)a.href=m;
+    },true);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
