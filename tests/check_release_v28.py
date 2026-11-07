@@ -66,8 +66,15 @@ def main():
     icon=(ROOT/path).parent.joinpath(match.group(1)).resolve()
     assert icon==(ROOT/"apple-touch-icon.png").resolve(),(path,"wrong icon",icon)
     assert "apple-mobile-web-app-title" in head,path
-    if path!="index.html":
+    if path not in ("index.html","piliers/reparation-des-retraites/index.html"):
       assert_eq(path)
+    elif path=="piliers/reparation-des-retraites/index.html":
+      # Le contenu redactionnel de ce seul pilier a ete corrige ; SEO intact.
+      assert "aspa-evidence-card" in s and s.count('class="card aspa-evidence-card"')==2
+      assert "ANCIENNES FORMULATIONS À ABANDONNER" not in s
+      assert "17-891QE.htm" in s and "service-public.gouv.fr" in s
+      assert '<link rel="canonical" href="https://doctrine-econologique.fr/piliers/reparation-des-retraites/"' in s
+      assert '"dateModified": "2026-11-07"' in s
     print("PASS static SEO+Apple",path)
   # All published HTML, including source fiches and annexes, must use the SAME
   # Apple icon; a shortcut created from any interior page must not revert to
