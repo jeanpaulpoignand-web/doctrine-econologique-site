@@ -4,6 +4,8 @@ on:
     branches:
       - release/v28-candidate-2026-11-07
   pull_request:
+    branches:
+      - main
     paths:
       - 'index.html'
       - 'piliers/**'
