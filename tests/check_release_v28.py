@@ -41,10 +41,10 @@ def assert_eq(path,ref=PREVIEW):
   if path=="qcm-energie/index.html":
     # Le mode rapide Energie quitte le passage automatique apres 280 ms :
     # après le vote, l'utilisateur choisit quand passer à la question suivante.
-    before='  } else {\\n    setTimeout(()=>{\\n      nextQuestion();\\n    }, 280);\\n  }'
-    after='  } else {\\n    // Même en mode rapide, laisser le lecteur poursuivre lui-même.\\n    document.getElementById("nextBtn").style.display = "block";\\n  }'
-    before=before.replace('\\n','\\n')
-    after=after.replace('\\n','\\n')
+    before='  } else {\n    setTimeout(()=>{\n      nextQuestion();\n    }, 280);\n  }'
+    after='  } else {\n    // Même en mode rapide, laisser le lecteur poursuivre lui-même.\n    document.getElementById("nextBtn").style.display = "block";\n  }'
+    before=before.replace('\n','\n')
+    after=after.replace('\n','\n')
     assert s.count(after)==1,(path,"mode rapide Energie modifie autrement")
     s=s.replace(after,before)
   if path=="qcm-general/index.html":
