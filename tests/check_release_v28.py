@@ -44,6 +44,9 @@ def png_size(path):
 def main():
   assert len(PILLARS)==15 and len(QCMS)==9 and len(PAGES)==30,len(PAGES)
   assert png_size("apple-touch-icon.png")== (180,180)
+  # Safari iOS may display transparent pixels with an unexpected dark backing:
+  # the 180px shortcut icon deliberately uses an opaque white background.
+  assert (ROOT/"apple-touch-icon.png").read_bytes()[25]==2,"Apple icon must be opaque RGB"
   assert png_size("favicon-32.png")== (32,32)
   assert png_size("assets/identite/symbole-perplexity.png")== (192,192)
   for path in PAGES:
