@@ -32,6 +32,21 @@ def parts(s,pat):
   return re.findall(pat,s,flags=re.I|re.S)
 def assert_eq(path,ref=PREVIEW):
   s=text(path); old=original(ref,path)
+  if path in [name+"/index.html" for name in QCMS]:
+    # Nouvel assistant de défilement mutualisé : aucune modification des données
+    # ni des moteurs des questionnaires (hormis mode rapide Énergie ci-dessous).
+    loader='<script src="../assets/qcm-scroll-after-answer.js" defer></script>'
+    assert s.count(loader)==1,(path,"script de defilement manquant ou duplique")
+    s=s.replace(loader,"")
+  if path=="qcm-energie/index.html":
+    # Le mode rapide Energie quitte le passage automatique apres 280 ms :
+    # après le vote, l'utilisateur choisit quand passer à la question suivante.
+    before='  } else {\\n    setTimeout(()=>{\\n      nextQuestion();\\n    }, 280);\\n  }'
+    after='  } else {\\n    // Même en mode rapide, laisser le lecteur poursuivre lui-même.\\n    document.getElementById("nextBtn").style.display = "block";\\n  }'
+    before=before.replace('\\n','\\n')
+    after=after.replace('\\n','\\n')
+    assert s.count(after)==1,(path,"mode rapide Energie modifie autrement")
+    s=s.replace(after,before)
   if path=="qcm-general/index.html":
     # Exception strictement bornee au defilement demande apres un choix.
     # Revenir virtuellement au script d'origine et conserver le controle
