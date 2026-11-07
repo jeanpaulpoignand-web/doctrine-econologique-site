@@ -120,7 +120,7 @@ body.qcm-classic .opts .opt{
   -webkit-tap-highlight-color:rgba(185,87,58,.13);
 }
 @media(hover:hover){
-  body.qcm-classic .opts .opt:not(:disabled):hover{
+  body.qcm-classic .opts .opt:not(:disabled):not(.selected):not([aria-pressed="true"]):hover{
     transform:translateY(-2px);
     background:linear-gradient(175deg,#fff,#f6f8f4);
     border-color:var(--q-teal);
