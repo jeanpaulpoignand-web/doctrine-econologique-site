@@ -62,6 +62,8 @@ ul{padding-left:22px;margin:0 0 16px}li{margin:0 0 6px}
 .story .story-sources a,.story .source-note a{color:var(--nuit);text-underline-offset:3px}
 .story .source-note{padding:14px;background:#eeebe4;border-radius:8px;font:14px/1.65 system-ui,-apple-system,sans-serif}
 @media(max-width:650px){.story .role-grid{grid-template-columns:1fr}.story-intro{font-size:19px}.story .chapter p{font-size:17px}.story .role p{font-size:15px}.story .story-number{padding:17px}.story .chapter-conclusion{padding:3px 16px 18px}}
+
+.story-figures{display:grid;gap:26px;margin:26px 0 34px}.story-figure{margin:0;padding:19px 16px;background:#fff;border:1px solid var(--ligne);border-radius:12px}.story-figure h3{font:700 19px/1.3 system-ui,-apple-system,sans-serif;color:var(--nuit);margin:0 0 16px}.story-figure .history-chart{display:block;width:100%;height:auto;overflow:visible}.story-figure figcaption{margin:12px 0 0;font:13px/1.5 system-ui,-apple-system,sans-serif;color:var(--doux)}.story-figure figcaption a{color:var(--nuit)}@media(max-width:650px){.story-figure{padding:12px 8px}.story-figure h3{font-size:16px}.story-figure figcaption{font-size:12px}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,6 +111,41 @@ ul{padding-left:22px;margin:0 0 16px}li{margin:0 0 6px}
 <p>Il achète de l'électricité, puis la revend en proposant des prix, un contrat et un service commercial. Il doit rémunérer ses employés et financer son activité. Cela ne prouve pas à lui seul que sa facture sera plus chère : certains fournisseurs peuvent aussi acheter habilement ou proposer de meilleures offres. Mais <strong>la présence de vendeurs supplémentaires ne crée pas, à elle seule, un seul kilowattheure de plus</strong>.</p>
 <p><strong>Et les chiffres, alors ?</strong> L'INSEE a suivi le prix de l'électricité payé par l'ensemble des ménages depuis l'ouverture à la concurrence. La hausse était déjà d'environ <strong>49 % entre 2007 et 2019</strong>, avant la grande crise du gaz. Elle a atteint <strong>128 % entre 2007 et 2024</strong>. Malgré le recul des prix en 2025, elle restait encore d'environ <strong>101 % entre 2007 et 2025</strong>. <a class="reference" href="#ref16">[16]</a></p>
 <p>Pour comprendre sans calcul compliqué : <strong>une électricité qui coûtait 100 € aux prix de 2007 en coûterait environ 201 € aux prix moyens de 2025, à consommation comparable.</strong> Sur la même période, les prix de l'ensemble des produits et services ont augmenté d'environ <strong>33 %</strong>. L'électricité a donc augmenté bien plus vite que l'inflation générale. <a class="reference" href="#ref17">[17]</a></p>
+<div class="story-figures" aria-label="Deux graphiques INSEE sur l'évolution des prix">
+<figure class="story-figure"><h3>Graphique 1 — Le prix de l'électricité a doublé depuis 2007</h3>
+<svg class="history-chart" viewBox="0 0 1020 465" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pilier1-chart1-title pilier1-chart1-desc">
+<title id="pilier1-chart1-title">Évolution des prix en France, 2007 à 2025</title>
+<desc id="pilier1-chart1-desc">En prenant l'année 2007 pour 100 : le prix de l'électricité atteint 149 en 2019, 228 en 2024 et 201 en 2025. Le niveau général des prix atteint 133 en 2025.</desc>
+<rect width="1020" height="465" rx="12" fill="#fff"/>
+<line x1="72" y1="347.1" x2="745" y2="347.1" stroke="#ddd9d2" stroke-width="1"/><text x="58" y="352.1" text-anchor="end" fill="#6c7280" font-size="16">100</text><line x1="72" y1="293.5" x2="745" y2="293.5" stroke="#ddd9d2" stroke-width="1"/><text x="58" y="298.5" text-anchor="end" fill="#6c7280" font-size="16">130</text><line x1="72" y1="239.9" x2="745" y2="239.9" stroke="#ddd9d2" stroke-width="1"/><text x="58" y="244.9" text-anchor="end" fill="#6c7280" font-size="16">160</text><line x1="72" y1="186.3" x2="745" y2="186.3" stroke="#ddd9d2" stroke-width="1"/><text x="58" y="191.3" text-anchor="end" fill="#6c7280" font-size="16">190</text><line x1="72" y1="132.7" x2="745" y2="132.7" stroke="#ddd9d2" stroke-width="1"/><text x="58" y="137.7" text-anchor="end" fill="#6c7280" font-size="16">220</text>
+<polyline points="72.0,347.1 109.2,342.1 146.4,341.9 183.7,339.1 220.9,335.2 258.1,331.5 295.3,329.8 332.6,328.8 369.8,328.7 407.0,328.3 444.2,326.3 481.4,322.6 518.7,320.4 555.9,319.4 593.1,316.0 630.3,305.0 667.6,294.3 704.8,289.6 742.0,287.4" fill="none" stroke="#14304b" stroke-width="4" stroke-dasharray="12 8" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="72.0,347.1 109.2,344.6 146.4,341.3 183.7,336.9 220.9,324.6 258.1,318.4 295.3,304.8 332.6,292.3 369.8,281.1 407.0,273.4 444.2,272.4 481.4,269.0 518.7,259.0 555.9,243.2 593.1,234.8 630.3,213.3 667.6,173.0 704.8,117.6 742.0,166.2" fill="none" stroke="#9c3e2d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="72.0" cy="347.1" r="6" fill="#9c3e2d" stroke="#fff" stroke-width="2"/><circle cx="518.7" cy="259.0" r="6" fill="#9c3e2d" stroke="#fff" stroke-width="2"/><circle cx="704.8" cy="117.6" r="6" fill="#9c3e2d" stroke="#fff" stroke-width="2"/><circle cx="742.0" cy="166.2" r="6" fill="#9c3e2d" stroke="#fff" stroke-width="2"/><text x="72.0" y="400" fill="#475467" font-size="16" text-anchor="middle">2007</text><text x="183.7" y="400" fill="#475467" font-size="16" text-anchor="middle">2010</text><text x="295.3" y="400" fill="#475467" font-size="16" text-anchor="middle">2013</text><text x="407.0" y="400" fill="#475467" font-size="16" text-anchor="middle">2016</text><text x="518.7" y="400" fill="#475467" font-size="16" text-anchor="middle">2019</text><text x="630.3" y="400" fill="#475467" font-size="16" text-anchor="middle">2022</text><text x="742.0" y="400" fill="#475467" font-size="16" text-anchor="middle">2025</text>
+<text x="500.66666666666663" y="240.01498321853558" text-anchor="middle" font-size="18" font-weight="700" fill="#9c3e2d">2019 : +49 %</text>
+<text x="690.7777777777777" y="95.56496082161007" text-anchor="end" font-size="18" font-weight="700" fill="#9c3e2d">2024 : +128 %</text>
+<text x="759" y="154.18952992423993" font-size="18" font-weight="700" fill="#9c3e2d">Électricité : +101 %</text>
+<text x="759" y="292.40018076567173" font-size="17" font-weight="700" fill="#14304b">Tous les prix : +33 %</text>
+<text x="72" y="438" font-size="14" fill="#6c7280">Indice 2007 = 100 · moyennes annuelles INSEE</text>
+</svg>
+<figcaption>Électricité et ensemble des prix, indices comparables ramenés à 100 en 2007. Source : <a href="https://www.insee.fr/fr/statistiques/serie/011815815" target="_blank" rel="noopener">INSEE, électricité</a> et <a href="https://www.insee.fr/fr/statistiques/serie/011814639" target="_blank" rel="noopener">INSEE, ensemble des prix</a>.</figcaption>
+</figure>
+<figure class="story-figure"><h3>Graphique 2 — La différence que comprend immédiatement une famille</h3>
+<svg class="history-chart" viewBox="0 0 1020 315" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pilier1-chart2-title pilier1-chart2-desc">
+<title id="pilier1-chart2-title">Une facture théorique de 100 euros en 2007 aux prix de 2025</title>
+<desc id="pilier1-chart2-desc">À quantité d'électricité identique, 100 euros de 2007 correspondent à environ 201 euros en 2025 pour l'électricité, contre 133 euros si le prix avait suivi l'inflation générale.</desc>
+<rect width="1020" height="315" rx="12" fill="#fff"/>
+<text x="205" y="43" fill="#6c7280" font-size="17">100 € en 2007, à même quantité ou panier comparable</text>
+<line x1="422.4" y1="62" x2="422.4" y2="266" stroke="#89939b" stroke-dasharray="5 7"/>
+<text x="24" y="118" fill="#14304b" font-size="19" font-weight="700">Prix en général</text>
+<rect x="205" y="83" width="290.0" height="53" rx="5" fill="#14304b"/>
+<text x="505.0" y="118" fill="#14304b" font-size="24" font-weight="700">133 €</text>
+<text x="24" y="226" fill="#14304b" font-size="19" font-weight="700">Électricité</text>
+<rect x="205" y="191" width="437.5" height="53" rx="5" fill="#9c3e2d"/>
+<text x="652.5" y="226" fill="#9c3e2d" font-size="24" font-weight="700">201 €</text>
+<text x="24" y="289" fill="#6c7280" font-size="15">Lecture : le prix de l'électricité a augmenté bien davantage que l'inflation moyenne.</text>
+</svg>
+<figcaption>Illustration de l'évolution des prix à consommation constante, et non comparaison de factures réellement acquittées. Source : INSEE, séries annuelles 011815815 et 011814639.</figcaption></figure>
+</div>
 <p><strong>Voilà le contraste entre la promesse et le résultat mesuré.</strong> Il ne signifie pas que les intermédiaires commerciaux expliquent à eux seuls la hausse : les coûts de production, les réseaux, les taxes et les crises du marché de l'énergie ont également joué un rôle. Mais lorsqu'on promet une électricité moins chère grâce à l'ouverture du marché, <strong>c'est cette évolution réelle des prix qu'il faut montrer aux Français</strong>. <a class="reference" href="#ref3">[3]</a></p>
 </section>
 
