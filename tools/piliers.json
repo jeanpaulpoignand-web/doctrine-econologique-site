@@ -357,7 +357,7 @@
     "slug": "amortissement-dette",
     "statut": "publie",
     "titre_page": "Amortissement de la dette",
-    "resume": "On ne solde pas une année de production en la reclassant.",
+    "resume": "Environ 79 milliards d’euros d’intérêts par an : plus que le budget de l’école.",
     "accroche": "Excédent primaire · pensions futures plafonnées · énergie et logement",
     "pdf": "fiches/pilier-14-aller-droit-au-but.pdf",
     "annexes": [
@@ -379,6 +379,7 @@
     "questionnaires": [],
     "drive": "https://drive.google.com/drive/folders/1GrCVMkHaVr6ZLhvO6RHCM9SvYGM-M-5d",
     "corps_manuel": true,
+    "maj": "2026-11-08",
     "titre_seo": "Dette publique : l’amortir, pas l’effacer"
   },
   {
