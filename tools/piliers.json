@@ -218,7 +218,7 @@
     "slug": "agriculture-alimentation",
     "statut": "publie",
     "titre_page": "Agriculture et alimentation souveraine",
-    "resume": "Ne pas importer ce qu’on interdit de produire.",
+    "resume": "La moitié du poulet que nous mangeons est importé.",
     "accroche": "Clauses miroirs · contingents plafonnés · transition payée avant d’être imposée",
     "pdf": "fiches/pilier-09-aller-droit-au-but.pdf",
     "annexes": [
@@ -242,6 +242,7 @@
     "questionnaires": [],
     "drive": "https://drive.google.com/drive/folders/11YrF4EXYCOozepElOSPWlNF70-VEpZ47",
     "corps_manuel": true,
+    "maj": "2026-11-08",
     "titre_seo": "Agriculture : ne pas importer l’interdit"
   },
   {
