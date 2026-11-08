@@ -27,7 +27,7 @@
     "slug": "garantie-decennale",
     "statut": "publie",
     "titre_page": "Garantie décennale",
-    "resume": "Comment rendre aux ménages de l'ordre de 2 milliards d'euros par an ?",
+    "resume": "Garantie transmise : le produit garde sa valeur.",
     "accroche": "Dix ans de garantie transmissible à la revente · pièces et logiciels garantis 10 ans · réparation de proximité",
     "pdf": "fiches/pilier-02-aller-droit-au-but.pdf",
     "annexes": [
@@ -42,7 +42,9 @@
     ],
     "questionnaires": [],
     "drive": "https://drive.google.com/drive/folders/1VlV4-e7jEMAnLcdf2ix7W1-yOPvC-0pS",
-    "titre_seo": "Garantie 10 ans : acheter durable"
+    "titre_seo": "Garantie 10 ans : acheter durable",
+    "corps_manuel": true,
+    "maj": "2026-11-08"
   },
   {
     "numero": 3,

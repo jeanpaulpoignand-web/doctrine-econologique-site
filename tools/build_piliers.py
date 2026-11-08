@@ -724,7 +724,7 @@ def main(slugs):
             body = open(man, encoding="utf-8").read().strip()
         words_pdf = len(subprocess.run(["pdftotext", pdf, "-"], capture_output=True, text=True).stdout.split())
         words_html = len(re.sub(r"<[^>]+>", " ", body).split())
-        d_pub, d_maj = git_date(p["pdf"], True), git_date(p["pdf"], False)
+        d_pub, d_maj = git_date(p["pdf"], True), (p.get("maj") or git_date(p["pdf"], False))
         out = os.path.join(ROOT, "piliers", p["slug"], "index.html")
         os.makedirs(os.path.dirname(out), exist_ok=True)
         with open(out, "w", encoding="utf-8") as fh:
