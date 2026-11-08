@@ -6,8 +6,8 @@
     "slug": "energie-souveraine",
     "statut": "publie",
     "titre_page": "Énergie : produire et payer son électricité en France",
-    "resume": "L'énergie pilotable, bas-carbone et compétitive, condition de toute prospérité.",
-    "accroche": "Nucléaire · biométhane local · rendement national",
+    "resume": "Un pays au nucléaire abondant paie pourtant son énergie cher : l'histoire des décisions de 1974 à 2025.",
+    "accroche": "Messmer · ouverture du marché · ARENH · gaz · 2022",
     "pdf": "fiches/pilier-01-aller-droit-au-but.pdf",
     "annexes": [],
     "questionnaires": [
@@ -17,7 +17,8 @@
       }
     ],
     "drive": "https://drive.google.com/drive/folders/1npocKsHkCjCufZIIVSlF7KJoADbXgbal",
-    "titre_seo": "Énergie : nucléaire et biométhane locaux"
+    "titre_seo": "Énergie : histoire du paradoxe français",
+    "corps_manuel": true
   },
   {
     "numero": 2,
