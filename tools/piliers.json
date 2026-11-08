@@ -251,7 +251,7 @@
     "slug": "textile-habillement-chaussure",
     "statut": "publie",
     "titre_page": "Textile, habillement, chaussure",
-    "resume": "Fabriquer ici, garder ce qui sert.",
+    "resume": "Un demi-million d’emplois si l’on fabriquait ici ce qu’on porte.",
     "accroche": "Aides liées à l’emploi · lin filé en France · achat durable accessible",
     "pdf": "fiches/pilier-10-aller-droit-au-but.pdf",
     "annexes": [
@@ -280,6 +280,7 @@
     ],
     "drive": "https://drive.google.com/drive/folders/1PBE8pwxsbmzuH58qnforcdwDbMYwZs5s",
     "corps_manuel": true,
+    "maj": "2026-11-08",
     "titre_seo": "Textile et chaussure : fabriquer ici"
   },
   {
