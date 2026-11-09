@@ -88,7 +88,7 @@
     "slug": "grand-age-ehpad",
     "statut": "publie",
     "titre_page": "Grand âge et EHPAD",
-    "resume": "Prévenir coûte moins cher que réparer.",
+    "resume": "Plus de 10 000 soignants de l’Est travaillent à l’étranger.",
     "accroche": "Ratios de soignants · domicile d’abord · retour des soignants",
     "pdf": "fiches/pilier-05-aller-droit-au-but.pdf",
     "annexes": [
@@ -103,7 +103,9 @@
     ],
     "questionnaires": [],
     "drive": "https://drive.google.com/drive/folders/1k5fKJQzjj6wzmB_NHnVyAC9nw8wFSXDD",
-    "titre_seo": "EHPAD : prévenir plutôt que réparer"
+    "titre_seo": "EHPAD : prévenir plutôt que réparer",
+    "corps_manuel": true,
+    "maj": "2026-11-09"
   },
   {
     "numero": 6,
