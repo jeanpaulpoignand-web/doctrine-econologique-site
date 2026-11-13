@@ -22,6 +22,25 @@ EXTRAS=["questionnaires/index.html","piliers/index.html","a-propos/index.html",
 "guide-de-lecture/index.html","bulletin-arbitrage/index.html"]
 PAGES=["index.html"]+[x+"/index.html" for x in QCMS]+["piliers/"+x+"/index.html" for x in PILLARS]+EXTRAS
 
+# Les révisions éditoriales des 8 et 13 novembre sont déjà sur main.
+# Pour ces seules pages, figer le contenu actuellement publié plutôt que
+# l'ancien aperçu du 7/11 ; toute autre modification dans cette PR corrective
+# (scripts, titres H1-H3, canonical) doit encore faire échouer la CI.
+EDITORIAL_PILLARS_PUBLIES_2026_11_13 = {
+  "piliers/energie-souveraine/index.html",
+  "piliers/garantie-decennale/index.html",
+  "piliers/financement-public/index.html",
+  "piliers/grand-age-ehpad/index.html",
+  "piliers/batiment-metiers-utiles/index.html",
+  "piliers/econologie-culturelle/index.html",
+  "piliers/frontaliers-capital-humain/index.html",
+  "piliers/agriculture-alimentation/index.html",
+  "piliers/democratie-decisionnelle/index.html",
+  "piliers/amortissement-dette/index.html",
+  "piliers/fraude-fiscale/index.html",
+  "piliers/textile-habillement-chaussure/index.html",  # version éditoriale du 08/11 déjà publiée
+}
+
 def original(ref,path):
   return subprocess.check_output(["git","show",f"{ref}:{path}"],cwd=ROOT).decode("utf-8")
 def text(path):
@@ -31,6 +50,11 @@ def tags(s,tag):
 def parts(s,pat):
   return re.findall(pat,s,flags=re.I|re.S)
 def assert_eq(path,ref=PREVIEW):
+  # Les pages de navigation et d information (EXTRAS) ont deja evolue
+  # depuis le preview du 7/11. Verifier leur contenu contre main publie,
+  # sans jamais assouplir la comparaison des moteurs QCM avec PREVIEW.
+  if path in EDITORIAL_PILLARS_PUBLIES_2026_11_13 or path in EXTRAS:
+    ref=MAIN
   s=text(path); old=original(ref,path)
   if path in [name+"/index.html" for name in QCMS]:
     # Nouvel assistant de défilement mutualisé : aucune modification des données
@@ -47,6 +71,20 @@ def assert_eq(path,ref=PREVIEW):
     after=after.replace('\n','\n')
     assert s.count(after)==1,(path,"mode rapide Energie modifie autrement")
     s=s.replace(after,before)
+  if path=="qcm-energie/index.html":
+    # Exception editoriale du 13/11: dans la liste des sources du Pilier I,
+    # seul le titre et le resume ont ete mis a jour pour refleter la nouvelle
+    # fiche historique. Le moteur QCM et ses scores restent strictement figes.
+    previous_source=(
+      '      title:"Fiche « Aller droit au but » — Pilier I Énergie",' + chr(10)
+      + '      text:"Chiffres clés sourcés, responsabilités politiques et réforme proposée.",'
+    )
+    updated_source=(
+      '      title:"Pilier I Énergie — l\'histoire qui explique le paradoxe",' + chr(10)
+      + '      text:"Histoire de l\'électricité française, chiffres sourcés et responsabilités politiques.",'
+    )
+    assert s.count(updated_source)==1,(path,"libelle source Pilier I inattendu")
+    s=s.replace(updated_source,previous_source)
   if path in ("qcm-aspa/index.html","qcm-textile/index.html"):
     # Suppression strictement bornee de l'ancien scroll, remplace par le helper commun.
     previous='  $("nextBtn").scrollIntoView({behavior:"smooth",block:"nearest"});' + chr(10)
