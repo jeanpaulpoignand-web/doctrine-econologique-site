@@ -50,7 +50,10 @@ def tags(s,tag):
 def parts(s,pat):
   return re.findall(pat,s,flags=re.I|re.S)
 def assert_eq(path,ref=PREVIEW):
-  if path in EDITORIAL_PILLARS_PUBLIES_2026_11_13:
+  # Les pages de navigation et d information (EXTRAS) ont deja evolue
+  # depuis le preview du 7/11. Verifier leur contenu contre main publie,
+  # sans jamais assouplir la comparaison des moteurs QCM avec PREVIEW.
+  if path in EDITORIAL_PILLARS_PUBLIES_2026_11_13 or path in EXTRAS:
     ref=MAIN
   s=text(path); old=original(ref,path)
   if path in [name+"/index.html" for name in QCMS]:
