@@ -22,11 +22,11 @@ EXTRAS=["questionnaires/index.html","piliers/index.html","a-propos/index.html",
 "guide-de-lecture/index.html","bulletin-arbitrage/index.html"]
 PAGES=["index.html"]+[x+"/index.html" for x in QCMS]+["piliers/"+x+"/index.html" for x in PILLARS]+EXTRAS
 
-# Les révisions éditoriales des PR 45, 46 et 47 sont déjà sur main.
+# Les révisions éditoriales des 8 et 13 novembre sont déjà sur main.
 # Pour ces seules pages, figer le contenu actuellement publié plutôt que
 # l'ancien aperçu du 7/11 ; toute autre modification dans cette PR corrective
 # (scripts, titres H1-H3, canonical) doit encore faire échouer la CI.
-EDITORIAL_PILLARS_2026_11_13 = {
+EDITORIAL_PILLARS_PUBLIES_2026_11_13 = {
   "piliers/energie-souveraine/index.html",
   "piliers/garantie-decennale/index.html",
   "piliers/financement-public/index.html",
@@ -38,6 +38,7 @@ EDITORIAL_PILLARS_2026_11_13 = {
   "piliers/democratie-decisionnelle/index.html",
   "piliers/amortissement-dette/index.html",
   "piliers/fraude-fiscale/index.html",
+  "piliers/textile-habillement-chaussure/index.html",  # version éditoriale du 08/11 déjà publiée
 }
 
 def original(ref,path):
@@ -49,7 +50,7 @@ def tags(s,tag):
 def parts(s,pat):
   return re.findall(pat,s,flags=re.I|re.S)
 def assert_eq(path,ref=PREVIEW):
-  if path in EDITORIAL_PILLARS_2026_11_13:
+  if path in EDITORIAL_PILLARS_PUBLIES_2026_11_13:
     ref=MAIN
   s=text(path); old=original(ref,path)
   if path in [name+"/index.html" for name in QCMS]:
