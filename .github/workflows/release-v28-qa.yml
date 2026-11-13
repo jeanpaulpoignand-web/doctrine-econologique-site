@@ -3,18 +3,8 @@ on:
   push:
     branches:
       - release/v28-candidate-2026-11-07
+      - main
   pull_request:
-    paths:
-      - 'index.html'
-      - 'piliers/**'
-      - 'qcm-*/**'
-      - 'questionnaires/**'
-      - 'assets/**'
-      - 'apple-touch-icon.png'
-      - 'favicon-32.png'
-      - '_config.yml'
-      - 'tests/*release_v28*'
-      - '.github/workflows/release-v28-qa.yml'
   workflow_dispatch:
 permissions:
   contents: read
